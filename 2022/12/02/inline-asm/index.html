@@ -240,10 +240,19 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2022年12月02日</a>
-			<a><i class="kirafont icon-areachart"></i>977 字</a>
+			<a><i class="kirafont icon-areachart"></i>1k 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
 		</div>
-		<p>[toc]</p>
+		<!-- toc -->
+
+<ul>
+<li><a href="#part-i-%E5%86%85%E8%81%94%E6%B1%87%E7%BC%96%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">Part I: 内联汇编简单介绍</a></li>
+<li><a href="#part-ii-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%B8%80">Part II: 使用场景一</a></li>
+<li><a href="#part-iii-%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E4%BA%8C">Part III: 使用场景二</a></li>
+<li><a href="#part-iv%E5%9C%BA%E6%99%AF%E4%BA%8C%E7%9A%84%E5%8F%A6%E4%B8%80%E7%A7%8D%E5%86%99%E6%B3%95">Part IV：场景二的另一种写法</a></li>
+</ul>
+<!-- tocstop -->
+
 <h2><span id="part-i-内联汇编简单介绍">Part I: 内联汇编简单介绍</span></h2><p>最近做的项目中，有这样一个需求：我要封装一个函数，这个函数可以读取&#x2F;写入到某些RISC-V M态的寄存器中。这就要求在C语言中调用汇编代码，因为C语言本身是不能直接操作寄存器的。实现这种功能的方法叫做<strong>内联汇编</strong>。我把内联汇编的使用场景分成了如下两类：</p>
 <ul>
 <li>单纯执行汇编代码：不涉及将C语言变量放到寄存器中，或者将寄存器中的值读取到C语言变量。例如你要对系统进行某些设置（把某个寄存器的某个位设置成1，来让系统改变运行状态）。</li>
@@ -251,7 +260,7 @@
 </ul>
 <p>下面会针对这两类场景分别进行介绍。</p>
 <h2><span id="part-ii-使用场景一">Part II: 使用场景一</span></h2><p>在这种使用场景下，内联汇编就非常简单。语法格式如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">__asm__ __volatile__(<br>	<span class="hljs-string">&quot;汇编指令1\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令2\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令3\n\t&quot;</span><br>  ...<br>  <span class="hljs-string">&quot;最后一条汇编指令&quot;</span><br>);<br></code></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">__asm__ __volatile__(<br>  <span class="hljs-string">&quot;汇编指令1\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令2\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令3\n\t&quot;</span><br>  ...<br>  <span class="hljs-string">&quot;最后一条汇编指令&quot;</span><br>);<br></code></pre></td></tr></table></figure>
 
 
 
