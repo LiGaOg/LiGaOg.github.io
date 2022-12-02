@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html 
+	lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> ubuntu-image -  LiGaOg&#39;s blog</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@latest"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://ligaog.github.io/Blog-Images/pictures/favicon.jpg"
+			type="image/png"
+		/>
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://ligaog.github.io/Blog-Images/pictures/background.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="LiGaOg&#39;s blog">
+        <img
+			src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+			alt="LiGaOg"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg" title="LiGaOg">
+			<img
+				src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+				alt="LiGaOg"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>3</div>
+		<div><span>标签</span>3</div>
+		<div><span>分类</span>2</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/27905679"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/LiGaOg/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/C语言/">C语言</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/工具教程/">工具教程</a>
+        <span class="category-list-count">1</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a></div>
+	
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2022
+		<a href="/">LiGaOg</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://ligaog.github.io/Blog-Images/articles/ubuntu-image/cover.png"
+				data-sizes="auto"
+				alt="ubuntu-image"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>ubuntu-image</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月02日</a>
+			<a><i class="kirafont icon-areachart"></i>831 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+		</div>
+		<!-- toc -->
+
+<ul>
+<li><a href="#part-i-%E8%8E%B7%E5%8F%96linux-ubuntu%E9%95%9C%E5%83%8F">Part I: 获取Linux Ubuntu镜像</a></li>
+<li><a href="#part-ii-%E5%9F%BA%E7%A1%80%E9%85%8D%E7%BD%AE">Part II: 基础配置</a></li>
+<li><a href="#part-iii-%E6%9B%B4%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90">Part III: 更换软件源</a></li>
+<li><a href="#part-iv-%E9%85%8D%E7%BD%AEroot%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81">Part IV: 配置root账户密码</a></li>
+<li><a href="#part-v-%E6%92%A4%E9%94%80%E6%9C%80%E5%B0%8F%E5%8C%96">Part V: 撤销最小化</a></li>
+<li><a href="#part-vi-%E4%B8%8B%E8%BD%BD%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4">Part VI: 下载常用命令</a></li>
+<li><a href="#part-vii-%E4%B8%8B%E8%BD%BD%E5%85%B6%E4%BB%96%E5%91%BD%E4%BB%A4%E5%B7%A5%E5%85%B7">Part VII: 下载其他命令&#x2F;工具</a><ul>
+<li><a href="#%E4%B8%8B%E8%BD%BDnodejs">下载Node.js</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BDanaconda">下载anaconda</a></li>
+<li><a href="#%E4%B8%8B%E8%BD%BDlazygit">下载lazygit</a></li>
+</ul>
+</li>
+<li><a href="#part-viii-%E5%85%B6%E4%BB%96%E9%85%8D%E7%BD%AE">Part VIII: 其他配置</a></li>
+</ul>
+<!-- tocstop -->
+
+<p>配环境这个事是一个非常麻烦、耗费人心力的事。环境涉及的变量有很多，例如处理器架构，操作系统，版本号等等。如果我把环境都部署在本机上，就很容易出现环境交叉的问题。最好的办法是配置若干虚拟环境。<code>anaconda</code>已经做到了这一点，但是<code>anaconda</code>的虚拟环境只针对<code>python</code>。于是，我准备从一个什么也没有的Linux Ubuntu发行版开始，自己配置一个功能较为完善的baseline，然后基于这个baseline去配置每个项目所用的开发环境。这个教程就是来手把手配置baseline。</p>
+<h2><span id="part-i-获取linux-ubuntu镜像">Part I: 获取Linux Ubuntu镜像</span></h2><p>这个镜像是从Dockerhub上获取的。网址是：<a target="_blank" rel="noopener" href="https://hub.docker.com/_/ubuntu">镜像网址</a>，进去之后点<code>Tags</code>，就会出现如下界面：</p>
+<img src="https://ligaog.github.io/Blog-Images/articles/ubuntu-image/ubuntu-docker.png">
+
+<p>然后在本地用<code>docker pull ubuntu:latest</code>命令就可以把镜像文件拉到本地，这个镜像非常小，超不过100MB。</p>
+<h2><span id="part-ii-基础配置">Part II: 基础配置</span></h2><blockquote>
+<p>注意：配置都是在root账户下进行</p>
+</blockquote>
+<p>首先更新包管理器<code>apt</code>的索引，要不然<code>apt</code>连最基础的包都找不到。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt update<br></code></pre></td></tr></table></figure>
+
+<p>下载一些HTTPS，证书验证的包，要不然无法更换软件源。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install apt-transport-https<br>apt install ca-certificates<br></code></pre></td></tr></table></figure>
+
+<p>下载<code>neovim</code>编辑器，方便编辑软件源文件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install neovim<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-iii-更换软件源">Part III: 更换软件源</span></h2><p>参考<a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">清华大学Ubuntu镜像源</a></p>
+<p>更换完成后，再次更新apt索引。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt update<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-iv-配置root账户密码">Part IV: 配置root账户密码</span></h2><p>可以用如下命令设置<code>root</code>账户的密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">passwd<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-v-撤销最小化">Part V: 撤销最小化</span></h2><p>这个Docker镜像做了一些特殊处理，使镜像变小，其中把系统常用命令的文档删除了，<code>man</code>命令无法正常工作，因此需要用<code>unminimize</code>命令撤销系统的最小化处理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 撤销最小化</span><br>unminimize<br><span class="hljs-comment"># 下载man命令</span><br>apt install man<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-vi-下载常用命令">Part VI: 下载常用命令</span></h2><p>下面这些命令都是可以用<code>apt install xxx</code>直接下载的命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install sudo gcc g++ flex bison gdb less strace zip git make ranger tmux net-tools dnsutils traceroute curl neofetch fzf wget tldr<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-vii-下载其他命令x2f工具">Part VII: 下载其他命令&#x2F;工具</span></h2><h3><span id="下载nodejs">下载Node.js</span></h3><p>下载的命令如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash">apt install nodejs<br>apt install npm<br><span class="hljs-comment"># 下载n，用来下载最新版本的npm</span><br>npm install n -g<br><span class="hljs-comment"># 下载最新版本的npm</span><br>n stable<br><span class="hljs-comment"># 下载cnpm</span><br>npm install -g cnpm --registry=https://registry.npm.taobao.org<br><span class="hljs-comment"># 查看node版本</span><br>node -v<br></code></pre></td></tr></table></figure>
+
+
+
+<h3><span id="下载anaconda">下载anaconda</span></h3><p>首先，打开anaconda的官网：<a target="_blank" rel="noopener" href="https://docs.anaconda.com/anaconda/install/linux/#">anaconda官网</a></p>
+<p>点击这个链接：</p>
+<img src="https://ligaog.github.io/Blog-Images/articles/ubuntu-image/anaconda-install.png">
+
+<p>点开这个链接后，会有这个界面：</p>
+<img src="https://ligaog.github.io/Blog-Images/articles/ubuntu-image/anaconda-link.png">
+
+<p>右键这个<code>Download</code>按钮，复制下载链接，然后到终端中用<code>wget</code>下载，可以得到一个<code>.sh</code>脚本。</p>
+<p>之后，用<code>chmod +x</code>给这个脚本添加可执行权限后，执行这个脚本，就可以下载。</p>
+<p>下载完毕后，用<code>source .bashrc</code>更新终端。</p>
+<h3><span id="下载lazygit">下载lazygit</span></h3><p>下载方式参考lazygit官方仓库：<a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazygit">lazygit官方仓库</a></p>
+<h2><span id="part-viii-其他配置">Part VIII: 其他配置</span></h2><p>对于其他工具的配置（例如<code>neovim</code>，<code>tmux</code>，<code>ranger</code>，<code>fish/zsh</code>）等可以参考我的其他教程。</p>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>LiGaOg<br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/02/ubuntu-image/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;ubuntu-image&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;ubuntu-image&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			      
+			<!-- 先找到与当前文字相同的目录 -->
+			   
+			<!-- 在找到当前文章所在的 index -->
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/Ubuntu/" rel="tag">Ubuntu</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '7f1aee318d867bd4f45c',
+			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
+			id: 'ubuntu-image',
+			repo: 'LiGaOg.github.io',
+			owner: 'LiGaOg',
+			admin: 'LiGaOg',
+			title: 'BlogComment',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
