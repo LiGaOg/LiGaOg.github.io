@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html 
+	lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 如何在C语言中嵌入汇编代码 -  LiGaOg&#39;s blog</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@latest"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://ligaog.github.io/Blog-Images/pictures/favicon.jpg"
+			type="image/png"
+		/>
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://ligaog.github.io/Blog-Images/pictures/background.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="LiGaOg&#39;s blog">
+        <img
+			src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+			alt="LiGaOg"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg" title="LiGaOg">
+			<img
+				src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+				alt="LiGaOg"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>2</div>
+		<div><span>标签</span>2</div>
+		<div><span>分类</span>1</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/27905679"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/LiGaOg/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/C语言/">C语言</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a></div>
+	
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2022
+		<a href="/">LiGaOg</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://ligaog.github.io/Blog-Images/articles/art2/cover.png"
+				data-sizes="auto"
+				alt="如何在C语言中嵌入汇编代码"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>如何在C语言中嵌入汇编代码</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月02日</a>
+			<a><i class="kirafont icon-areachart"></i>977 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 4 分钟</a>
+		</div>
+		<p>[toc]</p>
+<h2><span id="part-i-内联汇编简单介绍">Part I: 内联汇编简单介绍</span></h2><p>最近做的项目中，有这样一个需求：我要封装一个函数，这个函数可以读取&#x2F;写入到某些RISC-V M态的寄存器中。这就要求在C语言中调用汇编代码，因为C语言本身是不能直接操作寄存器的。实现这种功能的方法叫做<strong>内联汇编</strong>。我把内联汇编的使用场景分成了如下两类：</p>
+<ul>
+<li>单纯执行汇编代码：不涉及将C语言变量放到寄存器中，或者将寄存器中的值读取到C语言变量。例如你要对系统进行某些设置（把某个寄存器的某个位设置成1，来让系统改变运行状态）。</li>
+<li>汇编代码的输入和输出与C语言变量有关。例如要读取某个寄存器的值到C语言变量中。</li>
+</ul>
+<p>下面会针对这两类场景分别进行介绍。</p>
+<h2><span id="part-ii-使用场景一">Part II: 使用场景一</span></h2><p>在这种使用场景下，内联汇编就非常简单。语法格式如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c">__asm__ __volatile__(<br>	<span class="hljs-string">&quot;汇编指令1\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令2\n\t&quot;</span><br>  <span class="hljs-string">&quot;汇编指令3\n\t&quot;</span><br>  ...<br>  <span class="hljs-string">&quot;最后一条汇编指令&quot;</span><br>);<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h2><span id="part-iii-使用场景二">Part III: 使用场景二</span></h2><p>我们用一个两数相加的程序来解释这种场景下内联汇编怎么使用，一般情况下，写一个两数相加的程序是这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-type">int</span> <span class="hljs-title function_">foo</span><span class="hljs-params">(<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b)</span> &#123;<br>  <span class="hljs-type">int</span> c = a + b;<br>  <span class="hljs-keyword">return</span> c;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果用内联汇编写的话，是这样写：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs c">__asm__ __volatile__ (<br>	<span class="hljs-string">&quot;add %[sum], %[add1], %[add2]&quot;</span> <br>	:[sum]<span class="hljs-string">&quot;+r&quot;</span>(c)<br>	:[add1]<span class="hljs-string">&quot;r&quot;</span>(a), [add2]<span class="hljs-string">&quot;r&quot;</span>(b)<br>);<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>第一步：写汇编时，如果一个地方需要用C语言变量作为输入&#x2F;输出，可以在这个地方定义一个假的变量，例如上面代码中的<code>sum, add1, add2</code>，格式就是<code>%[你起的假变量名]</code>。其中这个假的变量名会对应一个真实的寄存器，这个寄存器编译器会自动安排是谁。</p>
+</li>
+<li><p>第二步：将你起的假变量名和真实的C语言变量关联起来。</p>
+<ul>
+<li><p>如果要把寄存器的值读取到C语言变量，关联语法如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">:[你起的假变量名<span class="hljs-number">1</span>]<span class="hljs-string">&quot;+r&quot;</span>(C语言变量<span class="hljs-number">1</span>),:[你起的假变量名<span class="hljs-number">2</span>]<span class="hljs-string">&quot;+r&quot;</span>(C语言变量<span class="hljs-number">2</span>),...<br></code></pre></td></tr></table></figure>
+
+<p>比如上面的例子，<code>sum</code>的值最终是要存放到C语言变量<code>c</code>中的，此时就可以写成：<code>:[sum]&quot;=r&quot;(c)</code></p>
+</li>
+<li><p>如果要把C语言变量的值作为输入放到寄存器里，格式是：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs c">:[你起的假变量名<span class="hljs-number">1</span>]<span class="hljs-string">&quot;r&quot;</span>(C语言变量<span class="hljs-number">1</span>),:[你起的假变量名<span class="hljs-number">2</span>]<span class="hljs-string">&quot;r&quot;</span>(C语言变量<span class="hljs-number">2</span>),...<br></code></pre></td></tr></table></figure>
+
+<p>例如C语言变量<code>a, b</code>要作为输入放到寄存器<code>add1, add2</code>中，那么就可以写成：<code>:[add1]&quot;r&quot;(a), [add2]&quot;r&quot;(b)</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2><span id="part-iv场景二的另一种写法">Part IV：场景二的另一种写法</span></h2><p>当输入输出太多的时候，就不太方便起名字了，这时候可以用编号作为占位符，下面是一个例子，测试平台是Arm64，定义变量<code>a = 19, b = 9</code>，然后用内联汇编进行赋值<code>c = a, d = b</code>，最后输出<code>c, d</code>。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&lt;stdio.h&gt;</span></span><br><br><span class="hljs-type">int</span> <span class="hljs-title function_">main</span><span class="hljs-params">()</span><br>&#123;<br>	<span class="hljs-type">long</span> <span class="hljs-type">long</span> a, b, c, d;<br>	a = <span class="hljs-number">19</span>;<br>	b = <span class="hljs-number">9</span>;<br><br>	__asm__ __volatile__(<br>		<span class="hljs-string">&quot;mov %0, %2\n\t&quot;</span><br>		<span class="hljs-string">&quot;mov %1, %3&quot;</span><br>		:<span class="hljs-string">&quot;+r&quot;</span>(c), <span class="hljs-string">&quot;+r&quot;</span>(d)<br>		:<span class="hljs-string">&quot;r&quot;</span>(a), <span class="hljs-string">&quot;r&quot;</span>(b)<br>	);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, c);<br>	<span class="hljs-built_in">printf</span>(<span class="hljs-string">&quot;%lld\n&quot;</span>, d);<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这里有两点需要注意：</p>
+<ul>
+<li>作为输出的变量必须写在同一行，比如上面<code>c, d</code>的值都来自寄存器，所以要写在一行。</li>
+<li>其中<code>%0, %1, %2, %3</code>这些编号和下面绑定C语言变量时绑定的顺序对应。例如在上面的例子中，<code>%0</code>对应<code>c</code>， <code>%1</code>对应<code>d</code>，<code>%2</code>对应<code>a</code>，<code>%3</code>对应<code>b</code>。</li>
+</ul>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>LiGaOg<br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/02/inline-asm/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;inline-asm&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;inline-asm&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			  
+			<!-- 先找到与当前文字相同的目录 -->
+			   
+			<!-- 在找到当前文章所在的 index -->
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/2022/12/02/link-library/"> Linux平台下如何构建并使用链接库</a>
+			</div>
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C</a> <a class="kirafont icon-tag-fill -none-link" href="/tags/asm/" rel="tag">asm</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '7f1aee318d867bd4f45c',
+			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
+			id: '如何在C语言中嵌入汇编代码',
+			repo: 'LiGaOg.github.io',
+			owner: 'LiGaOg',
+			admin: 'LiGaOg',
+			title: 'BlogComment',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
