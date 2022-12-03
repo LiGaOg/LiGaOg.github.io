@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html 
+	lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> Linux平台配置一个比较养眼的终端 -  LiGaOg&#39;s blog</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@latest"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://ligaog.github.io/Blog-Images/pictures/favicon.jpg"
+			type="image/png"
+		/>
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://ligaog.github.io/Blog-Images/pictures/background.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="LiGaOg&#39;s blog">
+        <img
+			src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+			alt="LiGaOg"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg" title="LiGaOg">
+			<img
+				src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+				alt="LiGaOg"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>5</div>
+		<div><span>标签</span>5</div>
+		<div><span>分类</span>2</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/4052725"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/LiGaOg/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/C语言/">C语言</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/工具教程/">工具教程</a>
+        <span class="category-list-count">3</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/%E7%BB%88%E7%AB%AF/" style="font-size: 10px;">终端</a></div>
+	
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2022
+		<a href="/">LiGaOg</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://ligaog.github.io/articles/great-terminal/cover.png"
+				data-sizes="auto"
+				alt="Linux平台配置一个比较养眼的终端"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>Linux平台配置一个比较养眼的终端</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月03日</a>
+			<a><i class="kirafont icon-areachart"></i>693 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+		</div>
+		<p>这个文章主要记录我配置终端的过程，会持续更新。</p>
+<h2><span id="part-i-下载nerdfont">Part I: 下载Nerdfont</span></h2><p>Nerdfont的官网是：<a target="_blank" rel="noopener" href="https://www.nerdfonts.com/font-downloads">https://www.nerdfonts.com/font-downloads</a></p>
+<p>在其中选择自己喜欢的字体进行下载，下载解压后会出现一系列的<code>*.ttf</code>文件。把这些<code>*.ttf</code>文件移动到<code>/usr/share/fonts</code>文件夹内，然后执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mkfontscale<br>sudo mkfontdir<br>sudo fc-cache -fv<br></code></pre></td></tr></table></figure>
+
+<p>之后系统就会为新加入的字体生成索引，下载就完成了。</p>
+<h2><span id="part-ii-下载并配置terminator">Part II: 下载并配置Terminator</span></h2><p>下载命令为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install terminator<br></code></pre></td></tr></table></figure>
+
+<p>下载完成后，在终端输入<code>terminator</code>就可以打开，右键<code>Preference</code>可以设置终端字体，字体大小等，这个可以自己设置。</p>
+<p><code>Terminator</code>关闭titlebar的方法是在<code>Profiles</code>中将<code>Show titlebar</code>关闭。</p>
+<p><code>Terminator</code>终端配色参考了<a target="_blank" rel="noopener" href="https://github.com/arcticicestudio/nord-terminator">Nord</a>，配置文件如下，我下载的字体是Nerdfont中<code>Dejavu</code>，如果下载了其他字体需要特殊修改。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs ini"><span class="hljs-section">[global_config]</span><br>  <span class="hljs-attr">title_transmit_fg_color</span> = <span class="hljs-string">&quot;#2E3440&quot;</span><br>  <span class="hljs-attr">title_transmit_bg_color</span> = <span class="hljs-string">&quot;#88C0D0&quot;</span><br>  <span class="hljs-attr">title_receive_fg_color</span> = <span class="hljs-string">&quot;#2E3440&quot;</span><br>  <span class="hljs-attr">title_receive_bg_color</span> = <span class="hljs-string">&quot;#8FBCBB&quot;</span><br>  <span class="hljs-attr">title_inactive_fg_color</span> = <span class="hljs-string">&quot;#D8DEE9&quot;</span><br>  <span class="hljs-attr">title_inactive_bg_color</span> = <span class="hljs-string">&quot;#4C566A&quot;</span><br><span class="hljs-section">[keybindings]</span><br><span class="hljs-section">[profiles]</span><br>  <span class="hljs-section">[[default]]</span><br>    <span class="hljs-attr">background_color</span> = <span class="hljs-string">&quot;#2E3440&quot;</span><br>    <span class="hljs-attr">cursor_color</span> = <span class="hljs-string">&quot;#D8DEE9&quot;</span><br>    <span class="hljs-attr">font</span> = DejaVu Sans Mo<span class="hljs-literal">no</span> Bold <span class="hljs-number">20</span><br>    <span class="hljs-attr">foreground_color</span> = <span class="hljs-string">&quot;#D8DEE9&quot;</span><br>    <span class="hljs-attr">show_titlebar</span> = <span class="hljs-literal">False</span><br>    <span class="hljs-attr">palette</span> = <span class="hljs-string">&quot;#3b4252:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#88c0d0:#e5e9f0:#4c566a:#bf616a:#a3be8c:#ebcb8b:#81a1c1:#b48ead:#8fbcbb:#eceff4&quot;</span><br>    <span class="hljs-attr">use_system_font</span> = <span class="hljs-literal">False</span><br><span class="hljs-section">[layouts]</span><br>  <span class="hljs-section">[[default]]</span><br>    <span class="hljs-section">[[[window0]]]</span><br>      <span class="hljs-attr">type</span> = Window<br>      <span class="hljs-attr">parent</span> = <span class="hljs-string">&quot;&quot;</span><br>    <span class="hljs-section">[[[child1]]]</span><br>      <span class="hljs-attr">type</span> = Terminal<br>      <span class="hljs-attr">parent</span> = window0<br><span class="hljs-section">[plugins]</span><br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-iii-下载并配置zsh">Part III: 下载并配置zsh</span></h2><p>首先用如下命令下载<code>zsh</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install zsh<br></code></pre></td></tr></table></figure>
+
+<p>然后用如下命令将<code>zsh</code>设置为默认终端。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 这个命令会让你输入终端的路径，可以用which zsh查看路径</span><br>chsh<br></code></pre></td></tr></table></figure>
+
+<p>切换终端后<code>anaconda</code>也需要配置，只需要把<code>anaconda</code>的<code>bin</code>目录添加到环境变量中即可，具体路径可以在<code>bash</code>中用<code>which conda</code>查看。</p>
+<p>之后下载<code>ohmyzsh</code>，这个是<code>zsh</code>的插件管理器，安装方法参考ohmyzsh的官方仓库：<a target="_blank" rel="noopener" href="https://github.com/ohmyzsh/ohmyzsh%E3%80%82">https://github.com/ohmyzsh/ohmyzsh。</a></p>
+<p><font color="red">注意：在<code>.zshrc</code>中，<code>source $ZSH/oh-my-zsh.sh</code>需要在<code>ZSH_THEME</code>之后。否则<code>Powerlevel10k</code>会报错。</font></p>
+<p>下载完之后，再通过<code>ohmyzsh</code>下载一个主题叫<code>Powerlevel10k</code>，下载和配置方法参考Powerlevel10k的官方仓库：<a target="_blank" rel="noopener" href="https://github.com/romkatv/powerlevel10k#oh-my-zsh%E3%80%82">https://github.com/romkatv/powerlevel10k#oh-my-zsh。</a></p>
+<h2><span id="part-iv-好用的zsh插件">Part IV: 好用的zsh插件</span></h2><blockquote>
+<p>一般下载插件的方法就是将插件clone到<code>~/.oh-my-zsh/custom</code>中，然后在<code>.zshrc</code>中的<code>plugins</code>数组后面加上插件的名字。</p>
+</blockquote>
+<h3><span id="zsh-autosuggestions">zsh-autosuggestions</span></h3><p><code>zsh-autosuggestions</code>用于终端命令提示，下载方法参考官方仓库：<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-autosuggestions%E3%80%82">https://github.com/zsh-users/zsh-autosuggestions。</a></p>
+<h3><span id="zsh-syntax-highlighting">zsh-syntax-highlighting</span></h3><p><code>zsh-syntax-highlighting</code>用于高亮可以执行的命令，下载方法参考官方仓库：<a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md</a></p>
+<h2><span id="part-v-我常用的zshrc">Part V: 我常用的<code>.zshrc</code></span></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">alias</span> cls=clear<br><span class="hljs-built_in">alias</span> ra=ranger<br><span class="hljs-built_in">alias</span> lg=lazygit<br><span class="hljs-built_in">alias</span> v=nvim<br><br><span class="hljs-built_in">bindkey</span> -v<br></code></pre></td></tr></table></figure>
+
+<p>其中<code>bindkey -v</code>是启动终端的<code>vi</code>模式，可以用<code>h,l</code>做行间移动，可以用<code>j, k</code>调出之前&#x2F;之后执行过的命令，也可以用<code>/</code>搜索之前用过的命令，超级好用。</p>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>LiGaOg<br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/03/great-terminal/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;03&#x2F;great-terminal&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;03&#x2F;great-terminal&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			  
+			<!-- 先找到与当前文字相同的目录 -->
+			         
+			<!-- 在找到当前文章所在的 index -->
+			        
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2022/12/02/vim-config/"> 如何配置并使用编辑器之鬼-vim</a>
+			</div>
+			              
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/%E7%BB%88%E7%AB%AF/" rel="tag">终端</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '7f1aee318d867bd4f45c',
+			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
+			id: 'Linux平台配置一个比较养眼的终端',
+			repo: 'LiGaOg.github.io',
+			owner: 'LiGaOg',
+			admin: 'LiGaOg',
+			title: 'BlogComment',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
