@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html 
+	lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 如何配置并使用编辑器之鬼-vim -  LiGaOg&#39;s blog</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@latest"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://ligaog.github.io/Blog-Images/pictures/favicon.jpg"
+			type="image/png"
+		/>
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://ligaog.github.io/Blog-Images/pictures/background.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="LiGaOg&#39;s blog">
+        <img
+			src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+			alt="LiGaOg"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg" title="LiGaOg">
+			<img
+				src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+				alt="LiGaOg"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>4</div>
+		<div><span>标签</span>4</div>
+		<div><span>分类</span>2</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/27905679"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/LiGaOg/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/C语言/">C语言</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/工具教程/">工具教程</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a></div>
+	
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2022
+		<a href="/">LiGaOg</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://ligaog.github.io/Blog-Images/articles/vim-config/cover.png"
+				data-sizes="auto"
+				alt="如何配置并使用编辑器之鬼-vim"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>如何配置并使用编辑器之鬼-vim</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月02日</a>
+			<a><i class="kirafont icon-areachart"></i>2.5k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 10 分钟</a>
+		</div>
+		<!-- toc -->
+
+<ul>
+<li><a href="#part-i-vim%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">Part I: vim的基本使用</a><ul>
+<li><a href="#%E7%A7%BB%E5%8A%A8%E5%85%89%E6%A0%87">移动光标</a></li>
+<li><a href="#%E5%A4%8D%E5%88%B6%E7%B2%98%E8%B4%B4%E5%92%8C%E6%92%A4%E9%94%80">复制粘贴和撤销</a></li>
+<li><a href="#%E5%88%A0%E9%99%A4%E6%96%87%E6%9C%AC">删除文本</a></li>
+<li><a href="#%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2">搜索替换</a></li>
+<li><a href="#%E9%80%89%E6%8B%A9%E6%96%87%E6%9C%AC">选择文本</a></li>
+<li><a href="#%E5%88%86%E5%B1%8F%E7%A7%BB%E5%8A%A8">分屏移动</a></li>
+<li><a href="#%E6%8A%98%E5%8F%A0%E4%BB%A3%E7%A0%81">折叠代码</a></li>
+<li><a href="#tab%E6%A0%87%E7%AD%BE%E9%A1%B5">Tab标签页</a></li>
+<li><a href="#normal%E6%8C%87%E4%BB%A4">Normal指令</a></li>
+<li><a href="#%E9%94%AE%E7%9B%98%E5%AE%8F">键盘宏</a></li>
+<li><a href="#%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96">代码格式化</a></li>
+</ul>
+</li>
+<li><a href="#part-ii-vim%E6%8F%92%E4%BB%B6%E4%BD%BF%E7%94%A8%E4%B8%8E%E7%AE%A1%E7%90%86">Part II: vim插件使用与管理</a><ul>
+<li><a href="#vim-plug">vim-plug</a></li>
+<li><a href="#cocnvim">coc.nvim</a></li>
+</ul>
+</li>
+<li><a href="#part-iii-%E4%B8%80%E4%BA%9B%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8F%92%E4%BB%B6">Part III: 一些好用的插件</a><ul>
+<li><a href="#vim-commentary">vim-commentary</a></li>
+<li><a href="#vim-highlightedyank">vim-highlightedyank</a></li>
+<li><a href="#vim-surround">vim-surround</a></li>
+<li><a href="#vim-wildfire">vim-wildfire</a></li>
+<li><a href="#vim-airline">vim-airline</a></li>
+<li><a href="#vim-devicons">vim-devicons</a></li>
+<li><a href="#vistavim">Vista.vim</a></li>
+<li><a href="#cocnvim-1">coc.nvim</a></li>
+<li><a href="#vim%E4%B8%BB%E9%A2%98%E6%8F%92%E4%BB%B6">vim主题插件</a></li>
+</ul>
+</li>
+<li><a href="#part-iv-cocnvim%E6%8F%92%E4%BB%B6">Part IV: coc.nvim插件</a><ul>
+<li><a href="#coc-explorer">coc-explorer</a></li>
+<li><a href="#coc-snippets">coc-snippets</a></li>
+</ul>
+</li>
+<li><a href="#appendix-%E6%88%91%E7%9A%84neovim%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Appendix: 我的neovim配置文件</a><ul>
+<li><a href="#initvim"><code>init.vim</code></a></li>
+<li><a href="#coc-settingsjson"><code>coc-settings.json</code></a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<p>我从本科三年级开始学习Linux，并使用neovim作为编辑器。在我眼中，vim相当于一种高效文本编辑的协议。不同的软件都可以实现vim的编辑模式，例如vscode，IDEA的vim插件。借助这个协议，用户可以完全脱离鼠标，快速完成某些文本操作。同时，配合一些vim插件，vim还能够具有更强大的功能。这个文章主要用来记录我个人工作时常用的vim命令、插件以及相关配置，会持续更新。</p>
+<h2><span id="part-i-vim的基本使用">Part I: vim的基本使用</span></h2><p>首先是vim的一些常识，vim有三种模式：</p>
+<ul>
+<li><code>Normal</code>：可以用命令进行文本编辑。</li>
+<li><code>Insert</code>：用来输入文本。</li>
+<li><code>Visual</code>：用来选择文本。</li>
+</ul>
+<p>其中这三种模式可以用<code>&lt;Esc&gt;</code>，<code>i</code>，<code>v</code>进行互相切换，其中大部分要介绍的命令，如果没做特殊说明的话，都是在<code>Normal</code>和<code>Visual</code>模式下。</p>
+<p>从<code>Normal</code>模式转到<code>Insert</code>模式有很多种方法：</p>
+<ul>
+<li><code>i</code>：光标移动到所在字符之前。</li>
+<li><code>I</code>：光标移动到这一行最靠前的文本的开头。</li>
+<li><code>a</code>：光标移动到所在字符之后。</li>
+<li><code>A</code>：光标移动到这一行最靠后的文本的后面。</li>
+<li><code>o</code>：光标移动到所在行的下一行。</li>
+<li><code>O</code>：光标移动到所在行的上一行。</li>
+</ul>
+<p>从<code>Normal</code>模式转到<code>Visual</code>模式也有很多方法：</p>
+<ul>
+<li><code>v</code>：一般的选择模式。</li>
+<li><code>V</code>：行选择。</li>
+<li><code>ctrl + v</code>：块选择。</li>
+</ul>
+<h3><span id="移动光标">移动光标</span></h3><p>vim中的上下左右移动光标是<code>h, j, k, l</code>。一般使用的时候，需要快速上下移动，这时候可以用<code>5j, 5k</code>，一次上下移动5行。这里我配置了一个快捷键，可以用<code>J,K</code>进行快速移动。</p>
+<p>快速移动到行首行尾是<code>^</code>和<code>$</code>，这里被我配置成了<code>H</code>和<code>L</code>，因为如果要快速在一行内移动，有其他的命令。</p>
+<p>如果要快速在一行内移动 ，可以用<code>w</code>和<code>b</code>命令。<code>w</code>是以word为单位向后移动，<code>b</code>是以word为单位向前移动。</p>
+<p>在一行内移动还有一个命令是<code>f</code>，先摁<code>f</code>，然后加个字符，可以快速跳转到本行中光标后面第一次出现这个字符的地方。</p>
+<p>快速跳到第一行可以用<code>gg</code>，快速到最后一行可以用<code>G</code>，跳转到某一个具体行可以用<code>:linenumber</code>。</p>
+<p>vim中有一个叫做<code>jumplists</code>的机制，当你执行了一个“跳转命令”时（跳转命令可以包括<code>gg, gG</code>， 搜索等，可以用<code>:h jump-motions</code>查看哪些命令算跳转），vim会把执行命令前光标的位置记录下来。用<code>ctrl + o</code>可以返回上一个记录的位置，<code>ctrl + i</code>可以去下一个记录的位置。</p>
+<h3><span id="复制粘贴和撤销">复制粘贴和撤销</span></h3><p>复制的命令是<code>y</code>，一般的模式就是选中若干文本然后摁<code>y</code>，就能复制文本了。</p>
+<p><code>yy</code>可以快速复制一行文本。</p>
+<p>假设有一些文本是<code>[name]</code>：</p>
+<ul>
+<li>如果要复制<code>name</code>，可以用<code>yi[</code>。</li>
+<li>如果要复制<code>[name]</code>，可以用<code>ya[</code>。</li>
+</ul>
+<p><code>p</code>是粘贴文本，如果复制的是一行&#x2F;多行内容，粘贴时就会粘贴到下一行。</p>
+<p>如果要和系统的剪切板同步，可以用<code>&quot;+y</code>，粘贴到寄存器<code>+</code>中，这个<code>+</code>就是系统剪切板。粘贴可以用<code>&quot;+p</code>。一般的命令是<code>&quot;&lt;小写字母，代表寄存器名字&gt;y/p</code>。</p>
+<p>如果要追加复制，假设现在内容复制到寄存器<code>a</code>中，我想要另外选择一段内容追加到<code>a</code>中，那么就用命令<code>&quot;Ay</code>，其中<code>a</code>变成了大写。</p>
+<p>撤销命令是<code>u</code>，取消撤销就是<code>ctrl + u</code>。</p>
+<h3><span id="删除文本">删除文本</span></h3><p>删除字符命令是<code>x</code>和<code>s</code>，<code>x</code>删除后不进入<code>Insert</code>模式，而<code>s</code>进入。</p>
+<p>删除文本的命令是<code>d</code>和<code>c</code>，它们的行为和<code>y</code>一样，不同的是，<code>d</code>删除文本后会停留在<code>Normal</code>模式，<code>c</code>删除后会进入<code>Insert</code>模式。</p>
+<p>注意vim中删除文本都是剪切命令。</p>
+<h3><span id="搜索替换">搜索替换</span></h3><p><code>/</code>和<code>?</code>都能在全文进行查找，在neovim中应该是效果相同。</p>
+<p><code>n</code>跳转到下一个查找结果，<code>N</code>跳转到上一个查找结果。</p>
+<p>在全文中查找<code>word1</code>，并替换为<code>word2</code>，替换前询问要不要替换：<code>%s/word1/word2/gc</code></p>
+<h3><span id="选择文本">选择文本</span></h3><p><code>v</code>的行为和<code>c, d, y</code>类似，可以通过<code>yiw, yaw</code>这种命令选择特定的文本。</p>
+<p><code>v</code>配合<code>%</code>可以快速选中某个函数&#x2F;类，当光标在函数名的时候，首先用<code>V</code>选中这一行，然后选中<code>&#123;</code>，然后用<code>%</code>就可以自动选中整个函数&#x2F;类体。这个可以配合代码折叠。</p>
+<h3><span id="分屏移动">分屏移动</span></h3><p>经过配置后，分屏命令是<code>sh, sj, sk, sl</code>，在屏幕之间移动的命令是<code>&lt;space&gt;h, &lt;space&gt;j, &lt;space&gt;k, &lt;space&gt;l</code>。</p>
+<h3><span id="折叠代码">折叠代码</span></h3><p>首先折叠代码有很多种方式，这里我设置的方式是手动折叠：<code>:set foldmethod=manual</code></p>
+<p>折叠代码，就是先选中一段代码，然后用<code>zf</code>，打开折叠就是用<code>zo</code></p>
+<h3><span id="tab标签页">Tab标签页</span></h3><p>Tab标签页主要和<code>coc.nvim</code>中的<code>coc-explorer</code>一起使用，当用<code>coc-explorer</code>打开一个文件时，这个文件是在一个新的Tab中打开。</p>
+<p><code>zj</code>切换到前一个Tab，<code>zl</code>切换到后一个Tab。</p>
+<h3><span id="normal指令">Normal指令</span></h3><p>Normal指令可以将一系列vim命令用在选中的每一行上，使用方法为：</p>
+<ul>
+<li>首先选中若干行。</li>
+<li>然后输入<code>:normal</code>，然后后面跟着<code>vim</code>指令。</li>
+<li>之后摁下回车。</li>
+</ul>
+<h3><span id="键盘宏">键盘宏</span></h3><p>键盘宏：用于封装一系列<code>vim</code>操作，使用方法如下：</p>
+<ul>
+<li><p>摁<code>q</code>加上一个字母，这个字母是键盘宏的名称，然后进行vim操作。</p>
+</li>
+<li><p>再摁<code>q</code>结束录制。</p>
+</li>
+<li><p>之后，只要摁<code>@字母</code>，就能执行对应的键盘宏操作。</p>
+</li>
+</ul>
+<p>Normal指令可以和键盘宏一起使用，先用一行录制好键盘宏，然后Normal指令直接使用键盘宏即可。</p>
+<h3><span id="代码格式化">代码格式化</span></h3><p><code>gg=G</code>可以将所有代码缩进格式化。</p>
+<h2><span id="part-ii-vim插件使用与管理">Part II: vim插件使用与管理</span></h2><blockquote>
+<p>neovim配置文件在<code>~/.config/nvim/init.vim</code></p>
+</blockquote>
+<h3><span id="vim-plug">vim-plug</span></h3><p>vim插件管理使用的是vim-plug，官方仓库是：<a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">vim-plug的官方仓库</a>。</p>
+<p>只需要把官方仓库中的<code>plug.vim</code>放到<code>nvim/autoload</code>文件夹中即可，<code>autoload</code>文件夹需要自己创建。</p>
+<ul>
+<li><p>每次添加插件后，用<code>:PlugInstall</code>命令直接下载即可。</p>
+</li>
+<li><p>如果要更新<code>vim-plug</code>，需要用<code>:PlugUpgrade</code>。</p>
+</li>
+<li><p>如果要更新所有插件，需要用<code>:PlugUpdate</code></p>
+</li>
+</ul>
+<h3><span id="cocnvim">coc.nvim</span></h3><p>自动补全插件使用的是<code>coc.nvim</code>，官方仓库是：<a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim">coc.nvim的官方仓库</a>，注意在使用之前，需要下载Node.js与npm。</p>
+<ul>
+<li><code>coc.nvim</code>中有自动检测插件更新的配置，所以不用手动执行命令。</li>
+</ul>
+<h2><span id="part-iii-一些好用的插件">Part III: 一些好用的插件</span></h2><h3><span id="vim-commentary">vim-commentary</span></h3><p>能够快速注释选中的文本。</p>
+<p>开箱即用，不用做特殊配置。</p>
+<p>选中文本后使用<code>gc</code>即可注释，再使用<code>gc</code>可以解除注释。</p>
+<h3><span id="vim-highlightedyank">vim-highlightedyank</span></h3><p>在注释时会高亮复制到的文本。</p>
+<p>开箱即用，不用做特殊配置。</p>
+<h3><span id="vim-surround">vim-surround</span></h3><p>能够高效处理环绕符号，例如括号等。</p>
+<p>开箱即用，不用做特殊配置。</p>
+<ul>
+<li><code>cs&lt;字符1&gt;&lt;字符2&gt;</code>：将原来用字符1环绕的文本用字符2环绕。<ul>
+<li>如果字符1是<code>&lt;</code>，会出现提示是否用HTML标签环绕，如果不用直接摁<code>&gt;</code>即可。</li>
+</ul>
+</li>
+<li><code>ds&lt;字符&gt;</code>：删除字符环绕。</li>
+<li><code>ys</code>：为某段文本添加环绕，例如<code>ysiw&quot;</code>，可以给文本添加<code>&quot;&quot;</code>。<ul>
+<li>如果要用HTML标签环绕，可以用<code>ysiw&lt;</code>，然后输入HTML标签内容。</li>
+</ul>
+</li>
+</ul>
+<h3><span id="vim-wildfire">vim-wildfire</span></h3><p>能够智能选择文本单位，例如环绕符之间的文本，函数，类等。</p>
+<p>开箱即用，不用做特殊配置。</p>
+<p>连续摁<code>&lt;Enter&gt;</code>即可选择不同层级的文本单位，可以快速选择某一个函数&#x2F;类。</p>
+<h3><span id="vim-airline">vim-airline</span></h3><p>相当于vim的状态栏，能够显示当前光标的位置信息，文件编码方式，当前的git分支等信息。</p>
+<p>配置见Appendix。</p>
+<h3><span id="vim-devicons">vim-devicons</span></h3><p>给不同后缀文件名添加图标，可以在Tab&#x2F;vim-airline中看到图标。</p>
+<p>开箱即用。</p>
+<h3><span id="vistavim">Vista.vim</span></h3><p>显示函数&#x2F;类&#x2F;结构体等大纲信息，用<code>ss</code>即可调出。</p>
+<p>开箱即用。</p>
+<h3><span id="cocnvim">coc.nvim</span></h3><p>neovim下的自动补全相关的插件，配置见Appendix。</p>
+<p>coc.nvim给出了几个基本的命令：</p>
+<ul>
+<li><code>ctrl+d</code>：以列表的形式展示所有的语法错误。在列表中摁<code>&lt;Enter&gt;</code>可快速跳转。</li>
+<li><code>[p</code>：跳转到下一个语法错误。</li>
+<li><code>]p</code>：跳转到上一个语法错误。</li>
+<li><code>sd</code>：显示文档。</li>
+<li><code>gd</code>：去一个符号的定义处。</li>
+<li><code>gr</code>：去一个符号的引用处，会以列表的形式展示所有的引用，<code>&lt;Enter&gt;</code>可跳转。</li>
+<li><code>gi</code>：去一个符号的实现处。</li>
+</ul>
+<h3><span id="vim主题插件">vim主题插件</span></h3><p>参考：<a target="_blank" rel="noopener" href="https://vimcolorschemes.com/">https://vimcolorschemes.com/</a></p>
+<h2><span id="part-iv-cocnvim插件">Part IV: coc.nvim插件</span></h2><blockquote>
+<p>coc.nvim配置文件在<code>~/.config/nvim/coc-settings.json</code></p>
+</blockquote>
+<h3><span id="coc-explorer">coc-explorer</span></h3><p>一个文件浏览器，配置见Appendix，注意配置文件中使用了一些图标，需要提前下载Nerdfont。</p>
+<h3><span id="coc-snippets">coc-snippets</span></h3><p>这个插件可以快速用<code>snippets</code>进行模板级补全，模板一般有一些参数。</p>
+<ul>
+<li><code>ctrl + n</code>：跳转到下一个补全参数的地方（在<code>SNIP Insert</code>模式下）</li>
+<li><code>ctrl + p</code>：跳转到上一个补全参数的地方</li>
+</ul>
+<p>以上同样适用于函数补全。</p>
+<p>其余补全与具体语言有关，可以参考：<a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions">https://github.com/neoclide/coc.nvim/wiki/Using-coc-extensions</a></p>
+<h2><span id="appendix-我的neovim配置文件">Appendix: 我的neovim配置文件</span></h2><h3><span id="initvim"><code>init.vim</code></span></h3><p><a href="https://ligaog.github.io/Blog-Images/files/init.vim">init.vim</a></p>
+<h3><span id="coc-settingsjson"><code>coc-settings.json</code></span></h3><p><a href="https://ligaog.github.io/Blog-Images/files/init.vim">coc-settings.json</a></p>
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>LiGaOg<br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/02/vim-config/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;vim-config&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;02&#x2F;vim-config&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			      
+			<!-- 先找到与当前文字相同的目录 -->
+			      
+			<!-- 在找到当前文章所在的 index -->
+			    
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2022/12/02/ubuntu-image/"> 从0构建一个功能完善的Ubuntu镜像</a>
+			</div>
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/vim/" rel="tag">vim</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '7f1aee318d867bd4f45c',
+			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
+			id: '如何配置并使用编辑器之鬼-vim',
+			repo: 'LiGaOg.github.io',
+			owner: 'LiGaOg',
+			admin: 'LiGaOg',
+			title: 'BlogComment',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
