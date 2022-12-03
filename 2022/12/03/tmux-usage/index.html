@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> 关于本人 -  LiGaOg&#39;s blog</title>
+		<title> 利用tmux实现终端复用 -  LiGaOg&#39;s blog</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -88,7 +88,7 @@
 		</a>
 		
 		<a
-			class="kira-list-item mdui-ripple true"
+			class="kira-list-item mdui-ripple false"
 			href="/about.html"
 			title="关于本人"
 		>
@@ -235,49 +235,125 @@
 <div class="kira-post">
 	<article>
 		
-		<div
-			class="kira-post-cover"
-			style="padding-bottom: '56.25%'"
-		>
+		<div class="kira-post-cover">
 			<img
-				data-src="https://ligaog.github.io/Blog-Images/pictures/background.jpg"
+				data-src="https://ligaog.github.io/Blog-Images/articles/tmux-usage/cover.png"
 				data-sizes="auto"
-				alt="关于本人"
+				alt="利用tmux实现终端复用"
 				class="lazyload  kira-post-cover-image"
 			/>
-			<h1>关于本人</h1>
+			<h1>利用tmux实现终端复用</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2022年11月15日</a>
-			<a><i class="kirafont icon-areachart"></i>434 字</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月03日</a>
+			<a><i class="kirafont icon-areachart"></i>343 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<h1><span id="自我介绍">自我介绍</span></h1><p>你好！</p>
-<p>我是一名普通的程序员，本科就读于深圳南方科技大学的计算机科学与技术专业，兴趣点是离散数学、算法（与AI不相关）以及计算机系统（处理器体系结构、操作系统、编译器等）。目前已保研至清华伯克利深圳学院的RIOS（RISC-V International Open Source Laboratory）实验室。如果科研顺利，会继续从事RISC-V软硬件生态的相关研究。</p>
-<p>同时，我也是一个ACG爱好者，喜欢的作品包括但不限于TYPE-MOON系列（月姬、Fate），东方Project，魔法少女小圆，Love Live! 。</p>
-<p>这个博客主要用来存放我的一些学习笔记，同时也会分享一些我认为比较有意思的Topic，内容可能是一道解法比较有启发性的算法题，也可能是对一些概念的理解，也可能是一些工具的教程。</p>
-<p>如果你在阅读我的文章时出现了如下情况：</p>
+		<!-- toc -->
+
 <ul>
-<li>你发现文章中出现了明显错误，或者某些命令在你的电脑上运行结果和文章中不同等。</li>
-<li>你认为这个文章内容虽然正确，但是有不全面，不专业的地方，并且你有更好的方法去解释某个概念，或有更好的思路实现某些功能，或有更好的工具来提高开发效率。</li>
+<li><a href="#part-i-%E5%AE%89%E8%A3%85tmux">Part I: 安装tmux</a></li>
+<li><a href="#part-ii-tmux%E7%BB%8F%E5%B8%B8%E7%94%A8%E7%9A%84%E5%91%BD%E4%BB%A4">Part II: tmux经常用的命令</a></li>
+<li><a href="#part-iii-tmux%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6">Part III: tmux配置文件</a></li>
 </ul>
-<p>那么请及时在评论区留言，如果意见合理我会立即采纳并修改文章，评论区采用Gitalk实现，目前只支持github账号登录。如果评论区没有开，请加我的QQ: 2381446488，联系我开放评论区。</p>
+<!-- tocstop -->
+
+<p>tmux是一个终端复用器（Terminal Multiplexer），可以在一个终端中开多个窗口运行不同的程序。另一方面，tmux可以将终端窗口和session分离，实现终端窗口关闭时，session中的应用进程仍在运行。这个文章主要记录我配置后的tmux的一些使用方法，会持续更新。</p>
+<h2><span id="part-i-安装tmux">Part I: 安装tmux</span></h2><p>tmux可以用如下命令安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install tmux<br></code></pre></td></tr></table></figure>
+
+
+
+<h2><span id="part-ii-tmux经常用的命令">Part II: tmux经常用的命令</span></h2><p>tmux常见的就如下几个命令：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>&lt;c-a&gt;%</code></td>
+<td>左右分屏</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;&quot;</code></td>
+<td>上下分屏</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;方向键</code></td>
+<td>在分屏间移动，可以只摁一次前缀，然后多次调整</td>
+</tr>
+<tr>
+<td><code>&lt;c-d&gt;</code></td>
+<td>关闭当前的pane</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;d</code></td>
+<td>挂起当前的session</td>
+</tr>
+<tr>
+<td><code>tmux</code></td>
+<td>新建一个session并进入</td>
+</tr>
+<tr>
+<td><code>tmux a</code></td>
+<td>打开之前挂起的session</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;&lt;/&gt;</code></td>
+<td>左右调整分割线距离，可以只摁一次前缀，然后多次调整</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;-=</code></td>
+<td>上下调整分割线位置，可以只摁一次前缀，然后多次调整</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;s</code></td>
+<td>可以查看session-window-pane结构，选中后摁<code>&lt;Enter&gt;</code>可跳转</td>
+</tr>
+<tr>
+<td><code>&lt;c-a&gt;c</code></td>
+<td>在当前session中新建一个window</td>
+</tr>
+</tbody></table>
+<h2><span id="part-iii-tmux配置文件">Part III: tmux配置文件</span></h2><p><a href="https://ligaog.github.io/Blog-Images/files/.tmux.conf">tmux配置文件</a></p>
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>Author：</strong>LiGaOg<br>
-        <strong>Link：</strong><a href="https://ligaog.github.io/about.html" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;about.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;about.html</a><br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/03/tmux-usage/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;03&#x2F;tmux-usage&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;03&#x2F;tmux-usage&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
     </div>
 
   
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			  
+			<!-- 先找到与当前文字相同的目录 -->
+			            
+			<!-- 在找到当前文章所在的 index -->
+			            
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2022/12/03/great-terminal/"> Linux平台配置一个比较养眼的终端</a>
+			</div>
+			              
+		</nav>
+	</div>
+	
 	<div class="kira-post-meta kira-rainbow">
 		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/tmux/" rel="tag">tmux</a>
 		
 	</div>
 	
@@ -289,7 +365,7 @@
 		var gitalk = new Gitalk({
 			clientID: '7f1aee318d867bd4f45c',
 			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
-			id: '关于本人',
+			id: '利用tmux实现终端复用',
 			repo: 'LiGaOg.github.io',
 			owner: 'LiGaOg',
 			admin: 'LiGaOg',

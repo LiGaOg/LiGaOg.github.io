@@ -59,8 +59,8 @@
 		</a>
 	</div>
 	<div class="kira-count">
-		<div><span>文章</span>5</div>
-		<div><span>标签</span>5</div>
+		<div><span>文章</span>6</div>
+		<div><span>标签</span>6</div>
 		<div><span>分类</span>2</div>
 	</div>
 	<div class="kira-list">
@@ -154,7 +154,7 @@
 
       <li class="category-list-item">
         <a class="category-list-link" href="/categories/工具教程/">工具教程</a>
-        <span class="category-list-count">3</span>
+        <span class="category-list-count">4</span>
       </li>
 
       
@@ -164,7 +164,7 @@
 </div>
   
 <div class="kira-widget-wrap">
-	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a></div>
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a></div>
 	
 </div>
 
@@ -247,10 +247,25 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2022年12月03日</a>
-			<a><i class="kirafont icon-areachart"></i>709 字</a>
+			<a><i class="kirafont icon-areachart"></i>750 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
 		</div>
-		<p>这个文章主要记录我配置终端的过程，会持续更新。</p>
+		<!-- toc -->
+
+<ul>
+<li><a href="#part-i-%E4%B8%8B%E8%BD%BDnerdfont">Part I: 下载Nerdfont</a></li>
+<li><a href="#part-ii-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AEterminator">Part II: 下载并配置Terminator</a></li>
+<li><a href="#part-iii-%E4%B8%8B%E8%BD%BD%E5%B9%B6%E9%85%8D%E7%BD%AEzsh">Part III: 下载并配置zsh</a></li>
+<li><a href="#part-iv-%E5%A5%BD%E7%94%A8%E7%9A%84zsh%E6%8F%92%E4%BB%B6">Part IV: 好用的zsh插件</a><ul>
+<li><a href="#zsh-autosuggestions">zsh-autosuggestions</a></li>
+<li><a href="#zsh-syntax-highlighting">zsh-syntax-highlighting</a></li>
+</ul>
+</li>
+<li><a href="#part-v-%E6%88%91%E5%B8%B8%E7%94%A8%E7%9A%84zshrc">Part V: 我常用的<code>.zshrc</code></a></li>
+</ul>
+<!-- tocstop -->
+
+<p>这个文章主要记录我配置终端的过程，会持续更新。</p>
 <h2><span id="part-i-下载nerdfont">Part I: 下载Nerdfont</span></h2><p>Nerdfont的官网是：<a target="_blank" rel="noopener" href="https://www.nerdfonts.com/font-downloads">https://www.nerdfonts.com/font-downloads</a></p>
 <p>在其中选择自己喜欢的字体进行下载，下载解压后会出现一系列的<code>*.ttf</code>文件。把这些<code>*.ttf</code>文件移动到<code>/usr/share/fonts</code>文件夹内，然后执行如下命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo mkfontscale<br>sudo mkfontdir<br>sudo fc-cache -fv<br></code></pre></td></tr></table></figure>
@@ -308,6 +323,12 @@
 			<div class="old">
 				<span>上一章</span>
 				<a href="/2022/12/02/vim-config/"> 如何配置并使用编辑器之鬼-vim</a>
+			</div>
+			       
+			<!-- 下一篇文章 -->
+			<div class="new">
+				<span>下一章</span>
+				<a href="/2022/12/03/tmux-usage/"> 利用tmux实现终端复用</a>
 			</div>
 			              
 		</nav>
