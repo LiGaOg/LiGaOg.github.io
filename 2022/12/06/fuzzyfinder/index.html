@@ -247,7 +247,7 @@
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
 			<a><i class="kirafont icon-calendar-fill"></i>2022年12月06日</a>
-			<a><i class="kirafont icon-areachart"></i>422 字</a>
+			<a><i class="kirafont icon-areachart"></i>470 字</a>
 			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
 		</div>
 		<!-- toc -->
@@ -259,19 +259,14 @@
 </ul>
 <!-- tocstop -->
 
-<p>下载<code>fzf</code>可以用如下命令，或者参考官方文档：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo apt install fzf<br></code></pre></td></tr></table></figure>
-
-
-
+<p>下载<code>fzf</code>需要参考官方仓库：<a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf%EF%BC%8C%E7%84%B6%E5%90%8E%E5%85%8B%E9%9A%86%E6%BA%90%E7%A0%81%EF%BC%8C%E8%BF%90%E8%A1%8C%E5%85%B6%E4%B8%AD%E7%9A%84%E4%B8%8B%E8%BD%BD%E8%84%9A%E6%9C%AC%E4%B8%8B%E8%BD%BD%E3%80%82%EF%BC%88%E7%9B%B4%E6%8E%A5%E7%94%A8%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8%E6%97%A0%E6%B3%95%E6%BF%80%E6%B4%BB%60zsh%60%E4%B8%AD%E7%9A%84auto">https://github.com/junegunn/fzf，然后克隆源码，运行其中的下载脚本下载。（直接用包管理器无法激活`zsh`中的auto</a> completion）</p>
 <h2><span id="part-i-fzf在终端下的使用">Part I: fzf在终端下的使用</span></h2><p>在终端中直接用如下命令可以调出来<code>fzf</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">fzf<br></code></pre></td></tr></table></figure>
 
 <p>现在假设你要用<code>nvim</code>编辑一个文件，需要用<code>fzf</code>找到这个文件在哪里，那么命令就是：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim $(fzf)<br></code></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">nvim **&lt;TAB&gt;<br></code></pre></td></tr></table></figure>
 
-
-
+<p>摁下<code>&lt;TAB&gt;</code>之后，就可以用<code>fzf</code>找到对应的文件。</p>
 <h2><span id="part-ii-fzf在ranger中的配置和使用">Part II: fzf在ranger中的配置和使用</span></h2><p>首先将如下代码放到ranger配置文件中的<code>commands.py</code>中：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">class</span> <span class="hljs-title class_">fzf_select</span>(<span class="hljs-title class_ inherited__">Command</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">    :fzf_select</span><br><span class="hljs-string">    Find a file using fzf.</span><br><span class="hljs-string">    With a prefix argument select only directories.</span><br><span class="hljs-string">    See: https://github.com/junegunn/fzf</span><br><span class="hljs-string">    &quot;&quot;&quot;</span><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">execute</span>(<span class="hljs-params">self</span>):<br>        <span class="hljs-keyword">import</span> subprocess<br>        <span class="hljs-keyword">import</span> os.path<br>        <span class="hljs-keyword">if</span> self.quantifier:<br>            <span class="hljs-comment"># match only directories</span><br>            command = <span class="hljs-string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span><br><span class="hljs-string">            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span><br><br>        <span class="hljs-keyword">else</span>:<br>            <span class="hljs-comment"># match files and directories</span><br>            command = <span class="hljs-string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span><br><span class="hljs-string">            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span><br><br>        fzf = self.fm.execute_command(command,<br>                                      universal_newlines=<span class="hljs-literal">True</span>,<br>                                      stdout=subprocess.PIPE)<br>        stdout, stderr = fzf.communicate()<br>        <span class="hljs-keyword">if</span> fzf.returncode == <span class="hljs-number">0</span>:<br>            fzf_file = os.path.abspath(stdout.rstrip(<span class="hljs-string">&#x27;\n&#x27;</span>))<br>            <span class="hljs-keyword">if</span> os.path.isdir(fzf_file):<br>                self.fm.cd(fzf_file)<br>            <span class="hljs-keyword">else</span>:<br>                self.fm.select_file(fzf_file)<br></code></pre></td></tr></table></figure>
 
