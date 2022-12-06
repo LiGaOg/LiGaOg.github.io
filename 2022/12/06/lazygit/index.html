@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> Linux平台下如何构建并使用链接库 -  LiGaOg&#39;s blog</title>
+		<title> 使用lazygit实现高效git操作 -  LiGaOg&#39;s blog</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -237,65 +237,107 @@
 		
 		<div class="kira-post-cover">
 			<img
-				data-src="https://ligaog.github.io/Blog-Images/articles/link-library/cover.png"
+				data-src="https://ligaog.github.io/Blog-Images/articles/lazygit/cover.png"
 				data-sizes="auto"
-				alt="Linux平台下如何构建并使用链接库"
+				alt="使用lazygit实现高效git操作"
 				class="lazyload  kira-post-cover-image"
 			/>
-			<h1>Linux平台下如何构建并使用链接库</h1>
+			<h1>使用lazygit实现高效git操作</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2022年11月30日</a>
-			<a><i class="kirafont icon-areachart"></i>507 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月06日</a>
+			<a><i class="kirafont icon-areachart"></i>1.2k 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 5 分钟</a>
 		</div>
 		<!-- toc -->
 
 <ul>
-<li><a href="#part-i%E9%93%BE%E6%8E%A5%E5%BA%93%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">Part I：链接库简单介绍</a></li>
-<li><a href="#part-ii%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">Part II：构建静态链接库</a></li>
-<li><a href="#part-iii%E6%9E%84%E5%BB%BA%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">Part III：构建动态链接库</a></li>
-<li><a href="#part-iv%E4%BD%BF%E7%94%A8%E9%93%BE%E6%8E%A5%E5%BA%93">Part IV：使用链接库</a></li>
+<li><a href="#part-0-%E9%85%8D%E7%BD%AEgit">Part 0: 配置git</a></li>
+<li><a href="#part-i-%E4%B8%AA%E4%BA%BA%E5%BC%80%E5%8F%91%E7%9A%84%E7%AE%80%E5%8D%95%E6%B5%81%E7%A8%8B">Part I: 个人开发的简单流程</a></li>
+<li><a href="#part-ii-%E6%B7%BB%E5%8A%A0%E5%88%B0%E6%9A%82%E5%AD%98%E5%8C%BA">Part II: 添加到暂存区</a></li>
+<li><a href="#part-iii-%E6%8C%81%E4%B9%85%E5%8C%96%E5%88%B0%E7%89%88%E6%9C%AC%E5%BA%93%E5%8F%8A%E5%9B%9E%E6%BB%9A%E6%93%8D%E4%BD%9C">Part III: 持久化到版本库及回滚操作</a></li>
+<li><a href="#part-iv-%E5%88%86%E6%94%AF%E6%93%8D%E4%BD%9C">Part IV: 分支操作</a></li>
+<li><a href="#part-v-stash%E6%93%8D%E4%BD%9C">Part V: Stash操作</a></li>
 </ul>
 <!-- tocstop -->
 
-<h2><span id="part-i链接库简单介绍">Part I：链接库简单介绍</span></h2><p>C语言中共享代码的方式是使用链接库，能够做到不公开源代码的情况下，能够让开发者调用库提供的API来使用某些功能。链接库分为<strong>静态链接库</strong>和<strong>动态链接库</strong>，下面会介绍如何在Linux平台下，如何构建并使用这两种链接库。</p>
-<h2><span id="part-ii构建静态链接库">Part II：构建静态链接库</span></h2><p><strong>第一步：</strong>将所有的<code>.c</code>文件进行编译，生成可重定位目标文件，后缀名是<code>.o</code>。</p>
-<p><strong>第二步：</strong>将所有的<code>.o</code>可重定位目标文件打包成静态链接库<code>libxxx.a</code>。</p>
-<p>可以使用如下的Makefile：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Compiler</span><br>CC = gcc<br><span class="hljs-comment"># Store .c source file</span><br>SRCS_C = \<br>	src1.c \<br>	src2.c \<br><span class="hljs-comment"># Names for relocatable object files</span><br>OBJS += $(SRCS_C:.c=.o)<br><br><span class="hljs-comment"># Set default goal</span><br>.DEFAULT_GOAL := all<br><br><span class="hljs-section">all: libxxx.a</span><br><br><span class="hljs-section">libxxx.a:$&#123;OBJS&#125;</span><br>	@ar rcs libxxx.a <span class="hljs-variable">$^</span><br>	@rm *.o<br>	<br><span class="hljs-variable">$(OBJS)</span>: %.o : %.c<br>	@$&#123;CC&#125; -c <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean:</span><br>	@rm *.a<br></code></pre></td></tr></table></figure>
+<p>lazygit下载方法可以参考官方仓库：<a target="_blank" rel="noopener" href="https://github.com/jesseduffield/lazygit">https://github.com/jesseduffield/lazygit</a></p>
+<h2><span id="part-0-配置git">Part 0: 配置git</span></h2><p>下载好git后，需要用如下两条命令告诉<code>git</code>你是谁：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">git config --global user.name <span class="hljs-string">&quot;xxx&quot;</span><br>git config --global user.email <span class="hljs-string">&quot;xxx&quot;</span><br></code></pre></td></tr></table></figure>
 
+<p>然后，需要在github上配置公钥，方便之后使用<code>SSH</code>克隆仓库。</p>
+<h2><span id="part-i-个人开发的简单流程">Part I: 个人开发的简单流程</span></h2><p>如果一个人开发项目，那git操作就非常简单。</p>
+<p>首先你可以在云端建一个仓库，然后用<code>git clone</code>克隆到本地。</p>
+<p>之后你可以在本地编辑，然后用如下三条命令同步到云端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">git add .<br>git commit -m <span class="hljs-string">&quot;xxx&quot;</span><br>git push<br></code></pre></td></tr></table></figure>
 
-
-<h2><span id="part-iii构建动态链接库">Part III：构建动态链接库</span></h2><p>构建动态链接库和构建静态链接库大致相同，区别在于：</p>
+<p>在lazygit中，默认进入选中Files Pane，直接用<code>a, c, P</code>就可以完成上述操作。</p>
+<p>如果要拉取云端仓库，直接用<code>p</code>就可以。</p>
+<h2><span id="part-ii-添加到暂存区">Part II: 添加到暂存区</span></h2><blockquote>
+<p>以下操作都是在Files Pane中完成</p>
+</blockquote>
+<p><code>a</code>是把当前所有修改放到暂存区，相当于<code>git add .</code>，再摁<code>a</code>是取消修改。</p>
 <ul>
-<li><p>对<code>.c</code>文件进行编译时，多加了一个<code>-fPIC</code>参数，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -c -fPIC math.c -o math.o<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>将<code>.o</code>文件打包成动态链接库<code>libxxx.so</code>时，用的是<code>gcc -shared</code>命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -shared math.o -o libmath.so<br></code></pre></td></tr></table></figure></li>
-</ul>
-<p>构建过程可以参考如下Makefile:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Compiler</span><br>CC = gcc<br><span class="hljs-comment"># Store .c source file</span><br>SRCS_C = \<br>	src1.c \<br>	src2.c \<br><span class="hljs-comment"># Names for relocatable object files</span><br>OBJS += $(SRCS_C:.c=.o)<br><br><span class="hljs-comment"># Set default goal</span><br>.DEFAULT_GOAL := all<br><br><span class="hljs-section">all: libxxx.so</span><br><br><span class="hljs-section">libxxx.so:$&#123;OBJS&#125;</span><br>	@gcc -shared <span class="hljs-variable">$^</span> -o libxxx.so<br>	@rm *.o<br>	<br><span class="hljs-variable">$(OBJS)</span>: %.o : %.c<br>	@$&#123;CC&#125; -c -fPIC <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean:</span><br>	@rm *.a<br></code></pre></td></tr></table></figure>
-
-
-
-
-
-<h2><span id="part-iv使用链接库">Part IV：使用链接库</span></h2><p>使用静态链接库和动态链接库的方法大致相同：</p>
-<ul>
-<li><p>第一：你需要提供一个头文件<code>.h</code>，在使用链接库的源文件中用<code>#include</code>引入头文件。</p>
-</li>
-<li><p>第二：链接时需要带上链接库：</p>
-<ul>
-<li><p>静态链接库链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -static src1.c src2.c ... libxxx.a -o main<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>动态链接库链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc src1.c src2.c ... libxxx.so -o main<br></code></pre></td></tr></table></figure></li>
+<li>如果要一个文件一个文件地放到暂存区，可以用<code>&lt;space&gt;</code>。</li>
+<li>如果要把一个文件的某些部分放到暂存区，可以用<code>&lt;Enter&gt;</code>，然后用vim选中部分使用<code>&lt;space&gt;</code>进行暂存。<ul>
+<li>已暂存部分和未暂存部分面板可以用<code>&lt;Tab&gt;</code>进行跳转。</li>
 </ul>
 </li>
+<li>从已暂存和未暂存面板切换到Files Pane用<code>&lt;Esc&gt;</code>。</li>
+</ul>
+<p><font color="red">当修改没有被提交到暂存区时，用<code>d</code>可以撤销操作，不可逆。</font></p>
+<h2><span id="part-iii-持久化到版本库及回滚操作">Part III: 持久化到版本库及回滚操作</span></h2><p>最基本的，在Files Pane中用<code>c</code>可以执行<code>git commit</code>命令，把暂存区中的修改持久化到版本库中。</p>
+<blockquote>
+<p>以下所有的操作都是在Commits Pane中</p>
+</blockquote>
+<p><code>r</code>可以重命名一次<code>commit</code>，但是在云端仓库需要用<code>git push --force</code>。</p>
+<p><code>dd</code>可以删除一次<code>commit</code>，同时修改也会删掉。</p>
+<p>回滚仓库有两种方法，一种基于<code>git checkout</code>，一种基于<code>git reset</code></p>
+<ul>
+<li>基于<code>git checkout</code>的回滚方式：<ul>
+<li>如果要把<strong>整个仓库</strong>回滚到某次commit中，可以选中某次<code>commit</code>后用<code>&lt;space&gt;</code>，之后，如果要切换到之前的<code>commit</code>，可以在<code>reflog</code>面板（切换可以用<code>[]</code>）中用<code>&lt;space&gt;</code>。</li>
+<li>此时不是真正的回滚，<code>git checkout</code>会建立一个虚拟分支，之后，可以基于这个虚拟分支再进行<code>commit</code>，如果要把这个虚拟分支变成实际的分支，在<code>Branch Pane</code>中使用<code>n</code>即可。<ul>
+<li><font color="red"><strong>注意：这个功能要求lazygit必须是英文版，不能有中文，否则会失效。</strong></font></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>基于<code>git reset</code>的回滚方式：<ul>
+<li>和上面<code>checkout</code>的操作步骤一样，只不过<code>&lt;space&gt;</code>换成了<code>g</code>，并且执行<code>git reset</code>时，始终只有一个分支。</li>
+<li><code>reset</code>有三种策略：<code>soft, mixed, hard</code><ul>
+<li><code>soft</code>：如果我对于这次<code>commit</code>（假设叫<code>x</code>）进行<code>reset</code>，我当前的仓库会变成<code>reset</code>后的状态。对于比<code>x</code>更新的<code>commit</code>，其修改会被存到暂存区中。</li>
+<li><code>mixed</code>：跟上面的<code>soft</code>类似，只不过修改不会被存到暂存区中，而是没有被加入暂存区中的状态。</li>
+<li><code>hard</code>：修改直接没了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>如果不小心错误使用了git命令，可以使用<code>reflog</code>，结合<code>git checkout</code>或者<code>git reset</code>，来实现<strong>撤销命令</strong>。</p>
+<h2><span id="part-iv-分支操作">Part IV: 分支操作</span></h2><blockquote>
+<p>以下操作基本都是在Branch Pane中进行</p>
+</blockquote>
+<p><code>n</code>可以基于当前选中的分支新建分支。</p>
+<p>将新建的分支同步到云端可以切换到这个分支后，用<code>P</code>。</p>
+<p>切换分支可以在选中分支后用<code>&lt;space&gt;</code>。</p>
+<p>合并分支：假设现在要把b合并到a：</p>
+<ul>
+<li>首先切换到<code>a</code></li>
+<li>然后选中<code>b</code></li>
+<li>之后用<code>M</code>进行合并。<ul>
+<li>如果有冲突，可以在<code>File Pane</code>中，用<code>&lt;Enter&gt;</code>进入解决冲突的面板，按照下面的提示解决冲突后重新<code>commit</code>即可。</li>
+</ul>
+</li>
+</ul>
+<h2><span id="part-v-stash操作">Part V: Stash操作</span></h2><p>stash可以将暂存区的修改存储到某一个栈中，常用于要切换分支前。</p>
+<p>在<code>File Pane</code>中，用<code>s</code>可以将当前暂存区修改放到stash中。</p>
+<p>之后，在任何一个分支上，都可以将stash中的操作再放到当前分支的暂存区。如果有冲突，和分支合并解决冲突的方式相同。</p>
+<p>在<code>Stash Pane</code>中：</p>
+<ul>
+<li><code>g</code>：将Stash中一个元素弹出，并且修改同步到暂存区。</li>
+<li><code>d</code>：删除Stash中的这个元素。</li>
+<li><code>&lt;space&gt;</code>：将栈顶元素的修改同步到暂存区，但是不删除元素。</li>
 </ul>
 
 	</article>
@@ -303,7 +345,7 @@
 	 
     <div class="kira-post-copyright">
         <strong>Author：</strong>LiGaOg<br>
-        <strong>Link：</strong><a href="https://ligaog.github.io/2022/11/30/link-library/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;11&#x2F;30&#x2F;link-library&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;11&#x2F;30&#x2F;link-library&#x2F;</a><br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/06/lazygit/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;06&#x2F;lazygit&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;06&#x2F;lazygit&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -312,26 +354,26 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			      
+			  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			                  
 			<!-- 在找到当前文章所在的 index -->
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/2022/12/02/inline-asm/"> 如何在C语言中嵌入汇编代码</a>
+			                    
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2022/12/06/ranger-usage/"> 使用ranger进行文件管理</a>
 			</div>
-			          
+			              
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-appstore-fill -link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a>
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/git/" rel="tag">git</a>
 		
 	</div>
 	
@@ -343,7 +385,7 @@
 		var gitalk = new Gitalk({
 			clientID: '7f1aee318d867bd4f45c',
 			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
-			id: 'Linux平台下如何构建并使用链接库',
+			id: '使用lazygit实现高效git操作',
 			repo: 'LiGaOg.github.io',
 			owner: 'LiGaOg',
 			admin: 'LiGaOg',
