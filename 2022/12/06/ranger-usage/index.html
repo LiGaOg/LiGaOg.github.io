@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/css/layout.css">
 
 		
-		<title> Linux平台下如何构建并使用链接库 -  LiGaOg&#39;s blog</title>
+		<title> ranger-usage -  LiGaOg&#39;s blog</title>
 		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
 		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 		<!-- lazyload -->
@@ -237,73 +237,53 @@
 		
 		<div class="kira-post-cover">
 			<img
-				data-src="https://ligaog.github.io/Blog-Images/articles/link-library/cover.png"
+				data-src="https://ligaog.github.io/Blog-Images/articles/ranger-usage/cover.png"
 				data-sizes="auto"
-				alt="Linux平台下如何构建并使用链接库"
+				alt="ranger-usage"
 				class="lazyload  kira-post-cover-image"
 			/>
-			<h1>Linux平台下如何构建并使用链接库</h1>
+			<h1>ranger-usage</h1>
 		</div>
 		
 		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
-			<a><i class="kirafont icon-calendar-fill"></i>2022年11月30日</a>
-			<a><i class="kirafont icon-areachart"></i>507 字</a>
-			<a><i class="kirafont icon-time-circle-fill"></i>大概 2 分钟</a>
+			<a><i class="kirafont icon-calendar-fill"></i>2022年12月06日</a>
+			<a><i class="kirafont icon-areachart"></i>370 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 1 分钟</a>
 		</div>
-		<!-- toc -->
-
-<ul>
-<li><a href="#part-i%E9%93%BE%E6%8E%A5%E5%BA%93%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D">Part I：链接库简单介绍</a></li>
-<li><a href="#part-ii%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">Part II：构建静态链接库</a></li>
-<li><a href="#part-iii%E6%9E%84%E5%BB%BA%E5%8A%A8%E6%80%81%E9%93%BE%E6%8E%A5%E5%BA%93">Part III：构建动态链接库</a></li>
-<li><a href="#part-iv%E4%BD%BF%E7%94%A8%E9%93%BE%E6%8E%A5%E5%BA%93">Part IV：使用链接库</a></li>
+		<p>ranger是一个终端下的文件管理器，可以配合vim操作，实现快速的文件操作。</p>
+<h2><span id="part-i-ranger基本使用">Part I: ranger基本使用</span></h2><p>使用<code>ranger</code>命令可以打开ranger，<code>q</code>可以退出，<code>S</code>可以进入ranger当前所在的文件夹。</p>
+<h3><span id="文件浏览">文件浏览</span></h3><p>ranger最常用的操作还是文件浏览，这个操作和vim一样。用<code>ranger</code>命令打开后，用<code>h, j, k, l</code>进行浏览就行。</p>
+<p>如果要上下浏览父文件夹，可以用<code>[</code>和<code>]</code>。</p>
+<p>查看隐藏文件可以用<code>zh</code>。</p>
+<h3><span id="选择文件x2f目录">选择文件&#x2F;目录</span></h3><ul>
+<li>如果要连续选择，可以用vim中的<code>v</code>。</li>
+<li>如果不连续，可以用<code>&lt;space&gt;</code>。</li>
 </ul>
-<!-- tocstop -->
-
-<h2><span id="part-i链接库简单介绍">Part I：链接库简单介绍</span></h2><p>C语言中共享代码的方式是使用链接库，能够做到不公开源代码的情况下，能够让开发者调用库提供的API来使用某些功能。链接库分为<strong>静态链接库</strong>和<strong>动态链接库</strong>，下面会介绍如何在Linux平台下，如何构建并使用这两种链接库。</p>
-<h2><span id="part-ii构建静态链接库">Part II：构建静态链接库</span></h2><p><strong>第一步：</strong>将所有的<code>.c</code>文件进行编译，生成可重定位目标文件，后缀名是<code>.o</code>。</p>
-<p><strong>第二步：</strong>将所有的<code>.o</code>可重定位目标文件打包成静态链接库<code>libxxx.a</code>。</p>
-<p>可以使用如下的Makefile：</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Compiler</span><br>CC = gcc<br><span class="hljs-comment"># Store .c source file</span><br>SRCS_C = \<br>	src1.c \<br>	src2.c \<br><span class="hljs-comment"># Names for relocatable object files</span><br>OBJS += $(SRCS_C:.c=.o)<br><br><span class="hljs-comment"># Set default goal</span><br>.DEFAULT_GOAL := all<br><br><span class="hljs-section">all: libxxx.a</span><br><br><span class="hljs-section">libxxx.a:$&#123;OBJS&#125;</span><br>	@ar rcs libxxx.a <span class="hljs-variable">$^</span><br>	@rm *.o<br>	<br><span class="hljs-variable">$(OBJS)</span>: %.o : %.c<br>	@$&#123;CC&#125; -c <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean:</span><br>	@rm *.a<br></code></pre></td></tr></table></figure>
-
-
-
-<h2><span id="part-iii构建动态链接库">Part III：构建动态链接库</span></h2><p>构建动态链接库和构建静态链接库大致相同，区别在于：</p>
+<h3><span id="复制剪切粘贴删除文件">复制剪切粘贴删除文件</span></h3><p>复制文件用<code>yy</code>，剪切用<code>dd</code>，粘贴用<code>pp</code>，删除用<code>dD</code>。</p>
+<h3><span id="创建x2f修改文件目录">创建&#x2F;修改文件目录</span></h3><p>创建文件和目录可以用shell命令<code>:touch</code>和<code>:mkdir</code>。</p>
+<p>修改文件&#x2F;目录名称可以用<code>cw</code>。</p>
+<p>批量修改文件名可以选中文件后使用<code>:bulkrename</code>，然后用vim编辑。</p>
+<h3><span id="查看文件目录信息">查看文件目录信息</span></h3><p><code>dc</code>可以查看文件&#x2F;目录大小。</p>
+<p><code>o</code>可以将文件进行排序：</p>
 <ul>
-<li><p>对<code>.c</code>文件进行编译时，多加了一个<code>-fPIC</code>参数，例如：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -c -fPIC math.c -o math.o<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>将<code>.o</code>文件打包成动态链接库<code>libxxx.so</code>时，用的是<code>gcc -shared</code>命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -shared math.o -o libmath.so<br></code></pre></td></tr></table></figure></li>
+<li><code>os</code>按大小，<code>oc</code>按修改日期，<code>on</code>按文件名字典序。</li>
 </ul>
-<p>构建过程可以参考如下Makefile:</p>
-<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs makefile"><span class="hljs-comment"># Compiler</span><br>CC = gcc<br><span class="hljs-comment"># Store .c source file</span><br>SRCS_C = \<br>	src1.c \<br>	src2.c \<br><span class="hljs-comment"># Names for relocatable object files</span><br>OBJS += $(SRCS_C:.c=.o)<br><br><span class="hljs-comment"># Set default goal</span><br>.DEFAULT_GOAL := all<br><br><span class="hljs-section">all: libxxx.so</span><br><br><span class="hljs-section">libxxx.so:$&#123;OBJS&#125;</span><br>	@gcc -shared <span class="hljs-variable">$^</span> -o libxxx.so<br>	@rm *.o<br>	<br><span class="hljs-variable">$(OBJS)</span>: %.o : %.c<br>	@$&#123;CC&#125; -c -fPIC <span class="hljs-variable">$&lt;</span> -o <span class="hljs-variable">$@</span><br><br><span class="hljs-meta"><span class="hljs-keyword">.PHONY</span>: clean</span><br><span class="hljs-section">clean:</span><br>	@rm *.a<br></code></pre></td></tr></table></figure>
+<h3><span id="任务管理">任务管理</span></h3><p><code>w</code>进入任务管理器界面。</p>
+<p><code>dd</code>即可删除任务。</p>
+<h2><span id="part-ii-ranger特殊配置">Part II: ranger特殊配置</span></h2><p>用如下命令生成<code>ranger</code>配置文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ranger --copy-config=all<br></code></pre></td></tr></table></figure>
 
 
 
-
-
-<h2><span id="part-iv使用链接库">Part IV：使用链接库</span></h2><p>使用静态链接库和动态链接库的方法大致相同：</p>
-<ul>
-<li><p>第一：你需要提供一个头文件<code>.h</code>，在使用链接库的源文件中用<code>#include</code>引入头文件。</p>
-</li>
-<li><p>第二：链接时需要带上链接库：</p>
-<ul>
-<li><p>静态链接库链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc -static src1.c src2.c ... libxxx.a -o main<br></code></pre></td></tr></table></figure>
-</li>
-<li><p>动态链接库链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">gcc src1.c src2.c ... libxxx.so -o main<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-</ul>
+<h3><span id="显示图标">显示图标</span></h3><p>配置方法参考：<a target="_blank" rel="noopener" href="https://github.com/alexanderjeurissen/ranger_devicons">https://github.com/alexanderjeurissen/ranger_devicons</a></p>
+<h3><span id="显示git状态">显示git状态</span></h3><p>在<code>rc.conf</code>中，将<code>vcs_aware</code>改成<code>true</code>即可。</p>
 
 	</article>
 
 	 
     <div class="kira-post-copyright">
         <strong>Author：</strong>LiGaOg<br>
-        <strong>Link：</strong><a href="https://ligaog.github.io/2022/11/30/link-library/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;11&#x2F;30&#x2F;link-library&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;11&#x2F;30&#x2F;link-library&#x2F;</a><br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2022/12/06/ranger-usage/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;06&#x2F;ranger-usage&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2022&#x2F;12&#x2F;06&#x2F;ranger-usage&#x2F;</a><br>
         
             <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
         
@@ -312,26 +292,26 @@
   
 	<div class="kira-post-nav">
 		<nav class="post-nav">
-			      
+			  
 			<!-- 先找到与当前文字相同的目录 -->
-			   
+			               
 			<!-- 在找到当前文章所在的 index -->
-			       
-			<!-- 下一篇文章 -->
-			<div class="new">
-				<span>下一章</span>
-				<a href="/2022/12/02/inline-asm/"> 如何在C语言中嵌入汇编代码</a>
+			                
+			<!-- 上一篇文章 -->
+			<div class="old">
+				<span>上一章</span>
+				<a href="/2022/12/03/tmux-usage/"> 利用tmux实现终端复用</a>
 			</div>
-			          
+			              
 		</nav>
 	</div>
 	
 	<div class="kira-post-meta kira-rainbow">
 		
-			<a class="kirafont icon-appstore-fill -link" href="/categories/C%E8%AF%AD%E8%A8%80/">C语言</a>
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/">工具教程</a>
 		
 		
-			<a class="kirafont icon-tag-fill -none-link" href="/tags/C/" rel="tag">C</a>
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/ranger/" rel="tag">ranger</a>
 		
 	</div>
 	
@@ -343,7 +323,7 @@
 		var gitalk = new Gitalk({
 			clientID: '7f1aee318d867bd4f45c',
 			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
-			id: 'Linux平台下如何构建并使用链接库',
+			id: 'ranger-usage',
 			repo: 'LiGaOg.github.io',
 			owner: 'LiGaOg',
 			admin: 'LiGaOg',
