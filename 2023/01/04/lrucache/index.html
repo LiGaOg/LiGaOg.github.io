@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html 
+	lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		
+<link rel="stylesheet" href="/css/layout.css">
+
+		
+		<title> 如何用C语言写一个LRU缓存 -  LiGaOg&#39;s blog</title>
+		<link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+		<script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+		<!-- lazyload -->
+		<script src="https://unpkg.com/lazysizes@5.1.0/lazysizes.min.js"></script>
+		<!-- smooth-scrolling -->
+		<script src="https://unpkg.com/smooth-scrolling.js@latest"></script>
+		<!-- highlight -->
+		<link rel="stylesheet" href="//unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/atom-one-dark.min.css" />
+		<script src="//unpkg.com/@highlightjs/cdn-assets@11.6.0/highlight.min.js"></script>
+		<!-- 预置 kiraicon -->
+		<link rel="stylesheet" href="/lib/iconfont/iconfont.css" crossorigin />
+		<link
+			rel="shortcut icon"
+			href="https://ligaog.github.io/Blog-Images/pictures/favicon.jpg"
+			type="image/png"
+		/>
+	<meta name="generator" content="Hexo 6.3.0"></head>
+
+	<body>
+		<div
+			class="kira-background"
+			style="background-image: url('https://ligaog.github.io/Blog-Images/pictures/background.jpg')"
+		></div>
+		<div class="kira-header">
+    <a
+        class="kira-drawer-button mdui-ripple"
+        title="导航栏"
+        onclick="document.querySelector('.kira-sidebar-modal').classList.add('show');document.querySelector('.kira-sidebar#sidebar').classList.add('show');"
+    >
+        <i class="kirafont icon-menu"></i>
+    </a>
+    <a href="/" title="LiGaOg&#39;s blog">
+        <img
+			src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+			alt="LiGaOg"
+		/>
+    </a>
+</div>
+		<div class="kira-body">
+			<div class="kira-sidebar" id="sidebar">
+	<div class="kira-avatar mdui-ripple">
+		<a href="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg" title="LiGaOg">
+			<img
+				src="https://ligaog.github.io/Blog-Images/pictures/avatar.jpg"
+				alt="LiGaOg"
+			/>
+		</a>
+	</div>
+	<div class="kira-count">
+		<div><span>文章</span>10</div>
+		<div><span>标签</span>10</div>
+		<div><span>分类</span>3</div>
+	</div>
+	<div class="kira-list">
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/"
+			title="回到首页"
+		>
+			<i
+				class="kirafont icon-home"
+			></i>
+			<div class="kira-list-item-content">回到首页</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/archive.html"
+			title="文章归档"
+		>
+			<i
+				class="kirafont icon-container"
+			></i>
+			<div class="kira-list-item-content">文章归档</div>
+		</a>
+		
+		<a
+			class="kira-list-item mdui-ripple false"
+			href="/about.html"
+			title="关于本人"
+		>
+			<i
+				class="kirafont icon-user"
+			></i>
+			<div class="kira-list-item-content">关于本人</div>
+		</a>
+		
+	</div>
+	<aside id="kira-sidebar">
+		 <div class="kira-widget-wrap">
+	<div class="kira-widget kira-social">
+		<a
+			class="mdui-ripple"
+			href="https://space.bilibili.com/4052725"
+			target="_blank"
+			mdui-tooltip="{content: '哔哩哔哩'}"
+			style="
+				color: rgb(231, 106, 141);
+				background-color: rgba(231, 106, 141, .15);
+			"
+		>
+			<i
+				class="kirafont icon-bilibili"
+			></i> </a
+		><a
+			class="mdui-ripple"
+			href="https://github.com/LiGaOg/"
+			target="_blank"
+			mdui-tooltip="{content: 'GitHub'}"
+			style="
+				color: rgb(25, 23, 23);
+				background-color: rgba(25, 23, 23, .15);
+			"
+		>
+			<i
+				class="kirafont icon-github"
+			></i> </a
+		>
+	</div>
+</div>
+  
+<div class="kira-widget-wrap">
+  <h3 class="kira-widget-title">分类</h3>
+  <div class="kira-widget">
+
+    <ul class="category-list">
+
+      
+
+
+      
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/C语言/">C语言</a>
+        <span class="category-list-count">2</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/工具教程/">工具教程</a>
+        <span class="category-list-count">7</span>
+      </li>
+
+      
+
+      <li class="category-list-item">
+        <a class="category-list-link" href="/categories/算法/">算法</a>
+        <span class="category-list-count">1</span>
+      </li>
+
+      
+    </ul>
+
+  </div>
+</div>
+  
+<div class="kira-widget-wrap">
+	<div id="randomtagcloud" class="kira-widget tagcloud kira-rainbow"><a href="/tags/C/" style="font-size: 20px;">C</a> <a href="/tags/LinkedList/" style="font-size: 10px;">LinkedList</a> <a href="/tags/Ubuntu/" style="font-size: 10px;">Ubuntu</a> <a href="/tags/asm/" style="font-size: 10px;">asm</a> <a href="/tags/fzf/" style="font-size: 10px;">fzf</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/ranger/" style="font-size: 10px;">ranger</a> <a href="/tags/tmux/" style="font-size: 10px;">tmux</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a> <a href="/tags/zsh/" style="font-size: 10px;">zsh</a></div>
+	
+</div>
+
+ 
+	</aside>
+	<div class="kira-copyright">
+		&copy; 2023
+		<a href="/">LiGaOg</a
+		>
+		Powered by <a href="http://hexo.io/" target="_blank">Hexo</a> &
+		<!-- TODO: github 链接 -->
+		<a href="https://github.com/ch1ny/kira-hexo/" target="_blank">Kira-Hexo</a>
+		<br />
+		
+		
+	</div>
+</div>
+<div class="kira-sidebar-modal" id="sidebar-modal" onclick="(function(self) {
+	self.classList.remove('show');
+	document.querySelector('.kira-sidebar.show#sidebar').classList.remove('show');
+})(this)"></div>
+			<div class="kira-content">
+				<div id="kira-top-header"></div>
+				<div class="kira-main-content">
+					
+<link rel="stylesheet" href="/css/kira-image.css">
+
+<script src="/js/kira-image.js"></script>
+<div class="kira-image">
+    <div class="kira-image-modal">
+        <div class="kira-image-header">
+            <div class="kira-image-counter"></div>
+            <div class="kira-image-title"></div>
+            <div class="kira-image-operation">
+                <div class="kira-image-operation-button" id="kira-image-operation-button-zoom">
+                    <i class="kirafont icon-zoom-in"></i>
+                </div>
+                <div class="kira-image-operation-button" id="kira-image-operation-button-close">
+                    <i class="kirafont icon-close"></i>
+                </div>
+            </div>
+        </div>
+        <div class="kira-image-container">
+            <div class="kira-image-prev-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-left"></i>
+                </div>
+            </div>
+            <div class="kira-image-list">
+                <div class="kira-image-prev">
+                    <img />
+                </div>
+                <div class="kira-image-now">
+                    <img />
+                </div>
+                <div class="kira-image-next">
+                    <img />
+                </div>
+            </div>
+            <div class="kira-image-next-button-panel">
+                <div class="kira-image-exchange-button">
+                    <i class="kirafont icon-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="kira-post">
+	<article>
+		
+		<div class="kira-post-cover">
+			<img
+				data-src="https://ligaog.github.io/Blog-Images/articles/lrucache/cover.png"
+				data-sizes="auto"
+				alt="如何用C语言写一个LRU缓存"
+				class="lazyload  kira-post-cover-image"
+			/>
+			<h1>如何用C语言写一个LRU缓存</h1>
+		</div>
+		
+		<div class="kira-post-meta kira-rainbow" style="margin:10px 0!important;">
+			<a><i class="kirafont icon-calendar-fill"></i>2023年01月04日</a>
+			<a><i class="kirafont icon-areachart"></i>650 字</a>
+			<a><i class="kirafont icon-time-circle-fill"></i>大概 3 分钟</a>
+		</div>
+		<h2><span id="part-i-思路">Part I: 思路</span></h2><blockquote>
+<p>原题：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lru-cache/">https://leetcode.cn/problems/lru-cache/</a></p>
+</blockquote>
+<p>思路非常简单，首先缓存要存一个<code>&lt;key, value&gt;</code>，我直接把这两个数封装在双向链表的节点中就可以了。</p>
+<p>LRU缓存一共有两个函数：</p>
+<ul>
+<li><code>get(key)</code>：通过<code>key</code>找对应的<code>value</code>，我首先通过哈希表，根据<code>key</code>定位到双向链表中存储<code>key</code>的节点（如果没找到返回一个异常值就行），然后删除它并把它插入到链表头。</li>
+<li><code>put(key, value)</code>：看链表中有没有<code>key</code>对应的节点，如果有先把原来的<code>value</code>覆盖，然后把这个节点从原来的位置删除，然后插到链表头。如果没有就创建新节点插入到链表头，同时注意判断是否超过了LRU缓存的容量，如果超过了就删除链表的尾节点。</li>
+</ul>
+<h2><span id="part-ii-代码">Part II: 代码</span></h2><p>目前没有实现C语言版本的哈希表，根据<code>key</code>找链表中对应节点的方法是直接遍历链表。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdlib.h&quot;</span></span><br><span class="hljs-meta">#<span class="hljs-keyword">include</span> <span class="hljs-string">&quot;stdio.h&quot;</span></span><br><br><span class="hljs-comment">/* Definition of LinkedList Node */</span><br><span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> &#123;</span><br>	<span class="hljs-type">int</span> key, val;<br>	<span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> *<span class="hljs-title">left</span>, *<span class="hljs-title">right</span>;</span><br>&#125;;<br><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">Node</span> <span class="hljs-title">Node</span>;</span><br><br><span class="hljs-comment">/* Default constructor for Node */</span><br>Node *<span class="hljs-title function_">getNode</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> val)</span> &#123;<br>	Node *node = (Node *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(Node));<br>	node-&gt;key = key;<br>	node-&gt;val = val;<br>	node-&gt;left = node-&gt;right = <span class="hljs-literal">NULL</span>;<br>	<span class="hljs-keyword">return</span> node;<br>&#125;<br><br><span class="hljs-comment">/* Definition of LRUCache */</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> &#123;</span><br><br>	<span class="hljs-comment">/* LinkedList head and tail */</span><br>	Node *head, *tail;<br><br>	<span class="hljs-comment">/* Capacity of the cache */</span><br>	<span class="hljs-type">int</span> capacity;<br><br>	<span class="hljs-comment">/* Current size of the cache */</span><br>	<span class="hljs-type">int</span> size;<br><br>&#125; LRUCache;<br><br><span class="hljs-comment">/* Insert a node into LinkedList */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">insertNode</span><span class="hljs-params">(LRUCache *obj, Node *p)</span> &#123;<br>	p-&gt;right = obj-&gt;head-&gt;right;<br>	p-&gt;left = obj-&gt;head;<br>	obj-&gt;head-&gt;right-&gt;left = p;<br>	obj-&gt;head-&gt;right = p;<br>	obj-&gt;size ++;<br>&#125;<br><br><span class="hljs-comment">/* Remove a node from linkedlist */</span><br><span class="hljs-type">void</span> <span class="hljs-title function_">removeNode</span><span class="hljs-params">(LRUCache *obj, Node *p)</span> &#123;<br>	p-&gt;right-&gt;left = p-&gt;left;<br>	p-&gt;left-&gt;right = p-&gt;right;<br>	obj-&gt;size --;<br>&#125;<br><br><span class="hljs-comment">/* Init LRUCache */</span><br>LRUCache *<span class="hljs-title function_">lRUCacheCreate</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>	LRUCache *obj = (LRUCache *)<span class="hljs-built_in">malloc</span>(<span class="hljs-keyword">sizeof</span>(LRUCache));<br>	obj-&gt;head = getNode(<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>);<br>	obj-&gt;tail = getNode(<span class="hljs-number">-1</span>, <span class="hljs-number">-1</span>);<br>	obj-&gt;head-&gt;right = obj-&gt;tail;<br>	obj-&gt;tail-&gt;left = obj-&gt;head;<br>	obj-&gt;capacity = capacity;<br>	obj-&gt;size = <span class="hljs-number">0</span>;<br>	<span class="hljs-keyword">return</span> obj;<br>&#125;<br><br><span class="hljs-type">int</span> <span class="hljs-title function_">lRUCacheGet</span><span class="hljs-params">(LRUCache *obj, <span class="hljs-type">int</span> key)</span> &#123;<br>	Node *cur = obj-&gt;head-&gt;right;<br><br>	<span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">NULL</span>) &#123;<br>		<span class="hljs-keyword">if</span> (cur-&gt;key == key) <span class="hljs-keyword">break</span>;<br>		cur = cur-&gt;right;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (cur == <span class="hljs-literal">NULL</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">-1</span>;<br>	<span class="hljs-comment">/* Remove from the linkedlist */</span><br>	removeNode(obj, cur);<br>	<span class="hljs-comment">/* Insert into the front of linkedlist */</span><br>	insertNode(obj, cur);<br><br>	<span class="hljs-keyword">return</span> cur-&gt;val;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">lRUCachePut</span><span class="hljs-params">(LRUCache *obj, <span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>	Node *cur = obj-&gt;head-&gt;right;<br>	<span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">NULL</span>) &#123;<br>		<span class="hljs-keyword">if</span> (cur-&gt;key == key) <span class="hljs-keyword">break</span>;<br>		cur = cur-&gt;right;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (cur != <span class="hljs-literal">NULL</span>) &#123;<br>		cur-&gt;val = value;<br>		removeNode(obj, cur);<br>		insertNode(obj, cur);<br>	&#125;<br>	<span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">if</span> (obj-&gt;size == obj-&gt;capacity) &#123;<br>			Node *p = obj-&gt;tail-&gt;left;<br>			removeNode(obj, p);<br>			<span class="hljs-built_in">free</span>(p);<br>		&#125;<br>		Node *newNode = getNode(key, value);<br>		insertNode(obj, newNode);<br>	&#125;<br>&#125;<br><br><span class="hljs-type">void</span> <span class="hljs-title function_">lRUCacheFree</span><span class="hljs-params">(LRUCache *obj)</span> &#123;<br>	<span class="hljs-comment">/* Iterate LinkedList and free all node */</span><br>	Node *cur = obj-&gt;head;<br>	<span class="hljs-keyword">while</span> (cur != <span class="hljs-literal">NULL</span>) &#123;<br>		Node *tmp = cur-&gt;right;<br>		<span class="hljs-built_in">free</span>(cur);<br>		cur = tmp;<br>	&#125;<br>	<span class="hljs-built_in">free</span>(obj);<br>	obj = <span class="hljs-literal">NULL</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+	</article>
+
+	 
+    <div class="kira-post-copyright">
+        <strong>Author：</strong>LiGaOg<br>
+        <strong>Link：</strong><a href="https://ligaog.github.io/2023/01/04/lrucache/" title="https:&#x2F;&#x2F;ligaog.github.io&#x2F;2023&#x2F;01&#x2F;04&#x2F;lrucache&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;ligaog.github.io&#x2F;2023&#x2F;01&#x2F;04&#x2F;lrucache&#x2F;</a><br>
+        
+            <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+        
+    </div>
+
+  
+	<div class="kira-post-nav">
+		<nav class="post-nav">
+			          
+			<!-- 先找到与当前文字相同的目录 -->
+			   
+			<!-- 在找到当前文章所在的 index -->
+			          
+		</nav>
+	</div>
+	
+	<div class="kira-post-meta kira-rainbow">
+		
+			<a class="kirafont icon-appstore-fill -link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>
+		
+		
+			<a class="kirafont icon-tag-fill -none-link" href="/tags/LinkedList/" rel="tag">LinkedList</a>
+		
+	</div>
+	
+	<div class="kira-post-footer">
+	<link rel="stylesheet" href="https://unpkg.com/gitalk@latest/dist/gitalk.css" />
+	<div id="gitalk"></div>
+	<script src="https://unpkg.com/gitalk@latest/dist/gitalk.min.js"></script>
+	<script type="text/javascript">
+		var gitalk = new Gitalk({
+			clientID: '7f1aee318d867bd4f45c',
+			clientSecret: 'c176306a25621ebbf5baa3def4dff0b1e3af7920',
+			id: '如何用C语言写一个LRU缓存',
+			repo: 'LiGaOg.github.io',
+			owner: 'LiGaOg',
+			admin: 'LiGaOg',
+			title: 'BlogComment',
+		});
+		gitalk.render('gitalk');
+	</script>
+
+</div>
+	
+</div>
+
+				</div>
+			</div>
+			<div class="kira-right-column">
+	<a onclick="document.querySelector('#kira-top-header').scrollIntoView({behavior: 'smooth'});" class="kira-backtotop" aria-label="回到顶部" title="回到顶部">
+		<button class="mdui-fab mdui-ripple">
+			<i class="kirafont icon-caret-up"></i>
+		</button>
+	</a>
+</div>
+
+		</div>
+	</body>
+</html>
