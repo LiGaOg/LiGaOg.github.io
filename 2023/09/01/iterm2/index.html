@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -482,11 +482,35 @@
 <li>选用背景图片, 并且设置图片的渲染度 (Blending).</li>
 </ul>
 <h3 id="真颜色"><a href="#真颜色" class="headerlink" title="真颜色"></a>真颜色</h3><p>如果在终端中运行如下指令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">&#x27;BEGIN&#123;</span></span><br><span class="line"><span class="string">    s=&quot;/\\/\\/\\/\\/\\&quot;; s=s s s s s s s s;</span></span><br><span class="line"><span class="string">    for (colnum = 0; colnum&lt;77; colnum++) &#123;</span></span><br><span class="line"><span class="string">        r = 255-(colnum*255/76);</span></span><br><span class="line"><span class="string">        g = (colnum*510/76);</span></span><br><span class="line"><span class="string">        b = (colnum*255/76);</span></span><br><span class="line"><span class="string">        if (g&gt;255) g = 510-g;</span></span><br><span class="line"><span class="string">        printf &quot;\033[48;2;%d;%d;%dm&quot;, r,g,b;</span></span><br><span class="line"><span class="string">        printf &quot;\033[38;2;%d;%d;%dm&quot;, 255-r,255-g,255-b;</span></span><br><span class="line"><span class="string">        printf &quot;%s\033[0m&quot;, substr(s,colnum+1,1);</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">    printf &quot;\n&quot;;</span></span><br><span class="line"><span class="string">&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">awk &#39;BEGIN&#123;
+    s=&quot;/\\/\\/\\/\\/\\&quot;; s=s s s s s s s s;
+    for (colnum = 0; colnum&lt;77; colnum++) &#123;
+        r = 255-(colnum*255/76);
+        g = (colnum*510/76);
+        b = (colnum*255/76);
+        if (g&gt;255) g = 510-g;
+        printf &quot;\033[48;2;%d;%d;%dm&quot;, r,g,b;
+        printf &quot;\033[38;2;%d;%d;%dm&quot;, 255-r,255-g,255-b;
+        printf &quot;%s\033[0m&quot;, substr(s,colnum+1,1);
+    &#125;
+    printf &quot;\n&quot;;
+&#125;&#39;
+</code></pre>
 <p>可以输出连续变化的色彩, 那么终端支持真颜色.</p>
 <p>如果终端不支持真色彩, 那么有些neovim主题会出问题.</p>
 <h2 id="终端功能增强"><a href="#终端功能增强" class="headerlink" title="终端功能增强"></a>终端功能增强</h2><h3 id="命令简写"><a href="#命令简写" class="headerlink" title="命令简写"></a>命令简写</h3><p>一般常用的有如下几个:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> s=<span class="string">&quot;neofetch&quot;</span></span><br><span class="line"><span class="built_in">alias</span> cls=<span class="string">&quot;clear&quot;</span></span><br><span class="line"><span class="built_in">alias</span> ra=<span class="string">&quot;ranger&quot;</span></span><br><span class="line"><span class="built_in">alias</span> lg=<span class="string">&quot;lazygit&quot;</span></span><br><span class="line"><span class="built_in">alias</span> <span class="built_in">ls</span>=<span class="string">&quot;exa --icons&quot;</span></span><br><span class="line"><span class="comment"># remove git plugins in ohmyzsh</span></span><br><span class="line"><span class="built_in">alias</span> gc=<span class="string">&quot;git clone&quot;</span></span><br><span class="line"><span class="built_in">alias</span> ty=<span class="string">&quot;open -a typora&quot;</span></span><br><span class="line"><span class="built_in">alias</span> config=<span class="string">&quot;cd ~/.config&quot;</span></span><br><span class="line"><span class="comment"># enbale true color support for remote</span></span><br><span class="line"><span class="built_in">alias</span> ssh=<span class="string">&quot;TERM=xterm-256color <span class="subst">$(which ssh)</span>&quot;</span></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">alias s=&quot;neofetch&quot;
+alias cls=&quot;clear&quot;
+alias ra=&quot;ranger&quot;
+alias lg=&quot;lazygit&quot;
+alias ls=&quot;exa --icons&quot;
+# remove git plugins in ohmyzsh
+alias gc=&quot;git clone&quot;
+alias ty=&quot;open -a typora&quot;
+alias config=&quot;cd ~/.config&quot;
+# enbale true color support for remote
+alias ssh=&quot;TERM=xterm-256color $(which ssh)&quot;
+</code></pre>
 <h3 id="语法高亮"><a href="#语法高亮" class="headerlink" title="语法高亮"></a>语法高亮</h3><p>可执行的命令需要用绿色特殊显示, 不可执行用红色, 可以用zsh的插件zsh-syntax-highlighting: </p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-syntax-highlighting">https://github.com/zsh-users/zsh-syntax-highlighting</a></li>
@@ -499,7 +523,23 @@
 <h3 id="vi-mode"><a href="#vi-mode" class="headerlink" title="vi-mode"></a>vi-mode</h3><p>vi-mode是用vim的编辑方式编辑当前命令, 需要用<code>bindkey -v</code>开启.</p>
 <ul>
 <li><p>vi-mode下, 光标的样式需要有改变, 可以用如下脚本:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">bindkey</span> -v</span><br><span class="line"></span><br><span class="line"><span class="comment"># b to the beginning of line</span></span><br><span class="line"><span class="built_in">bindkey</span> -M vicmd <span class="string">&quot;B&quot;</span> vi-beginning-of-line</span><br><span class="line"><span class="comment"># w to the end of line</span></span><br><span class="line"><span class="built_in">bindkey</span> -M vicmd <span class="string">&quot;W&quot;</span> vi-end-of-line</span><br><span class="line"></span><br><span class="line"><span class="comment"># edit cursor style when entering vi-mode</span></span><br><span class="line"><span class="keyword">function</span> zle-keymap-select &#123;</span><br><span class="line">	<span class="keyword">if</span> [[ <span class="variable">$&#123;KEYMAP&#125;</span> == vicmd ]] || [[ <span class="variable">$1</span> = <span class="string">&#x27;block&#x27;</span> ]]; <span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> -ne <span class="string">&#x27;\e[1 q&#x27;</span></span><br><span class="line">	<span class="keyword">elif</span> [[ <span class="variable">$&#123;KEYMAP&#125;</span> == main ]] || [[ <span class="variable">$&#123;KEYMAP&#125;</span> == viins ]] || [[ <span class="variable">$&#123;KEYMAP&#125;</span> = <span class="string">&#x27;&#x27;</span> ]] || [[ <span class="variable">$1</span> = <span class="string">&#x27;beam&#x27;</span> ]]; <span class="keyword">then</span></span><br><span class="line">		<span class="built_in">echo</span> -ne <span class="string">&#x27;\e[5 q&#x27;</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">zle</span> -N zle-keymap-select</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">bindkey -v
+
+# b to the beginning of line
+bindkey -M vicmd &quot;B&quot; vi-beginning-of-line
+# w to the end of line
+bindkey -M vicmd &quot;W&quot; vi-end-of-line
+
+# edit cursor style when entering vi-mode
+function zle-keymap-select &#123;
+    if [[ $&#123;KEYMAP&#125; == vicmd ]] || [[ $1 = &#39;block&#39; ]]; then
+        echo -ne &#39;\e[1 q&#39;
+    elif [[ $&#123;KEYMAP&#125; == main ]] || [[ $&#123;KEYMAP&#125; == viins ]] || [[ $&#123;KEYMAP&#125; = &#39;&#39; ]] || [[ $1 = &#39;beam&#39; ]]; then
+        echo -ne &#39;\e[5 q&#39;
+    fi
+&#125;
+zle -N zle-keymap-select
+</code></pre>
 </li>
 </ul>
 <h3 id="智能选择"><a href="#智能选择" class="headerlink" title="智能选择"></a>智能选择</h3><ul>
@@ -509,11 +549,21 @@
 <h3 id="复制粘贴"><a href="#复制粘贴" class="headerlink" title="复制粘贴"></a>复制粘贴</h3><p>在Mac下一般默认就是command + c/v.</p>
 <h3 id="快速跳转"><a href="#快速跳转" class="headerlink" title="快速跳转"></a>快速跳转</h3><p>快速跳转到经常cd进入的目录, 这个有一个zsh插件叫<code>z</code>, 在ohmyzsh中内置, 启用后可以在命令行输入<code>z</code>后加<code>Tab</code>, 选择目录进入.</p>
 <h3 id="代理设置"><a href="#代理设置" class="headerlink" title="代理设置"></a>代理设置</h3><p>可以用<code>all_proxy</code>变量控制命令走代理:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># proxy</span></span><br><span class="line"><span class="function"><span class="title">po</span></span> () &#123;</span><br><span class="line">  <span class="built_in">export</span> all_proxy=<span class="string">&quot;socks5h://127.0.0.1:15235&quot;</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Proxy on&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="title">pf</span></span> () &#123;</span><br><span class="line">  <span class="built_in">unset</span> all_proxy</span><br><span class="line">  <span class="built_in">echo</span> <span class="string">&quot;Proxy off&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash"># proxy
+po () &#123;
+  export all_proxy=&quot;socks5h://127.0.0.1:15235&quot;
+  echo &quot;Proxy on&quot;
+&#125;
+pf () &#123;
+  unset all_proxy
+  echo &quot;Proxy off&quot;
+&#125;
+</code></pre>
 <p>在命令行用<code>po</code>, 就可以开启代理. 用<code>pf</code>就可以关闭代理</p>
 <h3 id="终端复用"><a href="#终端复用" class="headerlink" title="终端复用"></a>终端复用</h3><p>可以使用tmux, 配置文件完全可以采用ohmytmux, 官方网站: <a target="_blank" rel="noopener" href="https://github.com/gpakosz/.tmux">https://github.com/gpakosz/.tmux</a></p>
 <h2 id="好用的终端命令"><a href="#好用的终端命令" class="headerlink" title="好用的终端命令"></a>好用的终端命令</h2><h3 id="视频下载"><a href="#视频下载" class="headerlink" title="视频下载"></a>视频下载</h3><p>使用<code>you-get</code>, 可以用<code>pip</code>下载, 下载视频可以用一条命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">you-get &lt;视频链接&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">you-get &lt;视频链接&gt;
+</code></pre>
 
       
        

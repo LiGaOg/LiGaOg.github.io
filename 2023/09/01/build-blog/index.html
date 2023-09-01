@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -463,13 +463,17 @@
       
         <h2 id="搭建前的准备工作"><a href="#搭建前的准备工作" class="headerlink" title="搭建前的准备工作"></a>搭建前的准备工作</h2><p>首先需要下载git和Node.js, 并且在github上创建账号.</p>
 <h2 id="下载hexo的所有依赖"><a href="#下载hexo的所有依赖" class="headerlink" title="下载hexo的所有依赖"></a>下载hexo的所有依赖</h2><p>一行命令不多说:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli --save</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">npm install hexo-cli --save
+</code></pre>
 <h2 id="在本地启动hexo"><a href="#在本地启动hexo" class="headerlink" title="在本地启动hexo"></a>在本地启动hexo</h2><p>在本地创建一个新的空文件夹, 然后在里面初始化hexo:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">hexo init
+</code></pre>
 <p>然后启动hexo服务:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">hexo s
+</code></pre>
 <h2 id="远程部署hexo"><a href="#远程部署hexo" class="headerlink" title="远程部署hexo"></a>远程部署hexo</h2><p>首先下载:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">npm install hexo-deployer-git --save
+</code></pre>
 <p>然后在Github上创建一个public的仓库, 仓库名字叫<code>&lt;你的用户名&gt;.github.io</code></p>
 <p>之后在Github上开启Github Pages即可访问服务.</p>
 <h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
@@ -479,7 +483,8 @@
 <li><p>确保hexo自带的<code>_config.yml</code>中的<code>post_asset_folder</code>为true.</p>
 </li>
 <li><p>下载依赖:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https://github.com/CodeFalling/hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">npm install https://github.com/CodeFalling/hexo-asset-image --save
+</code></pre>
 </li>
 <li><p>之后, 在博客文件夹中, 假设有一个博客叫<code>A.md</code>, 在同级目录下创建一个<code>A</code>文件夹, 里面放图片<code>C.png</code>后, 在<code>A.md</code>中直接用<code>![C](C.png)</code>就可以.</p>
 </li>

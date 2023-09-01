@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -462,20 +462,26 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>MacOS下使用<code>brew</code>可以下载:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install pass</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">brew install pass
+</code></pre>
 <h2 id="生成GPG密钥"><a href="#生成GPG密钥" class="headerlink" title="生成GPG密钥"></a>生成GPG密钥</h2><p>在终端中使用命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --gen-key</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">gpg --gen-key
+</code></pre>
 <p>输入真实姓名, 邮箱与密码后, 会生成一个GPG密钥, 存储在<code>~/.gnupg</code>中, <code>~/.gnupg</code>需要备份.</p>
 <p>其中, 生成GPG密钥的密码需要特殊记忆.</p>
 <h2 id="初始化密码仓库"><a href="#初始化密码仓库" class="headerlink" title="初始化密码仓库"></a>初始化密码仓库</h2><p>使用如下命令查看GPG公钥:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gpg --list-keys</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">gpg --list-keys
+</code></pre>
 <p>然后使用如下命令初始化密码仓库, 初始化的密码仓库和GPG密钥绑定</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gpg init &lt;GPG公钥&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">gpg init &lt;GPG公钥&gt;
+</code></pre>
 <h2 id="添加密码信息"><a href="#添加密码信息" class="headerlink" title="添加密码信息"></a>添加密码信息</h2><p>使用如下命令可以添加一个密码:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass edit &lt;<span class="built_in">id</span>&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">pass edit &lt;id&gt;
+</code></pre>
 <p>其中<code>id</code>是你用来索引这个密码信息的唯一的key, 这个命令运行之后, 会启动编辑器, 在其中可以添加你想添加的任何信息, 不止于密码.</p>
 <p>如果要查看密码, 可以使用:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pass show &lt;<span class="built_in">id</span>&gt;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">pass show &lt;id&gt;
+</code></pre>
 <p>使用<code>pass -c &lt;id&gt;</code>可以将密码拷贝到系统剪切板, 不会显示在终端.</p>
 <p>启用这个命令之后, 系统会要求输入GPG密钥绑定的密码, 有了GPG密钥绑定的密码, 以及GPG密钥才能够让你查看隐私信息.</p>
 <p>可以用<code>pass ls</code>查看所有密码信息的<code>id</code>.</p>

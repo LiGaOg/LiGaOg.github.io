@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -465,39 +465,192 @@
 <h2 id="显示Git状态"><a href="#显示Git状态" class="headerlink" title="显示Git状态"></a>显示Git状态</h2><p><code>rc.conf</code>中的<code>vcs_aware</code>设置为<code>true</code>.</p>
 <h2 id="默认显示隐藏文件"><a href="#默认显示隐藏文件" class="headerlink" title="默认显示隐藏文件"></a>默认显示隐藏文件</h2><p><code>rc.conf</code>中<code>show_hidden</code>设置为<code>true</code>.</p>
 <h2 id="预览文件"><a href="#预览文件" class="headerlink" title="预览文件"></a>预览文件</h2><h3 id="本文文件高亮"><a href="#本文文件高亮" class="headerlink" title="本文文件高亮"></a>本文文件高亮</h3><p>安装<code>bat</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bat</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">brew install bat
+</code></pre>
 <h3 id="预览压缩文件"><a href="#预览压缩文件" class="headerlink" title="预览压缩文件"></a>预览压缩文件</h3><p>需要安装tool</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install atool</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-shell">brew install atool
+</code></pre>
 <h3 id="预览图片"><a href="#预览图片" class="headerlink" title="预览图片"></a>预览图片</h3><p>预览图片与终端有关, 如果终端是iTerm2, 那么默认可以预览图片.</p>
 <p>在<code>rc.conf</code>中, 需要改动:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set preview_images true</span><br><span class="line">set preview_images_method iterm2</span><br><span class="line">set iterm2_font_width 55</span><br><span class="line">set iterm2_font_height 45</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-shell">set preview_images true
+set preview_images_method iterm2
+set iterm2_font_width 55
+set iterm2_font_height 45
+</code></pre>
 <h3 id="预览pdf文件"><a href="#预览pdf文件" class="headerlink" title="预览pdf文件"></a>预览pdf文件</h3><p>首先安装poppler:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install poppler</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-shell">brew install poppler
+</code></pre>
 <p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## PDF</span></span><br><span class="line">application/pdf)</span><br><span class="line">    pdftoppm -f 1 -l 1 \</span><br><span class="line">             -scale-to-x <span class="string">&quot;<span class="variable">$&#123;DEFAULT_SIZE%x*&#125;</span>&quot;</span> \</span><br><span class="line">             -scale-to-y -1 \</span><br><span class="line">             -singlefile \</span><br><span class="line">             -jpeg -tiffcompression jpeg \</span><br><span class="line">             -- <span class="string">&quot;<span class="variable">$&#123;FILE_PATH&#125;</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;IMAGE_CACHE_PATH%.*&#125;</span>&quot;</span> \</span><br><span class="line">        &amp;&amp; <span class="built_in">exit</span> 6 || <span class="built_in">exit</span> 1;;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">        ## PDF
+        application/pdf)
+            pdftoppm -f 1 -l 1 \
+                     -scale-to-x &quot;$&#123;DEFAULT_SIZE%x*&#125;&quot; \
+                     -scale-to-y -1 \
+                     -singlefile \
+                     -jpeg -tiffcompression jpeg \
+                     -- &quot;$&#123;FILE_PATH&#125;&quot; &quot;$&#123;IMAGE_CACHE_PATH%.*&#125;&quot; \
+                &amp;&amp; exit 6 || exit 1;;
+</code></pre>
 <h3 id="预览视频"><a href="#预览视频" class="headerlink" title="预览视频"></a>预览视频</h3><p>预览视频需要预先下载<code>ffmpeg</code></p>
 <p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Video</span></span><br><span class="line">video/*)</span><br><span class="line">    <span class="comment"># Thumbnail</span></span><br><span class="line">    ffmpegthumbnailer -i <span class="string">&quot;<span class="variable">$&#123;FILE_PATH&#125;</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;IMAGE_CACHE_PATH&#125;</span>&quot;</span> -s 0 &amp;&amp; <span class="built_in">exit</span> 6</span><br><span class="line">    <span class="built_in">exit</span> 1;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">        ## Video
+        video/*)
+            # Thumbnail
+            ffmpegthumbnailer -i &quot;$&#123;FILE_PATH&#125;&quot; -o &quot;$&#123;IMAGE_CACHE_PATH&#125;&quot; -s 0 &amp;&amp; exit 6
+            exit 1;;
+</code></pre>
 <h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>自定义命令在<code>commamds.py</code>中添加, 在<code>rc.conf</code>中添加键位.</p>
-<h3 id="与fzf对接"><a href="#与fzf对接" class="headerlink" title="与fzf对接"></a>与fzf对接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">fzf_select</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :fzf_select</span></span><br><span class="line"><span class="string">    Find a file using fzf.</span></span><br><span class="line"><span class="string">    With a prefix argument select only directories.</span></span><br><span class="line"><span class="string">    See: https://github.com/junegunn/fzf</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">import</span> subprocess</span><br><span class="line">        <span class="keyword">import</span> os.path</span><br><span class="line">        <span class="keyword">if</span> self.quantifier:</span><br><span class="line">            <span class="comment"># match only directories</span></span><br><span class="line">            command = <span class="string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span></span><br><span class="line"><span class="string">            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># match files and directories</span></span><br><span class="line">            command = <span class="string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span></span><br><span class="line"><span class="string">            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span></span><br><span class="line"></span><br><span class="line">        fzf = self.fm.execute_command(command,</span><br><span class="line">                                      universal_newlines=<span class="literal">True</span>,</span><br><span class="line">                                      stdout=subprocess.PIPE)</span><br><span class="line">        stdout, stderr = fzf.communicate()</span><br><span class="line">        <span class="keyword">if</span> fzf.returncode == <span class="number">0</span>:</span><br><span class="line">            fzf_file = os.path.abspath(stdout.rstrip(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line">            <span class="keyword">if</span> os.path.isdir(fzf_file):</span><br><span class="line">                self.fm.cd(fzf_file)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.fm.select_file(fzf_file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="与fzf对接"><a href="#与fzf对接" class="headerlink" title="与fzf对接"></a>与fzf对接</h3><pre><code class="lang-python">class fzf_select(Command):
+    &quot;&quot;&quot;
+    :fzf_select
+    Find a file using fzf.
+    With a prefix argument select only directories.
+    See: https://github.com/junegunn/fzf
+    &quot;&quot;&quot;
+    def execute(self):
+        import subprocess
+        import os.path
+        if self.quantifier:
+            # match only directories
+            command = &quot;find -L . \( -path &#39;*/\.*&#39; -o -fstype &#39;dev&#39; -o -fstype &#39;proc&#39; \) -prune \
+            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+
+        else:
+            # match files and directories
+            command = &quot;find -L . \( -path &#39;*/\.*&#39; -o -fstype &#39;dev&#39; -o -fstype &#39;proc&#39; \) -prune \
+            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
+
+        fzf = self.fm.execute_command(command,
+                                      universal_newlines=True,
+                                      stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.rstrip(&#39;\n&#39;))
+            if os.path.isdir(fzf_file):
+                self.fm.cd(fzf_file)
+            else:
+                self.fm.select_file(fzf_file)
+</code></pre>
 <p>在<code>rc.conf</code>中添加: <code>map &lt;C-f&gt; fzf_select</code></p>
 <h3 id="与lazygit对接"><a href="#与lazygit对接" class="headerlink" title="与lazygit对接"></a>与lazygit对接</h3><p>在<code>rc.conf</code>中添加: <code>map &lt;C-g&gt; shell lazygit</code></p>
 <h3 id="与scp对接"><a href="#与scp对接" class="headerlink" title="与scp对接"></a>与scp对接</h3><p>首先安装<code>paramiko</code>: </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install paramiko</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">pip3 install paramiko
+</code></pre>
 <p>然后添加下面命令:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class up(Command):</span><br><span class="line">    def execute(self):</span><br><span class="line">        <span class="keyword">if</span> self.arg(1):</span><br><span class="line">            scpcmd = [<span class="string">&quot;scp&quot;</span>, <span class="string">&quot;-r&quot;</span>]</span><br><span class="line">            scpcmd.extend([f.realpath <span class="keyword">for</span> f <span class="keyword">in</span> self.fm.thistab.get_selection()])</span><br><span class="line">            scpcmd.append(self.arg(1))</span><br><span class="line">            self.fm.execute_command(scpcmd)</span><br><span class="line">            self.fm.notify(<span class="string">&quot;Uploaded!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def tab(self, tabnum):</span><br><span class="line">        import os.path</span><br><span class="line">        try:</span><br><span class="line">            import paramiko</span><br><span class="line">        except ImportError:</span><br><span class="line">            <span class="string">&quot;&quot;</span><span class="string">&quot;paramiko not installed&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            with open(os.path.expanduser(<span class="string">&quot;~/.ssh/config&quot;</span>)) as file:</span><br><span class="line">                paraconf = paramiko.SSHConfig()</span><br><span class="line">                paraconf.parse(file)</span><br><span class="line">        except IOError:</span><br><span class="line">            <span class="string">&quot;&quot;</span><span class="string">&quot;cant open ssh config&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">        hosts = sorted(list(paraconf.get_hostnames()))</span><br><span class="line">        <span class="comment"># remove any wildcard host settings since they&#x27;re not real servers</span></span><br><span class="line">        hosts.remove(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">        query = self.arg(1) or <span class="string">&#x27;&#x27;</span></span><br><span class="line">        matching_hosts = []</span><br><span class="line">        <span class="keyword">for</span> host <span class="keyword">in</span> hosts:</span><br><span class="line">            <span class="keyword">if</span> host.startswith(query):</span><br><span class="line">                matching_hosts.append(host)</span><br><span class="line">        <span class="built_in">return</span> (self.start(1) + host + <span class="string">&quot;:&quot;</span> <span class="keyword">for</span> host <span class="keyword">in</span> matching_hosts)</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">class up(Command):
+    def execute(self):
+        if self.arg(1):
+            scpcmd = [&quot;scp&quot;, &quot;-r&quot;]
+            scpcmd.extend([f.realpath for f in self.fm.thistab.get_selection()])
+            scpcmd.append(self.arg(1))
+            self.fm.execute_command(scpcmd)
+            self.fm.notify(&quot;Uploaded!&quot;)
+
+
+    def tab(self, tabnum):
+        import os.path
+        try:
+            import paramiko
+        except ImportError:
+            &quot;&quot;&quot;paramiko not installed&quot;&quot;&quot;
+            return
+
+        try:
+            with open(os.path.expanduser(&quot;~/.ssh/config&quot;)) as file:
+                paraconf = paramiko.SSHConfig()
+                paraconf.parse(file)
+        except IOError:
+            &quot;&quot;&quot;cant open ssh config&quot;&quot;&quot;
+            return
+
+        hosts = sorted(list(paraconf.get_hostnames()))
+        # remove any wildcard host settings since they&#39;re not real servers
+        hosts.remove(&quot;*&quot;)
+        query = self.arg(1) or &#39;&#39;
+        matching_hosts = []
+        for host in hosts:
+            if host.startswith(query):
+                matching_hosts.append(host)
+        return (self.start(1) + host + &quot;:&quot; for host in matching_hosts)
+</code></pre>
 <p>之后选中文件后使用<code>:up</code>即可上传.</p>
 <h3 id="与压缩解压命令对接"><a href="#与压缩解压命令对接" class="headerlink" title="与压缩解压命令对接"></a>与压缩解压命令对接</h3><p>需要提前下载<code>atool</code>:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install atool</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">brew install atool
+</code></pre>
 <p>在<code>commands.py</code>添加: </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ranger.core.loader <span class="keyword">import</span> CommandLoader</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-python">from ranger.core.loader import CommandLoader
+</code></pre>
 <p>然后添加命令:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">compress</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Compress marked files to current directory &quot;&quot;&quot;</span></span><br><span class="line">        cwd = self.fm.thisdir</span><br><span class="line">        marked_files = cwd.get_selection()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> marked_files:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">refresh</span>(<span class="params">_</span>):</span><br><span class="line">            cwd = self.fm.get_directory(original_path)</span><br><span class="line">            cwd.load_content()</span><br><span class="line"></span><br><span class="line">        original_path = cwd.path</span><br><span class="line">        parts = self.line.split()</span><br><span class="line">        au_flags = parts[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        descr = <span class="string">&quot;compressing files in: &quot;</span> + os.path.basename(parts[<span class="number">1</span>])</span><br><span class="line">        obj = CommandLoader(args=[<span class="string">&#x27;apack&#x27;</span>] + au_flags + \</span><br><span class="line">                [os.path.relpath(f.path, cwd.path) <span class="keyword">for</span> f <span class="keyword">in</span> marked_files], descr=descr, read=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        obj.signal_bind(<span class="string">&#x27;after&#x27;</span>, refresh)</span><br><span class="line">        self.fm.loader.add(obj)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">tab</span>(<span class="params">self, tabnum</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Complete with current folder name &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        extension = [<span class="string">&#x27;.zip&#x27;</span>, <span class="string">&#x27;.tar.gz&#x27;</span>, <span class="string">&#x27;.rar&#x27;</span>, <span class="string">&#x27;.7z&#x27;</span>]</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">&#x27;compress &#x27;</span> + os.path.basename(self.fm.thisdir.path) + ext</span><br><span class="line">            <span class="keyword">for</span> ext <span class="keyword">in</span> extension</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-python">class compress(Command):
+    def execute(self):
+        &quot;&quot;&quot; Compress marked files to current directory &quot;&quot;&quot;
+        cwd = self.fm.thisdir
+        marked_files = cwd.get_selection()
+
+        if not marked_files:
+            return
+
+        def refresh(_):
+            cwd = self.fm.get_directory(original_path)
+            cwd.load_content()
+
+        original_path = cwd.path
+        parts = self.line.split()
+        au_flags = parts[1:]
+
+        descr = &quot;compressing files in: &quot; + os.path.basename(parts[1])
+        obj = CommandLoader(args=[&#39;apack&#39;] + au_flags + \
+                [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr, read=True)
+
+        obj.signal_bind(&#39;after&#39;, refresh)
+        self.fm.loader.add(obj)
+
+    def tab(self, tabnum):
+        &quot;&quot;&quot; Complete with current folder name &quot;&quot;&quot;
+
+        extension = [&#39;.zip&#39;, &#39;.tar.gz&#39;, &#39;.rar&#39;, &#39;.7z&#39;]
+        return [
+            &#39;compress &#39; + os.path.basename(self.fm.thisdir.path) + ext
+            for ext in extension
+        ]
+</code></pre>
 <p>绑定快捷键: <code>map &lt;C-a&gt; console compress%space</code></p>
 <p>然后是解压缩:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">extracthere</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Extract copied files to current directory &quot;&quot;&quot;</span></span><br><span class="line">        copied_files = <span class="built_in">tuple</span>(self.fm.thisdir.get_selection())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> copied_files:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">refresh</span>(<span class="params">_</span>):</span><br><span class="line">            cwd = self.fm.get_directory(original_path)</span><br><span class="line">            cwd.load_content()</span><br><span class="line"></span><br><span class="line">        one_file = copied_files[<span class="number">0</span>]</span><br><span class="line">        cwd = self.fm.thisdir</span><br><span class="line">        original_path = cwd.path</span><br><span class="line">        au_flags = [<span class="string">&#x27;-X&#x27;</span>, cwd.path]</span><br><span class="line">        au_flags += self.line.split()[<span class="number">1</span>:]</span><br><span class="line">        au_flags += [<span class="string">&#x27;-e&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        self.fm.copy_buffer.clear()</span><br><span class="line">        self.fm.cut_buffer = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(copied_files) == <span class="number">1</span>:</span><br><span class="line">            descr = <span class="string">&quot;extracting: &quot;</span> + os.path.basename(one_file.path)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            descr = <span class="string">&quot;extracting files from: &quot;</span> + os.path.basename(</span><br><span class="line">                one_file.dirname)</span><br><span class="line">        obj = CommandLoader(args=[<span class="string">&#x27;aunpack&#x27;</span>] + au_flags \</span><br><span class="line">                + [f.path <span class="keyword">for</span> f <span class="keyword">in</span> copied_files], descr=descr, read=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        obj.signal_bind(<span class="string">&#x27;after&#x27;</span>, refresh)</span><br><span class="line">        self.fm.loader.add(obj)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-python">class extracthere(Command):
+    def execute(self):
+        &quot;&quot;&quot; Extract copied files to current directory &quot;&quot;&quot;
+        copied_files = tuple(self.fm.thisdir.get_selection())
+
+        if not copied_files:
+            return
+
+        def refresh(_):
+            cwd = self.fm.get_directory(original_path)
+            cwd.load_content()
+
+        one_file = copied_files[0]
+        cwd = self.fm.thisdir
+        original_path = cwd.path
+        au_flags = [&#39;-X&#39;, cwd.path]
+        au_flags += self.line.split()[1:]
+        au_flags += [&#39;-e&#39;]
+
+        self.fm.copy_buffer.clear()
+        self.fm.cut_buffer = False
+        if len(copied_files) == 1:
+            descr = &quot;extracting: &quot; + os.path.basename(one_file.path)
+        else:
+            descr = &quot;extracting files from: &quot; + os.path.basename(
+                one_file.dirname)
+        obj = CommandLoader(args=[&#39;aunpack&#39;] + au_flags \
+                + [f.path for f in copied_files], descr=descr, read=True)
+
+        obj.signal_bind(&#39;after&#39;, refresh)
+        self.fm.loader.add(obj)
+</code></pre>
 <p>绑定快捷键: <code>map &lt;C-e&gt; extracthere</code></p>
-<h3 id="与git-clone对接"><a href="#与git-clone对接" class="headerlink" title="与git clone对接"></a>与git clone对接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map gc console shell git clone%space</span><br></pre></td></tr></table></figure>
+<h3 id="与git-clone对接"><a href="#与git-clone对接" class="headerlink" title="与git clone对接"></a>与git clone对接</h3><pre><code class="lang-shell"> map gc console shell git clone%space
+</code></pre>
 
       
        

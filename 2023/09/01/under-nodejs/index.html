@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -465,9 +465,16 @@
 <p><img src="/2023/09/01/under-nodejs/image-20230620132154064.png" alt="image-20230620132154064"></p>
 <p>其中, <code>/usr/local/bin</code>中放了Javascript的解释器<code>node</code>, 而<code>/usr/local/lib/node_modules</code>中有<code>npm</code>包管理器.</p>
 <p>后面的<code>postinstall</code>脚本如下:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> /usr/local/bin || <span class="built_in">exit</span> 1</span><br><span class="line"><span class="built_in">ln</span> -sf ../lib/node_modules/npm/bin/npm-cli.js npm</span><br><span class="line"><span class="built_in">ln</span> -sf ../lib/node_modules/npm/bin/npx-cli.js npx</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-bash">#!/bin/sh
+
+cd /usr/local/bin || exit 1
+ln -sf ../lib/node_modules/npm/bin/npm-cli.js npm
+ln -sf ../lib/node_modules/npm/bin/npx-cli.js npx
+</code></pre>
 <p>其中命令行的<code>npm</code>实际上是<code>npm-cli.js</code>脚本, 这个脚本如下:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env node</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;../lib/cli.js&#x27;</span>)(process)</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-javascript">#!/usr/bin/env node
+require(&#39;../lib/cli.js&#39;)(process)
+</code></pre>
 <p>其实就是用node解释器去运行这个Javascript脚本.</p>
 <h2 id="npm下载包的逻辑是什么"><a href="#npm下载包的逻辑是什么" class="headerlink" title="npm下载包的逻辑是什么"></a>npm下载包的逻辑是什么</h2><p>使用<code>npm install &lt;包名&gt;</code>时, 会在当前目录的<code>node_modules</code>下下载对应包, 以<code>axios</code>为例, 下载后的目录结构如下:</p>
 <p><img src="/2023/09/01/under-nodejs/image-20230620142349806.png" alt="image-20230620142349806"></p>
@@ -475,7 +482,8 @@
 <p>如果使用<code>npm install -g</code>, 那么下载的包会到<code>/usr/local/lib/node_modules</code>中, 全部用户都能使用.</p>
 <p>在Javascript中使用<code>require(&#39;&lt;包名&gt;&#39;)</code>时, 会先到项目中搜索是否有<code>node_modules</code>, 如果没有就去全局的<code>node_modules</code>中搜索.</p>
 <p>如果要查看Js代码中<code>require</code>的包在哪里, 可以用如下代码:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="built_in">require</span>.<span class="title function_">resolve</span>(<span class="string">&#x27;包名&#x27;</span>))</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-javascript">console.log(require.resolve(&#39;包名&#39;))
+</code></pre>
 
       
        

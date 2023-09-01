@@ -308,19 +308,19 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/mac-collection/"
+           href="/2023/09/01/lazygit/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/lazygit/"
+           href="/2023/09/01/mac-collection/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -343,11 +343,11 @@
         </a>
         
         
-        <a  class="All 教程 "
-           href="/2023/09/01/build-blog/"
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -362,10 +362,10 @@
         
         
         <a  class="All 工具 "
-           href="/2023/09/01/amethyst/"
+           href="/2023/09/01/iterm2/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -379,11 +379,11 @@
         </a>
         
         
-        <a  class="All 工具 "
-           href="/2023/09/01/iterm2/"
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
             <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
         </a>
         
@@ -465,9 +465,44 @@
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">https://leetcode.cn/problems/two-sum/</a></p>
 </blockquote>
 <h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; nums.<span class="built_in">size</span>(); j ++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (nums[i] + nums[j] == target) &#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(j);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (ans.<span class="built_in">size</span>() &gt; <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+        vector&lt;int&gt; ans;
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
+                if (nums[i] + nums[j] == target) &#123;
+                    ans.push_back(i);
+                    ans.push_back(j);
+                &#125;
+            &#125;
+            if (ans.size() &gt; 0) break;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 <h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>时间复杂度是$O(n)$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">twoSum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; ans;</span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; hashs;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">            <span class="type">int</span> t = target - nums[i];</span><br><span class="line">            <span class="keyword">if</span> (hashs.<span class="built_in">count</span>(t)) &#123;</span><br><span class="line">                ans.<span class="built_in">push_back</span>(hashs[t]);</span><br><span class="line">                ans.<span class="built_in">push_back</span>(i);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            hashs[nums[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+        vector&lt;int&gt; ans;
+        unordered_map&lt;int, int&gt; hashs;
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+            int t = target - nums[i];
+            if (hashs.count(t)) &#123;
+                ans.push_back(hashs[t]);
+                ans.push_back(i);
+                break;
+            &#125;
+            hashs[nums[i]] = i;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 <h2 id="常规三数之和"><a href="#常规三数之和" class="headerlink" title="常规三数之和"></a>常规三数之和</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
 </blockquote>
@@ -478,17 +513,126 @@
 <li>如果小于<code>target</code>就将<code>l++</code></li>
 </ul>
 <p>时间复杂度为$O(n^2)$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">threeSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line">          <span class="comment">// 如果当前枚举的数和上一个枚举的数相同, 跳过</span></span><br><span class="line">            <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> l = i + <span class="number">1</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                <span class="type">int</span> sum = nums[i] + nums[l] + nums[r];</span><br><span class="line">                <span class="keyword">if</span> (sum &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                    r --;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sum &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    l ++;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sum == <span class="number">0</span>) &#123;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(&#123; nums[i], nums[l], nums[r] &#125;);</span><br><span class="line">                &#125;</span><br><span class="line">              <span class="comment">// 去重</span></span><br><span class="line">                <span class="keyword">do</span> &#123; l ++; &#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">do</span> &#123; r --; &#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
+        vector&lt;vector&lt;int&gt;&gt; ans;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+          // 如果当前枚举的数和上一个枚举的数相同, 跳过
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            int l = i + 1, r = nums.size() - 1;
+            while (l &lt; r) &#123;
+                int sum = nums[i] + nums[l] + nums[r];
+                if (sum &gt; 0) &#123;
+                    r --;
+                    continue;
+                &#125;
+                if (sum &lt; 0) &#123;
+                    l ++;
+                    continue;
+                &#125;
+                if (sum == 0) &#123;
+                    ans.push_back(&#123; nums[i], nums[l], nums[r] &#125;);
+                &#125;
+              // 去重
+                do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 <h2 id="常规四数之和"><a href="#常规四数之和" class="headerlink" title="常规四数之和"></a>常规四数之和</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
 </blockquote>
 <p>和三数之和思路一样, 只是枚举的是选定的两个数, 时间复杂度是$O(n^3)$</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">fourSum</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target) &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> LL;</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; ans;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> j = i + <span class="number">1</span>; j &lt; nums.<span class="built_in">size</span>(); j ++) &#123;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (j != i + <span class="number">1</span> &amp;&amp; nums[j] == nums[j - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">                <span class="type">int</span> l = j + <span class="number">1</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                        l ++;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">                        r --;</span><br><span class="line">                        <span class="keyword">continue</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    ans.<span class="built_in">push_back</span>(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);</span><br><span class="line"></span><br><span class="line">                    <span class="keyword">do</span> &#123; l ++; &#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]);</span><br><span class="line">                    <span class="keyword">do</span> &#123; r --; &#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>] );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+
+        typedef long long LL;
+
+        vector&lt;vector&lt;int&gt;&gt; ans;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
+
+                if (j != i + 1 &amp;&amp; nums[j] == nums[j - 1]) continue;
+
+                int l = j + 1, r = nums.size() - 1;
+
+                while (l &lt; r) &#123;
+                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];
+
+                    if (sum &lt; target) &#123;
+                        l ++;
+                        continue;
+                    &#125;
+                    if (sum &gt; target) &#123;
+                        r --;
+                        continue;
+                    &#125;
+                    ans.push_back(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);
+
+                    do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                    do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1] );
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 <h2 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest">https://leetcode.cn/problems/3sum-closest</a></p>
 </blockquote>
 <p>和三数之和一样, 只需要在遍历时维护一个最接近<code>target</code>的值即可.</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">threeSumClosest</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> target)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> ans = <span class="number">0x3f3f3f3f</span>;</span><br><span class="line">        <span class="built_in">sort</span>(nums.<span class="built_in">begin</span>(), nums.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; nums.<span class="built_in">size</span>(); i ++) &#123;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>]) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> l = i + <span class="number">1</span>, r = nums.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (l &lt; r) &#123;</span><br><span class="line">                <span class="type">int</span> sum = nums[i] + nums[l] + nums[r];</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">abs</span>(sum - target) &lt; <span class="built_in">abs</span>(ans - target)) ans = sum;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (sum &lt; target) &#123;</span><br><span class="line">                    l ++;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (sum &gt; target) &#123;</span><br><span class="line">                    r --;</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">do</span> &#123; l ++ ;&#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[l] == nums[l - <span class="number">1</span>]);</span><br><span class="line">                <span class="keyword">do</span> &#123; r --;&#125; <span class="keyword">while</span> (l &lt; r &amp;&amp; nums[r] == nums[r + <span class="number">1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;
+
+        int ans = 0x3f3f3f3f;
+        sort(nums.begin(), nums.end());
+
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            int l = i + 1, r = nums.size() - 1;
+
+            while (l &lt; r) &#123;
+                int sum = nums[i] + nums[l] + nums[r];
+
+                if (abs(sum - target) &lt; abs(ans - target)) ans = sum;
+
+                if (sum &lt; target) &#123;
+                    l ++;
+                    continue;
+                &#125;
+                if (sum &gt; target) &#123;
+                    r --;
+                    continue;
+                &#125;
+                do &#123; l ++ ;&#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                do &#123; r --;&#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
+            &#125;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 
       
        
