@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>利用ranger进行终端下的文件管理 | LiGaOg&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="利用ranger进行终端下的文件管理 | LiGaOg&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="常规两数之和 https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;two-sum&#x2F;  暴力暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$ 12345678910111213141516class Solution &amp;#123;public:    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode两数之和系列题">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/01/two-sum-series/index.html">
+<meta property="og:site_name" content="LiGaOg&#39;s blog">
+<meta property="og:description" content="常规两数之和 https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;two-sum&#x2F;  暴力暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$ 12345678910111213141516class Solution &amp;#123;public:    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target)">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-01T04:15:44.603Z">
+<meta property="article:modified_time" content="2023-09-01T04:38:39.217Z">
+<meta property="article:author" content="LiGaOg">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>LiGaOg</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LiGaOg"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:chlijiaao@163.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2381446488&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(16)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            
+            工具
+            <small>(13)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="教程">
+            
+            教程
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="知识">
+            
+            知识
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">About</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="16">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/01/two-sum-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Leetcode两数之和系列题">Leetcode两数之和系列题</span>
+            <span class="post-date" title="2023-09-01 12:15:44">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/under-python/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="梳理有关python的一些概念">梳理有关python的一些概念</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/ssh-usage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ssh的一些常见用法">ssh的一些常见用法</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/under-nodejs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="梳理有关Node.js的一些概念">梳理有关Node.js的一些概念</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/ranger/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用ranger进行终端下的文件管理">利用ranger进行终端下的文件管理</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/pass/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="终端下的密码管理器">终端下的密码管理器</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/lazygit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/mac-collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 知识 "
+           href="/2023/09/01/opensource/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="常见的开源协议?">常见的开源协议?</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/orbstack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS下轻量的Linux虚拟机">MacOS下轻量的Linux虚拟机</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/amethyst/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 教程 "
+           href="/2023/09/01/build-blog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用docker创建与部署应用环境">使用docker创建与部署应用环境</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/gpt-shell/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="终端中集成ChatGPT服务">终端中集成ChatGPT服务</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/iterm2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/01/academic-typora/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安装Typora的LaTeX皮肤">安装Typora的LaTeX皮肤</span>
+            <span class="post-date" title="2023-09-01 12:15:00">2023/09/01</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-ranger" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">利用ranger进行终端下的文件管理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工具">工具</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-09-01 12:15:00'>2023-09-01 12:15</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%9B%BE%E6%A0%87"><span class="toc-text">显示文件图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BAGit%E7%8A%B6%E6%80%81"><span class="toc-text">显示Git状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6"><span class="toc-text">默认显示隐藏文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6"><span class="toc-text">预览文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E6%96%87%E4%BB%B6%E9%AB%98%E4%BA%AE"><span class="toc-text">本文文件高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">预览压缩文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E5%9B%BE%E7%89%87"><span class="toc-text">预览图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88pdf%E6%96%87%E4%BB%B6"><span class="toc-text">预览pdf文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E8%A7%86%E9%A2%91"><span class="toc-text">预览视频</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Efzf%E5%AF%B9%E6%8E%A5"><span class="toc-text">与fzf对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Elazygit%E5%AF%B9%E6%8E%A5"><span class="toc-text">与lazygit对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Escp%E5%AF%B9%E6%8E%A5"><span class="toc-text">与scp对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%8E%A5"><span class="toc-text">与压缩解压命令对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Egit-clone%E5%AF%B9%E6%8E%A5"><span class="toc-text">与git clone对接</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="显示文件图标"><a href="#显示文件图标" class="headerlink" title="显示文件图标"></a>显示文件图标</h2><p><a target="_blank" rel="noopener" href="https://github.com/alexanderjeurissen/ranger_devicons">https://github.com/alexanderjeurissen/ranger_devicons</a></p>
+<h2 id="显示Git状态"><a href="#显示Git状态" class="headerlink" title="显示Git状态"></a>显示Git状态</h2><p><code>rc.conf</code>中的<code>vcs_aware</code>设置为<code>true</code>.</p>
+<h2 id="默认显示隐藏文件"><a href="#默认显示隐藏文件" class="headerlink" title="默认显示隐藏文件"></a>默认显示隐藏文件</h2><p><code>rc.conf</code>中<code>show_hidden</code>设置为<code>true</code>.</p>
+<h2 id="预览文件"><a href="#预览文件" class="headerlink" title="预览文件"></a>预览文件</h2><h3 id="本文文件高亮"><a href="#本文文件高亮" class="headerlink" title="本文文件高亮"></a>本文文件高亮</h3><p>安装<code>bat</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install bat</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="预览压缩文件"><a href="#预览压缩文件" class="headerlink" title="预览压缩文件"></a>预览压缩文件</h3><p>需要安装tool</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install atool</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="预览图片"><a href="#预览图片" class="headerlink" title="预览图片"></a>预览图片</h3><p>预览图片与终端有关, 如果终端是iTerm2, 那么默认可以预览图片.</p>
+<p>在<code>rc.conf</code>中, 需要改动:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set preview_images true</span><br><span class="line">set preview_images_method iterm2</span><br><span class="line">set iterm2_font_width 55</span><br><span class="line">set iterm2_font_height 45</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="预览pdf文件"><a href="#预览pdf文件" class="headerlink" title="预览pdf文件"></a>预览pdf文件</h3><p>首先安装poppler:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install poppler</span><br></pre></td></tr></table></figure>
+
+<p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## PDF</span></span><br><span class="line">application/pdf)</span><br><span class="line">    pdftoppm -f 1 -l 1 \</span><br><span class="line">             -scale-to-x <span class="string">&quot;<span class="variable">$&#123;DEFAULT_SIZE%x*&#125;</span>&quot;</span> \</span><br><span class="line">             -scale-to-y -1 \</span><br><span class="line">             -singlefile \</span><br><span class="line">             -jpeg -tiffcompression jpeg \</span><br><span class="line">             -- <span class="string">&quot;<span class="variable">$&#123;FILE_PATH&#125;</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;IMAGE_CACHE_PATH%.*&#125;</span>&quot;</span> \</span><br><span class="line">        &amp;&amp; <span class="built_in">exit</span> 6 || <span class="built_in">exit</span> 1;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="预览视频"><a href="#预览视频" class="headerlink" title="预览视频"></a>预览视频</h3><p>预览视频需要预先下载<code>ffmpeg</code></p>
+<p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## Video</span></span><br><span class="line">video/*)</span><br><span class="line">    <span class="comment"># Thumbnail</span></span><br><span class="line">    ffmpegthumbnailer -i <span class="string">&quot;<span class="variable">$&#123;FILE_PATH&#125;</span>&quot;</span> -o <span class="string">&quot;<span class="variable">$&#123;IMAGE_CACHE_PATH&#125;</span>&quot;</span> -s 0 &amp;&amp; <span class="built_in">exit</span> 6</span><br><span class="line">    <span class="built_in">exit</span> 1;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>自定义命令在<code>commamds.py</code>中添加, 在<code>rc.conf</code>中添加键位.</p>
+<h3 id="与fzf对接"><a href="#与fzf对接" class="headerlink" title="与fzf对接"></a>与fzf对接</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">fzf_select</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    :fzf_select</span></span><br><span class="line"><span class="string">    Find a file using fzf.</span></span><br><span class="line"><span class="string">    With a prefix argument select only directories.</span></span><br><span class="line"><span class="string">    See: https://github.com/junegunn/fzf</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">import</span> subprocess</span><br><span class="line">        <span class="keyword">import</span> os.path</span><br><span class="line">        <span class="keyword">if</span> self.quantifier:</span><br><span class="line">            <span class="comment"># match only directories</span></span><br><span class="line">            command = <span class="string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span></span><br><span class="line"><span class="string">            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="comment"># match files and directories</span></span><br><span class="line">            command = <span class="string">&quot;find -L . \( -path &#x27;*/\.*&#x27; -o -fstype &#x27;dev&#x27; -o -fstype &#x27;proc&#x27; \) -prune \</span></span><br><span class="line"><span class="string">            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;</span></span><br><span class="line"></span><br><span class="line">        fzf = self.fm.execute_command(command,</span><br><span class="line">                                      universal_newlines=<span class="literal">True</span>,</span><br><span class="line">                                      stdout=subprocess.PIPE)</span><br><span class="line">        stdout, stderr = fzf.communicate()</span><br><span class="line">        <span class="keyword">if</span> fzf.returncode == <span class="number">0</span>:</span><br><span class="line">            fzf_file = os.path.abspath(stdout.rstrip(<span class="string">&#x27;\n&#x27;</span>))</span><br><span class="line">            <span class="keyword">if</span> os.path.isdir(fzf_file):</span><br><span class="line">                self.fm.cd(fzf_file)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.fm.select_file(fzf_file)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在<code>rc.conf</code>中添加: <code>map &lt;C-f&gt; fzf_select</code></p>
+<h3 id="与lazygit对接"><a href="#与lazygit对接" class="headerlink" title="与lazygit对接"></a>与lazygit对接</h3><p>在<code>rc.conf</code>中添加: <code>map &lt;C-g&gt; shell lazygit</code></p>
+<h3 id="与scp对接"><a href="#与scp对接" class="headerlink" title="与scp对接"></a>与scp对接</h3><p>首先安装<code>paramiko</code>: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install paramiko</span><br></pre></td></tr></table></figure>
+
+<p>然后添加下面命令:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class up(Command):</span><br><span class="line">    def execute(self):</span><br><span class="line">        <span class="keyword">if</span> self.arg(1):</span><br><span class="line">            scpcmd = [<span class="string">&quot;scp&quot;</span>, <span class="string">&quot;-r&quot;</span>]</span><br><span class="line">            scpcmd.extend([f.realpath <span class="keyword">for</span> f <span class="keyword">in</span> self.fm.thistab.get_selection()])</span><br><span class="line">            scpcmd.append(self.arg(1))</span><br><span class="line">            self.fm.execute_command(scpcmd)</span><br><span class="line">            self.fm.notify(<span class="string">&quot;Uploaded!&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    def tab(self, tabnum):</span><br><span class="line">        import os.path</span><br><span class="line">        try:</span><br><span class="line">            import paramiko</span><br><span class="line">        except ImportError:</span><br><span class="line">            <span class="string">&quot;&quot;</span><span class="string">&quot;paramiko not installed&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            with open(os.path.expanduser(<span class="string">&quot;~/.ssh/config&quot;</span>)) as file:</span><br><span class="line">                paraconf = paramiko.SSHConfig()</span><br><span class="line">                paraconf.parse(file)</span><br><span class="line">        except IOError:</span><br><span class="line">            <span class="string">&quot;&quot;</span><span class="string">&quot;cant open ssh config&quot;</span><span class="string">&quot;&quot;</span></span><br><span class="line">            <span class="built_in">return</span></span><br><span class="line"></span><br><span class="line">        hosts = sorted(list(paraconf.get_hostnames()))</span><br><span class="line">        <span class="comment"># remove any wildcard host settings since they&#x27;re not real servers</span></span><br><span class="line">        hosts.remove(<span class="string">&quot;*&quot;</span>)</span><br><span class="line">        query = self.arg(1) or <span class="string">&#x27;&#x27;</span></span><br><span class="line">        matching_hosts = []</span><br><span class="line">        <span class="keyword">for</span> host <span class="keyword">in</span> hosts:</span><br><span class="line">            <span class="keyword">if</span> host.startswith(query):</span><br><span class="line">                matching_hosts.append(host)</span><br><span class="line">        <span class="built_in">return</span> (self.start(1) + host + <span class="string">&quot;:&quot;</span> <span class="keyword">for</span> host <span class="keyword">in</span> matching_hosts)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>之后选中文件后使用<code>:up</code>即可上传.</p>
+<h3 id="与压缩解压命令对接"><a href="#与压缩解压命令对接" class="headerlink" title="与压缩解压命令对接"></a>与压缩解压命令对接</h3><p>需要提前下载<code>atool</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install atool</span><br></pre></td></tr></table></figure>
+
+<p>在<code>commands.py</code>添加: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> ranger.core.loader <span class="keyword">import</span> CommandLoader</span><br></pre></td></tr></table></figure>
+
+<p>然后添加命令:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">compress</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Compress marked files to current directory &quot;&quot;&quot;</span></span><br><span class="line">        cwd = self.fm.thisdir</span><br><span class="line">        marked_files = cwd.get_selection()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> marked_files:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">refresh</span>(<span class="params">_</span>):</span><br><span class="line">            cwd = self.fm.get_directory(original_path)</span><br><span class="line">            cwd.load_content()</span><br><span class="line"></span><br><span class="line">        original_path = cwd.path</span><br><span class="line">        parts = self.line.split()</span><br><span class="line">        au_flags = parts[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">        descr = <span class="string">&quot;compressing files in: &quot;</span> + os.path.basename(parts[<span class="number">1</span>])</span><br><span class="line">        obj = CommandLoader(args=[<span class="string">&#x27;apack&#x27;</span>] + au_flags + \</span><br><span class="line">                [os.path.relpath(f.path, cwd.path) <span class="keyword">for</span> f <span class="keyword">in</span> marked_files], descr=descr, read=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        obj.signal_bind(<span class="string">&#x27;after&#x27;</span>, refresh)</span><br><span class="line">        self.fm.loader.add(obj)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">tab</span>(<span class="params">self, tabnum</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Complete with current folder name &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        extension = [<span class="string">&#x27;.zip&#x27;</span>, <span class="string">&#x27;.tar.gz&#x27;</span>, <span class="string">&#x27;.rar&#x27;</span>, <span class="string">&#x27;.7z&#x27;</span>]</span><br><span class="line">        <span class="keyword">return</span> [</span><br><span class="line">            <span class="string">&#x27;compress &#x27;</span> + os.path.basename(self.fm.thisdir.path) + ext</span><br><span class="line">            <span class="keyword">for</span> ext <span class="keyword">in</span> extension</span><br><span class="line">        ]</span><br></pre></td></tr></table></figure>
+
+<p>绑定快捷键: <code>map &lt;C-a&gt; console compress%space</code></p>
+<p>然后是解压缩:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">extracthere</span>(<span class="title class_ inherited__">Command</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">execute</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot; Extract copied files to current directory &quot;&quot;&quot;</span></span><br><span class="line">        copied_files = <span class="built_in">tuple</span>(self.fm.thisdir.get_selection())</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> copied_files:</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">def</span> <span class="title function_">refresh</span>(<span class="params">_</span>):</span><br><span class="line">            cwd = self.fm.get_directory(original_path)</span><br><span class="line">            cwd.load_content()</span><br><span class="line"></span><br><span class="line">        one_file = copied_files[<span class="number">0</span>]</span><br><span class="line">        cwd = self.fm.thisdir</span><br><span class="line">        original_path = cwd.path</span><br><span class="line">        au_flags = [<span class="string">&#x27;-X&#x27;</span>, cwd.path]</span><br><span class="line">        au_flags += self.line.split()[<span class="number">1</span>:]</span><br><span class="line">        au_flags += [<span class="string">&#x27;-e&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        self.fm.copy_buffer.clear()</span><br><span class="line">        self.fm.cut_buffer = <span class="literal">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(copied_files) == <span class="number">1</span>:</span><br><span class="line">            descr = <span class="string">&quot;extracting: &quot;</span> + os.path.basename(one_file.path)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            descr = <span class="string">&quot;extracting files from: &quot;</span> + os.path.basename(</span><br><span class="line">                one_file.dirname)</span><br><span class="line">        obj = CommandLoader(args=[<span class="string">&#x27;aunpack&#x27;</span>] + au_flags \</span><br><span class="line">                + [f.path <span class="keyword">for</span> f <span class="keyword">in</span> copied_files], descr=descr, read=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">        obj.signal_bind(<span class="string">&#x27;after&#x27;</span>, refresh)</span><br><span class="line">        self.fm.loader.add(obj)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>绑定快捷键: <code>map &lt;C-e&gt; extracthere</code></p>
+<h3 id="与git-clone对接"><a href="#与git-clone对接" class="headerlink" title="与git clone对接"></a>与git clone对接</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map gc console shell git clone%space</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023 LiGaOg
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>
