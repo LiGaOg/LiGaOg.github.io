@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-两数之和系列题 | LiGaOg&#39;s blog</title>
+  <title>利用lazygit进行高效的版本控制 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-两数之和系列题 | LiGaOg&#39;s blog">
+  <meta name="description" content="利用lazygit进行高效的版本控制 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="项目地址: https:&#x2F;&#x2F;github.com&#x2F;LiGaOg&#x2F;thrift_matching_system  匹配系统整体架构架构如下图所示:  匹配服务器逻辑生产者消费者模型与消息队列 add_user和remove_user可以看作一个Task. 在匹配服务器中, 有生产者线程与消费者线程. 生产者线程通过match_client调用add_user或者remove_user产生 (多线程">
 <meta property="og:type" content="article">
@@ -446,9 +446,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-two-sum-series" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-lazygit" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-两数之和系列题</h1>
+        <h1 class="article-title">利用lazygit进行高效的版本控制</h1>
     
     <div class="article-meta">
         
@@ -458,7 +458,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="其他">其他</a>
             
         </span>
         
@@ -466,7 +466,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 09:18:05'>2023-09-02 09:18</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 20:55:10'>2023-09-02 20:55</time>
         
     </div>
     <div class="article-meta">
@@ -477,7 +477,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规两数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规四数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">最接近的三数之和</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="toc-text">最基本的版本控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9E%E6%BB%9A%E6%93%8D%E4%BD%9C"><span class="toc-text">回滚操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E4%BF%AE%E6%94%B9"><span class="toc-text">查看修改</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#cherry-pick"><span class="toc-text">cherry-pick</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#interactive-rebasing"><span class="toc-text">interactive-rebasing</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -493,178 +493,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="常规两数之和"><a href="#常规两数之和" class="headerlink" title="常规两数之和"></a>常规两数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">https://leetcode.cn/problems/two-sum/</a></p>
-</blockquote>
-<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-                if (nums[i] + nums[j] == target) &#123;
-                    ans.push_back(i);
-                    ans.push_back(j);
-                &#125;
-            &#125;
-            if (ans.size() &gt; 0) break;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>时间复杂度是$O(n)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        unordered_map&lt;int, int&gt; hashs;
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            int t = target - nums[i];
-            if (hashs.count(t)) &#123;
-                ans.push_back(hashs[t]);
-                ans.push_back(i);
-                break;
-            &#125;
-            hashs[nums[i]] = i;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="常规三数之和"><a href="#常规三数之和" class="headerlink" title="常规三数之和"></a>常规三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
-</blockquote>
-<p>算法是排序+双指针算法.</p>
-<p>将数组排序后, 枚举每一个数$c$, 维护两个指针$l, r$, 两个指针分别指向头和尾, 计算$c + nums[l] + nums[r]$的大小</p>
+        <h2 id="最基本的版本控制"><a href="#最基本的版本控制" class="headerlink" title="最基本的版本控制"></a>最基本的版本控制</h2><p>使用<code>x</code>可以查看每个pane的cheatsheet.</p>
+<p>最基本的就四条命令:</p>
 <ul>
-<li>如果大于<code>target</code>就将<code>r--</code></li>
-<li>如果小于<code>target</code>就将<code>l++</code></li>
+<li><code>git add .</code></li>
+<li><code>git commit -m</code></li>
+<li><code>git push</code></li>
+<li><code>git pull</code></li>
 </ul>
-<p>时间复杂度为$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-          // 如果当前枚举的数和上一个枚举的数相同, 跳过
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-                if (sum &gt; 0) &#123;
-                    r --;
-                    continue;
-                &#125;
-                if (sum &lt; 0) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum == 0) &#123;
-                    ans.push_back(&#123; nums[i], nums[l], nums[r] &#125;);
-                &#125;
-              // 去重
-                do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
+<p>在Lazygit的File Pane中, 直接<code>a/c/P/p</code>就可以解决.</p>
+<h2 id="回滚操作"><a href="#回滚操作" class="headerlink" title="回滚操作"></a>回滚操作</h2><ul>
+<li>第一: 基于当前分支新建分支 (branch pane中用<code>n</code>)</li>
+<li>第二: 切换到新建分支 (branch pane中用空格)</li>
+<li>第三: 回滚到特定commit (commit pane中用<code>g</code>, 基于<code>git reset</code>)</li>
+<li>第四: 选择暂存区中需要保留, 或者舍弃的修改 (FIle Pane中用<code>d</code>或空格)</li>
+<li>第五: 将暂存区中的修改进行commit, 就可以在回滚分支进行开发.</li>
+</ul>
+<p>如果只回滚一个文件, 那么在Commit Pane中, 选中某个commit, 用Enter可以查看这次commit修改的所有文件, 选中要回滚的文件用<code>c</code>检出即可.</p>
+<h2 id="查看修改"><a href="#查看修改" class="headerlink" title="查看修改"></a>查看修改</h2><ul>
+<li><p>如果需要查看某一个文件的所有commit修改历史, 可以在Commit Pane中, 用<code>ctrl+s</code>进行过滤, 注意过滤需要输入文件的路径, 而不是文件名称.</p>
+</li>
+<li><p>如果需要查看commit的修改历史:</p>
+<ul>
+<li><p>查看一次commit: </p>
+<ul>
+<li><p>用<code>o</code>, 可以在远程仓库中用html查看编辑历史.</p>
+</li>
+<li><p>如果需要导出html文件, 可以使用<code>diff2html</code>工具, 用如下命令可以生成报告:</p>
+<pre><code class="lang-bash">diff2html --su open -s side -F check.html -- -M &lt;commit哈希值&gt;
 </code></pre>
-<h2 id="常规四数之和"><a href="#常规四数之和" class="headerlink" title="常规四数之和"></a>常规四数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
-</blockquote>
-<p>和三数之和思路一样, 只是枚举的是选定的两个数, 时间复杂度是$O(n^3)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        typedef long long LL;
-
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-
-                if (j != i + 1 &amp;&amp; nums[j] == nums[j - 1]) continue;
-
-                int l = j + 1, r = nums.size() - 1;
-
-                while (l &lt; r) &#123;
-                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];
-
-                    if (sum &lt; target) &#123;
-                        l ++;
-                        continue;
-                    &#125;
-                    if (sum &gt; target) &#123;
-                        r --;
-                        continue;
-                    &#125;
-                    ans.push_back(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);
-
-                    do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                    do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1] );
-                &#125;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest">https://leetcode.cn/problems/3sum-closest</a></p>
-</blockquote>
-<p>和三数之和一样, 只需要在遍历时维护一个最接近<code>target</code>的值即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        int ans = 0x3f3f3f3f;
-        sort(nums.begin(), nums.end());
-
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-
-                if (abs(sum - target) &lt; abs(ans - target)) ans = sum;
-
-                if (sum &lt; target) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum &gt; target) &#123;
-                    r --;
-                    continue;
-                &#125;
-                do &#123; l ++ ;&#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --;&#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="cherry-pick"><a href="#cherry-pick" class="headerlink" title="cherry-pick"></a>cherry-pick</h2><p>Cherry-pick的作用是将其他分支中若干个commit作用于自己选择的分支中.</p>
+<p>具体操作步骤是:</p>
+<ul>
+<li>Commit Pane中用<code>c</code>复制commit.</li>
+<li>切换分支</li>
+<li>Commit Pane中用<code>v</code>粘贴.</li>
+</ul>
+<h2 id="interactive-rebasing"><a href="#interactive-rebasing" class="headerlink" title="interactive-rebasing"></a>interactive-rebasing</h2><p>在commit pane中用<code>e</code>, 上面的commit进入interactive-rebasing的状态.</p>
+<p>每个commit有四种状态:</p>
+<ul>
+<li><code>pick</code>: 保留这次commit</li>
+<li><code>squash</code>: 和下面的commit合并, 并且commit的信息合并</li>
+<li><code>drop</code>: 删除commit</li>
+<li><code>fixup</code>: 和下面的commit合并, 并且作为fixup的commit信息删除</li>
+</ul>
+<p>选择之后, 可以用<code>c</code>批量rebasing操作.</p>
 
       
        
@@ -677,46 +556,6 @@ public:
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 

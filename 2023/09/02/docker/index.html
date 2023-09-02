@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-两数之和系列题 | LiGaOg&#39;s blog</title>
+  <title>使用docker创建与部署应用环境 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-两数之和系列题 | LiGaOg&#39;s blog">
+  <meta name="description" content="使用docker创建与部署应用环境 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="项目地址: https:&#x2F;&#x2F;github.com&#x2F;LiGaOg&#x2F;thrift_matching_system  匹配系统整体架构架构如下图所示:  匹配服务器逻辑生产者消费者模型与消息队列 add_user和remove_user可以看作一个Task. 在匹配服务器中, 有生产者线程与消费者线程. 生产者线程通过match_client调用add_user或者remove_user产生 (多线程">
 <meta property="og:type" content="article">
@@ -446,9 +446,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-two-sum-series" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-docker" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-两数之和系列题</h1>
+        <h1 class="article-title">使用docker创建与部署应用环境</h1>
     
     <div class="article-meta">
         
@@ -458,7 +458,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -466,7 +466,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 09:18:05'>2023-09-02 09:18</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 20:54:53'>2023-09-02 20:54</time>
         
     </div>
     <div class="article-meta">
@@ -477,7 +477,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规两数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规四数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">最接近的三数之和</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="toc-text">docker下载安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%80%BB%E8%BE%91"><span class="toc-text">docker的工作逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%89%E5%8F%96%E9%95%9C%E5%83%8F"><span class="toc-text">拉取镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E5%AE%B9%E5%99%A8"><span class="toc-text">运行容器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E7%BD%91%E7%BB%9C"><span class="toc-text">docker网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E5%AD%98%E5%82%A8"><span class="toc-text">docker存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#volume"><span class="toc-text">volume</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#bind-mount"><span class="toc-text">bind-mount</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E8%87%AA%E5%8A%A8%E5%8C%96%E6%9E%84%E5%BB%BA%E9%83%A8%E7%BD%B2"><span class="toc-text">docker自动化构建部署</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dockerfile%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">dockerfile构建镜像</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose%E8%87%AA%E5%8A%A8%E9%83%A8%E7%BD%B2"><span class="toc-text">docker compose自动部署</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#docker%E5%B8%B8%E7%94%A8%E9%95%9C%E5%83%8F"><span class="toc-text">docker常用镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#docker%E8%B0%83%E8%AF%95%E7%94%A8%E9%95%9C%E5%83%8F-busybox"><span class="toc-text">docker调试用镜像-busybox</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -493,177 +493,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="常规两数之和"><a href="#常规两数之和" class="headerlink" title="常规两数之和"></a>常规两数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">https://leetcode.cn/problems/two-sum/</a></p>
-</blockquote>
-<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-                if (nums[i] + nums[j] == target) &#123;
-                    ans.push_back(i);
-                    ans.push_back(j);
-                &#125;
-            &#125;
-            if (ans.size() &gt; 0) break;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
+        <h2 id="docker下载安装"><a href="#docker下载安装" class="headerlink" title="docker下载安装"></a>docker下载安装</h2><p>直接参考官网教程.</p>
+<h2 id="docker的工作逻辑"><a href="#docker的工作逻辑" class="headerlink" title="docker的工作逻辑"></a>docker的工作逻辑</h2><h3 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h3><p>镜像一般保存在dockerhub上, 拉取镜像的命令为<code>docker pull</code>, 格式为:</p>
+<pre><code class="lang-bash">docker pull &lt;image-name&gt;:&lt;image-tag&gt;
 </code></pre>
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>时间复杂度是$O(n)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        unordered_map&lt;int, int&gt; hashs;
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            int t = target - nums[i];
-            if (hashs.count(t)) &#123;
-                ans.push_back(hashs[t]);
-                ans.push_back(i);
-                break;
-            &#125;
-            hashs[nums[i]] = i;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
+<p>注意, 这里的<code>tag</code>一般不要写<code>latest</code>, 因为镜像是滚动更新的.</p>
+<h3 id="运行容器"><a href="#运行容器" class="headerlink" title="运行容器"></a>运行容器</h3><p>运行容器可以参考这个命令:</p>
+<pre><code class="lang-bash">docker run -itd \
+    --name &lt;容器的名字&gt; \
+    -p &lt;主机端口1&gt;:&lt;容器端口1&gt; \
+    -p &lt;主机端口2&gt;:&lt;容器端口2&gt; \
+    -e 环境变量名=环境变量值 &lt;image-name&gt;:&lt;image-tag&gt;
 </code></pre>
-<h2 id="常规三数之和"><a href="#常规三数之和" class="headerlink" title="常规三数之和"></a>常规三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
-</blockquote>
-<p>算法是排序+双指针算法.</p>
-<p>将数组排序后, 枚举每一个数$c$, 维护两个指针$l, r$, 两个指针分别指向头和尾, 计算$c + nums[l] + nums[r]$的大小</p>
+<p>容器运行时候, 可以使用<code>docker attach &lt;容器名&gt;</code>连接到容器, 用终端操作.</p>
+<p>使用<code>&lt;C-p&gt;</code>和<code>&lt;C-q&gt;</code>可以挂起容器, 使用<code>&lt;C-d&gt;</code>可以退出并让容器停止运行.</p>
+<h3 id="docker网络"><a href="#docker网络" class="headerlink" title="docker网络"></a>docker网络</h3><p>默认情况下, 容器启动后连接到bridge网络, 容器和容器之间, 容器和本机之间可以通过IP地址进行访问.</p>
+<p>容器的IP地址可以通过这个<code>docker inspect</code>命令查看:</p>
+<pre><code class="lang-bash">docker inspect \
+    --format=&quot;&#123;&#123;range .NetworkSettings.Networks&#125;&#125;&#123;&#123;.IPAddress&#125;&#125;&#123;&#123;end&#125;&#125;&quot; &lt;容器名称&gt;
+</code></pre>
+<p>docker也支持自定义网络, 创建自定义网络的命令是:</p>
+<pre><code class="lang-bash">docker network create &lt;自定义网络的名字&gt;
+</code></pre>
+<p>如果docker容器连接到自定义网络, 那么加入网络内的容器可以通过容器名进行访问, 有两种方式将docker容器加入到自定义网络:</p>
 <ul>
-<li>如果大于<code>target</code>就将<code>r--</code></li>
-<li>如果小于<code>target</code>就将<code>l++</code></li>
+<li><p>已经创建的容器连接到网络, 此时容器会同时连接到bridge和自定义网络</p>
+<pre><code class="lang-bash">docker network connect &lt;网络名字&gt; &lt;容器名字&gt;
+</code></pre>
+</li>
+<li><p>容器创建时就指定连接网络, 此时容器不会连接到bridge网络</p>
+<pre><code class="lang-bash">docker run --network &lt;网络名称&gt;
+</code></pre>
+</li>
 </ul>
-<p>时间复杂度为$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-          // 如果当前枚举的数和上一个枚举的数相同, 跳过
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-                if (sum &gt; 0) &#123;
-                    r --;
-                    continue;
-                &#125;
-                if (sum &lt; 0) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum == 0) &#123;
-                    ans.push_back(&#123; nums[i], nums[l], nums[r] &#125;);
-                &#125;
-              // 去重
-                do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
+<h3 id="docker存储"><a href="#docker存储" class="headerlink" title="docker存储"></a>docker存储</h3><h4 id="volume"><a href="#volume" class="headerlink" title="volume"></a>volume</h4><p>volume挂载会在本机的文件系统上开辟一块存储区域, 这个存储区域只有docker容器内的进程可以修改, 挂载到同一个volume上的容器可以共享volume上的数据.</p>
+<p>创建卷:</p>
+<pre><code class="lang-bash">docker volume create &lt;卷名&gt;
 </code></pre>
-<h2 id="常规四数之和"><a href="#常规四数之和" class="headerlink" title="常规四数之和"></a>常规四数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
-</blockquote>
-<p>和三数之和思路一样, 只是枚举的是选定的两个数, 时间复杂度是$O(n^3)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        typedef long long LL;
-
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-
-                if (j != i + 1 &amp;&amp; nums[j] == nums[j - 1]) continue;
-
-                int l = j + 1, r = nums.size() - 1;
-
-                while (l &lt; r) &#123;
-                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];
-
-                    if (sum &lt; target) &#123;
-                        l ++;
-                        continue;
-                    &#125;
-                    if (sum &gt; target) &#123;
-                        r --;
-                        continue;
-                    &#125;
-                    ans.push_back(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);
-
-                    do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                    do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1] );
-                &#125;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
+<p>将卷挂载到docker容器内的某个目录:</p>
+<pre><code class="lang-bash">docker run -v &lt;卷的名字&gt;:&lt;docker容器内的目录&gt;
 </code></pre>
-<h2 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest">https://leetcode.cn/problems/3sum-closest</a></p>
-</blockquote>
-<p>和三数之和一样, 只需要在遍历时维护一个最接近<code>target</code>的值即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        int ans = 0x3f3f3f3f;
-        sort(nums.begin(), nums.end());
-
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-
-                if (abs(sum - target) &lt; abs(ans - target)) ans = sum;
-
-                if (sum &lt; target) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum &gt; target) &#123;
-                    r --;
-                    continue;
-                &#125;
-                do &#123; l ++ ;&#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --;&#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
+<h4 id="bind-mount"><a href="#bind-mount" class="headerlink" title="bind-mount"></a>bind-mount</h4><p>Bind-mount可以将本地的某个目录挂载到docker容器中的某个位置, 使用方式如下:</p>
+<pre><code class="lang-bash">docker run -v &lt;本地目录&gt;:&lt;docker容器目录&gt;
+</code></pre>
+<p>此时, docker容器和本机共享这个目录, 操作都是同步的.</p>
+<h2 id="docker自动化构建部署"><a href="#docker自动化构建部署" class="headerlink" title="docker自动化构建部署"></a>docker自动化构建部署</h2><h3 id="dockerfile构建镜像"><a href="#dockerfile构建镜像" class="headerlink" title="dockerfile构建镜像"></a>dockerfile构建镜像</h3><h3 id="docker-compose自动部署"><a href="#docker-compose自动部署" class="headerlink" title="docker compose自动部署"></a>docker compose自动部署</h3><h2 id="docker常用镜像"><a href="#docker常用镜像" class="headerlink" title="docker常用镜像"></a>docker常用镜像</h2><h3 id="docker调试用镜像-busybox"><a href="#docker调试用镜像-busybox" class="headerlink" title="docker调试用镜像-busybox"></a>docker调试用镜像-busybox</h3><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/busybox">https://hub.docker.com/_/busybox</a></p>
+<p>该镜像中有常用的Linux命令, 可以作为客户端容器调试其他容器的功能.</p>
+<p>可以用如下命令启动busybox镜像:</p>
+<pre><code class="lang-bash">docker run -it --rm busybox:&lt;tag&gt;
 </code></pre>
 
       
@@ -677,46 +554,6 @@ public:
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 

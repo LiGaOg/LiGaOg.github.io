@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-两数之和系列题 | LiGaOg&#39;s blog</title>
+  <title>梳理有关Node.js的一些概念 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-两数之和系列题 | LiGaOg&#39;s blog">
+  <meta name="description" content="梳理有关Node.js的一些概念 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="项目地址: https:&#x2F;&#x2F;github.com&#x2F;LiGaOg&#x2F;thrift_matching_system  匹配系统整体架构架构如下图所示:  匹配服务器逻辑生产者消费者模型与消息队列 add_user和remove_user可以看作一个Task. 在匹配服务器中, 有生产者线程与消费者线程. 生产者线程通过match_client调用add_user或者remove_user产生 (多线程">
 <meta property="og:type" content="article">
@@ -446,9 +446,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-two-sum-series" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-under-nodejs" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-两数之和系列题</h1>
+        <h1 class="article-title">梳理有关Node.js的一些概念</h1>
     
     <div class="article-meta">
         
@@ -458,7 +458,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="其他">其他</a>
             
         </span>
         
@@ -466,7 +466,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 09:18:05'>2023-09-02 09:18</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 20:56:01'>2023-09-02 20:56</time>
         
     </div>
     <div class="article-meta">
@@ -477,7 +477,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规两数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规四数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">最接近的三数之和</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%98%E7%BD%91%E7%9A%84Node-js%E4%B8%8B%E8%BD%BD%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">官网的Node.js下载了什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#npm%E4%B8%8B%E8%BD%BD%E5%8C%85%E7%9A%84%E9%80%BB%E8%BE%91%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">npm下载包的逻辑是什么</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -493,177 +493,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="常规两数之和"><a href="#常规两数之和" class="headerlink" title="常规两数之和"></a>常规两数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">https://leetcode.cn/problems/two-sum/</a></p>
-</blockquote>
-<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-                if (nums[i] + nums[j] == target) &#123;
-                    ans.push_back(i);
-                    ans.push_back(j);
-                &#125;
-            &#125;
-            if (ans.size() &gt; 0) break;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
+        <h2 id="官网的Node-js下载了什么"><a href="#官网的Node-js下载了什么" class="headerlink" title="官网的Node.js下载了什么"></a>官网的Node.js下载了什么</h2><p>同样, Node.js官网提供了<code>pkg</code>格式的下载器, 通过工具, 可以看到这个下载器具体下载了什么东西:</p>
+<p><img src="/2023/09/02/under-nodejs/image-20230620132154064.png" alt="image-20230620132154064"></p>
+<p>其中, <code>/usr/local/bin</code>中放了Javascript的解释器<code>node</code>, 而<code>/usr/local/lib/node_modules</code>中有<code>npm</code>包管理器.</p>
+<p>后面的<code>postinstall</code>脚本如下:</p>
+<pre><code class="lang-bash">#!/bin/sh
+
+cd /usr/local/bin || exit 1
+ln -sf ../lib/node_modules/npm/bin/npm-cli.js npm
+ln -sf ../lib/node_modules/npm/bin/npx-cli.js npx
 </code></pre>
-<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>时间复杂度是$O(n)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-        vector&lt;int&gt; ans;
-        unordered_map&lt;int, int&gt; hashs;
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            int t = target - nums[i];
-            if (hashs.count(t)) &#123;
-                ans.push_back(hashs[t]);
-                ans.push_back(i);
-                break;
-            &#125;
-            hashs[nums[i]] = i;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
+<p>其中命令行的<code>npm</code>实际上是<code>npm-cli.js</code>脚本, 这个脚本如下:</p>
+<pre><code class="lang-javascript">#!/usr/bin/env node
+require(&#39;../lib/cli.js&#39;)(process)
 </code></pre>
-<h2 id="常规三数之和"><a href="#常规三数之和" class="headerlink" title="常规三数之和"></a>常规三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
-</blockquote>
-<p>算法是排序+双指针算法.</p>
-<p>将数组排序后, 枚举每一个数$c$, 维护两个指针$l, r$, 两个指针分别指向头和尾, 计算$c + nums[l] + nums[r]$的大小</p>
-<ul>
-<li>如果大于<code>target</code>就将<code>r--</code></li>
-<li>如果小于<code>target</code>就将<code>l++</code></li>
-</ul>
-<p>时间复杂度为$O(n^2)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-          // 如果当前枚举的数和上一个枚举的数相同, 跳过
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-                if (sum &gt; 0) &#123;
-                    r --;
-                    continue;
-                &#125;
-                if (sum &lt; 0) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum == 0) &#123;
-                    ans.push_back(&#123; nums[i], nums[l], nums[r] &#125;);
-                &#125;
-              // 去重
-                do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="常规四数之和"><a href="#常规四数之和" class="headerlink" title="常规四数之和"></a>常规四数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
-</blockquote>
-<p>和三数之和思路一样, 只是枚举的是选定的两个数, 时间复杂度是$O(n^3)$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        typedef long long LL;
-
-        vector&lt;vector&lt;int&gt;&gt; ans;
-
-        sort(nums.begin(), nums.end());
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
-
-                if (j != i + 1 &amp;&amp; nums[j] == nums[j - 1]) continue;
-
-                int l = j + 1, r = nums.size() - 1;
-
-                while (l &lt; r) &#123;
-                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];
-
-                    if (sum &lt; target) &#123;
-                        l ++;
-                        continue;
-                    &#125;
-                    if (sum &gt; target) &#123;
-                        r --;
-                        continue;
-                    &#125;
-                    ans.push_back(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);
-
-                    do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                    do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1] );
-                &#125;
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest">https://leetcode.cn/problems/3sum-closest</a></p>
-</blockquote>
-<p>和三数之和一样, 只需要在遍历时维护一个最接近<code>target</code>的值即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;
-
-        int ans = 0x3f3f3f3f;
-        sort(nums.begin(), nums.end());
-
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-
-            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
-
-            int l = i + 1, r = nums.size() - 1;
-
-            while (l &lt; r) &#123;
-                int sum = nums[i] + nums[l] + nums[r];
-
-                if (abs(sum - target) &lt; abs(ans - target)) ans = sum;
-
-                if (sum &lt; target) &#123;
-                    l ++;
-                    continue;
-                &#125;
-                if (sum &gt; target) &#123;
-                    r --;
-                    continue;
-                &#125;
-                do &#123; l ++ ;&#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
-                do &#123; r --;&#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
-            &#125;
-        &#125;
-
-        return ans;
-    &#125;
-&#125;;
+<p>其实就是用node解释器去运行这个Javascript脚本.</p>
+<h2 id="npm下载包的逻辑是什么"><a href="#npm下载包的逻辑是什么" class="headerlink" title="npm下载包的逻辑是什么"></a>npm下载包的逻辑是什么</h2><p>使用<code>npm install &lt;包名&gt;</code>时, 会在当前目录的<code>node_modules</code>下下载对应包, 以<code>axios</code>为例, 下载后的目录结构如下:</p>
+<p><img src="/2023/09/02/under-nodejs/image-20230620142349806.png" alt="image-20230620142349806"></p>
+<p>其中<code>package.json</code>用来记录当前项目下载了哪些包, 在迁移目录之后, 可以直接使用<code>npm install</code>下载全部的包.</p>
+<p>如果使用<code>npm install -g</code>, 那么下载的包会到<code>/usr/local/lib/node_modules</code>中, 全部用户都能使用.</p>
+<p>在Javascript中使用<code>require(&#39;&lt;包名&gt;&#39;)</code>时, 会先到项目中搜索是否有<code>node_modules</code>, 如果没有就去全局的<code>node_modules</code>中搜索.</p>
+<p>如果要查看Js代码中<code>require</code>的包在哪里, 可以用如下代码:</p>
+<pre><code class="lang-javascript">console.log(require.resolve(&#39;包名&#39;))
 </code></pre>
 
       
@@ -677,46 +528,6 @@ public:
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
