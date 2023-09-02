@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS上常用软件/网站集合 | LiGaOg&#39;s blog</title>
+  <title>算法题-寻找两个正序数组的中位数 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS上常用软件/网站集合 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-寻找两个正序数组的中位数 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="模板题-滑动窗口最大值与最小值 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;156&#x2F;  滑动窗口需要考虑两个变量:  窗口大小 在固定窗口大小之内, 维护的数值是最大&#x2F;最小值.  代码模板如下: #include&lt;iostream&gt; #include &lt;cstring&gt;  using namespace std;  const int N">
 <meta property="og:type" content="article">
@@ -450,9 +450,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-mac-collection" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-median-of-two-sorted-array" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS上常用软件/网站集合</h1>
+        <h1 class="article-title">算法题-寻找两个正序数组的中位数</h1>
     
     <div class="article-meta">
         
@@ -462,7 +462,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -470,7 +470,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-01 12:15:00'>2023-09-01 12:15</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 17:23:22'>2023-09-02 10:00</time>
         
     </div>
     <div class="article-meta">
@@ -481,7 +481,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-text">常用软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99"><span class="toc-text">常用网站</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -497,68 +497,58 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>软件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>截图</td>
-<td>Snipaste</td>
-</tr>
-<tr>
-<td>聚焦搜索</td>
-<td>Raycast</td>
-</tr>
-<tr>
-<td>Markdown编辑器</td>
-<td>Typora</td>
-</tr>
-<tr>
-<td>伴奏音频分离</td>
-<td>UVR</td>
-</tr>
-<tr>
-<td>视频插帧</td>
-<td>SVP Mac</td>
-</tr>
-<tr>
-<td>浏览器</td>
-<td>Chrome</td>
-</tr>
-<tr>
-<td>Office办公</td>
-<td>WPS</td>
-</tr>
-<tr>
-<td>pkg文件浏览器</td>
-<td>Suspicious Package</td>
-</tr>
-<tr>
-<td>音频简单处理</td>
-<td>Audacity</td>
-</tr>
-<tr>
-<td>思维导图</td>
-<td>Xmind</td>
-</tr>
-<tr>
-<td>鼠标增强</td>
-<td>Mos</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h2><ul>
-<li><p>壁纸/美图: <a target="_blank" rel="noopener" href="https://wall.alphacoders.com/">https://wall.alphacoders.com/</a></p>
-</li>
-<li><p>画图: lucid.app</p>
-</li>
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/median-of-two-sorted-arrays/">https://leetcode.cn/problems/median-of-two-sorted-arrays/</a></p>
+</blockquote>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>考虑这样一个问题:</p>
+<blockquote>
+<p>在两个排序的数组之间, 寻找第k小数.</p>
+</blockquote>
+<p>如果这个问题能够解决, 那么中位数就是第<code>(n + m) / 2</code>小的数.</p>
+<p>假设两个正序数组分别是$A$和$B$, 考虑$A[\frac{k}{2}]$和$B[\frac{k}{2}]$两个数:</p>
+<ul>
+<li>如果$A[\frac{k}{2}] &lt; B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$A[\frac{k}{2}]$的数的个数就小于$k$, 此时两个数组中第$k$小的数肯定不会在$A$数组第$\frac{k}{2}$个元素的左边.</li>
+<li>如果$A[\frac{k}{2}] &gt; B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$B[\frac{k}{2}]$的数的个数就小于$k$, 此时两个数组中第$k$小的数肯定不会在$B$数组第$\frac{k}{2}$个元素的左边.</li>
+<li>如果$A[\frac{k}{2}] = B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$A[\frac{k}{2}]$或$B[\frac{k}{2}]$的数的个数就等于$k$, 此时$A[\frac{k}{2}]$或者$B[\frac{k}{2}]$就是第$k$小的数.</li>
 </ul>
+<p>根据以上分析, 定义一个函数, 函数的签名为<code>find(A, i, B, j, k)</code>, 表示给定两个数组$A, B$, 下标从$i, j$开始, 找到两个数组中第$k$小的数, 那么就可以用这个函数递归解决.</p>
+<p>时间复杂度是$O(logk)$, 由于$k$最多是$m + n$, 那么时间复杂度就是$O(log(m + n))$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;
+
+        int tot = nums1.size() + nums2.size();
+        if (tot % 2 == 0) &#123;
+            int left = find(nums1, 0, nums2, 0, tot / 2);
+            int right = find(nums1, 0, nums2, 0, tot / 2 + 1);
+            return (left + right) / 2.0;
+        &#125;
+        else &#123;
+            return (double)find(nums1, 0, nums2, 0, tot / 2 + 1);
+        &#125;
+    &#125;
+
+    int find(vector&lt;int&gt; &amp;nums1, int i, vector&lt;int&gt; &amp;nums2, int j, int k) &#123;
+
+        /* 让nums1作为元素个数较少的数组 */
+        if (nums1.size() - i &gt; nums2.size() - j) return find(nums2, j, nums1, i, k);
+
+        /* nums1为空的话, 直接返回nums2第k小的元素 */
+        if (nums1.size() == i) return nums2[j + k - 1];
+
+        /* k = 1时, 递归终止 */
+        if (k == 1) return min(nums1[i], nums2[j]);
+
+        int si = min((int)(nums1.size() - 1), i + k / 2 - 1);
+        int sj = j + (k - k / 2) - 1;
+
+        if (nums1[si] &gt; nums2[sj]) 
+            return find(nums1, i, nums2, sj + 1, k - (sj - j + 1));
+        else
+            return find(nums1, si + 1, nums2, j, k - (si - i + 1));
+    &#125;
+&#125;;
+</code></pre>
 
       
        
@@ -571,6 +561,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

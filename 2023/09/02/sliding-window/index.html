@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS上常用软件/网站集合 | LiGaOg&#39;s blog</title>
+  <title>算法题-单调队列(滑动窗口) | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS上常用软件/网站集合 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-单调队列(滑动窗口) | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="模板题-滑动窗口最大值与最小值 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;156&#x2F;  滑动窗口需要考虑两个变量:  窗口大小 在固定窗口大小之内, 维护的数值是最大&#x2F;最小值.  代码模板如下: #include&lt;iostream&gt; #include &lt;cstring&gt;  using namespace std;  const int N">
 <meta property="og:type" content="article">
@@ -450,9 +450,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-mac-collection" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS上常用软件/网站集合</h1>
+        <h1 class="article-title">算法题-单调队列(滑动窗口)</h1>
     
     <div class="article-meta">
         
@@ -462,7 +462,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -470,7 +470,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-01 12:15:00'>2023-09-01 12:15</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 16:22:12'>2023-09-02 16:22</time>
         
     </div>
     <div class="article-meta">
@@ -481,7 +481,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6"><span class="toc-text">常用软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99"><span class="toc-text">常用网站</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -497,68 +497,73 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="常用软件"><a href="#常用软件" class="headerlink" title="常用软件"></a>常用软件</h2><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>功能</th>
-<th>软件</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>截图</td>
-<td>Snipaste</td>
-</tr>
-<tr>
-<td>聚焦搜索</td>
-<td>Raycast</td>
-</tr>
-<tr>
-<td>Markdown编辑器</td>
-<td>Typora</td>
-</tr>
-<tr>
-<td>伴奏音频分离</td>
-<td>UVR</td>
-</tr>
-<tr>
-<td>视频插帧</td>
-<td>SVP Mac</td>
-</tr>
-<tr>
-<td>浏览器</td>
-<td>Chrome</td>
-</tr>
-<tr>
-<td>Office办公</td>
-<td>WPS</td>
-</tr>
-<tr>
-<td>pkg文件浏览器</td>
-<td>Suspicious Package</td>
-</tr>
-<tr>
-<td>音频简单处理</td>
-<td>Audacity</td>
-</tr>
-<tr>
-<td>思维导图</td>
-<td>Xmind</td>
-</tr>
-<tr>
-<td>鼠标增强</td>
-<td>Mos</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="常用网站"><a href="#常用网站" class="headerlink" title="常用网站"></a>常用网站</h2><ul>
-<li><p>壁纸/美图: <a target="_blank" rel="noopener" href="https://wall.alphacoders.com/">https://wall.alphacoders.com/</a></p>
-</li>
-<li><p>画图: lucid.app</p>
-</li>
+        <h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
+</blockquote>
+<p>滑动窗口需要考虑两个变量:</p>
+<ul>
+<li>窗口大小</li>
+<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
 </ul>
+<p>代码模板如下:</p>
+<pre><code class="lang-cpp">#include&lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N = 1000010;
+
+int hh = 0, tt = -1;
+
+int n, k;
+int a[N], q[N];
+
+int main() &#123;
+
+    cin &gt;&gt; n &gt;&gt; k;
+    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
+
+    for (int i = 0; i &lt; n; i ++) &#123;
+          // 滑动窗口前移后, 维护的窗口下标需要更新
+        if (i - k + 1 &gt; q[hh]) hh ++;
+      // 用当前枚举的a[i]排除掉队列中的较大的值
+        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
+        q[ ++ tt ] = i;
+        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
+    &#125;
+
+    puts(&quot;&quot;);
+    hh = 0, tt = -1;
+
+    for (int i = 0; i &lt; n; i ++) &#123;
+        if (i - k + 1 &gt; q[hh]) hh ++;
+        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
+        q[ ++ tt] = i;
+        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
+         const int N = 100010;
+         int hh = 0, tt = -1;
+         int q[N];
+         vector&lt;int&gt; ans;
+
+         for (int i = 0; i &lt; nums.size(); i ++) &#123;
+             if (i - k + 1 &gt; q[hh]) hh ++;
+             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
+             q[ ++ tt] = i;
+             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
+         &#125;
+         return ans;
+    &#125;
+&#125;;
+</code></pre>
 
       
        
