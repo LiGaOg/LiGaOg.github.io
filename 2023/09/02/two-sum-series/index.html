@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS下轻量的Linux虚拟机 | LiGaOg&#39;s blog</title>
+  <title>算法题-两数之和系列题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS下轻量的Linux虚拟机 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-两数之和系列题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -432,9 +432,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-orbstack" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-two-sum-series" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS下轻量的Linux虚拟机</h1>
+        <h1 class="article-title">算法题-两数之和系列题</h1>
     
     <div class="article-meta">
         
@@ -444,7 +444,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -452,7 +452,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-01 12:15:00'>2023-09-01 12:15</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 09:18:05'>2023-09-02 09:18</time>
         
     </div>
     <div class="article-meta">
@@ -463,7 +463,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OrbStack%E4%B8%8B%E8%BD%BD"><span class="toc-text">OrbStack下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OrbStack%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%80%BB%E8%BE%91"><span class="toc-text">OrbStack的工作逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAUbuntu%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">创建Ubuntu虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">连接Ubuntu虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="toc-text">主机与虚拟机文件传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-text">虚拟机端口映射</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规两数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E8%A1%A8"><span class="toc-text">哈希表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规三数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E5%9B%9B%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">常规四数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E6%8E%A5%E8%BF%91%E7%9A%84%E4%B8%89%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">最接近的三数之和</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -479,19 +479,178 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="OrbStack下载"><a href="#OrbStack下载" class="headerlink" title="OrbStack下载"></a>OrbStack下载</h2><p><a target="_blank" rel="noopener" href="https://orbstack.dev/">https://orbstack.dev/</a></p>
-<h2 id="OrbStack的工作逻辑"><a href="#OrbStack的工作逻辑" class="headerlink" title="OrbStack的工作逻辑"></a>OrbStack的工作逻辑</h2><h3 id="创建Ubuntu虚拟机"><a href="#创建Ubuntu虚拟机" class="headerlink" title="创建Ubuntu虚拟机"></a>创建Ubuntu虚拟机</h3><p>可以在OrbStack的GUI界面创建虚拟机:</p>
-<p><img src="/2023/09/01/orbstack/image-20230623191140675.png" alt="image-20230623191140675"></p>
-<p>其中, 创建后的虚拟机用户名就是在Mac本机上的用户名, 而需要输入的<code>Name</code>是虚拟机的主机名.</p>
-<h3 id="连接Ubuntu虚拟机"><a href="#连接Ubuntu虚拟机" class="headerlink" title="连接Ubuntu虚拟机"></a>连接Ubuntu虚拟机</h3><p>使用<code>ssh</code>可以直接连接:</p>
-<pre><code class="lang-bash">ssh &lt;Name&gt;@orb
+        <h2 id="常规两数之和"><a href="#常规两数之和" class="headerlink" title="常规两数之和"></a>常规两数之和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/two-sum/">https://leetcode.cn/problems/two-sum/</a></p>
+</blockquote>
+<h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>暴力算法直接两重循环判断即可, 时间复杂度是$O(n^2)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+        vector&lt;int&gt; ans;
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
+                if (nums[i] + nums[j] == target) &#123;
+                    ans.push_back(i);
+                    ans.push_back(j);
+                &#125;
+            &#125;
+            if (ans.size() &gt; 0) break;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
 </code></pre>
-<p>其中<code>Name</code>就是在创建虚拟机时输入的名字.</p>
-<h3 id="主机与虚拟机文件传输"><a href="#主机与虚拟机文件传输" class="headerlink" title="主机与虚拟机文件传输"></a>主机与虚拟机文件传输</h3><p>文件传输可以通过<code>scp</code>进行.</p>
-<p>Mac本机访问虚拟机文件: <code>~/OrbStack</code>中可以查看</p>
-<p>虚拟机访问Mac本机: <code>/mnt/mac</code></p>
-<h3 id="虚拟机端口映射"><a href="#虚拟机端口映射" class="headerlink" title="虚拟机端口映射"></a>虚拟机端口映射</h3><p>虚拟机访问Mac本机服务: 本机的主机名为<code>host.internal</code></p>
-<p>Mac本机访问虚拟机: 直接用<code>localhost</code>就可以.</p>
+<h3 id="哈希表"><a href="#哈希表" class="headerlink" title="哈希表"></a>哈希表</h3><p>时间复杂度是$O(n)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+        vector&lt;int&gt; ans;
+        unordered_map&lt;int, int&gt; hashs;
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+            int t = target - nums[i];
+            if (hashs.count(t)) &#123;
+                ans.push_back(hashs[t]);
+                ans.push_back(i);
+                break;
+            &#125;
+            hashs[nums[i]] = i;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="常规三数之和"><a href="#常规三数之和" class="headerlink" title="常规三数之和"></a>常规三数之和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum/">https://leetcode.cn/problems/3sum/</a></p>
+</blockquote>
+<p>算法是排序+双指针算法.</p>
+<p>将数组排序后, 枚举每一个数$c$, 维护两个指针$l, r$, 两个指针分别指向头和尾, 计算$c + nums[l] + nums[r]$的大小</p>
+<ul>
+<li>如果大于<code>target</code>就将<code>r--</code></li>
+<li>如果小于<code>target</code>就将<code>l++</code></li>
+</ul>
+<p>时间复杂度为$O(n^2)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; threeSum(vector&lt;int&gt;&amp; nums) &#123;
+        vector&lt;vector&lt;int&gt;&gt; ans;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+          // 如果当前枚举的数和上一个枚举的数相同, 跳过
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            int l = i + 1, r = nums.size() - 1;
+            while (l &lt; r) &#123;
+                int sum = nums[i] + nums[l] + nums[r];
+                if (sum &gt; 0) &#123;
+                    r --;
+                    continue;
+                &#125;
+                if (sum &lt; 0) &#123;
+                    l ++;
+                    continue;
+                &#125;
+                if (sum == 0) &#123;
+                    ans.push_back(&#123; nums[i], nums[l], nums[r] &#125;);
+                &#125;
+              // 去重
+                do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="常规四数之和"><a href="#常规四数之和" class="headerlink" title="常规四数之和"></a>常规四数之和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/4sum/">https://leetcode.cn/problems/4sum/</a></p>
+</blockquote>
+<p>和三数之和思路一样, 只是枚举的是选定的两个数, 时间复杂度是$O(n^3)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; fourSum(vector&lt;int&gt;&amp; nums, int target) &#123;
+
+        typedef long long LL;
+
+        vector&lt;vector&lt;int&gt;&gt; ans;
+
+        sort(nums.begin(), nums.end());
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            for (int j = i + 1; j &lt; nums.size(); j ++) &#123;
+
+                if (j != i + 1 &amp;&amp; nums[j] == nums[j - 1]) continue;
+
+                int l = j + 1, r = nums.size() - 1;
+
+                while (l &lt; r) &#123;
+                    LL sum = (LL)nums[i] + (LL)nums[j] + (LL)nums[l] + (LL)nums[r];
+
+                    if (sum &lt; target) &#123;
+                        l ++;
+                        continue;
+                    &#125;
+                    if (sum &gt; target) &#123;
+                        r --;
+                        continue;
+                    &#125;
+                    ans.push_back(&#123; nums[i], nums[j], nums[l], nums[r]&#125;);
+
+                    do &#123; l ++; &#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                    do &#123; r --; &#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1] );
+                &#125;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/3sum-closest">https://leetcode.cn/problems/3sum-closest</a></p>
+</blockquote>
+<p>和三数之和一样, 只需要在遍历时维护一个最接近<code>target</code>的值即可.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int threeSumClosest(vector&lt;int&gt;&amp; nums, int target) &#123;
+
+        int ans = 0x3f3f3f3f;
+        sort(nums.begin(), nums.end());
+
+
+        for (int i = 0; i &lt; nums.size(); i ++) &#123;
+
+            if (i != 0 &amp;&amp; nums[i] == nums[i - 1]) continue;
+
+            int l = i + 1, r = nums.size() - 1;
+
+            while (l &lt; r) &#123;
+                int sum = nums[i] + nums[l] + nums[r];
+
+                if (abs(sum - target) &lt; abs(ans - target)) ans = sum;
+
+                if (sum &lt; target) &#123;
+                    l ++;
+                    continue;
+                &#125;
+                if (sum &gt; target) &#123;
+                    r --;
+                    continue;
+                &#125;
+                do &#123; l ++ ;&#125; while (l &lt; r &amp;&amp; nums[l] == nums[l - 1]);
+                do &#123; r --;&#125; while (l &lt; r &amp;&amp; nums[r] == nums[r + 1]);
+            &#125;
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
 
       
        
@@ -504,6 +663,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

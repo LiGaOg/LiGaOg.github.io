@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS下轻量的Linux虚拟机 | LiGaOg&#39;s blog</title>
+  <title>算法题-高精度加法 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS下轻量的Linux虚拟机 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-高精度加法 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -432,9 +432,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-orbstack" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sim-plus" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS下轻量的Linux虚拟机</h1>
+        <h1 class="article-title">算法题-高精度加法</h1>
     
     <div class="article-meta">
         
@@ -444,7 +444,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -452,7 +452,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-01 12:15:00'>2023-09-01 12:15</time>
+            Created At : <time class="date" title='Updated At: 2023-09-02 09:12:55'>2023-09-02 08:50</time>
         
     </div>
     <div class="article-meta">
@@ -463,7 +463,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#OrbStack%E4%B8%8B%E8%BD%BD"><span class="toc-text">OrbStack下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OrbStack%E7%9A%84%E5%B7%A5%E4%BD%9C%E9%80%BB%E8%BE%91"><span class="toc-text">OrbStack的工作逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAUbuntu%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">创建Ubuntu虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5Ubuntu%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="toc-text">连接Ubuntu虚拟机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E4%B8%8E%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%96%87%E4%BB%B6%E4%BC%A0%E8%BE%93"><span class="toc-text">主机与虚拟机文件传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%AB%AF%E5%8F%A3%E6%98%A0%E5%B0%84"><span class="toc-text">虚拟机端口映射</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E9%93%BE%E8%A1%A8%E6%A8%A1%E6%8B%9F%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0"><span class="toc-text">用链表模拟两数相加</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E7%BB%84%E5%AE%9E%E7%8E%B0%E9%AB%98%E7%B2%BE%E5%BA%A6%E5%8A%A0%E6%B3%95"><span class="toc-text">数组实现高精度加法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -479,19 +479,80 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="OrbStack下载"><a href="#OrbStack下载" class="headerlink" title="OrbStack下载"></a>OrbStack下载</h2><p><a target="_blank" rel="noopener" href="https://orbstack.dev/">https://orbstack.dev/</a></p>
-<h2 id="OrbStack的工作逻辑"><a href="#OrbStack的工作逻辑" class="headerlink" title="OrbStack的工作逻辑"></a>OrbStack的工作逻辑</h2><h3 id="创建Ubuntu虚拟机"><a href="#创建Ubuntu虚拟机" class="headerlink" title="创建Ubuntu虚拟机"></a>创建Ubuntu虚拟机</h3><p>可以在OrbStack的GUI界面创建虚拟机:</p>
-<p><img src="/2023/09/01/orbstack/image-20230623191140675.png" alt="image-20230623191140675"></p>
-<p>其中, 创建后的虚拟机用户名就是在Mac本机上的用户名, 而需要输入的<code>Name</code>是虚拟机的主机名.</p>
-<h3 id="连接Ubuntu虚拟机"><a href="#连接Ubuntu虚拟机" class="headerlink" title="连接Ubuntu虚拟机"></a>连接Ubuntu虚拟机</h3><p>使用<code>ssh</code>可以直接连接:</p>
-<pre><code class="lang-bash">ssh &lt;Name&gt;@orb
+        <h2 id="用链表模拟两数相加"><a href="#用链表模拟两数相加" class="headerlink" title="用链表模拟两数相加"></a>用链表模拟两数相加</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/add-two-numbers/">https://leetcode.cn/problems/add-two-numbers/</a></p>
+</blockquote>
+<p>直接背模板.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) &#123;
+
+        auto dummy = new ListNode(-1), cur = dummy;
+        int t = 0;
+
+        while (l1 || l2 || t) &#123;
+            if (l1) t += l1-&gt;val, l1 = l1-&gt;next;
+            if (l2) t += l2-&gt;val, l2 = l2-&gt;next;
+
+            cur = cur-&gt;next = new ListNode(t % 10);
+            t /= 10;
+        &#125;
+
+        return dummy-&gt;next;
+    &#125;
+&#125;;
 </code></pre>
-<p>其中<code>Name</code>就是在创建虚拟机时输入的名字.</p>
-<h3 id="主机与虚拟机文件传输"><a href="#主机与虚拟机文件传输" class="headerlink" title="主机与虚拟机文件传输"></a>主机与虚拟机文件传输</h3><p>文件传输可以通过<code>scp</code>进行.</p>
-<p>Mac本机访问虚拟机文件: <code>~/OrbStack</code>中可以查看</p>
-<p>虚拟机访问Mac本机: <code>/mnt/mac</code></p>
-<h3 id="虚拟机端口映射"><a href="#虚拟机端口映射" class="headerlink" title="虚拟机端口映射"></a>虚拟机端口映射</h3><p>虚拟机访问Mac本机服务: 本机的主机名为<code>host.internal</code></p>
-<p>Mac本机访问虚拟机: 直接用<code>localhost</code>就可以.</p>
+<h2 id="数组实现高精度加法"><a href="#数组实现高精度加法" class="headerlink" title="数组实现高精度加法"></a>数组实现高精度加法</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/793/">https://www.acwing.com/problem/content/793/</a></p>
+</blockquote>
+<p>同样, 直接背模板.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+vector&lt;int&gt; add(vector&lt;int&gt; &amp;A, vector&lt;int&gt; &amp;B) &#123;
+
+    vector&lt;int&gt; C;
+    int t = 0;
+
+    for (int i = 0; i &lt; A.size() || i &lt; B.size() || t; i ++) &#123;
+
+        if (i &lt; A.size()) t += A[i];
+        if (i &lt; B.size()) t += B[i];
+        C.push_back(t % 10);
+        t /= 10;
+    &#125;
+
+    return C;
+&#125;
+
+int main() &#123;
+
+    string a, b;
+
+    cin &gt;&gt; a &gt;&gt; b;
+    vector&lt;int&gt; A, B;
+
+    for (int i = a.size() - 1; i &gt;= 0; i --) A.push_back(a[i] - &#39;0&#39;);
+    for (int i = b.size() - 1; i &gt;= 0; i --) B.push_back(b[i] - &#39;0&#39;);
+
+    auto C = add(A, B);
+
+    for (int i = C.size() - 1; i &gt;= 0; i --) printf(&quot;%d&quot;, C[i]);
+&#125;
+</code></pre>
 
       
        
