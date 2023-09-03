@@ -6,19 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-字符串系列问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="项目地址: https:&#x2F;&#x2F;github.com&#x2F;LiGaOg&#x2F;thrift_matching_system  匹配系统整体架构架构如下图所示:  匹配服务器逻辑生产者消费者模型与消息队列 add_user和remove_user可以看作一个Task. 在匹配服务器中, 有生产者线程与消费者线程. 生产者线程通过match_client调用add_user或者remove_user产生 (多线程">
+<meta name="description" content="用C++解题需要控制在$10^7$到$10^8$左右.  数据规模是30, 时间复杂度可以是指数. 数据规模是100, 是$O(n^3)$. 数据规模是1000, 是$O(n^2)$. 数据规模是$10^5$, 是$O(nlogn)$. 数据规模是$10^6$或$10^7$, 是$O(n)$. 数据规模到$10^9$, 是$O(\sqrt n)$ 数据规模到$10^{18}$, 是$O(logn)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="设计并使用thrift实现一个匹配系统">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/09/02/match-system/index.html">
+<meta property="og:title" content="如何从数据规模推测算法的时间复杂度">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/03/algorithm-complex/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="项目地址: https:&#x2F;&#x2F;github.com&#x2F;LiGaOg&#x2F;thrift_matching_system  匹配系统整体架构架构如下图所示:  匹配服务器逻辑生产者消费者模型与消息队列 add_user和remove_user可以看作一个Task. 在匹配服务器中, 有生产者线程与消费者线程. 生产者线程通过match_client调用add_user或者remove_user产生 (多线程">
+<meta property="og:description" content="用C++解题需要控制在$10^7$到$10^8$左右.  数据规模是30, 时间复杂度可以是指数. 数据规模是100, 是$O(n^3)$. 数据规模是1000, 是$O(n^2)$. 数据规模是$10^5$, 是$O(nlogn)$. 数据规模是$10^6$或$10^7$, 是$O(n)$. 数据规模到$10^9$, 是$O(\sqrt n)$ 数据规模到$10^{18}$, 是$O(logn)">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/09/02/match-system/match_system.png">
-<meta property="article:published_time" content="2023-09-02T13:28:09.252Z">
-<meta property="article:modified_time" content="2023-09-02T13:28:09.252Z">
+<meta property="article:published_time" content="2023-09-03T03:00:12.461Z">
+<meta property="article:modified_time" content="2023-09-03T03:04:22.035Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ligaog.github.io.com/2023/09/02/match-system/match_system.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -121,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(21)</small>
+                <small>(23)</small>
             
         </div>
     </li>
@@ -163,7 +161,7 @@
         <div data-rel="算法">
             
             算法
-            <small>(5)</small>
+            <small>(7)</small>
         </div>
         
     </li>
@@ -188,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="21">
+<input type="hidden" id="yelog_site_posts_number" value="23">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -238,6 +236,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/algorithm-complex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何从数据规模推测算法的时间复杂度">如何从数据规模推测算法的时间复杂度</span>
+            <span class="post-date" title="2023-09-03 11:00:12">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/longest-palindromic-substring/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-最长回文子串">算法题-最长回文子串</span>
+            <span class="post-date" title="2023-09-03 10:50:09">2023/09/03</span>
+        </a>
         
         
         <a  class="All 工程 "

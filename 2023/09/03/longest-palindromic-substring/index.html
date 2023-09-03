@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>设计并使用thrift实现一个匹配系统 | LiGaOg&#39;s blog</title>
+  <title>算法题-最长回文子串 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="设计并使用thrift实现一个匹配系统 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-最长回文子串 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="用C++解题需要控制在$10^7$到$10^8$左右.  数据规模是30, 时间复杂度可以是指数. 数据规模是100, 是$O(n^3)$. 数据规模是1000, 是$O(n^2)$. 数据规模是$10^5$, 是$O(nlogn)$. 数据规模是$10^6$或$10^7$, 是$O(n)$. 数据规模到$10^9$, 是$O(\sqrt n)$ 数据规模到$10^{18}$, 是$O(logn)">
 <meta property="og:type" content="article">
@@ -462,9 +462,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-match-system" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-longest-palindromic-substring" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">设计并使用thrift实现一个匹配系统</h1>
+        <h1 class="article-title">算法题-最长回文子串</h1>
     
     <div class="article-meta">
         
@@ -474,7 +474,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工程">工程</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -482,7 +482,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 21:28:09'>2023-09-02 21:28</time>
+            Created At : <time class="date" title='Updated At: 2023-09-03 10:53:54'>2023-09-03 10:50</time>
         
     </div>
     <div class="article-meta">
@@ -493,7 +493,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E7%B3%BB%E7%BB%9F%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84"><span class="toc-text">匹配系统整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%BB%E8%BE%91"><span class="toc-text">匹配服务器逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%9F%E4%BA%A7%E8%80%85%E6%B6%88%E8%B4%B9%E8%80%85%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="toc-text">生产者消费者模型与消息队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95"><span class="toc-text">匹配算法</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -510,30 +510,38 @@
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>项目地址: <a target="_blank" rel="noopener" href="https://github.com/LiGaOg/thrift_matching_system">https://github.com/LiGaOg/thrift_matching_system</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/">https://leetcode.cn/problems/longest-palindromic-substring/</a></p>
 </blockquote>
-<h2 id="匹配系统整体架构"><a href="#匹配系统整体架构" class="headerlink" title="匹配系统整体架构"></a>匹配系统整体架构</h2><p>架构如下图所示:</p>
-<p><img src="/2023/09/02/match-system/match_system.png" alt="match_system"></p>
-<h2 id="匹配服务器逻辑"><a href="#匹配服务器逻辑" class="headerlink" title="匹配服务器逻辑"></a>匹配服务器逻辑</h2><h3 id="生产者消费者模型与消息队列"><a href="#生产者消费者模型与消息队列" class="headerlink" title="生产者消费者模型与消息队列"></a>生产者消费者模型与消息队列</h3><ul>
-<li><code>add_user</code>和<code>remove_user</code>可以看作一个Task.</li>
-<li>在匹配服务器中, 有生产者线程与消费者线程.<ul>
-<li>生产者线程通过<code>match_client</code>调用<code>add_user</code>或者<code>remove_user</code>产生 (多线程服务器, 每次调用<code>add_user/remove_user</code>, 服务端都会单开一个新的线程处理), 生产者线程接受请求, 产生一个Task放入消息队列中.</li>
-<li>消费者线程从MQ中取出Task, 然后处理Task.</li>
+<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>首先枚举回文子串的中心点, 假设是<code>i</code>.</p>
+<p>然后从中心点<code>i</code>开始, 向前向后枚举判断子串是否对称:</p>
+<ul>
+<li>如果原字符串长度为奇数, 那么初始化<code>l = i - 1, r = i + 1</code>, 然后枚举.</li>
+<li>如果原字符串长度为偶数, 那么初始化<code>l = i, r = i + 1</code>然后枚举.</li>
 </ul>
-</li>
-<li>具体可以通过如下思路实现:<ul>
-<li>MQ可以使用一个普通队列, 一个<code>mutex</code>和一个条件变量实现.</li>
-<li>生产者线程首先获取<code>mutex</code>, 将Task放入MQ中, 然后唤醒被条件变量阻塞的线程, 最后释放锁即可.</li>
-<li>消费者线程是一个死循环, 循环内首先获取<code>mutex</code>, 然后判断MQ是否为空:<ul>
-<li>如果为空, 那么直接释放锁, 之后隔1s后, 调用用户池的匹配函数 (每1s尝试匹配一次).</li>
-<li>如果不空, 那么将Task从MQ取出后, 先释放锁, 然后调用用户池的相关函数添加/删除用户.</li>
-</ul>
-</li>
-<li>用户池的匹配函数需要调用数据库服务<code>save_data</code>来进行存储.</li>
-</ul>
-</li>
-</ul>
-<h3 id="匹配算法"><a href="#匹配算法" class="headerlink" title="匹配算法"></a>匹配算法</h3><p>匹配算法比较简单, 假设一个用户有分值<code>score</code>, 这个用户就可以和用户池中的<code>[score - t * 50, score + t * 50]</code>的用户进行匹配, 其中<code>t</code>是时间, 可匹配的范围随着时间递增.</p>
+<p>时间复杂度为$O(n^2)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    string longestPalindrome(string s) &#123;
+        string res;
+
+        for (int i = 0; i &lt; s.size(); i ++) &#123;
+            int l = i - 1, r = i + 1;
+
+            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
+            // 停止循环后, 回文串的长度是(r - 1) - (l + 1) + 1 = r - l - 1
+            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
+
+            l = i, r = i + 1;
+
+            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
+            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
+
+        &#125;
+
+        return res;
+    &#125;
+&#125;;
+</code></pre>
 
       
        
@@ -546,6 +554,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
