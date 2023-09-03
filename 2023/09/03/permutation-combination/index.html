@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>常见的开源协议? | LiGaOg&#39;s blog</title>
+  <title>算法题-排列/组合枚举问题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="常见的开源协议? | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-排列/组合枚举问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -471,9 +471,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-opensource" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-permutation-combination" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">常见的开源协议?</h1>
+        <h1 class="article-title">算法题-排列/组合枚举问题</h1>
     
     <div class="article-meta">
         
@@ -483,7 +483,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -491,7 +491,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:55:24'>2023-09-02 20:55</time>
+            Created At : <time class="date" title='Updated At: 2023-09-03 13:34:56'>2023-09-03 12:46</time>
         
     </div>
     <div class="article-meta">
@@ -502,7 +502,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%88%97%E5%9E%8B%E6%9E%9A%E4%B8%BEI"><span class="toc-text">排列型枚举I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%88%97%E5%9E%8B%E6%9E%9A%E4%B8%BEII"><span class="toc-text">排列型枚举II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E5%9E%8B%E6%9E%9A%E4%B8%BEI"><span class="toc-text">组合型枚举I</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%84%E5%90%88%E5%9E%8B%E6%9E%9A%E4%B8%BEII"><span class="toc-text">组合型枚举II</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,7 +518,173 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2023/09/02/opensource/opensource.webp" alt="img"></p>
+        <h2 id="排列型枚举I"><a href="#排列型枚举I" class="headerlink" title="排列型枚举I"></a>排列型枚举I</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/844/">https://www.acwing.com/problem/content/844/</a></p>
+</blockquote>
+<p>$1$到$n$按照字典序输出所有排列.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N = 10;
+
+int n;
+bool st[N];
+int path[N];
+
+void dfs(int u) &#123;
+    if (u == n) &#123;
+        for (int i = 0; i &lt; n; i ++) printf(&quot;%d &quot;, path[i]);
+        puts(&quot;&quot;);
+        return ;
+    &#125;
+    for (int i = 1; i &lt;= n; i ++) &#123;
+        if (st[i]) continue;
+        path[u] = i;
+        st[i] = true;
+        dfs(u + 1);
+        st[i] = false;
+    &#125;
+&#125;
+
+int main() &#123;
+    cin &gt;&gt; n;
+    dfs(0);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="排列型枚举II"><a href="#排列型枚举II" class="headerlink" title="排列型枚举II"></a>排列型枚举II</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/47/">https://www.acwing.com/problem/content/description/47/</a></p>
+</blockquote>
+<p>给定一个可能包含重复元素的数组, 输出所有可能的排列方式.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; path;
+    vector&lt;vector&lt;int&gt;&gt; ans;
+
+    vector&lt;vector&lt;int&gt;&gt; permutation(vector&lt;int&gt;&amp; nums) &#123;
+
+        int n = nums.size();
+        if (n == 0) return ans;
+        path.resize(n);
+        sort(nums.begin(), nums.end());
+        dfs(nums, 0, 0, 0);
+        return ans;
+    &#125;
+
+    void dfs(vector&lt;int&gt; &amp;nums, int start, int state, int u) &#123;
+        if (u == nums.size()) &#123;
+            ans.push_back(path);
+            return ;
+        &#125;
+        if (!u || nums[u] != nums[u - 1]) start = 0;
+
+        for (int i = start; i &lt; nums.size(); i ++) &#123;
+            if (!(state &gt;&gt; i &amp; 1)) &#123;
+                path[i] = nums[u];
+                dfs(nums, i + 1, state + (1 &lt;&lt; i), u + 1);
+            &#125;
+        &#125;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="组合型枚举I"><a href="#组合型枚举I" class="headerlink" title="组合型枚举I"></a>组合型枚举I</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/95/">https://www.acwing.com/problem/content/description/95/</a></p>
+</blockquote>
+<p>从$1$到$n$这些数中选取$m$个, 枚举所有的选择方式, 并且按照字典序输出.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+using namespace std;
+
+const int N = 30;
+
+int n, m;
+bool st[N];
+
+
+void dfs(int u, int cnt) &#123;
+
+    if (cnt == m) &#123;
+        for (int i = 1; i &lt;= n; i ++)
+            if (st[i]) printf(&quot;%d &quot;, i);
+        puts(&quot;&quot;);
+        return ;
+    &#125;
+
+    if (u &gt; n) return ;
+
+    st[u] = true;
+
+    dfs(u + 1, cnt + 1);
+
+    st[u] = false;
+
+    dfs(u + 1, cnt);
+&#125;
+
+
+int main() &#123;
+    cin &gt;&gt; n &gt;&gt; m;
+    dfs(1, 0);
+    return 0;
+&#125;
+</code></pre>
+<h2 id="组合型枚举II"><a href="#组合型枚举II" class="headerlink" title="组合型枚举II"></a>组合型枚举II</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1575/">https://www.acwing.com/problem/content/1575/</a></p>
+</blockquote>
+<p>给定一个长度为$n$的, 可包含重复数字的数组, 随机选取$m$个数字, 输出可能的方案.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 30;
+
+int n, m;
+int a[N];
+bool st[N];
+
+void dfs(int u, int cnt) &#123;
+    if (cnt == m) &#123;
+        for (int i = 0; i &lt; n; i ++) &#123;
+            if (st[i]) printf(&quot;%d &quot;, a[i]);
+        &#125;
+        puts(&quot;&quot;);
+        return ;
+    &#125;
+
+    if (u == n) return ;
+
+      /* 枚举重复元素选择多少个 */
+    int k = u;
+
+    while (k &lt; n &amp;&amp; a[k] == a[u]) &#123;
+        st[k ++ ] = true;
+        cnt ++;
+    &#125;
+
+  // 重复元素全选
+    dfs(k, cnt);
+
+  // 重复元素选择若干个
+    for (int i = k - 1; i &gt;= u; i --) &#123;
+        st[i] = false;
+        cnt --;
+        dfs(k, cnt);
+    &#125;
+&#125;
+
+
+int main() &#123;
+
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
+    sort(a, a + n);
+    dfs(0, 0);
+
+    return 0;
+&#125;
+</code></pre>
 
       
        
@@ -531,6 +697,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
