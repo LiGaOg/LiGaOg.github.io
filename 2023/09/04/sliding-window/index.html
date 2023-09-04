@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>如何使用hexo搭建个人博客 | LiGaOg&#39;s blog</title>
+  <title>算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="如何使用hexo搭建个人博客 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="模板题-单调栈 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;832&#x2F;  单调栈可以求出来数组中第i个数左边第一个比它小的数. #include &lt;iostream&gt; #include &lt;stack&gt;  using namespace std;  int main() &amp;#123;      stack&lt;int&gt; stk;">
 <meta property="og:type" content="article">
@@ -480,9 +480,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-build-blog" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">如何使用hexo搭建个人博客</h1>
+        <h1 class="article-title">算法题-单调栈与单调队列模板题</h1>
     
     <div class="article-meta">
         
@@ -492,7 +492,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -500,7 +500,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:54:44'>2023-09-02 20:54</time>
+            Created At : <time class="date" title='Updated At: 2023-09-04 20:23:18'>2023-09-04 20:16</time>
         
     </div>
     <div class="article-meta">
@@ -511,7 +511,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%90%AD%E5%BB%BA%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">搭建前的准备工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDhexo%E7%9A%84%E6%89%80%E6%9C%89%E4%BE%9D%E8%B5%96"><span class="toc-text">下载hexo的所有依赖</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E6%9C%AC%E5%9C%B0%E5%90%AF%E5%8A%A8hexo"><span class="toc-text">在本地启动hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9C%E7%A8%8B%E9%83%A8%E7%BD%B2hexo"><span class="toc-text">远程部署hexo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98"><span class="toc-text">更换主题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E4%BD%BF%E7%94%A8%E5%9B%BE%E5%BA%8A"><span class="toc-text">不使用图床</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -527,34 +527,100 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="搭建前的准备工作"><a href="#搭建前的准备工作" class="headerlink" title="搭建前的准备工作"></a>搭建前的准备工作</h2><p>首先需要下载git和Node.js, 并且在github上创建账号.</p>
-<h2 id="下载hexo的所有依赖"><a href="#下载hexo的所有依赖" class="headerlink" title="下载hexo的所有依赖"></a>下载hexo的所有依赖</h2><p>一行命令不多说:</p>
-<pre><code class="lang-bash">npm install hexo-cli --save
+        <h2 id="模板题-单调栈"><a href="#模板题-单调栈" class="headerlink" title="模板题-单调栈"></a>模板题-单调栈</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/832/">https://www.acwing.com/problem/content/832/</a></p>
+</blockquote>
+<p>单调栈可以求出来数组中第i个数左边第一个比它小的数.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;stack&gt;
+
+using namespace std;
+
+int main() &#123;
+
+    stack&lt;int&gt; stk;
+
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --) &#123;
+        int x;
+        cin &gt;&gt; x;
+        while (stk.size() &amp;&amp; stk.top() &gt;= x) stk.pop();
+        if (stk.empty()) cout &lt;&lt; &quot;-1&quot; &lt;&lt; &quot; &quot;;
+        else cout &lt;&lt; stk.top() &lt;&lt; &quot; &quot;;
+        stk.push(x);
+    &#125;
+    return 0;
+&#125;
 </code></pre>
-<h2 id="在本地启动hexo"><a href="#在本地启动hexo" class="headerlink" title="在本地启动hexo"></a>在本地启动hexo</h2><p>在本地创建一个新的空文件夹, 然后在里面初始化hexo:</p>
-<pre><code class="lang-bash">hexo init
-</code></pre>
-<p>然后启动hexo服务:</p>
-<pre><code class="lang-bash">hexo s
-</code></pre>
-<h2 id="远程部署hexo"><a href="#远程部署hexo" class="headerlink" title="远程部署hexo"></a>远程部署hexo</h2><p>首先下载:</p>
-<pre><code class="lang-bash">npm install hexo-deployer-git --save
-</code></pre>
-<p>然后在Github上创建一个public的仓库, 仓库名字叫<code>&lt;你的用户名&gt;.github.io</code></p>
-<p>之后在Github上开启Github Pages即可访问服务.</p>
-<h2 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h2><p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
-<p>每个主题有各自的github仓库, 里面会介绍如何安装.</p>
-<p>这里选用的主题是Anatolo, 官方仓库: <a target="_blank" rel="noopener" href="https://github.com/Lhcfl/hexo-theme-anatolo/">https://github.com/Lhcfl/hexo-theme-anatolo/</a></p>
-<h2 id="不使用图床"><a href="#不使用图床" class="headerlink" title="不使用图床"></a>不使用图床</h2><ul>
-<li><p>确保hexo自带的<code>_config.yml</code>中的<code>post_asset_folder</code>为true.</p>
-</li>
-<li><p>下载依赖:</p>
-<pre><code class="lang-bash">npm install https://github.com/CodeFalling/hexo-asset-image --save
-</code></pre>
-</li>
-<li><p>之后, 在博客文件夹中, 假设有一个博客叫<code>A.md</code>, 在同级目录下创建一个<code>A</code>文件夹, 里面放图片<code>C.png</code>后, 在<code>A.md</code>中直接用<code>![C](C.png)</code>就可以.</p>
-</li>
+<h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
+</blockquote>
+<p>滑动窗口需要考虑两个变量:</p>
+<ul>
+<li>窗口大小</li>
+<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
 </ul>
+<p>代码模板如下:</p>
+<pre><code class="lang-cpp">#include&lt;iostream&gt;
+#include &lt;cstring&gt;
+
+using namespace std;
+
+const int N = 1000010;
+
+int hh = 0, tt = -1;
+
+int n, k;
+int a[N], q[N];
+
+int main() &#123;
+
+    cin &gt;&gt; n &gt;&gt; k;
+    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
+
+    for (int i = 0; i &lt; n; i ++) &#123;
+          // 滑动窗口前移后, 维护的窗口下标需要更新
+        if (i - k + 1 &gt; q[hh]) hh ++;
+      // 用当前枚举的a[i]排除掉队列中的较大的值
+        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
+        q[ ++ tt ] = i;
+        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
+    &#125;
+
+    puts(&quot;&quot;);
+    hh = 0, tt = -1;
+
+    for (int i = 0; i &lt; n; i ++) &#123;
+        if (i - k + 1 &gt; q[hh]) hh ++;
+        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
+        q[ ++ tt] = i;
+        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
+         const int N = 100010;
+         int hh = 0, tt = -1;
+         int q[N];
+         vector&lt;int&gt; ans;
+
+         for (int i = 0; i &lt; nums.size(); i ++) &#123;
+             if (i - k + 1 &gt; q[hh]) hh ++;
+             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
+             q[ ++ tt] = i;
+             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
+         &#125;
+         return ans;
+    &#125;
+&#125;;
+</code></pre>
 
       
        

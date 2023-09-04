@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-单调队列(滑动窗口) | LiGaOg&#39;s blog</title>
+  <title>算法题-接雨水系列问题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-单调队列(滑动窗口) | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-接雨水系列问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="模板题-单调栈 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;832&#x2F;  单调栈可以求出来数组中第i个数左边第一个比它小的数. #include &lt;iostream&gt; #include &lt;stack&gt;  using namespace std;  int main() &amp;#123;      stack&lt;int&gt; stk;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法题-单调栈与单调队列模板题">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/04/sliding-window/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="模板题-单调栈 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;832&#x2F;  单调栈可以求出来数组中第i个数左边第一个比它小的数. #include &lt;iostream&gt; #include &lt;stack&gt;  using namespace std;  int main() &amp;#123;      stack&lt;int&gt; stk;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-09-04T12:16:17.645Z">
+<meta property="article:modified_time" content="2023-09-04T12:23:18.937Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(24)</small>
+                <small>(25)</small>
             
         </div>
     </li>
@@ -161,7 +161,7 @@
         <div data-rel="算法">
             
             算法
-            <small>(8)</small>
+            <small>(9)</small>
         </div>
         
     </li>
@@ -186,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="24">
+<input type="hidden" id="yelog_site_posts_number" value="25">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -236,6 +236,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/sliding-window/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-单调栈与单调队列模板题">算法题-单调栈与单调队列模板题</span>
+            <span class="post-date" title="2023-09-04 20:16:17">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/catch-rain/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-接雨水系列问题">算法题-接雨水系列问题</span>
+            <span class="post-date" title="2023-09-04 19:45:09">2023/09/04</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -419,15 +437,6 @@
         
         
         <a  class="All 算法 "
-           href="/2023/09/02/sliding-window/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="算法题-单调队列(滑动窗口)">算法题-单调队列(滑动窗口)</span>
-            <span class="post-date" title="2023-09-02 16:22:12">2023/09/02</span>
-        </a>
-        
-        
-        <a  class="All 算法 "
            href="/2023/09/02/median-of-two-sorted-array/"
            data-tag=""
            data-author="" >
@@ -471,9 +480,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-catch-rain" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-单调队列(滑动窗口)</h1>
+        <h1 class="article-title">算法题-接雨水系列问题</h1>
     
     <div class="article-meta">
         
@@ -491,7 +500,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 16:22:12'>2023-09-02 16:22</time>
+            Created At : <time class="date" title='Updated At: 2023-09-04 21:39:49'>2023-09-04 19:45</time>
         
     </div>
     <div class="article-meta">
@@ -502,7 +511,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%BB%B4%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98"><span class="toc-text">一维接雨水问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%8E%A5%E9%9B%A8%E6%B0%B4%E9%97%AE%E9%A2%98"><span class="toc-text">二维接雨水问题</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -518,70 +527,110 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
+        <h2 id="一维接雨水问题"><a href="#一维接雨水问题" class="headerlink" title="一维接雨水问题"></a>一维接雨水问题</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trapping-rain-water/">https://leetcode.cn/problems/trapping-rain-water/</a></p>
 </blockquote>
-<p>滑动窗口需要考虑两个变量:</p>
+<p>维护两个数组:</p>
 <ul>
-<li>窗口大小</li>
-<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
+<li><code>l[i]</code>表示包含当前第<code>i</code>个元素, 和它的左边的所有元素的高度最大值.</li>
+<li><code>r[i]</code>表示包含当前第<code>i</code>个元素, 和它的右边的所有元素的高度最大值.</li>
 </ul>
-<p>代码模板如下:</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include &lt;cstring&gt;
-
-using namespace std;
-
-const int N = 1000010;
-
-int hh = 0, tt = -1;
-
-int n, k;
-int a[N], q[N];
-
-int main() &#123;
-
-    cin &gt;&gt; n &gt;&gt; k;
-    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-          // 滑动窗口前移后, 维护的窗口下标需要更新
-        if (i - k + 1 &gt; q[hh]) hh ++;
-      // 用当前枚举的a[i]排除掉队列中的较大的值
-        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
-        q[ ++ tt ] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    puts(&quot;&quot;);
-    hh = 0, tt = -1;
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-        if (i - k + 1 &gt; q[hh]) hh ++;
-        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
-        q[ ++ tt] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    return 0;
-&#125;
-</code></pre>
-<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
+<p>那么第<code>i</code>个高度对于雨水的贡献就是<code>min(l[i], r[i]) - h[i]</code>, 直接累计即可.</p>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
-         const int N = 100010;
-         int hh = 0, tt = -1;
-         int q[N];
-         vector&lt;int&gt; ans;
+    int trap(vector&lt;int&gt;&amp; height) &#123;
+        const int N = 20010;
+        int l[N], r[N];
 
-         for (int i = 0; i &lt; nums.size(); i ++) &#123;
-             if (i - k + 1 &gt; q[hh]) hh ++;
-             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
-             q[ ++ tt] = i;
-             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
-         &#125;
-         return ans;
+        int maxv = 0;
+
+        for (int i = 0; i &lt; height.size(); i ++) &#123;
+            maxv = max(maxv, height[i]);
+            l[i] = maxv;
+        &#125;
+        maxv = 0;
+        for (int i = height.size() - 1; i &gt;= 0; i --) &#123;
+            maxv = max(maxv, height[i]);
+            r[i] = maxv;
+        &#125;
+        int res = 0;
+        for (int i = 0; i &lt; height.size(); i ++) &#123;
+            res += min(l[i], r[i]) - height[i];
+        &#125;
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="二维接雨水问题"><a href="#二维接雨水问题" class="headerlink" title="二维接雨水问题"></a>二维接雨水问题</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/trapping-rain-water-ii/">https://leetcode.cn/problems/trapping-rain-water-ii/</a></p>
+</blockquote>
+<p>首先需要明确, 对于一个格子$(i, j)$, 如何计算它能够达到的最大高度(贡献的雨水量就是这个最大高度和这个格子高度的差值), 假设这个最大高度定义为$f(i, j)$.</p>
+<p>这个格子$(i, j)$有很多条路径通向边界, 对于每一条单独的路径而言, 它能达到的最大高度是这条路径上格子高度的最大值.</p>
+<p>而对于所有路径而言, 就需要把这些所有路径的最大值再取一个最小值.</p>
+<p>用数学公式来说的话:</p>
+<script type="math/tex; mode=display">
+f(i, j) = min\{max(f(i-1, j), h(i, j)), max(f(i + 1, j), h(i, j)), max(f(i, j - 1), h(i, j)), max(f(i, j + 1), h(i, j)) \}</script><p>但是这个是无法计算的, 因为状态转移不是拓扑图.</p>
+<p>现在考虑这样一个问题, 对于一个边界格子, 它能够达到的最大高度是多少?</p>
+<ul>
+<li>首先, 边界格子能够直接通向边界, 如果按这个路径来说, 它能够贡献的水量就是$h(i, j)$.</li>
+<li>然后, 边界格子也可能通过走其他格子通向边界, 对于某一条具体的路径, 如果格子高度最大值$h \geqslant h(i, j)$, 那么最后一步取最小值时, 它最终贡献的水量还是$h(i, j)$.</li>
+</ul>
+<p>因此, 边界格子$(i, j)$能够达到的最大高度就是$h(i, j)$.</p>
+<p>那么现在的问题就是, 如何从边界格子$(i, j)$开始, 逐步计算内部格子能够贡献的雨水量$f(i, j)$.</p>
+<p>直接用一个小根堆, 将边界能达到的最大高度放入小根堆, 每次枚举四个方向, 用这个最大高度更新内部格子的最大高度即可.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+
+    struct Cell &#123;
+        /* h是Cell能达到的最大高度 */
+        int h, x, y;
+        bool operator &lt; (const Cell &amp;t) const &#123;
+            return h &gt; t.h;
+        &#125;
+    &#125;;
+    int trapRainWater(vector&lt;vector&lt;int&gt;&gt;&amp; h) &#123;
+            /* 判空 */
+            if (h.empty() || h[0].empty()) return 0;
+
+            int n = h.size(), m = h[0].size();
+
+            /* 小根堆 */
+            priority_queue&lt;Cell&gt; heap;
+            /* 判重数组 */
+            vector&lt;vector&lt;bool&gt;&gt; st(n, vector&lt;bool&gt;(m));
+
+            /* 初始化左右边界 */
+            for (int i = 0; i &lt; n; i ++) &#123;
+                st[i][0] = st[i][m - 1] = true;
+                heap.push(&#123; h[i][0], i, 0 &#125;);
+                heap.push(&#123; h[i][m - 1], i, m - 1 &#125;);
+            &#125;
+
+            /* 初始化上下边界 */
+            for (int i = 1; i &lt; m - 1; i ++) &#123;
+                st[0][i] = st[n - 1][i] = true;
+                heap.push(&#123; h[0][i], 0, i &#125;);
+                heap.push(&#123; h[n - 1][i], n - 1, i &#125;);
+            &#125;
+
+            int res = 0;
+            int dx[] = &#123; -1, 0, 1, 0 &#125;;
+            int dy[] = &#123; 0, 1, 0, -1 &#125;;
+
+            while (heap.size()) &#123;
+                auto t = heap.top();
+                heap.pop();
+                res += t.h - h[t.x][t.y];
+                for (int i = 0; i &lt; 4; i ++) &#123;
+                    int x = t.x + dx[i];
+                    int y = t.y + dy[i];
+                    if (x &gt; 0 &amp;&amp; x &lt; n &amp;&amp; y &gt; 0 &amp;&amp; y &lt; m &amp;&amp; !st[x][y]) &#123;
+                        st[x][y] = true;
+                        heap.push(&#123; max(h[x][y], t.h), x, y &#125;);
+                    &#125;
+                &#125;
+            &#125;
+            return res;
     &#125;
 &#125;;
 </code></pre>
@@ -597,6 +646,46 @@ public:
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
