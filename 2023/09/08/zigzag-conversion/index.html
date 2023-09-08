@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-最长回文子串 | LiGaOg&#39;s blog</title>
+  <title>算法题-N字形变换 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-最长回文子串 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-N字形变换 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -498,9 +498,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-longest-palindromic-substring" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-zigzag-conversion" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-最长回文子串</h1>
+        <h1 class="article-title">算法题-N字形变换</h1>
     
     <div class="article-meta">
         
@@ -518,7 +518,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-03 10:53:54'>2023-09-03 10:50</time>
+            Created At : <time class="date" title='Updated At: 2023-09-08 09:22:31'>2023-09-08 09:02</time>
         
     </div>
     <div class="article-meta">
@@ -529,7 +529,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -545,33 +545,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/">https://leetcode.cn/problems/longest-palindromic-substring/</a></p>
-</blockquote>
-<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>首先枚举回文子串的中心点, 假设是<code>i</code>.</p>
-<p>然后从中心点<code>i</code>开始, 向前向后枚举判断子串是否对称:</p>
+        <p>这个题本质上是一个找规律题, 观察如下N字形变换, 其中$n = 4$:</p>
+<pre><code>0      6       12
+1    5 7    11 13
+2  4   8  10   14
+3      9       15
+</code></pre><ul>
+<li>对于第一行($i = 0$)来说, 这个序列是一个等差数列, 首项是0, 公差是$2n - 2$.</li>
+<li>对于最后一行 ($i = n - 1$)来说, 这个序列也是一个等差数列, 首项是$n - 1$, 公差是$2n - 2$.</li>
+<li><p>对于中间的若干行 ($0 &lt; i &lt; n - 1$)来说, 由两部分组成:</p>
 <ul>
-<li>如果原字符串长度为奇数, 那么初始化<code>l = i - 1, r = i + 1</code>, 然后枚举.</li>
-<li>如果原字符串长度为偶数, 那么初始化<code>l = i, r = i + 1</code>然后枚举.</li>
+<li>第一部分是首项是$i$, 公差是$2n - 2$的等差数列.</li>
+<li>第二部分是首项是$2n - 2 - i$, 公差是$2n - 2$的等差数列.</li>
 </ul>
-<p>时间复杂度为$O(n^2)$</p>
+</li>
+<li><p>其中$n = 1$的情况要特殊判断, 因为如果$n = 1$, 那么公差就变成0了, 按照循环输出的话, 就会变成死循环.</p>
+</li>
+</ul>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    string longestPalindrome(string s) &#123;
+    string convert(string s, int n) &#123;
         string res;
+        if (n == 1) return s;
 
-        for (int i = 0; i &lt; s.size(); i ++) &#123;
-            int l = i - 1, r = i + 1;
-
-            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
-            // 停止循环后, 回文串的长度是(r - 1) - (l + 1) + 1 = r - l - 1
-            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
-
-            l = i, r = i + 1;
-
-            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
-            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
-
+        for (int i = 0; i &lt; n; i ++) &#123;
+            if (i == 0 || i == n - 1) &#123;
+                for (int j = i; j &lt; s.size(); j += 2 * n - 2) res += s[j];
+            &#125;
+            else &#123;
+                for (int j = i, k = 2 * n - 2 - i; j &lt; s.size() || k &lt; s.size(); j += 2 * n - 2, k += 2 * n - 2) &#123;
+                    if (j &lt; s.size()) res += s[j];
+                    if (k &lt; s.size()) res += s[k];
+                &#125;
+            &#125;
         &#125;
 
         return res;

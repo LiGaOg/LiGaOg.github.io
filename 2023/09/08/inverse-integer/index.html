@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-最长回文子串 | LiGaOg&#39;s blog</title>
+  <title>算法题-反转整数 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-最长回文子串 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-反转整数 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -498,9 +498,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-longest-palindromic-substring" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-inverse-integer" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-最长回文子串</h1>
+        <h1 class="article-title">算法题-反转整数</h1>
     
     <div class="article-meta">
         
@@ -518,7 +518,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-03 10:53:54'>2023-09-03 10:50</time>
+            Created At : <time class="date" title='Updated At: 2023-09-08 09:00:06'>2023-09-08 08:59</time>
         
     </div>
     <div class="article-meta">
@@ -529,7 +529,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B"><span class="toc-text">暴力</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-%E4%B8%AD%E8%B4%9F%E6%95%B0%E6%A8%A1%E8%BF%90%E7%AE%97"><span class="toc-text">C++中负数模运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%BA%A2%E5%87%BA"><span class="toc-text">如何判断溢出</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -545,36 +545,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-palindromic-substring/">https://leetcode.cn/problems/longest-palindromic-substring/</a></p>
-</blockquote>
-<h2 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h2><p>首先枚举回文子串的中心点, 假设是<code>i</code>.</p>
-<p>然后从中心点<code>i</code>开始, 向前向后枚举判断子串是否对称:</p>
-<ul>
-<li>如果原字符串长度为奇数, 那么初始化<code>l = i - 1, r = i + 1</code>, 然后枚举.</li>
-<li>如果原字符串长度为偶数, 那么初始化<code>l = i, r = i + 1</code>然后枚举.</li>
-</ul>
-<p>时间复杂度为$O(n^2)$</p>
+        <h2 id="C-中负数模运算"><a href="#C-中负数模运算" class="headerlink" title="C++中负数模运算"></a>C++中负数模运算</h2><p>在数学上, 一个负数$x&lt;0$对$c$取模后, 得到的结果应该是大于等于0的, $x \% c = p$, 那么$c | (x - p)$.</p>
+<p>但是在C++中, $x \% c$的结果和$|x| \% c$的结果是一样的.</p>
+<p>因此, 按照如下模板取出一个整数(包括正数和负数)的每一位都是正确的, 不用特殊处理负数的情况.</p>
+<pre><code class="lang-cpp">int r = 0;
+while (x) &#123;
+  r = r * 10 + x % 10;
+  x /= 10;
+&#125;
+</code></pre>
+<h2 id="如何判断溢出"><a href="#如何判断溢出" class="headerlink" title="如何判断溢出"></a>如何判断溢出</h2><p>当循环内溢出的时候, $10r + x \% 10 &gt; INTMAX$, 负数同理.</p>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    string longestPalindrome(string s) &#123;
-        string res;
+    int reverse(int x) &#123;
+        int r = 0;
+        while (x) &#123;
+            /* r &gt; 0, 10r + x % 10 &gt; INT_MAX */
+            if (r &gt; 0 &amp;&amp; r &gt; (INT_MAX - x % 10) / 10) return 0;
+            if (r &lt; 0 &amp;&amp; r &lt; (INT_MIN - x % 10) / 10) return 0;
 
-        for (int i = 0; i &lt; s.size(); i ++) &#123;
-            int l = i - 1, r = i + 1;
-
-            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
-            // 停止循环后, 回文串的长度是(r - 1) - (l + 1) + 1 = r - l - 1
-            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
-
-            l = i, r = i + 1;
-
-            while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l] == s[r]) l --, r ++;
-            if (r - l - 1 &gt; res.size()) res = s.substr(l + 1, r - l - 1);
-
+            r = r * 10 + x % 10;
+            x /= 10;
         &#125;
-
-        return res;
+        return r;
     &#125;
 &#125;;
 </code></pre>
