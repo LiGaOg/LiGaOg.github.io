@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>梳理有关python的一些概念 | LiGaOg&#39;s blog</title>
+  <title>算法题-正则表达式匹配 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="梳理有关python的一些概念 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-正则表达式匹配 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="动态规划 首先需要注意, *是不能单独出现的, 它是和前面一个字符组成一个整体, 例如a*, 表示空字符串, 一个a, 两个a, 到任意多个a. 假设$f(i, j)$表示$s(1..i)$和$p(1…j)$的所有的匹配方案是否为空, 注意: 下标从1开始, 状态转移可以分为两种情况考虑: 如果$p(j)$不是*, 那么$f(i, j) &#x3D; f(i - 1, j - 1)\ \&amp;\&amp;amp">
 <meta property="og:type" content="article">
@@ -507,9 +507,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-under-python" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-regular-expression" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">梳理有关python的一些概念</h1>
+        <h1 class="article-title">算法题-正则表达式匹配</h1>
     
     <div class="article-meta">
         
@@ -519,7 +519,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -527,7 +527,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:56:07'>2023-09-02 20:56</time>
+            Created At : <time class="date" title='Updated At: 2023-09-08 11:14:07'>2023-09-08 10:25</time>
         
     </div>
     <div class="article-meta">
@@ -538,7 +538,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8E%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E7%9A%84python%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%9C%E8%A5%BF"><span class="toc-text">从官网下载的python有什么东西</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9A%84%E5%8C%85%E5%9C%A8%E5%93%AA%E9%87%8C"><span class="toc-text">python的包在哪里</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#python%E7%9A%84%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="toc-text">python的虚拟环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#venv"><span class="toc-text">venv</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anaconda"><span class="toc-text">Anaconda</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-text">动态规划</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -554,59 +554,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="从官网下载的python有什么东西"><a href="#从官网下载的python有什么东西" class="headerlink" title="从官网下载的python有什么东西"></a>从官网下载的python有什么东西</h2><p>在python官网上, 可以找到mac平台下的installer, 格式是pkg, 借助Suspicious Package, 可以清晰地看到这个下载器在什么地方安装了什么东西:</p>
-<p><img src="/2023/09/02/under-python/image-20230619195133700.png" alt="image-20230619195133700"></p>
-<p>其中的可执行文件有如下四种:</p>
-<ul>
-<li><code>python</code>: 这个是python脚本的解释器.</li>
-<li><code>pydoc</code>: 查看python一些模块, 函数的文档, 例如命令行中使用<code>pydoc os</code>可以查看<code>os</code>模块的文档.</li>
-<li><code>idle</code>: idle的全程是Integrated Development Environment, 运行这个可执行文件可以得到一个python的交互式shell.</li>
-<li><code>2to3</code>: 这个程序用于将python2代码转换成python3代码.</li>
-<li><code>python3-config</code>: 用于查询python解释器的相关信息的程序, 可以查询解释器的编译, 链接选项等等.</li>
-</ul>
-<p>其中, <code>****3</code>是LTS, 而<code>***3.11</code>是最新版本.</p>
-<p>除此之外, 在pkg下载器的<code>postinstall</code>脚本中, 还可以发现自动安装了<code>pip3</code>和<code>pip3.11</code>, 安装目录仍然是<code>/usr/local/bin</code>:</p>
-<p><img src="/2023/09/02/under-python/image-20230619200414689.png" alt="image-20230619200414689"></p>
-<h2 id="python的包在哪里"><a href="#python的包在哪里" class="headerlink" title="python的包在哪里"></a>python的包在哪里</h2><ul>
-<li>python3可执行文件在某个<code>bin</code>目录中.</li>
-<li>python3解释器中, 规定了两个站点:<ul>
-<li>全局站点: 所有用户都能用, 一般在某个<code>bin</code>目录同级的<code>lib</code>目录.</li>
-<li>用户站点: 单个用户可以用, 一般是<code>~/.local/lib</code>这种目录.</li>
-<li>可以使用<code>python3 -m site</code>查看解释器规定的站点</li>
+        <h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><ul>
+<li>首先需要注意, <code>*</code>是不能单独出现的, 它是和前面一个字符组成一个整体, 例如<code>a*</code>, 表示空字符串, 一个<code>a</code>, 两个<code>a</code>, 到任意多个<code>a</code>.</li>
+<li>假设$f(i, j)$表示$s(1..i)$和$p(1…j)$的所有的匹配方案是否为空, 注意: 下标从1开始, 状态转移可以分为两种情况考虑:<ul>
+<li>如果$p(j)$不是<code>*</code>, 那么$f(i, j) = f(i - 1, j - 1)\ \&amp;\&amp;\ (s(i) == p(j)\ ||\ p(j) == ‘.’)$</li>
+<li>如果$p(j)$是<code>*</code>, 那么需要根据这个<code>*</code>代表多少个$p(j - 1)$字符进行分类讨论:<ul>
+<li>如果代表0个$p(j - 1)$, 那么$f(i, j) = f(i, j - 2)$</li>
+<li>如果代表1个$p(j - 1)$, 那么$f(i, j) = f(i - 1, j - 2)\ \&amp;\&amp;\ (s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’)$</li>
+<li>如果代表2个$p(j - 1)$, 那么$f(i, j) = f(i - 2, j - 2)\ \&amp;\&amp;\ (s(i-1) == p(j - 1)\ \&amp;\&amp;\ s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’)$</li>
+<li>…, 最后的$f(i, j)$就是上面几种情况相与.</li>
+<li>可以发现, $f(i, j)$和$f(i - 1, j)$总是相差一个$s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’$(见下面的分析), 因此, 最终的状态转移是$f(i, j) = f(i,j-2)\ ||\ (f(i - 1, j)\ \&amp;\&amp;\ (s(i) == p(j - 1))\ ||\ (p(j - 1) == ‘.’))$.</li>
 </ul>
 </li>
-<li><p><code>pip3</code>下载时, 默认下载到全局站点, 如果有<code>--user</code>, 那么会下载到用户站点.</p>
+</ul>
 </li>
-<li><p><code>import</code>时解释器找的模块在哪里, 这个问题可以用如下代码解决:</p>
-<pre><code class="lang-python">import module_name
+</ul>
+<p>状态转移优化的推导:</p>
+<pre><code class="lang-cpp">f[i][j] = (f[i][j - 2]) || (f[i - 1][j - 2] &amp;&amp; (s[i] == p[j - 1] || p[j - 1] == &#39;.&#39;)) || (f[i - 2][j - 2] &amp;&amp; ((s[i - 1] == p[j - 1] &amp;&amp; s[i] == p[j - 1]) || p[j - 1] == &#39;.&#39;)) || ...
 
-module_file = module_name.__file__
-print(module_file.__file__)
+f[i - 1][j] = (f[i - 1][j - 2]) || (f[i - 2][j - 2] &amp;&amp; (s[i - 1] == p[j - 1] || p[j - 1] == &#39;.&#39;)) || (f[i - 3][j - 2] &amp;&amp; ((s[i - 2] == p[j - 1] &amp;&amp; s[i - 1] == p[j - 1]) || p[j - 1] == &#39;.&#39;)) || ...
 </code></pre>
-<p>一般会从解释器的全局站点和用户站点的路径中搜索.</p>
-</li>
-</ul>
-<h2 id="python的虚拟环境"><a href="#python的虚拟环境" class="headerlink" title="python的虚拟环境"></a>python的虚拟环境</h2><h3 id="venv"><a href="#venv" class="headerlink" title="venv"></a>venv</h3><p>从官网上下载的解释器默认就支持venv.</p>
-<p>使用<code>python3 -m venv &lt;虚拟环境名称&gt;</code>就可以在某一个目录中创建虚拟环境, 创建后的目录结构如下:</p>
-<p><img src="/2023/09/02/under-python/image-20230620120735680.png" alt="image-20230620120735680"></p>
-<p>可以看到, 本质上还是把python3的那一套搬到了这个目录, 在这个目录下的<code>pip3</code>和<code>python3</code>都是<code>bin</code>目录下的可执行文件.</p>
-<h3 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h3><ul>
-<li><p>conda是一个增强版的python, 其中比原版的python包含了更多有用的可执行文件, 例如ipython, pylint, pylsp等, 还包括conda的一些可执行文件.</p>
-</li>
-<li><p>conda下载并且初始化完之后, 默认你当前的虚拟环境名称是base, 其中这个环境的可执行文件一般在<code>~/anaconda/bin</code>.</p>
-</li>
-<li>当你用<code>conda create</code>创建了虚拟环境, 并且用<code>conda install</code>下载了包, 那么环境在<code>~/anaconda/envs/&lt;你的虚拟环境&gt;</code>中.</li>
-<li>切换虚拟环境时, 环境变量<code>PATH</code>会改变, 执行<code>python3</code>解释器时, 解释器是不同python环境下的解释器.</li>
-<li>在虚拟环境中<code>conda install</code>和<code>pip install</code>的区别:<ul>
-<li>相同点: 下载的路径没有区别, 都是在python站点下进行下载.</li>
-<li>不同点: <ul>
-<li>conda可以下载并管理非python包, 下载路径在<code>~/anaconda/pkgs</code>, 例如<code>ffmpeg</code>.</li>
-<li>当base环境中有包, 但是在另一个虚拟环境A中再次用<code>conda install</code>下载时, 这时<code>conda install</code>不会真的下载, 而是关联base环境. 但是<code>pip3</code>依旧会下载, 因为<code>pip3</code>只负责处理自己所在的虚拟环境.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    bool isMatch(string s, string p) &#123;
+        int n = s.size();
+        int m = p.size();
+
+        s = &#39; &#39; + s;
+        p = &#39; &#39; + p;
+
+        vector&lt;vector&lt;bool&gt;&gt; f(n + 1, vector&lt;bool&gt;(m + 1, false));
+        f[0][0] = true;
+
+        for (int i = 0; i &lt;= n; i ++) &#123;
+            for (int j = 1; j &lt;= m; j ++) &#123;
+
+                /* 如果p[j]不是*, 那么要求前面的s不是空 */
+                if (i &gt;= 1 &amp;&amp; p[j] != &#39;*&#39;) &#123;
+                        f[i][j] = f[i - 1][j - 1] &amp;&amp; (s[i] == p[j] || p[j] == &#39;.&#39;);
+                &#125;
+                else if (p[j] == &#39;*&#39;) &#123;
+                        /* 如果出现了*, 那么前面一定有字符, j &gt;= 2 */
+                        f[i][j] = f[i][j - 1] = f[i][j - 2] || ((i &gt;= 1) &amp;&amp; f[i - 1][j] &amp;&amp; (s[i] == p[j - 1] || p[j - 1] == &#39;.&#39;));
+                &#125;
+            &#125;
+        &#125;
+
+        return f[n][m];
+    &#125;
+&#125;;
+</code></pre>
 
       
        
@@ -619,6 +616,46 @@ print(module_file.__file__)
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
