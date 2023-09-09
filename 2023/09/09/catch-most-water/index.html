@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog</title>
+  <title>算法题-盛水最多的容器 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-盛水最多的容器 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -534,9 +534,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-catch-most-water" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-单调栈与单调队列模板题</h1>
+        <h1 class="article-title">算法题-盛水最多的容器</h1>
     
     <div class="article-meta">
         
@@ -554,7 +554,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-04 20:23:18'>2023-09-04 20:16</time>
+            Created At : <time class="date" title='Updated At: 2023-09-09 10:23:39'>2023-09-09 09:58</time>
         
     </div>
     <div class="article-meta">
@@ -565,7 +565,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95"><span class="toc-text">双指针算法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -581,99 +581,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="模板题-单调栈"><a href="#模板题-单调栈" class="headerlink" title="模板题-单调栈"></a>模板题-单调栈</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/832/">https://www.acwing.com/problem/content/832/</a></p>
-</blockquote>
-<p>单调栈可以求出来数组中第i个数左边第一个比它小的数.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stack&gt;
-
-using namespace std;
-
-int main() &#123;
-
-    stack&lt;int&gt; stk;
-
-    int n;
-    cin &gt;&gt; n;
-
-    while (n --) &#123;
-        int x;
-        cin &gt;&gt; x;
-        while (stk.size() &amp;&amp; stk.top() &gt;= x) stk.pop();
-        if (stk.empty()) cout &lt;&lt; &quot;-1&quot; &lt;&lt; &quot; &quot;;
-        else cout &lt;&lt; stk.top() &lt;&lt; &quot; &quot;;
-        stk.push(x);
-    &#125;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
-</blockquote>
-<p>滑动窗口需要考虑两个变量:</p>
+        <h2 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h2><ul>
+<li>首先, 对于任意选取的两个竖线, 它们之间的面积是$min\{h(i), h(j)\} \times (j - i)$</li>
+<li><p>选取两个指针<code>i</code>和<code>j</code>分别指向数组的开始和结尾, 每次先计算两个指针所在竖线的面积, 并维护最大值.</p>
 <ul>
-<li>窗口大小</li>
-<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
+<li>如果$h(i) &lt; h(j)$, 那么<code>i</code>向前移动.</li>
+<li>如果$h(i) &gt; h(j)$, 那么<code>j</code>向后移动.</li>
+<li>相等的话移动哪边都可以, 默认移动<code>i</code>.</li>
 </ul>
-<p>代码模板如下:</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include &lt;cstring&gt;
+</li>
+<li><p>证明:</p>
+<ul>
+<li>假设最优解所在的两条竖线的下标分别是$p, q$, 指针$i, j$一定有一个会先到达最优解的边界, 不妨设$i$先到$p$, 需要证明, 按照上述算法, $j$一定会到$q$.</li>
+<li>反证: 假设$h(p) \leqslant h(j)$, 那么此时$i$指针在$p$, 它会向右移动, 但是如果要枚举到最优解, $j$指针需要向左移动.</li>
+<li>最优解的面积是$min\{h(p), h(q)\} \times (q - p)$ </li>
+<li>考虑这个面积: $min\{h(p), h(j)\} \times (j - p)$, 其中$h(i) = h(p)$, 由于$h(i) = h(p) \leqslant h(j)$, 那么这个面积实际上是$h(j) \times (j - p)$</li>
+<li>但是, $min\{h(p), h(q)\} \times (q - p) &lt; h(j) \times (j - p)$, 因此, 最优解就变成了$h(j) \times (j - p)$, 不符合原来的假设.</li>
+<li>因此, 原来的算法一定会枚举到最优解.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 
 using namespace std;
 
-const int N = 1000010;
+const int N = 100010;
 
-int hh = 0, tt = -1;
-
-int n, k;
-int a[N], q[N];
+int n;
+int h[N];
 
 int main() &#123;
 
-    cin &gt;&gt; n &gt;&gt; k;
-    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; h[i];
 
-    for (int i = 0; i &lt; n; i ++) &#123;
-          // 滑动窗口前移后, 维护的窗口下标需要更新
-        if (i - k + 1 &gt; q[hh]) hh ++;
-      // 用当前枚举的a[i]排除掉队列中的较大的值
-        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
-        q[ ++ tt ] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
+    int i = 0, j = n - 1, res = -1;
+
+    while (i &lt; j) &#123;
+        res = max(res, min(h[i], h[j]) * (j - i));
+        if (h[i] &lt;= h[j]) i ++;
+        else j --;
     &#125;
-
-    puts(&quot;&quot;);
-    hh = 0, tt = -1;
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-        if (i - k + 1 &gt; q[hh]) hh ++;
-        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
-        q[ ++ tt] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
+    cout &lt;&lt; res &lt;&lt; endl;
 
     return 0;
 &#125;
-</code></pre>
-<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
-         const int N = 100010;
-         int hh = 0, tt = -1;
-         int q[N];
-         vector&lt;int&gt; ans;
-
-         for (int i = 0; i &lt; nums.size(); i ++) &#123;
-             if (i - k + 1 &gt; q[hh]) hh ++;
-             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
-             q[ ++ tt] = i;
-             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
-         &#125;
-         return ans;
-    &#125;
-&#125;;
 </code></pre>
 
       
@@ -687,6 +639,46 @@ public:
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

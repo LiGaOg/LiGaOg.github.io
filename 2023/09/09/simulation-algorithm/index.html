@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog</title>
+  <title>算法题-一些模拟类型的算法 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-一些模拟类型的算法 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -534,9 +534,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-simulation-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-单调栈与单调队列模板题</h1>
+        <h1 class="article-title">算法题-一些模拟类型的算法</h1>
     
     <div class="article-meta">
         
@@ -554,7 +554,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-04 20:23:18'>2023-09-04 20:16</time>
+            Created At : <time class="date" title='Updated At: 2023-09-09 17:57:52'>2023-09-09 17:57</time>
         
     </div>
     <div class="article-meta">
@@ -565,7 +565,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="toc-text">字符串最长公共前缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0"><span class="toc-text">字符串转换整数</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -581,97 +581,56 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="模板题-单调栈"><a href="#模板题-单调栈" class="headerlink" title="模板题-单调栈"></a>模板题-单调栈</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/832/">https://www.acwing.com/problem/content/832/</a></p>
+        <h2 id="字符串最长公共前缀"><a href="#字符串最长公共前缀" class="headerlink" title="字符串最长公共前缀"></a>字符串最长公共前缀</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-common-prefix/">https://leetcode.cn/problems/longest-common-prefix/</a></p>
 </blockquote>
-<p>单调栈可以求出来数组中第i个数左边第一个比它小的数.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stack&gt;
-
-using namespace std;
-
-int main() &#123;
-
-    stack&lt;int&gt; stk;
-
-    int n;
-    cin &gt;&gt; n;
-
-    while (n --) &#123;
-        int x;
-        cin &gt;&gt; x;
-        while (stk.size() &amp;&amp; stk.top() &gt;= x) stk.pop();
-        if (stk.empty()) cout &lt;&lt; &quot;-1&quot; &lt;&lt; &quot; &quot;;
-        else cout &lt;&lt; stk.top() &lt;&lt; &quot; &quot;;
-        stk.push(x);
-    &#125;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
-</blockquote>
-<p>滑动窗口需要考虑两个变量:</p>
-<ul>
-<li>窗口大小</li>
-<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
-</ul>
-<p>代码模板如下:</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include &lt;cstring&gt;
-
-using namespace std;
-
-const int N = 1000010;
-
-int hh = 0, tt = -1;
-
-int n, k;
-int a[N], q[N];
-
-int main() &#123;
-
-    cin &gt;&gt; n &gt;&gt; k;
-    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-          // 滑动窗口前移后, 维护的窗口下标需要更新
-        if (i - k + 1 &gt; q[hh]) hh ++;
-      // 用当前枚举的a[i]排除掉队列中的较大的值
-        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
-        q[ ++ tt ] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    puts(&quot;&quot;);
-    hh = 0, tt = -1;
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-        if (i - k + 1 &gt; q[hh]) hh ++;
-        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
-        q[ ++ tt] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    return 0;
-&#125;
-</code></pre>
-<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
-         const int N = 100010;
-         int hh = 0, tt = -1;
-         int q[N];
-         vector&lt;int&gt; ans;
+    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;
+        string res;
+        if (strs.empty()) return res;
 
-         for (int i = 0; i &lt; nums.size(); i ++) &#123;
-             if (i - k + 1 &gt; q[hh]) hh ++;
-             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
-             q[ ++ tt] = i;
-             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
-         &#125;
-         return ans;
+        for (int i = 0; ; i ++) &#123;
+            if (i &gt;= strs[0].size()) return res;
+            char c = strs[0][i];
+            for (auto &amp;str: strs) &#123;
+                if (i &gt;= str.size() || str[i] != c) return res;
+            &#125;
+            res += c;
+        &#125;
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="字符串转换整数"><a href="#字符串转换整数" class="headerlink" title="字符串转换整数"></a>字符串转换整数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/string-to-integer-atoi/">https://leetcode.cn/problems/string-to-integer-atoi/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int myAtoi(string s) &#123;
+        int k = 0;
+        while (k &lt; s.size() &amp;&amp; s[k] == &#39; &#39;) k ++;
+
+        if (k == s.size()) return 0;
+
+        bool neg = false;
+        if (s[k] == &#39;-&#39;) neg = true;
+        if (s[k] == &#39;-&#39; || s[k] == &#39;+&#39;) k ++;
+
+        int res = 0;
+
+        while (k &lt; s.size() &amp;&amp; s[k] &gt;= &#39;0&#39; &amp;&amp; s[k] &lt;= &#39;9&#39;) &#123;
+            int x = s[k] - &#39;0&#39;;
+            if (!neg &amp;&amp; res &gt; (INT_MAX - x) / 10) return INT_MAX;
+            if (neg &amp;&amp; -res &lt; (INT_MIN + x) / 10) return INT_MIN;
+            /* 特判, 正数无法存储2147483648 */
+            if (neg &amp;&amp; -res * 10 - x == INT_MIN) return INT_MIN;
+
+            res = res * 10 + x;
+            k ++;
+        &#125;
+
+        return (neg) ? -res : res;
     &#125;
 &#125;;
 </code></pre>
