@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>LiGaOg&#39;s blog</title>
+  <title>算法-对KMP算法的理解 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="LiGaOg&#39;s blog">
+  <meta name="description" content="算法-对KMP算法的理解 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -60,7 +60,7 @@
 
 
 <body>
-<aside class="nav mobile">
+<aside class="nav">
     <div class="nav-left">
         <a href="/"
    class="avatar_target">
@@ -550,12 +550,40 @@
         </div>
     </div>
 </aside>
-<div id="post" class="index">
+<div id="post">
     <div class="pjax">
-        <article class="index">
-            <div class="toc-ref">
+        <article id="post-kmp-ac-automaton" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E6%88%91%E4%BB%8B%E7%BB%8D"><span class="toc-text">自我介绍</span></a></li></ol>
+        <h1 class="article-title">算法-对KMP算法的理解</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="算法">算法</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-09-10 19:30:58'>2023-09-10 17:05</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-text">KMP算法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -568,11 +596,121 @@
     }
 </style>
 </div>
-            <h1 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h1><p>你好, 我是LiGaOg.</p>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><p>KMP算法可以求出模式串$p$在给定字符串$s$出现的位置 (注意, 下面的讨论中, 下标都从1开始).</p>
+<p>KMP算法本质上是一个状态机的算法, 我现在有原串$s$的很多字符$c_1, c_2, …, c_n$, 要喂到这个状态机中, 这个状态机有这几个状态:</p>
+<ul>
+<li>状态0: 起始状态, 还没有成功匹配一个字符.</li>
+<li>状态1: 我喂进去了一个字符$c$, 并且成功匹配了.</li>
+<li>状态2: 我喂进去了两个字符$c_1, c_2$, 并且都成功匹配了.</li>
+<li>…</li>
+<li>直到状态$m$ ($m$是模式串的长度), 表示我喂进去了$m$个字符, 都成功匹配了, 那就说明从原串中找到模式串了, 成功.</li>
+</ul>
+<p>那么需要处理的一个问题是, 如果我现在在一个状态$j$, 遇到了一个没匹配上的字符$c_k$, 那么我应该转移到哪个状态?</p>
+<ul>
+<li>假设我需要转移到状态$i$, 要保证效率的前提下, 这个$i$应该尽量最大, 如果要保持最大, 那么就需要$p[1…i] = p[j - i, j]$, 本质上, 也就是求以$p[j]$结尾的最长公共前后缀, 因此, 当数组下标从1开始时, 状态$j$就需要转移到下标值等于以$p[j]$结尾的最长公共前后缀的长度的位置.</li>
+<li>转移之后, 还需要判断$p[i + 1]$与$c_k$是否相等, 如果相等就可以进一步转移.</li>
+</ul>
+<p>那么如何求最长公共前后缀呢?</p>
+<ul>
+<li>求最长公共前后缀的方法和上面状态机算法没有本质区别:<ul>
+<li>对于$p[1]$, 我就拿$p$的第一个字符喂到状态机中, 看第一个字符如果不匹配模式串$p$, 需要跳到哪里? 答案是跳到状态0.</li>
+<li>对于$p[i]$, 我就拿$p$的第$i$个字符出来喂到状态机中, 状态机最终跳到哪里, 哪里就是以$p[i - 1]$结尾的最长公共前后缀的长度, 假设最终跳到了$p[j]$, 此时如果$p[j + 1] = p[i]$, 那么以$p[i]$结尾的最长公共前后缀的长度就是$j + 1$.</li>
+<li>就这样一直循环, 即可求出以每一个字符结尾的最长公共前后缀的长度.</li>
+</ul>
+</li>
+</ul>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 
-        </article>
-        
-        
+using namespace std;
+
+const int N = 1000010, M = 100010;
+
+int n, m;
+int ne[M];
+char s[N], p[M];
+
+int main() &#123;
+
+    cin &gt;&gt; m &gt;&gt; p + 1 &gt;&gt; n &gt;&gt; s + 1;
+
+    for (int i = 2, j = 0; i &lt;= m; i ++) &#123;
+        while (j &amp;&amp; p[j + 1] != p[i]) j = ne[j];
+        if (p[j + 1] == p[i]) j ++;
+        ne[i] = j;
+    &#125;
+
+    for (int i = 1, j = 0; i &lt;= n; i ++) &#123;
+        while (j &amp;&amp; p[j + 1] != s[i]) j = ne[j];
+        if (p[j + 1] == s[i]) j ++;
+        if (j == m) &#123;
+            printf(&quot;%d &quot;, i - m);
+            j = ne[j];
+        &#125;
+    &#125;
+
+    return 0;
+&#125;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
     </div>
     <div class="copyright">
         <p class="footer-entry">
@@ -581,11 +719,11 @@
 <p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
 
     </div>
-</div>
-<div class="full-toc">
-    <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
 <a class="" id="rocket" ></a>
 
+    </div>
 </div>
 
 </body>
