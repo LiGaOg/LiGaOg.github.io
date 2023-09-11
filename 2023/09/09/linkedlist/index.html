@@ -239,6 +239,15 @@
         
         
         <a  class="All 算法 "
+           href="/2023/09/11/simulation-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-一些模拟类型的算法">算法题-一些模拟类型的算法</span>
+            <span class="post-date" title="2023-09-11 22:25:49">2023/09/11</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
            href="/2023/09/10/kmp-ac-automaton/"
            data-tag=""
            data-author="" >
@@ -262,15 +271,6 @@
            data-author="" >
             <span class="post-title" title="MacOS下轻量的Linux虚拟机">MacOS下轻量的Linux虚拟机</span>
             <span class="post-date" title="2023-09-10 13:34:51">2023/09/10</span>
-        </a>
-        
-        
-        <a  class="All 算法 "
-           href="/2023/09/09/simulation-algorithm/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="算法题-一些模拟类型的算法">算法题-一些模拟类型的算法</span>
-            <span class="post-date" title="2023-09-09 17:57:17">2023/09/09</span>
         </a>
         
         
@@ -572,7 +572,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-09 11:10:43'>2023-09-09 11:10</time>
+            Created At : <time class="date" title='Updated At: 2023-09-11 21:50:33'>2023-09-09 11:10</time>
         
     </div>
     <div class="article-meta">
@@ -583,7 +583,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">反转链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%89%88%E6%9C%AC"><span class="toc-text">递归版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%89%88%E6%9C%AC"><span class="toc-text">迭代版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-1-%E6%97%B6%E9%97%B4%E5%88%A0%E9%99%A4%E5%8D%95%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9"><span class="toc-text">O(1)时间删除单链表节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text">删除链表的倒数第n个节点</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8"><span class="toc-text">反转链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E7%89%88%E6%9C%AC"><span class="toc-text">递归版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E7%89%88%E6%9C%AC"><span class="toc-text">迭代版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#O-1-%E6%97%B6%E9%97%B4%E5%88%A0%E9%99%A4%E5%8D%95%E9%93%BE%E8%A1%A8%E8%8A%82%E7%82%B9"><span class="toc-text">O(1)时间删除单链表节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E7%9A%84%E5%80%92%E6%95%B0%E7%AC%ACn%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text">删除链表的倒数第n个节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8"><span class="toc-text">合并两个排序链表</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -695,6 +695,43 @@ public:
             p-&gt;next = p-&gt;next-&gt;next;
 
             return dummy-&gt;next;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="合并两个排序链表"><a href="#合并两个排序链表" class="headerlink" title="合并两个排序链表"></a>合并两个排序链表</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/merge-two-sorted-lists/">https://leetcode.cn/problems/merge-two-sorted-lists/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">/**
+ * Definition for singly-linked list.
+ * struct ListNode &#123;
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) &#123;&#125;
+ *     ListNode(int x) : val(x), next(nullptr) &#123;&#125;
+ *     ListNode(int x, ListNode *next) : val(x), next(next) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) &#123;
+
+        auto dummy = new ListNode(-1), cur = dummy;
+
+        while (l1 &amp;&amp; l2) &#123;
+            if (l1-&gt;val &lt; l2-&gt;val) &#123;
+                cur = cur-&gt;next = new ListNode(l1-&gt;val);
+                l1 = l1-&gt;next;
+            &#125;
+            else &#123;
+                cur = cur-&gt;next = new ListNode(l2-&gt;val);
+                l2 = l2-&gt;next;
+            &#125;
+        &#125;
+
+        if (l1) cur-&gt;next = l1;
+        if (l2) cur-&gt;next = l2;
+
+        return dummy-&gt;next;
     &#125;
 &#125;;
 </code></pre>
