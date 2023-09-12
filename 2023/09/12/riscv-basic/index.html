@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog</title>
+  <title>RISC-V体系结构的基础知识 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-单调栈与单调队列模板题 | LiGaOg&#39;s blog">
+  <meta name="description" content="RISC-V体系结构的基础知识 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -561,9 +561,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-sliding-window" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-riscv-basic" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-单调栈与单调队列模板题</h1>
+        <h1 class="article-title">RISC-V体系结构的基础知识</h1>
     
     <div class="article-meta">
         
@@ -573,7 +573,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -581,7 +581,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-04 20:23:18'>2023-09-04 20:16</time>
+            Created At : <time class="date" title='Updated At: 2023-09-12 19:00:18'>2023-09-12 17:59</time>
         
     </div>
     <div class="article-meta">
@@ -592,7 +592,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">RISC-V体系结构的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">通用寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSR%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">CSR寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#U%E6%80%81%E7%9A%84CSR"><span class="toc-text">U态的CSR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S%E6%80%81%E7%9A%84CSR"><span class="toc-text">S态的CSR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#M%E6%80%81%E7%9A%84CSR"><span class="toc-text">M态的CSR</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -608,100 +608,225 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="模板题-单调栈"><a href="#模板题-单调栈" class="headerlink" title="模板题-单调栈"></a>模板题-单调栈</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/832/">https://www.acwing.com/problem/content/832/</a></p>
-</blockquote>
-<p>单调栈可以求出来数组中第i个数左边第一个比它小的数.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;stack&gt;
-
-using namespace std;
-
-int main() &#123;
-
-    stack&lt;int&gt; stk;
-
-    int n;
-    cin &gt;&gt; n;
-
-    while (n --) &#123;
-        int x;
-        cin &gt;&gt; x;
-        while (stk.size() &amp;&amp; stk.top() &gt;= x) stk.pop();
-        if (stk.empty()) cout &lt;&lt; &quot;-1&quot; &lt;&lt; &quot; &quot;;
-        else cout &lt;&lt; stk.top() &lt;&lt; &quot; &quot;;
-        stk.push(x);
-    &#125;
-    return 0;
-&#125;
-</code></pre>
-<h2 id="模板题-滑动窗口最大值与最小值"><a href="#模板题-滑动窗口最大值与最小值" class="headerlink" title="模板题-滑动窗口最大值与最小值"></a>模板题-滑动窗口最大值与最小值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/156/">https://www.acwing.com/problem/content/156/</a></p>
-</blockquote>
-<p>滑动窗口需要考虑两个变量:</p>
+        <h2 id="RISC-V体系结构的寄存器"><a href="#RISC-V体系结构的寄存器" class="headerlink" title="RISC-V体系结构的寄存器"></a>RISC-V体系结构的寄存器</h2><h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>名字</th>
+<th>别名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>x0</code></td>
+<td><code>zero</code></td>
+<td>全是0</td>
+</tr>
+<tr>
+<td><code>x1</code></td>
+<td><code>ra</code></td>
+<td>保存跳出函数后需要跳到的地址</td>
+</tr>
+<tr>
+<td><code>x2</code></td>
+<td><code>sp</code></td>
+<td>指向栈顶</td>
+</tr>
+<tr>
+<td><code>x3</code></td>
+<td><code>gp</code></td>
+<td>用于链接器松弛优化</td>
+</tr>
+<tr>
+<td><code>x4</code></td>
+<td><code>tp</code></td>
+<td>用于保存进程控制块(PCB)的地址</td>
+</tr>
+<tr>
+<td><code>x5~x7</code></td>
+<td><code>t0-t2</code></td>
+<td>临时寄存器</td>
+</tr>
+<tr>
+<td><code>x8-x9</code></td>
+<td><code>s0-s1</code></td>
+<td>s系列寄存器, 函数调用需要使用这些寄存器需要保存到栈中</td>
+</tr>
+<tr>
+<td><code>x10-x17</code></td>
+<td><code>a0-a7</code></td>
+<td>a系列寄存器, 函数调用时用来传递参数和返回值</td>
+</tr>
+<tr>
+<td><code>x18-x27</code></td>
+<td><code>s2-s11</code></td>
+<td>s系列寄存器, 函数调用需要使用这些寄存器需要保存到栈中</td>
+</tr>
+<tr>
+<td><code>x28-x31</code></td>
+<td><code>t0-t6</code></td>
+<td>临时寄存器</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="CSR寄存器"><a href="#CSR寄存器" class="headerlink" title="CSR寄存器"></a>CSR寄存器</h3><p>CSR寄存器有三类:</p>
 <ul>
-<li>窗口大小</li>
-<li>在固定窗口大小之内, 维护的数值是最大/最小值.</li>
+<li>M模式的CSR.</li>
+<li>S模式的CSR.</li>
+<li>U模式的CSR.</li>
 </ul>
-<p>代码模板如下:</p>
-<pre><code class="lang-cpp">#include&lt;iostream&gt;
-#include &lt;cstring&gt;
-
-using namespace std;
-
-const int N = 1000010;
-
-int hh = 0, tt = -1;
-
-int n, k;
-int a[N], q[N];
-
-int main() &#123;
-
-    cin &gt;&gt; n &gt;&gt; k;
-    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-          // 滑动窗口前移后, 维护的窗口下标需要更新
-        if (i - k + 1 &gt; q[hh]) hh ++;
-      // 用当前枚举的a[i]排除掉队列中的较大的值
-        while (hh &lt;= tt &amp;&amp; a[i] &lt;= a[q[tt]]) tt --;
-        q[ ++ tt ] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    puts(&quot;&quot;);
-    hh = 0, tt = -1;
-
-    for (int i = 0; i &lt; n; i ++) &#123;
-        if (i - k + 1 &gt; q[hh]) hh ++;
-        while (hh &lt;= tt &amp;&amp; a[i] &gt;= a[q[tt]]) tt --;
-        q[ ++ tt] = i;
-        if (i - k + 1 &gt;= 0) printf(&quot;%d &quot;, a[q[hh]]);
-    &#125;
-
-    return 0;
-&#125;
-</code></pre>
-<p>LeetCode上相同的模板题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/sliding-window-maximum/">https://leetcode.cn/problems/sliding-window-maximum/</a></p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    vector&lt;int&gt; maxSlidingWindow(vector&lt;int&gt;&amp; nums, int k) &#123;
-         const int N = 100010;
-         int hh = 0, tt = -1;
-         int q[N];
-         vector&lt;int&gt; ans;
-
-         for (int i = 0; i &lt; nums.size(); i ++) &#123;
-             if (i - k + 1 &gt; q[hh]) hh ++;
-             while (hh &lt;= tt &amp;&amp; nums[i] &gt;= nums[q[tt]]) tt --;
-             q[ ++ tt] = i;
-             if (i - k + 1 &gt;= 0) ans.push_back(nums[q[hh]]);
-         &#125;
-         return ans;
-    &#125;
-&#125;;
-</code></pre>
+<p>程序可以通过CSR指令访问CSR寄存器.</p>
+<p>下列行为会出发Illegal Instruction Exception:</p>
+<ul>
+<li>访问不存在/没有实现的CSR.</li>
+<li>写入具有只读属性的CSR.</li>
+<li>低权限访问高权限的CSR.</li>
+</ul>
+<h4 id="U态的CSR"><a href="#U态的CSR" class="headerlink" title="U态的CSR"></a>U态的CSR</h4><ul>
+<li><code>fflags, frm, fcsr</code>: 用于控制浮点相关的异常/舍入模式信息.</li>
+<li><code>cycle</code>: 存储了CPU自从复位以来, 一共运行了多少个时钟周期, 但是时钟频率可能会发生调整, 例如繁忙状态时钟频率为100MHz, 空闲状态时钟频率为10MHz, 所以根据<code>cycle</code>无法判断CPU运行了多少时间.</li>
+<li><code>time</code>: 存储了CPU自从复位以来, 一共运行了多少时间, 驱动<code>time</code>的一定是固定频率的时钟.</li>
+<li><code>instret</code>: 存储了CPU自从复位以来, 一共运行了多少条指令.</li>
+<li><code>hpmcounter3-hpmcounter31</code>: HPM的全称是Hardware Performance Monitor, 用于记录某些系统事件的数据, 可以通过一些额外的特权寄存器去配置记录哪些事件.</li>
+</ul>
+<h4 id="S态的CSR"><a href="#S态的CSR" class="headerlink" title="S态的CSR"></a>S态的CSR</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sstatus</code></td>
+<td>用来保存S态的一些状态, 例如中断使能等</td>
+</tr>
+<tr>
+<td><code>sie</code></td>
+<td>配置S态中断使能</td>
+</tr>
+<tr>
+<td><code>stvec</code></td>
+<td>S态发生trap后, 跳到哪里</td>
+</tr>
+<tr>
+<td><code>scounteren</code></td>
+<td>配置是否使能U态的性能相关的寄存器</td>
+</tr>
+<tr>
+<td><code>sscratch</code></td>
+<td>系统运行在U态下时, 它保存S态下的PCB的地址</td>
+</tr>
+<tr>
+<td><code>sepc</code></td>
+<td>保存引起中断指令下一条指令地址/异常指令的地址</td>
+</tr>
+<tr>
+<td><code>scause</code></td>
+<td>保存引起异常的原因</td>
+</tr>
+<tr>
+<td><code>stval</code></td>
+<td>保存处理异常的辅助信息.</td>
+</tr>
+<tr>
+<td><code>sip</code></td>
+<td>用来配置S态哪些中断处于pending模式</td>
+</tr>
+<tr>
+<td><code>satp</code></td>
+<td>用于地址转换/内存保护</td>
+</tr>
+<tr>
+<td><code>scontext</code></td>
+<td>用于debug模式使用</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="M态的CSR"><a href="#M态的CSR" class="headerlink" title="M态的CSR"></a>M态的CSR</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>寄存器</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>mvendorid</code></td>
+<td>制造厂商ID寄存器</td>
+</tr>
+<tr>
+<td><code>marchid</code></td>
+<td>体系结构ID寄存器</td>
+</tr>
+<tr>
+<td><code>mimpid</code></td>
+<td>处理器实现版本的唯一ID</td>
+</tr>
+<tr>
+<td><code>mhartid</code></td>
+<td>硬件线程的ID</td>
+</tr>
+<tr>
+<td><code>mconfigptr</code></td>
+<td>数据结构的地址</td>
+</tr>
+<tr>
+<td><code>mstatus</code></td>
+<td>M态下处理器的一些状态</td>
+</tr>
+<tr>
+<td><code>misa</code></td>
+<td>Hart支持的ISA扩展是什么</td>
+</tr>
+<tr>
+<td><code>medeleg</code></td>
+<td>异常委托寄存器</td>
+</tr>
+<tr>
+<td><code>mideleg</code></td>
+<td>中断委托寄存器</td>
+</tr>
+<tr>
+<td><code>mie</code></td>
+<td>中断使能寄存器</td>
+</tr>
+<tr>
+<td><code>mtvec</code></td>
+<td>trap后跳到哪里</td>
+</tr>
+<tr>
+<td><code>mcounteren</code></td>
+<td>计数器使能寄存器</td>
+</tr>
+<tr>
+<td><code>mscratch</code></td>
+<td>处理器运行在S/U态时, 它用来保存PCB的指针</td>
+</tr>
+<tr>
+<td><code>mepc</code></td>
+<td>保存引起中断指令下一条指令地址/异常指令的地址</td>
+</tr>
+<tr>
+<td><code>mcause</code></td>
+<td>引起中断/异常的原因</td>
+</tr>
+<tr>
+<td><code>mtval</code></td>
+<td>辅助处理中断/异常的信息</td>
+</tr>
+<tr>
+<td><code>mip</code></td>
+<td>存储哪些中断处于pending</td>
+</tr>
+</tbody>
+</table>
+</div>
 
       
        
