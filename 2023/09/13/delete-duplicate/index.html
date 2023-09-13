@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-盛水最多的容器 | LiGaOg&#39;s blog</title>
+  <title>算法题=删除有序数组重复项 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-盛水最多的容器 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题=删除有序数组重复项 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -570,9 +570,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-catch-most-water" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-delete-duplicate" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-盛水最多的容器</h1>
+        <h1 class="article-title">算法题=删除有序数组重复项</h1>
     
     <div class="article-meta">
         
@@ -590,7 +590,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-09 10:23:39'>2023-09-09 09:58</time>
+            Created At : <time class="date" title='Updated At: 2023-09-13 20:50:03'>2023-09-13 20:49</time>
         
     </div>
     <div class="article-meta">
@@ -601,7 +601,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95"><span class="toc-text">双指针算法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E9%87%8D%E5%A4%8D%E9%A1%B9I"><span class="toc-text">删除有序数组重复项I</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -617,51 +617,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h2><ul>
-<li>首先, 对于任意选取的两个竖线, 它们之间的面积是$min\{h(i), h(j)\} \times (j - i)$</li>
-<li><p>选取两个指针<code>i</code>和<code>j</code>分别指向数组的开始和结尾, 每次先计算两个指针所在竖线的面积, 并维护最大值.</p>
-<ul>
-<li>如果$h(i) &lt; h(j)$, 那么<code>i</code>向前移动.</li>
-<li>如果$h(i) &gt; h(j)$, 那么<code>j</code>向后移动.</li>
-<li>相等的话移动哪边都可以, 默认移动<code>i</code>.</li>
-</ul>
-</li>
-<li><p>证明:</p>
-<ul>
-<li>假设最优解所在的两条竖线的下标分别是$p, q$, 指针$i, j$一定有一个会先到达最优解的边界, 不妨设$i$先到$p$, 需要证明, 按照上述算法, $j$一定会到$q$.</li>
-<li>反证: 假设$h(p) \leqslant h(j)$, 那么此时$i$指针在$p$, 它会向右移动, 但是如果要枚举到最优解, $j$指针需要向左移动.</li>
-<li>最优解的面积是$min\{h(p), h(q)\} \times (q - p)$ </li>
-<li>考虑这个面积: $min\{h(p), h(j)\} \times (j - p)$, 其中$h(i) = h(p)$, 由于$h(i) = h(p) \leqslant h(j)$, 那么这个面积实际上是$h(j) \times (j - p)$</li>
-<li>但是, $min\{h(p), h(q)\} \times (q - p) &lt; h(j) \times (j - p)$, 因此, 最优解就变成了$h(j) \times (j - p)$, 不符合原来的假设.</li>
-<li>因此, 原来的算法一定会枚举到最优解.</li>
-</ul>
-</li>
-</ul>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
+        <h2 id="删除有序数组重复项I"><a href="#删除有序数组重复项I" class="headerlink" title="删除有序数组重复项I"></a>删除有序数组重复项I</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/">https://leetcode.cn/problems/remove-duplicates-from-sorted-array/</a></p>
+</blockquote>
+<p>经典的双指针模板</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;
 
-using namespace std;
-
-const int N = 100010;
-
-int n;
-int h[N];
-
-int main() &#123;
-
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; h[i];
-
-    int i = 0, j = n - 1, res = -1;
-
-    while (i &lt; j) &#123;
-        res = max(res, min(h[i], h[j]) * (j - i));
-        if (h[i] &lt;= h[j]) i ++;
-        else j --;
+        int p = 0;
+        for (int i = 0, j = 0; i &lt; nums.size(); i ++) &#123;
+            while (j &lt; nums.size() &amp;&amp; nums[i] == nums[j]) j++;
+            nums[p ++] = nums[i];
+            i = j - 1;
+        &#125;
+        return p;
     &#125;
-    cout &lt;&lt; res &lt;&lt; endl;
-
-    return 0;
-&#125;
+&#125;;
 </code></pre>
 
       
@@ -675,46 +647,6 @@ int main() &#123;
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
