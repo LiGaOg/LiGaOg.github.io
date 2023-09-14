@@ -6,20 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法-对KMP算法的理解 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="官网的Node.js下载了什么同样, Node.js官网提供了pkg格式的下载器, 通过工具, 可以看到这个下载器具体下载了什么东西:  其中, &#x2F;usr&#x2F;local&#x2F;bin中放了Javascript的解释器node, 而&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules中有npm包管理器. 后面的postinstall脚本如下: #!&#x2F;bin&#x2F;sh  cd &#x2F;usr&#x2F;local&#x2F;bin ||">
-<meta property="og:type" content="article">
-<meta property="og:title" content="梳理有关Node.js的一些概念">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/09/14/under-nodejs/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="官网的Node.js下载了什么同样, Node.js官网提供了pkg格式的下载器, 通过工具, 可以看到这个下载器具体下载了什么东西:  其中, &#x2F;usr&#x2F;local&#x2F;bin中放了Javascript的解释器node, 而&#x2F;usr&#x2F;local&#x2F;lib&#x2F;node_modules中有npm包管理器. 后面的postinstall脚本如下: #!&#x2F;bin&#x2F;sh  cd &#x2F;usr&#x2F;local&#x2F;bin ||">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/09/14/under-nodejs/image-20230620132154064.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/09/14/under-nodejs/image-20230620142349806.png">
-<meta property="article:published_time" content="2023-09-14T06:18:43.782Z">
-<meta property="article:modified_time" content="2023-09-14T06:18:43.782Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ligaog.github.io.com/2023/09/14/under-nodejs/image-20230620132154064.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -241,6 +238,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 算法 "
+           href="/2023/09/14/kmp-ac-automaton/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法-对KMP算法的理解">算法-对KMP算法的理解</span>
+            <span class="post-date" title="2023-09-14 14:50:02">2023/09/14</span>
+        </a>
+        
+        
         <a  class="All 其他 "
            href="/2023/09/14/under-nodejs/"
            data-tag=""
@@ -283,15 +289,6 @@
            data-author="" >
             <span class="post-title" title="RISC-V体系结构的基础知识">RISC-V体系结构的基础知识</span>
             <span class="post-date" title="2023-09-12 17:59:34">2023/09/12</span>
-        </a>
-        
-        
-        <a  class="All 算法 "
-           href="/2023/09/10/kmp-ac-automaton/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="算法-对KMP算法的理解">算法-对KMP算法的理解</span>
-            <span class="post-date" title="2023-09-10 17:05:48">2023/09/10</span>
         </a>
         
         
@@ -602,7 +599,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-10 19:30:58'>2023-09-10 17:05</time>
+            Created At : <time class="date" title='Updated At: 2023-09-14 14:53:00'>2023-09-14 14:50</time>
         
     </div>
     <div class="article-meta">
@@ -613,7 +610,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-text">KMP算法</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-text">KMP算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87"><span class="toc-text">找出字符串中第一个匹配项的下标</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -683,6 +680,38 @@ int main() &#123;
 
     return 0;
 &#125;
+</code></pre>
+<p>KMP算法时间复杂度是$O(m + n)$, 空间复杂度是$O(m)$.</p>
+<p>暴力算法时间复杂度是$O(nm)$, 空间复杂度是$O(1)$.</p>
+<h2 id="找出字符串中第一个匹配项的下标"><a href="#找出字符串中第一个匹配项的下标" class="headerlink" title="找出字符串中第一个匹配项的下标"></a>找出字符串中第一个匹配项的下标</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int strStr(string s, string p) &#123;
+        if (p.empty()) return 0;
+
+        // 注意先获取原长度, 然后再把下标变成1
+        int n = s.size(), m = p.size();
+        s = &#39; &#39; + s, p = &#39; &#39; + p;
+
+        // 注意next数组的长度是p长度+1
+        vector&lt;int&gt; next(m + 1);
+
+        for (int i = 2, j = 0; i &lt;= m; i ++) &#123;
+            while (j &amp;&amp; p[j + 1] != p[i]) j = next[j];
+            if (p[j + 1] == p[i]) j ++;
+            next[i] = j;
+        &#125;
+
+        for (int i = 1, j = 0; i &lt;= n; i ++) &#123;
+            while (j &amp;&amp; p[j + 1] != s[i]) j = next[j];
+            if (p[j + 1] == s[i]) j ++;
+            if (j == m) return i - m;
+        &#125;
+        return -1;
+    &#125;
+&#125;;
 </code></pre>
 
       
