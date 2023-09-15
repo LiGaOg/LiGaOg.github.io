@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法-对KMP算法的理解 | LiGaOg&#39;s blog</title>
+  <title>算法题-倍增系列题目 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法-对KMP算法的理解 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-倍增系列题目 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="快速幂算法 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;877&#x2F;  快速幂主要用来在$O(logk)$的时间复杂度内, 求出$a^{k} \%p$的值, 其中$a, k, p$都可以在$10^9$范围. 核心就是利用二进制, 将$a^{k}$拆分成若干个预处理数的乘积, 例如可以这样拆: $a^{k} &#x3D; a^{2^{c_0} + 2^{c_1} + 2^{c_2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法题-倍增系列题目">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/15/beizeng/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="快速幂算法 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;877&#x2F;  快速幂主要用来在$O(logk)$的时间复杂度内, 求出$a^{k} \%p$的值, 其中$a, k, p$都可以在$10^9$范围. 核心就是利用二进制, 将$a^{k}$拆分成若干个预处理数的乘积, 例如可以这样拆: $a^{k} &#x3D; a^{2^{c_0} + 2^{c_1} + 2^{c_2">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-09-15T13:11:13.021Z">
+<meta property="article:modified_time" content="2023-09-15T13:33:20.968Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(36)</small>
+                <small>(39)</small>
             
         </div>
     </li>
@@ -161,7 +161,7 @@
         <div data-rel="算法">
             
             算法
-            <small>(18)</small>
+            <small>(21)</small>
         </div>
         
     </li>
@@ -186,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="36">
+<input type="hidden" id="yelog_site_posts_number" value="39">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -239,11 +239,38 @@
         
         
         <a  class="All 算法 "
-           href="/2023/09/14/kmp-ac-automaton/"
+           href="/2023/09/15/beizeng/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="算法-对KMP算法的理解">算法-对KMP算法的理解</span>
-            <span class="post-date" title="2023-09-14 14:50:02">2023/09/14</span>
+            <span class="post-title" title="算法题-倍增系列题目">算法题-倍增系列题目</span>
+            <span class="post-date" title="2023-09-15 21:11:13">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/binary-search/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二分的基础模板">算法题-二分的基础模板</span>
+            <span class="post-date" title="2023-09-15 18:26:36">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/kmp-ac-automaton/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-对KMP算法的理解">算法题-对KMP算法的理解</span>
+            <span class="post-date" title="2023-09-15 18:23:26">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/find-duplicate-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-找出数组中重复的数字">算法题-找出数组中重复的数字</span>
+            <span class="post-date" title="2023-09-15 17:57:43">2023/09/15</span>
         </a>
         
         
@@ -579,9 +606,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-kmp-ac-automaton" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-beizeng" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法-对KMP算法的理解</h1>
+        <h1 class="article-title">算法题-倍增系列题目</h1>
     
     <div class="article-meta">
         
@@ -599,7 +626,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-14 14:53:00'>2023-09-14 14:50</time>
+            Created At : <time class="date" title='Updated At: 2023-09-15 21:33:20'>2023-09-15 21:11</time>
         
     </div>
     <div class="article-meta">
@@ -610,7 +637,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP%E7%AE%97%E6%B3%95"><span class="toc-text">KMP算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%BE%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8C%B9%E9%85%8D%E9%A1%B9%E7%9A%84%E4%B8%8B%E6%A0%87"><span class="toc-text">找出字符串中第一个匹配项的下标</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95"><span class="toc-text">快速幂算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4"><span class="toc-text">两数相除</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -626,90 +653,83 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h2><p>KMP算法可以求出模式串$p$在给定字符串$s$出现的位置 (注意, 下面的讨论中, 下标都从1开始).</p>
-<p>KMP算法本质上是一个状态机的算法, 我现在有原串$s$的很多字符$c_1, c_2, …, c_n$, 要喂到这个状态机中, 这个状态机有这几个状态:</p>
-<ul>
-<li>状态0: 起始状态, 还没有成功匹配一个字符.</li>
-<li>状态1: 我喂进去了一个字符$c$, 并且成功匹配了.</li>
-<li>状态2: 我喂进去了两个字符$c_1, c_2$, 并且都成功匹配了.</li>
-<li>…</li>
-<li>直到状态$m$ ($m$是模式串的长度), 表示我喂进去了$m$个字符, 都成功匹配了, 那就说明从原串中找到模式串了, 成功.</li>
-</ul>
-<p>那么需要处理的一个问题是, 如果我现在在一个状态$j$, 遇到了一个没匹配上的字符$c_k$, 那么我应该转移到哪个状态?</p>
-<ul>
-<li>假设我需要转移到状态$i$, 要保证效率的前提下, 这个$i$应该尽量最大, 如果要保持最大, 那么就需要$p[1…i] = p[j - i, j]$, 本质上, 也就是求以$p[j]$结尾的最长公共前后缀, 因此, 当数组下标从1开始时, 状态$j$就需要转移到下标值等于以$p[j]$结尾的最长公共前后缀的长度的位置.</li>
-<li>转移之后, 还需要判断$p[i + 1]$与$c_k$是否相等, 如果相等就可以进一步转移.</li>
-</ul>
-<p>那么如何求最长公共前后缀呢?</p>
-<ul>
-<li>求最长公共前后缀的方法和上面状态机算法没有本质区别:<ul>
-<li>对于$p[1]$, 我就拿$p$的第一个字符喂到状态机中, 看第一个字符如果不匹配模式串$p$, 需要跳到哪里? 答案是跳到状态0.</li>
-<li>对于$p[i]$, 我就拿$p$的第$i$个字符出来喂到状态机中, 状态机最终跳到哪里, 哪里就是以$p[i - 1]$结尾的最长公共前后缀的长度, 假设最终跳到了$p[j]$, 此时如果$p[j + 1] = p[i]$, 那么以$p[i]$结尾的最长公共前后缀的长度就是$j + 1$.</li>
-<li>就这样一直循环, 即可求出以每一个字符结尾的最长公共前后缀的长度.</li>
-</ul>
-</li>
-</ul>
+        <h2 id="快速幂算法"><a href="#快速幂算法" class="headerlink" title="快速幂算法"></a>快速幂算法</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/877/">https://www.acwing.com/problem/content/877/</a></p>
+</blockquote>
+<p>快速幂主要用来在$O(logk)$的时间复杂度内, 求出$a^{k} \%p$的值, 其中$a, k, p$都可以在$10^9$范围.</p>
+<p>核心就是利用二进制, 将$a^{k}$拆分成若干个预处理数的乘积, 例如可以这样拆:</p>
+<p>$a^{k} = a^{2^{c_0} + 2^{c_1} + 2^{c_2} + …+2^{c_m}} = a^{2^{c_0}} \times a^{2^{c_1}} \times a^{2^{c_2}} \times … \times a^{2^{c_m}}$</p>
+<p>其中, $a^{2^{c_0}}, a^{2^{c_1}}, …, a^{2^{c_m}}$都可以通过预处理进行.</p>
+<p>我可以遍历$k$的二进制位, 如果第$i$位是1, 就需要乘上$a^{2^{c_i}}$.</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 
 using namespace std;
 
-const int N = 1000010, M = 100010;
+typedef long long LL;
 
-int n, m;
-int ne[M];
-char s[N], p[M];
+int n;
 
-int main() &#123;
-
-    cin &gt;&gt; m &gt;&gt; p + 1 &gt;&gt; n &gt;&gt; s + 1;
-
-    for (int i = 2, j = 0; i &lt;= m; i ++) &#123;
-        while (j &amp;&amp; p[j + 1] != p[i]) j = ne[j];
-        if (p[j + 1] == p[i]) j ++;
-        ne[i] = j;
+int qmi(int a, int k, int p)
+&#123;
+    int res = 1;
+    while (k)
+    &#123;
+      // 可能超int, 先变成LL再取模
+        if (k &amp; 1) res = (LL)res * a % p;
+        a = (LL)a * a % p;
+        k &gt;&gt;= 1;
     &#125;
+    return res;
+&#125;
 
-    for (int i = 1, j = 0; i &lt;= n; i ++) &#123;
-        while (j &amp;&amp; p[j + 1] != s[i]) j = ne[j];
-        if (p[j + 1] == s[i]) j ++;
-        if (j == m) &#123;
-            printf(&quot;%d &quot;, i - m);
-            j = ne[j];
-        &#125;
+int main()
+&#123;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int a, k, p;
+        cin &gt;&gt; a &gt;&gt; k &gt;&gt; p;
+        cout &lt;&lt; qmi(a, k, p) &lt;&lt; endl;
     &#125;
-
     return 0;
 &#125;
 </code></pre>
-<p>KMP算法时间复杂度是$O(m + n)$, 空间复杂度是$O(m)$.</p>
-<p>暴力算法时间复杂度是$O(nm)$, 空间复杂度是$O(1)$.</p>
-<h2 id="找出字符串中第一个匹配项的下标"><a href="#找出字符串中第一个匹配项的下标" class="headerlink" title="找出字符串中第一个匹配项的下标"></a>找出字符串中第一个匹配项的下标</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/</a></p>
+<h2 id="两数相除"><a href="#两数相除" class="headerlink" title="两数相除"></a>两数相除</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/divide-two-integers/">https://leetcode.cn/problems/divide-two-integers/</a></p>
 </blockquote>
+<p>首先考虑被除数$a$和除数$b$都是正数的例子.</p>
+<p>首先预处理出来$2^{0}b,\ 2^{1}b,\ 2^{2}b, …, 2^{k}b$, 其中$2^{k+1}b &gt; a$.</p>
+<p>$i$从$k$到0遍历, 假设$a - 2^{i}b &gt; 0$, 那么商的二进制表示中, 第$i$位肯定是1, 然后将$a$减去$2^{i}b$, 重复上面的过程, 即可在$O(log_ba)$的时间复杂度内求出商.</p>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    int strStr(string s, string p) &#123;
-        if (p.empty()) return 0;
+    int divide(int x, int y) &#123;
+        typedef long long LL;
 
-        // 注意先获取原长度, 然后再把下标变成1
-        int n = s.size(), m = p.size();
-        s = &#39; &#39; + s, p = &#39; &#39; + p;
+        bool is_minus = false;
+        if ((x &lt; 0 &amp;&amp; y &gt; 0) || (x &gt; 0 &amp;&amp; y &lt; 0)) is_minus = true;
 
-        // 注意next数组的长度是p长度+1
-        vector&lt;int&gt; next(m + 1);
+        LL a = abs((LL)x), b = abs((LL)y);
 
-        for (int i = 2, j = 0; i &lt;= m; i ++) &#123;
-            while (j &amp;&amp; p[j + 1] != p[i]) j = next[j];
-            if (p[j + 1] == p[i]) j ++;
-            next[i] = j;
+        vector&lt;LL&gt; exp;
+      // 预处理2^0b, 2^1b, ...
+        for (LL i = b; i &lt;= a; i = i + i) exp.push_back(i);
+
+        LL res = 0;
+
+        for (int i = exp.size() - 1; i &gt;= 0; i --) &#123;
+            if (a &gt;= exp[i]) &#123;
+                a -= exp[i];
+                // 注意这里一定是1ll
+                res += 1ll &lt;&lt; i;
+            &#125;
         &#125;
 
-        for (int i = 1, j = 0; i &lt;= n; i ++) &#123;
-            while (j &amp;&amp; p[j + 1] != s[i]) j = next[j];
-            if (p[j + 1] == s[i]) j ++;
-            if (j == m) return i - m;
-        &#125;
-        return -1;
+        if (is_minus) res = -res;
+
+        if (res &lt; INT_MIN) return INT_MIN;
+        if (res &gt; INT_MAX) return INT_MAX;
+        return res;
     &#125;
 &#125;;
 </code></pre>
