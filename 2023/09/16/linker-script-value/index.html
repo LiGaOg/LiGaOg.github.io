@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>利用ranger进行终端下的文件管理 | LiGaOg&#39;s blog</title>
+  <title>如何从C语言处获得链接脚本定义的变量 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="利用ranger进行终端下的文件管理 | LiGaOg&#39;s blog">
+  <meta name="description" content="如何从C语言处获得链接脚本定义的变量 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -633,9 +633,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-ranger" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-linker-script-value" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">利用ranger进行终端下的文件管理</h1>
+        <h1 class="article-title">如何从C语言处获得链接脚本定义的变量</h1>
     
     <div class="article-meta">
         
@@ -645,7 +645,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -653,7 +653,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:55:44'>2023-09-02 20:55</time>
+            Created At : <time class="date" title='Updated At: 2023-09-16 16:22:02'>2023-09-16 16:16</time>
         
     </div>
     <div class="article-meta">
@@ -664,7 +664,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BA%E6%96%87%E4%BB%B6%E5%9B%BE%E6%A0%87"><span class="toc-text">显示文件图标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%BE%E7%A4%BAGit%E7%8A%B6%E6%80%81"><span class="toc-text">显示Git状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E6%98%BE%E7%A4%BA%E9%9A%90%E8%97%8F%E6%96%87%E4%BB%B6"><span class="toc-text">默认显示隐藏文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E6%96%87%E4%BB%B6"><span class="toc-text">预览文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E6%96%87%E6%96%87%E4%BB%B6%E9%AB%98%E4%BA%AE"><span class="toc-text">本文文件高亮</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E5%8E%8B%E7%BC%A9%E6%96%87%E4%BB%B6"><span class="toc-text">预览压缩文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E5%9B%BE%E7%89%87"><span class="toc-text">预览图片</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88pdf%E6%96%87%E4%BB%B6"><span class="toc-text">预览pdf文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E8%A7%88%E8%A7%86%E9%A2%91"><span class="toc-text">预览视频</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%91%BD%E4%BB%A4"><span class="toc-text">自定义命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Efzf%E5%AF%B9%E6%8E%A5"><span class="toc-text">与fzf对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Elazygit%E5%AF%B9%E6%8E%A5"><span class="toc-text">与lazygit对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Escp%E5%AF%B9%E6%8E%A5"><span class="toc-text">与scp对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8E%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%91%BD%E4%BB%A4%E5%AF%B9%E6%8E%A5"><span class="toc-text">与压缩解压命令对接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8Egit-clone%E5%AF%B9%E6%8E%A5"><span class="toc-text">与git clone对接</span></a></li></ol></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -680,195 +680,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="显示文件图标"><a href="#显示文件图标" class="headerlink" title="显示文件图标"></a>显示文件图标</h2><p><a target="_blank" rel="noopener" href="https://github.com/alexanderjeurissen/ranger_devicons">https://github.com/alexanderjeurissen/ranger_devicons</a></p>
-<h2 id="显示Git状态"><a href="#显示Git状态" class="headerlink" title="显示Git状态"></a>显示Git状态</h2><p><code>rc.conf</code>中的<code>vcs_aware</code>设置为<code>true</code>.</p>
-<h2 id="默认显示隐藏文件"><a href="#默认显示隐藏文件" class="headerlink" title="默认显示隐藏文件"></a>默认显示隐藏文件</h2><p><code>rc.conf</code>中<code>show_hidden</code>设置为<code>true</code>.</p>
-<h2 id="预览文件"><a href="#预览文件" class="headerlink" title="预览文件"></a>预览文件</h2><h3 id="本文文件高亮"><a href="#本文文件高亮" class="headerlink" title="本文文件高亮"></a>本文文件高亮</h3><p>安装<code>bat</code>:</p>
-<pre><code class="lang-bash">brew install bat
-</code></pre>
-<h3 id="预览压缩文件"><a href="#预览压缩文件" class="headerlink" title="预览压缩文件"></a>预览压缩文件</h3><p>需要安装tool</p>
-<pre><code class="lang-shell">brew install atool
-</code></pre>
-<h3 id="预览图片"><a href="#预览图片" class="headerlink" title="预览图片"></a>预览图片</h3><p>预览图片与终端有关, 如果终端是iTerm2, 那么默认可以预览图片.</p>
-<p>在<code>rc.conf</code>中, 需要改动:</p>
-<pre><code class="lang-shell">set preview_images true
-set preview_images_method iterm2
-set iterm2_font_width 55
-set iterm2_font_height 45
-</code></pre>
-<h3 id="预览pdf文件"><a href="#预览pdf文件" class="headerlink" title="预览pdf文件"></a>预览pdf文件</h3><p>首先安装poppler:</p>
-<pre><code class="lang-shell">brew install poppler
-</code></pre>
-<p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
-<pre><code class="lang-bash">        ## PDF
-        application/pdf)
-            pdftoppm -f 1 -l 1 \
-                     -scale-to-x &quot;$&#123;DEFAULT_SIZE%x*&#125;&quot; \
-                     -scale-to-y -1 \
-                     -singlefile \
-                     -jpeg -tiffcompression jpeg \
-                     -- &quot;$&#123;FILE_PATH&#125;&quot; &quot;$&#123;IMAGE_CACHE_PATH%.*&#125;&quot; \
-                &amp;&amp; exit 6 || exit 1;;
-</code></pre>
-<h3 id="预览视频"><a href="#预览视频" class="headerlink" title="预览视频"></a>预览视频</h3><p>预览视频需要预先下载<code>ffmpeg</code></p>
-<p>然后, 在<code>scope.sh</code>中, 把这一段解注释</p>
-<pre><code class="lang-bash">        ## Video
-        video/*)
-            # Thumbnail
-            ffmpegthumbnailer -i &quot;$&#123;FILE_PATH&#125;&quot; -o &quot;$&#123;IMAGE_CACHE_PATH&#125;&quot; -s 0 &amp;&amp; exit 6
-            exit 1;;
-</code></pre>
-<h2 id="自定义命令"><a href="#自定义命令" class="headerlink" title="自定义命令"></a>自定义命令</h2><p>自定义命令在<code>commamds.py</code>中添加, 在<code>rc.conf</code>中添加键位.</p>
-<h3 id="与fzf对接"><a href="#与fzf对接" class="headerlink" title="与fzf对接"></a>与fzf对接</h3><pre><code class="lang-python">class fzf_select(Command):
-    &quot;&quot;&quot;
-    :fzf_select
-    Find a file using fzf.
-    With a prefix argument select only directories.
-    See: https://github.com/junegunn/fzf
-    &quot;&quot;&quot;
-    def execute(self):
-        import subprocess
-        import os.path
-        if self.quantifier:
-            # match only directories
-            command = &quot;find -L . \( -path &#39;*/\.*&#39; -o -fstype &#39;dev&#39; -o -fstype &#39;proc&#39; \) -prune \
-            -o -type d -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
-
-        else:
-            # match files and directories
-            command = &quot;find -L . \( -path &#39;*/\.*&#39; -o -fstype &#39;dev&#39; -o -fstype &#39;proc&#39; \) -prune \
-            -o -print 2&gt; /dev/null | sed 1d | cut -b3- | fzf +m&quot;
-
-        fzf = self.fm.execute_command(command,
-                                      universal_newlines=True,
-                                      stdout=subprocess.PIPE)
-        stdout, stderr = fzf.communicate()
-        if fzf.returncode == 0:
-            fzf_file = os.path.abspath(stdout.rstrip(&#39;\n&#39;))
-            if os.path.isdir(fzf_file):
-                self.fm.cd(fzf_file)
-            else:
-                self.fm.select_file(fzf_file)
-</code></pre>
-<p>在<code>rc.conf</code>中添加: <code>map &lt;C-f&gt; fzf_select</code></p>
-<h3 id="与lazygit对接"><a href="#与lazygit对接" class="headerlink" title="与lazygit对接"></a>与lazygit对接</h3><p>在<code>rc.conf</code>中添加: <code>map &lt;C-g&gt; shell lazygit</code></p>
-<h3 id="与scp对接"><a href="#与scp对接" class="headerlink" title="与scp对接"></a>与scp对接</h3><p>首先安装<code>paramiko</code>: </p>
-<pre><code class="lang-bash">pip3 install paramiko
-</code></pre>
-<p>然后添加下面命令:</p>
-<pre><code class="lang-bash">class up(Command):
-    def execute(self):
-        if self.arg(1):
-            scpcmd = [&quot;scp&quot;, &quot;-r&quot;]
-            scpcmd.extend([f.realpath for f in self.fm.thistab.get_selection()])
-            scpcmd.append(self.arg(1))
-            self.fm.execute_command(scpcmd)
-            self.fm.notify(&quot;Uploaded!&quot;)
-
-
-    def tab(self, tabnum):
-        import os.path
-        try:
-            import paramiko
-        except ImportError:
-            &quot;&quot;&quot;paramiko not installed&quot;&quot;&quot;
-            return
-
-        try:
-            with open(os.path.expanduser(&quot;~/.ssh/config&quot;)) as file:
-                paraconf = paramiko.SSHConfig()
-                paraconf.parse(file)
-        except IOError:
-            &quot;&quot;&quot;cant open ssh config&quot;&quot;&quot;
-            return
-
-        hosts = sorted(list(paraconf.get_hostnames()))
-        # remove any wildcard host settings since they&#39;re not real servers
-        hosts.remove(&quot;*&quot;)
-        query = self.arg(1) or &#39;&#39;
-        matching_hosts = []
-        for host in hosts:
-            if host.startswith(query):
-                matching_hosts.append(host)
-        return (self.start(1) + host + &quot;:&quot; for host in matching_hosts)
-</code></pre>
-<p>之后选中文件后使用<code>:up</code>即可上传.</p>
-<h3 id="与压缩解压命令对接"><a href="#与压缩解压命令对接" class="headerlink" title="与压缩解压命令对接"></a>与压缩解压命令对接</h3><p>需要提前下载<code>atool</code>:</p>
-<pre><code class="lang-bash">brew install atool
-</code></pre>
-<p>在<code>commands.py</code>添加: </p>
-<pre><code class="lang-python">from ranger.core.loader import CommandLoader
-</code></pre>
-<p>然后添加命令:</p>
-<pre><code class="lang-python">class compress(Command):
-    def execute(self):
-        &quot;&quot;&quot; Compress marked files to current directory &quot;&quot;&quot;
-        cwd = self.fm.thisdir
-        marked_files = cwd.get_selection()
-
-        if not marked_files:
-            return
-
-        def refresh(_):
-            cwd = self.fm.get_directory(original_path)
-            cwd.load_content()
-
-        original_path = cwd.path
-        parts = self.line.split()
-        au_flags = parts[1:]
-
-        descr = &quot;compressing files in: &quot; + os.path.basename(parts[1])
-        obj = CommandLoader(args=[&#39;apack&#39;] + au_flags + \
-                [os.path.relpath(f.path, cwd.path) for f in marked_files], descr=descr, read=True)
-
-        obj.signal_bind(&#39;after&#39;, refresh)
-        self.fm.loader.add(obj)
-
-    def tab(self, tabnum):
-        &quot;&quot;&quot; Complete with current folder name &quot;&quot;&quot;
-
-        extension = [&#39;.zip&#39;, &#39;.tar.gz&#39;, &#39;.rar&#39;, &#39;.7z&#39;]
-        return [
-            &#39;compress &#39; + os.path.basename(self.fm.thisdir.path) + ext
-            for ext in extension
-        ]
-</code></pre>
-<p>绑定快捷键: <code>map &lt;C-a&gt; console compress%space</code></p>
-<p>然后是解压缩:</p>
-<pre><code class="lang-python">class extracthere(Command):
-    def execute(self):
-        &quot;&quot;&quot; Extract copied files to current directory &quot;&quot;&quot;
-        copied_files = tuple(self.fm.thisdir.get_selection())
-
-        if not copied_files:
-            return
-
-        def refresh(_):
-            cwd = self.fm.get_directory(original_path)
-            cwd.load_content()
-
-        one_file = copied_files[0]
-        cwd = self.fm.thisdir
-        original_path = cwd.path
-        au_flags = [&#39;-X&#39;, cwd.path]
-        au_flags += self.line.split()[1:]
-        au_flags += [&#39;-e&#39;]
-
-        self.fm.copy_buffer.clear()
-        self.fm.cut_buffer = False
-        if len(copied_files) == 1:
-            descr = &quot;extracting: &quot; + os.path.basename(one_file.path)
-        else:
-            descr = &quot;extracting files from: &quot; + os.path.basename(
-                one_file.dirname)
-        obj = CommandLoader(args=[&#39;aunpack&#39;] + au_flags \
-                + [f.path for f in copied_files], descr=descr, read=True)
-
-        obj.signal_bind(&#39;after&#39;, refresh)
-        self.fm.loader.add(obj)
-</code></pre>
-<p>绑定快捷键: <code>map &lt;C-e&gt; extracthere</code></p>
-<h3 id="与git-clone对接"><a href="#与git-clone对接" class="headerlink" title="与git clone对接"></a>与git clone对接</h3><pre><code class="lang-shell"> map gc console shell git clone%space
+        <p>假设你在链接脚本中定义了一个变量:</p>
+<pre><code>_bss_start = 100
+</code></pre><p>在C语言中需要这样找到这个值:</p>
+<pre><code class="lang-c">extern int _bss_start;
+// 注意要多加一个&amp;
+int val = &amp;_bss_start;
 </code></pre>
 
       
