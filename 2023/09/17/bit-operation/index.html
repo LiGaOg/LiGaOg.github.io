@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-删除有序数组重复项 | LiGaOg&#39;s blog</title>
+  <title>算法题-位运算系列 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-删除有序数组重复项 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-位运算系列 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -651,9 +651,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-delete-duplicate" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-bit-operation" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-删除有序数组重复项</h1>
+        <h1 class="article-title">算法题-位运算系列</h1>
     
     <div class="article-meta">
         
@@ -671,7 +671,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-16 13:53:50'>2023-09-16 13:53</time>
+            Created At : <time class="date" title='Updated At: 2023-09-17 16:53:22'>2023-09-17 16:06</time>
         
     </div>
     <div class="article-meta">
@@ -682,7 +682,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E9%87%8D%E5%A4%8D%E9%A1%B9I"><span class="toc-text">删除有序数组重复项I</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%B8%AD1%E7%9A%84%E4%B8%AA%E6%95%B0"><span class="toc-text">二进制中1的个数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E9%BD%90%E5%9C%B0%E5%9D%80"><span class="toc-text">对齐地址</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -698,24 +698,55 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="删除有序数组重复项I"><a href="#删除有序数组重复项I" class="headerlink" title="删除有序数组重复项I"></a>删除有序数组重复项I</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-array/">https://leetcode.cn/problems/remove-duplicates-from-sorted-array/</a></p>
+        <h2 id="二进制中1的个数"><a href="#二进制中1的个数" class="headerlink" title="二进制中1的个数"></a>二进制中1的个数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/803/">https://www.acwing.com/problem/content/description/803/</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/number-of-1-bits/">https://leetcode.cn/problems/number-of-1-bits/</a></p>
 </blockquote>
-<p>经典的双指针模板</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int removeDuplicates(vector&lt;int&gt;&amp; nums) &#123;
+<p>时间复杂度是$O(nlogn)$, 其中$n$是二进制位数.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
 
-        int p = 0;
-        for (int i = 0, j = 0; i &lt; nums.size(); i ++) &#123;
-            while (j &lt; nums.size() &amp;&amp; nums[i] == nums[j]) j++;
-            nums[p ++] = nums[i];
-            i = j - 1;
-        &#125;
-        return p;
+using namespace std;
+
+const int N = 100010;
+
+int n;
+int a[N];
+
+/* 统计x二进制表示中1的个数 */
+int count(int x) &#123;
+
+    int cnt = 0;
+    while (x) &#123;
+        x -= x &amp; -x;
+        cnt ++;
     &#125;
-&#125;;
+    return cnt;
+&#125;
+
+int main()
+&#123;
+    cin &gt;&gt; n;
+    for (int i = 0; i &lt; n; i++) cin &gt;&gt; a[i];
+    for (int i = 0; i &lt; n; i++) cout &lt;&lt; count(a[i]) &lt;&lt; &#39; &#39;;
+
+    return 0;
+&#125;
 </code></pre>
+<h2 id="对齐地址"><a href="#对齐地址" class="headerlink" title="对齐地址"></a>对齐地址</h2><p>这不是一个算法题, 一般系统有这样一个要求, 给定一个地址<code>addr</code>, 要求这个地址按照<code>n</code>字节对齐 (这个<code>n</code>一般是2的整数次幂), 然后返回对齐后的地址. </p>
+<p>假设<code>n = 2^k</code>, 那么可以用如下函数求:</p>
+<pre><code class="lang-c">static inline uint32_t align(uint32_t addr, int n) &#123;
+  return (addr + n - 1) &amp; ~(n - 1);
+&#125;
+</code></pre>
+<p>证明:</p>
+<ul>
+<li>首先证明: <code>a &amp; ~(n - 1) = a - a % n</code><ul>
+<li>首先, <code>n-1</code>一定是有<code>log(n)</code>个全1, 前面是全0, 一取反就是前面全是1, 后面<code>log(n)</code>是全0, 然后一取与, 就把<code>a</code>的后面<code>log(n)</code>位全变成0, 前面位保留.</li>
+<li><code>a % n</code>的结果就是<code>a</code>的二进制表示后面<code>log(n)</code>位, 然后再用<code>a</code>一减, 效果等价.</li>
+</ul>
+</li>
+<li>因此, <code>(addr + n - 1) &amp; ~(n - 1) = addr + n - 1 - (addr + n - 1) % (n - 1) = addr + (n - 1) - addr % (n - 1)</code>, 最终得到的表达式本质上就是返回后的地址.</li>
+</ul>
 
       
        
@@ -728,6 +759,46 @@ public:
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
