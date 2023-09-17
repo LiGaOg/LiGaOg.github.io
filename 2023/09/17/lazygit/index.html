@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="利用lazygit进行高效的版本控制 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="最基本的版本控制使用x可以查看每个pane的cheatsheet. 最基本的就四条命令:  git add . git commit -m git push git pull  在Lazygit的File Pane中, 直接a&#x2F;c&#x2F;P&#x2F;p就可以解决. 回滚操作 第一: 基于当前分支新建分支 (branch pane中用n) 第二: 切换到新建分支 (branch pane中用空格) 第三: 回滚到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用lazygit进行高效的版本控制">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/17/lazygit/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="最基本的版本控制使用x可以查看每个pane的cheatsheet. 最基本的就四条命令:  git add . git commit -m git push git pull  在Lazygit的File Pane中, 直接a&#x2F;c&#x2F;P&#x2F;p就可以解决. 回滚操作 第一: 基于当前分支新建分支 (branch pane中用n) 第二: 切换到新建分支 (branch pane中用空格) 第三: 回滚到">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-09-17T13:16:21.357Z">
+<meta property="article:modified_time" content="2023-09-17T13:18:09.786Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -236,6 +236,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/17/lazygit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-date" title="2023-09-17 21:16:21">2023/09/17</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -545,15 +554,6 @@
         
         
         <a  class="All 其他 "
-           href="/2023/09/02/lazygit/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
-            <span class="post-date" title="2023-09-02 20:55:10">2023/09/02</span>
-        </a>
-        
-        
-        <a  class="All 其他 "
            href="/2023/09/02/iterm2/"
            data-tag=""
            data-author="" >
@@ -671,7 +671,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:55:10'>2023-09-02 20:55</time>
+            Created At : <time class="date" title='Updated At: 2023-09-17 21:18:09'>2023-09-17 21:16</time>
         
     </div>
     <div class="article-meta">
@@ -740,7 +740,7 @@
 <li>切换分支</li>
 <li>Commit Pane中用<code>v</code>粘贴.</li>
 </ul>
-<h2 id="interactive-rebasing"><a href="#interactive-rebasing" class="headerlink" title="interactive-rebasing"></a>interactive-rebasing</h2><p>在commit pane中用<code>e</code>, 上面的commit进入interactive-rebasing的状态.</p>
+<h2 id="interactive-rebasing"><a href="#interactive-rebasing" class="headerlink" title="interactive-rebasing"></a>interactive-rebasing</h2><p>在commit pane中对于某次commit用<code>e</code>, 这次commit上面的commit进入interactive-rebasing的状态.</p>
 <p>每个commit有四种状态:</p>
 <ul>
 <li><code>pick</code>: 保留这次commit</li>
@@ -748,7 +748,8 @@
 <li><code>drop</code>: 删除commit</li>
 <li><code>fixup</code>: 和下面的commit合并, 并且作为fixup的commit信息删除</li>
 </ul>
-<p>选择之后, 可以用<code>c</code>批量rebasing操作.</p>
+<p>选择不同commit的状态之后, 用<code>m</code>, 然后<code>continue</code>即可批量操作.</p>
+<p>使用<code>r</code>可以对某次commit进行修改信息, 修改完之后, 使用<code>m</code>, 然后<code>continue</code>, 就可以使修改生效.</p>
 
       
        
