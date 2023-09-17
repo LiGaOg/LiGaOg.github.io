@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-正则表达式匹配 | LiGaOg&#39;s blog</title>
+  <title>如何使用Markdown制作PPT | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-正则表达式匹配 | LiGaOg&#39;s blog">
+  <meta name="description" content="如何使用Markdown制作PPT | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="下载slidevslidev依赖Node.js和npm. 官网: https:&#x2F;&#x2F;sli.dev&#x2F; 建议使用npm全局安装slidev 使用slidev创建Markdown文件test.md后, 使用 slidev .&#x2F;test.md  即可预览. 剩余操作可以参考官网, 例如导出. 演示PDFMac OS X 下可以使用开源的工具Presentation.app 通过pkg下载完成后, 运行如下">
 <meta property="og:type" content="article">
@@ -642,9 +642,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-regular-expression" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-make-ppt-markdown" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-正则表达式匹配</h1>
+        <h1 class="article-title">如何使用Markdown制作PPT</h1>
     
     <div class="article-meta">
         
@@ -654,7 +654,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="其他">其他</a>
             
         </span>
         
@@ -662,7 +662,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-16 13:48:45'>2023-09-08 19:58</time>
+            Created At : <time class="date" title='Updated At: 2023-09-17 15:18:32'>2023-09-17 14:23</time>
         
     </div>
     <div class="article-meta">
@@ -673,7 +673,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="toc-text">正则表达式匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E9%85%8D%E7%AC%A6%E5%8C%B9%E9%85%8D"><span class="toc-text">通配符匹配</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDslidev"><span class="toc-text">下载slidev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8slidev"><span class="toc-text">使用slidev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BAPDF"><span class="toc-text">演示PDF</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -689,112 +689,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="正则表达式匹配"><a href="#正则表达式匹配" class="headerlink" title="正则表达式匹配"></a>正则表达式匹配</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/regular-expression-matching/">https://leetcode.cn/problems/regular-expression-matching/</a></p>
-</blockquote>
-<ul>
-<li>首先需要注意, <code>*</code>是不能单独出现的, 它是和前面一个字符组成一个整体, 例如<code>a*</code>, 表示空字符串, 一个<code>a</code>, 两个<code>a</code>, 到任意多个<code>a</code>.</li>
-<li>假设$f(i, j)$表示$s(1..i)$和$p(1…j)$的所有的匹配方案是否为空, 注意: 下标从1开始, 状态转移可以分为两种情况考虑:<ul>
-<li>如果$p(j)$不是<code>*</code>, 那么$f(i, j) = f(i - 1, j - 1)\ \&amp;\&amp;\ (s(i) == p(j)\ ||\ p(j) == ‘.’)$</li>
-<li>如果$p(j)$是<code>*</code>, 那么需要根据这个<code>*</code>代表多少个$p(j - 1)$字符进行分类讨论:<ul>
-<li>如果代表0个$p(j - 1)$, 那么$f(i, j) = f(i, j - 2)$</li>
-<li>如果代表1个$p(j - 1)$, 那么$f(i, j) = f(i - 1, j - 2)\ \&amp;\&amp;\ (s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’)$</li>
-<li>如果代表2个$p(j - 1)$, 那么$f(i, j) = f(i - 2, j - 2)\ \&amp;\&amp;\ (s(i-1) == p(j - 1)\ \&amp;\&amp;\ s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’)$</li>
-<li>…, 最后的$f(i, j)$就是上面几种情况相与.</li>
-<li>可以发现, $f(i, j)$和$f(i - 1, j)$总是相差一个$s(i) == p(j - 1)\ ||\ p(j - 1) == ‘.’$(见下面的分析), 因此, 最终的状态转移是$f(i, j) = f(i,j-2)\ ||\ (f(i - 1, j)\ \&amp;\&amp;\ (s(i) == p(j - 1))\ ||\ (p(j - 1) == ‘.’))$.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>状态转移优化的推导:</p>
-<pre><code class="lang-cpp">f[i][j] = (f[i][j - 2]) || (f[i - 1][j - 2] &amp;&amp; (s[i] == p[j - 1] || p[j - 1] == &#39;.&#39;)) || (f[i - 2][j - 2] &amp;&amp; ((s[i - 1] == p[j - 1] &amp;&amp; s[i] == p[j - 1]) || p[j - 1] == &#39;.&#39;)) || ...
-
-f[i - 1][j] = (f[i - 1][j - 2]) || (f[i - 2][j - 2] &amp;&amp; (s[i - 1] == p[j - 1] || p[j - 1] == &#39;.&#39;)) || (f[i - 3][j - 2] &amp;&amp; ((s[i - 2] == p[j - 1] &amp;&amp; s[i - 1] == p[j - 1]) || p[j - 1] == &#39;.&#39;)) || ...
+        <h2 id="下载slidev"><a href="#下载slidev" class="headerlink" title="下载slidev"></a>下载slidev</h2><p>slidev依赖<code>Node.js</code>和<code>npm</code>.</p>
+<p>官网: <a target="_blank" rel="noopener" href="https://sli.dev/">https://sli.dev/</a></p>
+<p>建议使用<code>npm</code>全局安装<code>slidev</code></p>
+<h2 id="使用slidev"><a href="#使用slidev" class="headerlink" title="使用slidev"></a>使用slidev</h2><p>创建Markdown文件<code>test.md</code>后, 使用</p>
+<pre><code class="lang-bash">slidev ./test.md
 </code></pre>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool isMatch(string s, string p) &#123;
-        int n = s.size();
-        int m = p.size();
-
-        s = &#39; &#39; + s;
-        p = &#39; &#39; + p;
-
-        vector&lt;vector&lt;bool&gt;&gt; f(n + 1, vector&lt;bool&gt;(m + 1, false));
-        f[0][0] = true;
-
-        for (int i = 0; i &lt;= n; i ++) &#123;
-            for (int j = 1; j &lt;= m; j ++) &#123;
-
-                /* 如果p[j]不是*, 那么要求前面的s不是空 */
-                if (i &gt;= 1 &amp;&amp; p[j] != &#39;*&#39;) &#123;
-                        f[i][j] = f[i - 1][j - 1] &amp;&amp; (s[i] == p[j] || p[j] == &#39;.&#39;);
-                &#125;
-                else if (p[j] == &#39;*&#39;) &#123;
-                        /* 如果出现了*, 那么前面一定有字符, j &gt;= 2 */
-                        f[i][j] = f[i][j - 1] = f[i][j - 2] || ((i &gt;= 1) &amp;&amp; f[i - 1][j] &amp;&amp; (s[i] == p[j - 1] || p[j - 1] == &#39;.&#39;));
-                &#125;
-            &#125;
-        &#125;
-
-        return f[n][m];
-    &#125;
-&#125;;
+<p>即可预览.</p>
+<p>剩余操作可以参考官网, 例如导出.</p>
+<h2 id="演示PDF"><a href="#演示PDF" class="headerlink" title="演示PDF"></a>演示PDF</h2><p>Mac OS X 下可以使用开源的工具<a target="_blank" rel="noopener" href="http://iihm.imag.fr/blanch/software/osx-presentation/">Presentation.app</a></p>
+<p>通过<code>pkg</code>下载完成后, 运行如下命令:</p>
+<pre><code class="lang-bash">sudo ln -s /Applications/Présentation.app/Contents/MacOS/presentation.py /usr/local/bin/
 </code></pre>
-<h2 id="通配符匹配"><a href="#通配符匹配" class="headerlink" title="通配符匹配"></a>通配符匹配</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/wildcard-matching/">https://leetcode.cn/problems/wildcard-matching/</a></p>
-</blockquote>
-<p>状态表示和上一题一样: $f(i, j)$表示$s(1..i)$和$p(1…j)$的所有的匹配方案是否为空.</p>
-<ul>
-<li><p>如果$p(j)$不是<code>*</code>, 那么状态转移为:</p>
-<p>$f(i, j) = f(i - 1, j - 1)\ \&amp;\&amp;\ (s(i) == p(j)\ ||\ p(j) == ‘?’)$</p>
-</li>
-<li><p>如果$p(j)$是<code>*</code>,  那么就需要分情况讨论:</p>
-<ul>
-<li><p>如果<code>*</code>表示空字符序列, 那么状态转移为:</p>
-<p>$f(i, j) = f(i, j - 1)$</p>
-</li>
-<li><p>如果<code>*</code>表示一个字符, 那么状态转移为:</p>
-<p>$f(i, j) = f(i - 1, j - 1)$</p>
-</li>
-<li><p>如果<code>*</code>表示两个字符, 那么状态转移为:</p>
-<p>$f(i, j) = f(i - 2, j - 1)$</p>
-</li>
-<li><p>….</p>
-</li>
-</ul>
-<p>总的状态转移就是上面几种情况与起来.</p>
-</li>
-</ul>
-<p>观察如下表达式</p>
-<pre><code>f[i][j] = f[i][j - 1] || f[i - 1][j - 1] || f[i - 2][j - 1] || ...
-f[i - 1][j] = f[i - 1][j - 1] || f[i - 2][j - 1] || f[i - 3][j - 1] || ...
-</code></pre><p>通过观察, 可以发现: $f(i, j) = f(i, j - 1) || f(i - 1, j)$, 这个优化类似于背包问题.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool isMatch(string s, string p) &#123;
-        int n = s.size(), m = p.size();
-        s = &#39; &#39; + s, p = &#39; &#39; + p;
-
-        vector&lt;vector&lt;bool&gt;&gt; f(n + 1, vector&lt;bool&gt;(m + 1));
-        f[0][0] = true;
-
-        for (int i = 0; i &lt;= n; i++) &#123;
-            for (int j = 1; j &lt;= m; j++) &#123;
-                if (i &gt;= 1 &amp;&amp; p[j] != &#39;*&#39;) &#123;
-                    f[i][j] = f[i - 1][j - 1] &amp;&amp; (s[i] == p[j] || p[j] == &#39;?&#39;);
-                &#125;
-                else if (p[j] == &#39;*&#39;) &#123;
-                    f[i][j] = (j &gt;= 1) &amp;&amp; f[i][j - 1] || (i &gt;= 1) &amp;&amp; f[i - 1][j];
-                &#125;
-            &#125;
-        &#125;
-
-        return f[n][m];
-    &#125;
-&#125;;
-</code></pre>
+<p>然后就可以在命令行中使用<code>presentation.py ppt.pdf</code>进行演示.</p>
 
       
        
@@ -807,46 +714,6 @@ public:
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
