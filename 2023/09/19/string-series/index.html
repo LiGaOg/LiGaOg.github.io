@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>如何从C语言处获得链接脚本定义的变量 | LiGaOg&#39;s blog</title>
+  <title>算法题-字符串系列问题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="如何从C语言处获得链接脚本定义的变量 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-字符串系列问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="高精度加法 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;793&#x2F;  直接背模板, 注意要求两个数不含前导0 #include &lt;iostream&gt; #include &lt;cstring&gt; #include &lt;vector&gt;  using namespace std;  vector&lt;int&gt; add(vector&amp;lt">
 <meta property="og:type" content="article">
@@ -675,9 +675,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-linker-script-value" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-string-series" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">如何从C语言处获得链接脚本定义的变量</h1>
+        <h1 class="article-title">算法题-字符串系列问题</h1>
     
     <div class="article-meta">
         
@@ -687,7 +687,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工程">工程</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -695,7 +695,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-16 16:22:02'>2023-09-16 16:16</time>
+            Created At : <time class="date" title='Updated At: 2023-09-19 14:54:46'>2023-09-19 14:51</time>
         
     </div>
     <div class="article-meta">
@@ -706,7 +706,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%BF%E6%8D%A2%E7%A9%BA%E6%A0%BC"><span class="toc-text">替换空格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E9%95%BF%E4%B8%8D%E5%90%AB%E9%87%8D%E5%A4%8D%E5%AD%97%E7%AC%A6%E7%9A%84%E5%AD%90%E4%B8%B2"><span class="toc-text">最长不含重复字符的子串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BF%BB%E8%BD%AC%E5%8D%95%E8%AF%8D%E9%A1%BA%E5%BA%8F"><span class="toc-text">翻转单词顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A6%E6%97%8B%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">左旋转字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B2%E8%BF%9E%E6%89%80%E6%9C%89%E5%8D%95%E8%AF%8D%E7%9A%84%E5%AD%90%E4%B8%B2"><span class="toc-text">串连所有单词的子串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9A%B4%E5%8A%9B%E5%81%9A%E6%B3%95"><span class="toc-text">暴力做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95"><span class="toc-text">双指针算法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="toc-text">字符串最长公共前缀</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0"><span class="toc-text">字符串转换整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%89%8D%E7%BC%80%E5%93%88%E5%B8%8C"><span class="toc-text">字符串前缀哈希</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -722,12 +722,268 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>假设你在链接脚本中定义了一个变量:</p>
-<pre><code>_bss_start = 100
-</code></pre><p>在C语言中需要这样找到这个值:</p>
-<pre><code class="lang-c">extern int _bss_start;
-// 注意要多加一个&amp;
-int val = &amp;_bss_start;
+        <h2 id="替换空格"><a href="#替换空格" class="headerlink" title="替换空格"></a>替换空格</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/17/">https://www.acwing.com/problem/content/17/</a></p>
+</blockquote>
+<p>原地算法</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    string replaceSpaces(string &amp;str) &#123;
+
+        int len = 0;
+
+        for (auto c: str) &#123;
+            if (c == &#39; &#39;) len += 3;
+            else len ++;
+        &#125;
+
+        int l = str.size() - 1;
+        str.resize(len);
+
+        for (int i = l, j = len - 1; i &gt;= 0; i --) &#123;
+            if (str[i] == &#39; &#39;) &#123;
+                str[j --] = &#39;0&#39;;
+                str[j --] = &#39;2&#39;;
+                str[j --] = &#39;%&#39;;
+            &#125;
+            else str[j --] = str[i];
+        &#125;
+
+        return str;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="最长不含重复字符的子串"><a href="#最长不含重复字符的子串" class="headerlink" title="最长不含重复字符的子串"></a>最长不含重复字符的子串</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">https://leetcode.cn/problems/longest-substring-without-repeating-characters/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int lengthOfLongestSubstring(string s) &#123;
+
+        unordered_map&lt;char, int&gt; heap;
+        int res = 0;
+
+        for (int i = 0, j = 0; i &lt; s.size(); i ++) &#123;
+            heap[s[i]] ++;
+            while (heap[s[i]] &gt; 1) heap[s[j ++]] --;
+            res = max(res, i - j + 1);
+        &#125;
+
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="翻转单词顺序"><a href="#翻转单词顺序" class="headerlink" title="翻转单词顺序"></a>翻转单词顺序</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/73/">https://www.acwing.com/problem/content/73/</a></p>
+</blockquote>
+<p>翻转整个字符串后, 再反转每个单词即可.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    string reverseWords(string s) &#123;
+
+        reverse(s.begin(), s.end());
+        for (int i = 0; i &lt; s.size(); i ++) &#123;
+            int j = i + 1;
+            while (j &lt; s.size() &amp;&amp; s[j] != &#39; &#39;) j ++;
+            reverse(s.begin() + i, s.begin() + j);
+            i = j;
+        &#125;
+
+        return s;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="左旋转字符串"><a href="#左旋转字符串" class="headerlink" title="左旋转字符串"></a>左旋转字符串</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/74/">https://www.acwing.com/problem/content/74/</a></p>
+</blockquote>
+<p>先翻转整个字符串, 然后分别翻转左旋部分和非左旋部分即可.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    string leftRotateString(string str, int n) &#123;
+        reverse(str.begin(), str.end());
+        reverse(str.begin(), str.begin() + str.size() - n);
+        reverse(str.begin() + str.size() - n, str.end());
+        return str;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="串连所有单词的子串"><a href="#串连所有单词的子串" class="headerlink" title="串连所有单词的子串"></a>串连所有单词的子串</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/substring-with-concatenation-of-all-words/">https://leetcode.cn/problems/substring-with-concatenation-of-all-words/</a></p>
+</blockquote>
+<h3 id="暴力做法"><a href="#暴力做法" class="headerlink" title="暴力做法"></a>暴力做法</h3><p>首先用一个哈希表<code>hash</code>预处理每个单词出现的次数.</p>
+<p>之后枚举给定字符串<code>s</code>的每一个起点, 对于每一个起点, 从后看每一个单词, 然后用另一个哈希表<code>cur_hash</code>处理遍历过程中每一个单词出现的次数, 假设现在遍历到的单词是<code>cur</code>:</p>
+<ul>
+<li>如果<code>cur_hash[cur] &lt;= hash[cur]</code>, 正常, 继续遍历</li>
+<li>如果<code>cur_hash[cur] &gt; hash[cur]</code>或者<code>cur</code>在<code>hash</code>中根本没有出现: 那么不符合题意, 当前枚举的<code>s</code>起点是无效的.</li>
+</ul>
+<p>之后, 如果遍历单词的个数达到了所有单词的数量, 那么就成功了.</p>
+<p>时间复杂度是$O(nm)$, 其中$n$是字符串<code>s</code>的长度, $m$是单词的个数.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; findSubstring(string s, vector&lt;string&gt;&amp; words) &#123;
+        unordered_map&lt;string, int&gt; hash;
+        vector&lt;int&gt; ans;
+
+        int n = s.size(), m = words.size(), len = words[0].size();
+
+        /* 统计每个单词出现的次数 */
+        for (auto word: words) hash[word] ++;
+
+        for (int i = 0; i &lt;= n - m * len; i ++) &#123;
+
+            unordered_map&lt;string, int&gt; cur_hash;
+            int cnt = 0;
+
+            for (int j = i; j &lt;= n - len; j += len) &#123;
+
+                string cur = s.substr(j, len);
+
+                /* 如果cur没有在words中出现过, 直接失败 */
+                if (!hash.count(cur)) break;
+
+                cur_hash[cur] ++;
+                if (cur_hash[cur] &gt; hash[cur]) break;
+                else if (cur_hash[cur] &lt;= hash[cur]) cnt ++;
+                if (cnt == words.size()) &#123;
+                    ans.push_back(i);
+                    break;
+                &#125;
+
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h3><p>首先, 还是用哈希表预处理每一个单词出现的次数.</p>
+<p>假设每一个单词的长度是<code>len</code>.</p>
+<p>之后, 对于给定的字符串<code>s</code>, 将它切分成一段一段, 每一段长度是<code>len</code>, 这些段可以组成一个原串的单词序列, 不同的序列一共有<code>len</code>中, 它们的起点分别是<code>0, 1, 2, ..., len - 1</code>, 其中以<code>len</code>为起点的序列和以<code>0</code>为起点的序列是等价的, 因为是子串关系.</p>
+<p>之后, 遍历每一个从<code>s</code>中得到的序列, 用双指针算法得到由<code>words</code>中单词组成的连续的最长的序列, 看这个序列中的单词个数是否是<code>m</code>, 如果是<code>m</code>, 那就成功, 这个双指针算法可以参考<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-substring-without-repeating-characters/">LeetCode 3</a></p>
+<p>一共有<code>len</code>个序列, 枚举每个序列需要$O(n)$的时间复杂度, 那么总的时间复杂度就是$O(nlen)$</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    vector&lt;int&gt; findSubstring(string s, vector&lt;string&gt;&amp; words) &#123;
+        unordered_map&lt;string, int&gt; hash;
+        vector&lt;int&gt; ans;
+
+        int n = s.size(), m = words.size(), len = words[0].size();
+
+        /* 统计每个单词出现的次数 */
+        for (auto word: words) hash[word] ++;
+
+        for (int i = 0; i &lt; len; i ++) &#123;
+            vector&lt;string&gt; ws;
+            int j = i;
+            while (j + len - 1 &lt; s.size()) &#123;
+                ws.push_back(s.substr(j, len));
+                j += len;
+            &#125;
+
+            unordered_map&lt;string, int&gt; cur_hash;
+            for (int p = 0, q = 0; p &lt; ws.size(); p ++) &#123;
+                cur_hash[ws[p]] ++;
+                while (cur_hash[ws[p]] &gt; hash[ws[p]]) cur_hash[ws[q ++]] --;
+                if (p - q + 1 == m) ans.push_back(i + q * len);
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="字符串最长公共前缀"><a href="#字符串最长公共前缀" class="headerlink" title="字符串最长公共前缀"></a>字符串最长公共前缀</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-common-prefix/">https://leetcode.cn/problems/longest-common-prefix/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    string longestCommonPrefix(vector&lt;string&gt;&amp; strs) &#123;
+        string res;
+        if (strs.empty()) return res;
+
+        for (int i = 0; ; i ++) &#123;
+            if (i &gt;= strs[0].size()) return res;
+            char c = strs[0][i];
+            for (auto &amp;str: strs) &#123;
+                if (i &gt;= str.size() || str[i] != c) return res;
+            &#125;
+            res += c;
+        &#125;
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="字符串转换整数"><a href="#字符串转换整数" class="headerlink" title="字符串转换整数"></a>字符串转换整数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/string-to-integer-atoi/">https://leetcode.cn/problems/string-to-integer-atoi/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int myAtoi(string s) &#123;
+        int k = 0;
+        while (k &lt; s.size() &amp;&amp; s[k] == &#39; &#39;) k ++;
+
+        if (k == s.size()) return 0;
+
+        bool neg = false;
+        if (s[k] == &#39;-&#39;) neg = true;
+        if (s[k] == &#39;-&#39; || s[k] == &#39;+&#39;) k ++;
+
+        int res = 0;
+
+        while (k &lt; s.size() &amp;&amp; s[k] &gt;= &#39;0&#39; &amp;&amp; s[k] &lt;= &#39;9&#39;) &#123;
+            int x = s[k] - &#39;0&#39;;
+            if (!neg &amp;&amp; res &gt; (INT_MAX - x) / 10) return INT_MAX;
+            if (neg &amp;&amp; -res &lt; (INT_MIN + x) / 10) return INT_MIN;
+            /* 特判, 正数无法存储2147483648 */
+            if (neg &amp;&amp; -res * 10 - x == INT_MIN) return INT_MIN;
+
+            res = res * 10 + x;
+            k ++;
+        &#125;
+
+        return (neg) ? -res : res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="字符串前缀哈希"><a href="#字符串前缀哈希" class="headerlink" title="字符串前缀哈希"></a>字符串前缀哈希</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/843/">https://www.acwing.com/problem/content/843/</a></p>
+</blockquote>
+<p>按照字符的ASCII码, 可以将字符串映射到一个$P$进制的数, 可以实现在$O(1)$的时间内判断字符串的两个子串是否相等.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 100010, P = 131;
+
+typedef unsigned long long ULL;
+
+ULL h[N], p[N];
+char str[N];
+
+int n, m;
+
+ULL get(int l, int r) &#123;
+    return h[r] - h[l - 1] * (r - l + 1);
+&#125;
+
+int main() &#123;
+
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    scanf(&quot;%s&quot;, str + 1);
+
+    p[0] = 1;
+
+    for (int i = 1; i &lt;= n; i ++) &#123;
+        h[i] = h[i - 1] * P + str[i];
+        p[i] = p[i - 1] * P;
+    &#125;
+
+    while (m --) &#123;
+        int l1, r1, l2, r2;
+        scanf(&quot;%d%d%d%d&quot;, &amp;l1, &amp;r1, &amp;l2, &amp;r2);
+        if (get(l1, r1) == get(l2, r2)) puts(&quot;Yes&quot;);
+        else puts(&quot;No&quot;);
+    &#125;
+    return 0;
+&#125;
 </code></pre>
 
       
@@ -741,6 +997,46 @@ int val = &amp;_bss_start;
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
