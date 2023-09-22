@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>如何使用Markdown制作PPT | LiGaOg&#39;s blog</title>
+  <title>算法题-判断子序列 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="如何使用Markdown制作PPT | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-判断子序列 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;2818&#x2F;  双指针算法要判断$a$数组是否是$b$数组的子序列, 首先用一个指针j初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把j指针向后移动. 如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列. #inc">
 <meta property="og:type" content="article">
@@ -669,9 +669,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-make-ppt-markdown" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-judge-sub-sequence" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">如何使用Markdown制作PPT</h1>
+        <h1 class="article-title">算法题-判断子序列</h1>
     
     <div class="article-meta">
         
@@ -681,7 +681,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -689,7 +689,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-17 15:18:32'>2023-09-17 14:23</time>
+            Created At : <time class="date" title='Updated At: 2023-09-22 14:22:07'>2023-09-22 14:18</time>
         
     </div>
     <div class="article-meta">
@@ -700,7 +700,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDslidev"><span class="toc-text">下载slidev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8slidev"><span class="toc-text">使用slidev</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BC%94%E7%A4%BAPDF"><span class="toc-text">演示PDF</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95"><span class="toc-text">双指针算法</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -716,19 +716,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="下载slidev"><a href="#下载slidev" class="headerlink" title="下载slidev"></a>下载slidev</h2><p>slidev依赖<code>Node.js</code>和<code>npm</code>.</p>
-<p>官网: <a target="_blank" rel="noopener" href="https://sli.dev/">https://sli.dev/</a></p>
-<p>建议使用<code>npm</code>全局安装<code>slidev</code></p>
-<h2 id="使用slidev"><a href="#使用slidev" class="headerlink" title="使用slidev"></a>使用slidev</h2><p>创建Markdown文件<code>test.md</code>后, 使用</p>
-<pre><code class="lang-bash">slidev ./test.md
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/2818/">https://www.acwing.com/problem/content/description/2818/</a></p>
+</blockquote>
+<h2 id="双指针算法"><a href="#双指针算法" class="headerlink" title="双指针算法"></a>双指针算法</h2><p>要判断$a$数组是否是$b$数组的子序列, 首先用一个指针<code>j</code>初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把<code>j</code>指针向后移动.</p>
+<p>如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 100010;
+
+int n, m;
+int a[N], b[N];
+
+int main()
+&#123;
+
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 0; i &lt; n; i ++) cin &gt;&gt; a[i];
+    for (int i = 0; i &lt; m; i ++) cin &gt;&gt; b[i];
+
+    int j = 0;
+    for (int i = 0; i &lt; m; i ++) &#123;
+        if (j &lt; n &amp;&amp; a[j] == b[i]) j ++;
+    &#125;
+
+    if (j == n) puts(&quot;Yes&quot;);
+    else puts(&quot;No&quot;);
+
+    return 0;
+&#125;
 </code></pre>
-<p>即可预览.</p>
-<p>剩余操作可以参考官网, 例如导出.</p>
-<h2 id="演示PDF"><a href="#演示PDF" class="headerlink" title="演示PDF"></a>演示PDF</h2><p>Mac OS X 下可以使用开源的工具<a target="_blank" rel="noopener" href="http://iihm.imag.fr/blanch/software/osx-presentation/">Presentation.app</a></p>
-<p>通过<code>pkg</code>下载完成后, 运行如下命令:</p>
-<pre><code class="lang-bash">sudo ln -s /Applications/Présentation.app/Contents/MacOS/presentation.py /usr/local/bin/
-</code></pre>
-<p>然后就可以在命令行中使用<code>presentation.py ppt.pdf</code>进行演示.</p>
 
       
        
@@ -741,6 +760,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
