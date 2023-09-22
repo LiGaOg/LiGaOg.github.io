@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="设计并使用thrift实现一个匹配系统 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;2818&#x2F;  双指针算法要判断$a$数组是否是$b$数组的子序列, 首先用一个指针j初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把j指针向后移动. 如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列. #inc">
+<meta name="description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法题-判断子序列">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/09/22/judge-sub-sequence/index.html">
+<meta property="og:title" content="算法题-缺失的第一个正数">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/22/first-missing-positive/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;2818&#x2F;  双指针算法要判断$a$数组是否是$b$数组的子序列, 首先用一个指针j初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把j指针向后移动. 如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列. #inc">
+<meta property="og:description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-22T06:18:51.796Z">
-<meta property="article:modified_time" content="2023-09-22T06:22:07.418Z">
+<meta property="article:published_time" content="2023-09-22T13:26:22.067Z">
+<meta property="article:modified_time" content="2023-09-22T13:49:16.367Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(46)</small>
+                <small>(49)</small>
             
         </div>
     </li>
@@ -161,7 +161,7 @@
         <div data-rel="算法">
             
             算法
-            <small>(26)</small>
+            <small>(29)</small>
         </div>
         
     </li>
@@ -186,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="46">
+<input type="hidden" id="yelog_site_posts_number" value="49">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -236,6 +236,33 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/first-missing-positive/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-缺失的第一个正数">算法题-缺失的第一个正数</span>
+            <span class="post-date" title="2023-09-22 21:26:22">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/rotate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-旋转图像">算法题-旋转图像</span>
+            <span class="post-date" title="2023-09-22 16:41:21">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/jump-game/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-跳跃游戏">算法题-跳跃游戏</span>
+            <span class="post-date" title="2023-09-22 16:00:12">2023/09/22</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -293,10 +320,10 @@
         
         
         <a  class="All 算法 "
-           href="/2023/09/18/simulation-algorithm/"
+           href="/2023/09/18/other-algorithm/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="算法题-一些模拟类型的算法">算法题-一些模拟类型的算法</span>
+            <span class="post-title" title="算法题-其他类型的算法">算法题-其他类型的算法</span>
             <span class="post-date" title="2023-09-18 14:43:51">2023/09/18</span>
         </a>
         

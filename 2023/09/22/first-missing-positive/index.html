@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>终端中集成ChatGPT服务 | LiGaOg&#39;s blog</title>
+  <title>算法题-缺失的第一个正数 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="终端中集成ChatGPT服务 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-缺失的第一个正数 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:type" content="article">
@@ -696,9 +696,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-gpt-shell" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-first-missing-positive" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">终端中集成ChatGPT服务</h1>
+        <h1 class="article-title">算法题-缺失的第一个正数</h1>
     
     <div class="article-meta">
         
@@ -708,7 +708,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -716,7 +716,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:54:59'>2023-09-02 20:54</time>
+            Created At : <time class="date" title='Updated At: 2023-09-22 21:49:16'>2023-09-22 21:26</time>
         
     </div>
     <div class="article-meta">
@@ -727,7 +727,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96OpenAI-API-Key"><span class="toc-text">获取OpenAI API Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E4%BD%BF%E7%94%A8shell-gpt"><span class="toc-text">下载并使用shell-gpt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenAI-API%E5%85%85%E5%80%BC"><span class="toc-text">OpenAI API充值</span></a></li></ol>
+        
     
 <style>
     .left-col .switch-btn,
@@ -743,17 +743,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="获取OpenAI-API-Key"><a href="#获取OpenAI-API-Key" class="headerlink" title="获取OpenAI API Key"></a>获取OpenAI API Key</h2><p><a target="_blank" rel="noopener" href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>获取之后, 添加环境变量:</p>
-<pre><code class="lang-bash">export OPENAI_API_KEY=&quot;&quot;
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/first-missing-positive/">https://leetcode.cn/problems/first-missing-positive/</a></p>
+</blockquote>
+<p>假设$n$是<code>nums</code>数组的大小.</p>
+<p>首先,  没有出现过的最小的正整数一定在$[0, n]$范围内.</p>
+<p>然后, 我可以把数组中的元素进行归位, 使得<code>nums[i] = i</code>, 那么如果数组中存在一个位置<code>k</code>, 使得<code>nums[k] != k</code>, 那么这个<code>k</code>就是缺失的第一个整数.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int firstMissingPositive(vector&lt;int&gt;&amp; nums) &#123;
+        int n = nums.size();
+
+        /* 注意要实际修改数组中的元素要加引用 */
+        /* 这里减是为了把nums[i]映射到下标 */
+        /* 边界情况, 如果x是INT_MIN, 那么不能减 */
+        for (auto &amp;x : nums) 
+            if (x != INT_MIN) x --;
+
+        for (int i = 0; i &lt; n; i ++) &#123;
+            while (nums[i] &gt;= 0 &amp;&amp; nums[i] &lt; n &amp;&amp; nums[nums[i]] != nums[i]) 
+                swap(nums[i], nums[nums[i]]);
+
+        &#125;
+        for (int i = 0; i &lt; n; i ++) 
+            if (nums[i] != i) return i + 1;
+
+        return n + 1;
+    &#125;
+&#125;;
 </code></pre>
-<h2 id="下载并使用shell-gpt"><a href="#下载并使用shell-gpt" class="headerlink" title="下载并使用shell-gpt"></a>下载并使用shell-gpt</h2><p>下载: </p>
-<pre><code class="lang-shell">pip3 install shell-gpt
-</code></pre>
-<p>使用:</p>
-<pre><code class="lang-sh">sgpt &quot;你的prompt&quot;
-</code></pre>
-<h2 id="OpenAI-API充值"><a href="#OpenAI-API充值" class="headerlink" title="OpenAI API充值"></a>OpenAI API充值</h2><p><a target="_blank" rel="noopener" href="https://platform.openai.com/account/billing/overview">https://platform.openai.com/account/billing/overview</a></p>
 
       
        
@@ -766,6 +784,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

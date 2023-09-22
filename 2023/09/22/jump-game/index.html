@@ -2,19 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-一些模拟类型的算法 | LiGaOg&#39;s blog</title>
+  <title>算法题-跳跃游戏 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-一些模拟类型的算法 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-跳跃游戏 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;2818&#x2F;  双指针算法要判断$a$数组是否是$b$数组的子序列, 首先用一个指针j初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把j指针向后移动. 如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列. #inc">
+<meta name="description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:type" content="article">
-<meta property="og:title" content="算法题-判断子序列">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/09/22/judge-sub-sequence/index.html">
+<meta property="og:title" content="算法题-缺失的第一个正数">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/22/first-missing-positive/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;2818&#x2F;  双指针算法要判断$a$数组是否是$b$数组的子序列, 首先用一个指针j初始指向$a$数组的起始位置, 然后遍历$b$数组, 如果当前遍历到的$b$数组的元素和$a[j]$元素相等, 那么就把j指针向后移动. 如果$j$指针移动到了$a$数组的末尾, 说明$a$就是子序列. #inc">
+<meta property="og:description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-22T06:18:51.796Z">
-<meta property="article:modified_time" content="2023-09-22T06:22:07.418Z">
+<meta property="article:published_time" content="2023-09-22T13:26:22.067Z">
+<meta property="article:modified_time" content="2023-09-22T13:49:16.367Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(46)</small>
+                <small>(49)</small>
             
         </div>
     </li>
@@ -161,7 +161,7 @@
         <div data-rel="算法">
             
             算法
-            <small>(26)</small>
+            <small>(29)</small>
         </div>
         
     </li>
@@ -186,7 +186,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="46">
+<input type="hidden" id="yelog_site_posts_number" value="49">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -236,6 +236,33 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/first-missing-positive/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-缺失的第一个正数">算法题-缺失的第一个正数</span>
+            <span class="post-date" title="2023-09-22 21:26:22">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/rotate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-旋转图像">算法题-旋转图像</span>
+            <span class="post-date" title="2023-09-22 16:41:21">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/jump-game/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-跳跃游戏">算法题-跳跃游戏</span>
+            <span class="post-date" title="2023-09-22 16:00:12">2023/09/22</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -293,10 +320,10 @@
         
         
         <a  class="All 算法 "
-           href="/2023/09/18/simulation-algorithm/"
+           href="/2023/09/18/other-algorithm/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="算法题-一些模拟类型的算法">算法题-一些模拟类型的算法</span>
+            <span class="post-title" title="算法题-其他类型的算法">算法题-其他类型的算法</span>
             <span class="post-date" title="2023-09-18 14:43:51">2023/09/18</span>
         </a>
         
@@ -669,9 +696,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-simulation-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-jump-game" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-一些模拟类型的算法</h1>
+        <h1 class="article-title">算法题-跳跃游戏</h1>
     
     <div class="article-meta">
         
@@ -689,7 +716,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-21 21:43:48'>2023-09-18 14:43</time>
+            Created At : <time class="date" title='Updated At: 2023-09-22 16:23:01'>2023-09-22 16:00</time>
         
     </div>
     <div class="article-meta">
@@ -700,7 +727,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97"><span class="toc-text">整数转罗马数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0"><span class="toc-text">罗马数字转整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-text">二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="toc-text">用两个栈实现队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC"><span class="toc-text">有效的数独</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F-II"><span class="toc-text">跳跃游戏 II</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%B3%E8%B7%83%E6%B8%B8%E6%88%8F"><span class="toc-text">跳跃游戏</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -716,221 +743,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="整数转罗马数字"><a href="#整数转罗马数字" class="headerlink" title="整数转罗马数字"></a>整数转罗马数字</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-to-roman/">https://leetcode.cn/problems/integer-to-roman/</a></p>
+        <h2 id="跳跃游戏-II"><a href="#跳跃游戏-II" class="headerlink" title="跳跃游戏 II"></a>跳跃游戏 II</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game-ii/">https://leetcode.cn/problems/jump-game-ii/</a></p>
 </blockquote>
-<p>罗马数字的一些对应表如下:</p>
-<pre><code>1    2    3    4    5    6    7    8    9
-I   II   III   IV   V   VI   VII   VIII IX
-
-10   20   30   40   50   60   70   80   90
-X    XX   XXX  XL    L   LX  LXX  LXXX  XC
-
-100  200  300  400  500  600   700    800   900
-C    CC   CCC   CD   D    DC   DCC    DCCC   CM
-
-1000  2000  3000
- M     MM   MMM
-</code></pre><p>基本单位是: <code>1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1</code></p>
-<p>对应的罗马数字的基本元素是<code>M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I</code></p>
-<p>直接对给定的数据求它们由多少个基本单位组成即可.</p>
+<p>假设$f(i)$表示从下标为0的地方跳到下标为$i$的地方所需要的最小步数.</p>
+<p>首先, $f(0) = 0$.</p>
+<p>假设$j$是最小的, 能够一步跳到下标为$i$的位置, 那么$f(i) = f(j) + 1$.</p>
+<p>因此, 每次找到最小的, 能够一步跳到下标为$i$的位置$j$, 更新状态即可.</p>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    string intToRoman(int num) &#123;
-        int values[] = &#123;
-            1000,
-            900, 500, 400, 100,
-            90, 50, 40, 10,
-            9, 5, 4, 1
-        &#125;;
+    int jump(vector&lt;int&gt;&amp; nums) &#123;
 
-        string resp[] = &#123;
-            &quot;M&quot;,
-            &quot;CM&quot;, &quot;D&quot;, &quot;CD&quot;, &quot;C&quot;,
-            &quot;XC&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;X&quot;,
-            &quot;IX&quot;, &quot;V&quot;, &quot;IV&quot;, &quot;I&quot;,
-        &#125;;
+       int n = nums.size();
+       vector&lt;int&gt; f(n);
 
-        string ans;
+       for (int i = 1, j = 0; i &lt; n; i ++) &#123;
+         /* 找到最小的, 能够一步跳到下标为i的位置j */
+           while (j + nums[j] &lt; i) j ++;
+           f[i] = f[j] + 1;
+       &#125;
 
-        for (int i = 0; i &lt; 13; i ++) &#123;
-            while (num &gt;= values[i]) &#123;
-                num -= values[i];
-                ans += resp[i];
-            &#125;
-        &#125;
-        return ans;
+       return f[n - 1];
     &#125;
 &#125;;
 </code></pre>
-<h2 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/roman-to-integer/">https://leetcode.cn/problems/roman-to-integer/</a></p>
+<h2 id="跳跃游戏"><a href="#跳跃游戏" class="headerlink" title="跳跃游戏"></a>跳跃游戏</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jump-game/">https://leetcode.cn/problems/jump-game/</a></p>
 </blockquote>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    int romanToInt(string s) &#123;
-            unordered_map&lt;char, int&gt; hash;
-            hash[&#39;I&#39;] = 1;
-            hash[&#39;V&#39;] = 5;
-            hash[&#39;X&#39;] = 10;
-            hash[&#39;L&#39;] = 50;
-            hash[&#39;C&#39;] = 100;
-            hash[&#39;D&#39;] = 500;
-            hash[&#39;M&#39;] = 1000;
-
-            int res = 0;
-            for (int i = 0; i &lt; s.size(); i ++) &#123;
-                if (i + 1 &lt; s.size() &amp;&amp; hash[s[i]] &lt; hash[s[i + 1]]) &#123;
-                    res -= hash[s[i]];
-                &#125;
-                else res += hash[s[i]];
-            &#125;
-            return res;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/">https://leetcode.cn/problems/remove-element/</a></p>
-</blockquote>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;
-        int k = 0;
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            if (nums[i] != val) nums[k ++] = nums[i];
-        &#125;
-        return k;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/16/">https://www.acwing.com/problem/content/16/</a></p>
-</blockquote>
-<p>以最右上角的元素为基准, 如果最右上角的元素比<code>target</code>大, 那么就向左移动一格变小, 如果比<code>target</code>小, 那么就向右移动一格变大.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool searchArray(vector&lt;vector&lt;int&gt;&gt; array, int target) &#123;
-
-        int n = array.size();
-        if (!n) return false;
-        int m = array[0].size();
-
-        int i = 0, j = m - 1;
-        while (i &lt; n &amp;&amp; j &gt;= 0) &#123;
-            if (target &lt; array[i][j]) j --;
-            else if (target &gt; array[i][j]) i ++;
-            else return true;
-        &#125;
-        return false;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="用两个栈实现队列"><a href="#用两个栈实现队列" class="headerlink" title="用两个栈实现队列"></a>用两个栈实现队列</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/36/">https://www.acwing.com/problem/content/description/36/</a></p>
-</blockquote>
-<pre><code class="lang-cpp">class MyQueue &#123;
-public:
-    stack&lt;int&gt; s1;
-    stack&lt;int&gt; s2;
-    /** Initialize your data structure here. */
-    MyQueue() &#123;
-
-    &#125;
-
-    /** Push element x to the back of queue. */
-    void push(int x) &#123;
-        s1.push(x);
-    &#125;
-
-    /** Removes the element from in front of queue and returns that element. */
-    int pop() &#123;
-        while (s1.size() &gt; 1) &#123;
-            int t = s1.top(); s1.pop();
-            s2.push(t);
-        &#125;
-        int t = s1.top(); s1.pop();
-        while (s2.size()) &#123;
-            int q = s2.top(); s2.pop();
-            s1.push(q);
-        &#125;
-        return t;
-    &#125;
-
-    /** Get the front element. */
-    int peek() &#123;
-        while (s1.size() &gt; 1) &#123;
-            int t = s1.top(); s1.pop();
-            s2.push(t);
-        &#125;
-        int t = s1.top();
-        while (s2.size()) &#123;
-            int q = s2.top(); s2.pop();
-            s1.push(q);
-        &#125;
-        return t;
-    &#125;
-
-    /** Returns whether the queue is empty. */
-    bool empty() &#123;
-        return s1.size() == 0;
-    &#125;
-&#125;;
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * bool param_4 = obj.empty();
- */
-</code></pre>
-<h2 id="有效的数独"><a href="#有效的数独" class="headerlink" title="有效的数独"></a>有效的数独</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-sudoku/">https://leetcode.cn/problems/valid-sudoku/</a></p>
-</blockquote>
-<p>枚举行列和每一个小九宫格, 判断即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;
-      /* 判重数组 */
-        bool st[9];
-
-        /* 判断行 */
-        for (int i = 0; i &lt; 9; i ++) &#123;
-            memset(st, false, sizeof(st));
-            for (int j = 0; j &lt; 9; j ++) &#123;
-                if (board[i][j] == &#39;.&#39;) continue;
-                int t = board[i][j] - &#39;1&#39;;
-                if (st[t]) return false;
-                st[t] = true;
-            &#125;
-        &#125;
-
-
-        /* 判断列 */
-        for (int i = 0; i &lt; 9; i ++) &#123;
-            memset(st, false, sizeof(st));
-            for (int j = 0; j &lt; 9; j ++) &#123;
-                if (board[j][i] == &#39;.&#39;) continue;
-                int t = board[j][i] - &#39;1&#39;;
-                if (st[t]) return false;
-                st[t] = true;
-            &#125;
-        &#125;
-                /* 判断每一个小九宫格 */
-        for (int i = 0; i &lt; 9; i += 3) &#123;
-            for (int j = 0; j &lt; 9; j += 3) &#123;
-                memset(st, false, sizeof(st));
-                for (int x = i; x &lt; i + 3; x ++) &#123;
-                    for (int y = j; y &lt; j + 3; y ++) &#123;
-                        if (board[x][y] == &#39;.&#39;) continue;
-                        int t = board[x][y] - &#39;1&#39;;
-                        if (st[t]) return false;
-                        st[t] = true;
-                    &#125;
-                &#125;
-            &#125;
+    bool canJump(vector&lt;int&gt;&amp; nums) &#123;
+        for (int i = 0, j = 0; i &lt; nums.size(); i ++) &#123;
+            if (j &lt; i) return false;
+            /* 维护一个j, 记录j前面的所有元素能够跳到的最大距离 */
+            j = max(j, i + nums[i]);
         &#125;
         return true;
     &#125;
@@ -948,6 +794,46 @@ public:
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

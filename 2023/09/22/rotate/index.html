@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>终端中集成ChatGPT服务 | LiGaOg&#39;s blog</title>
+  <title>算法题-旋转图像 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="终端中集成ChatGPT服务 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-旋转图像 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;first-missing-positive&#x2F;  假设$n$是nums数组的大小. 首先,  没有出现过的最小的正整数一定在$[0, n]$范围内. 然后, 我可以把数组中的元素进行归位, 使得nums[i] &#x3D; i, 那么如果数组中存在一个位置k, 使得nums[k] !&#x3D; k, 那么这个k就是缺失的第一个整数. class Solut">
 <meta property="og:type" content="article">
@@ -696,9 +696,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-gpt-shell" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-rotate" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">终端中集成ChatGPT服务</h1>
+        <h1 class="article-title">算法题-旋转图像</h1>
     
     <div class="article-meta">
         
@@ -708,7 +708,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="算法">算法</a>
             
         </span>
         
@@ -716,7 +716,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:54:59'>2023-09-02 20:54</time>
+            Created At : <time class="date" title='Updated At: 2023-09-22 17:44:34'>2023-09-22 16:41</time>
         
     </div>
     <div class="article-meta">
@@ -727,7 +727,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96OpenAI-API-Key"><span class="toc-text">获取OpenAI API Key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E5%B9%B6%E4%BD%BF%E7%94%A8shell-gpt"><span class="toc-text">下载并使用shell-gpt</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OpenAI-API%E5%85%85%E5%80%BC"><span class="toc-text">OpenAI API充值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%A9%E9%98%B5%E6%97%8B%E8%BD%AC%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93"><span class="toc-text">矩阵旋转操作总结</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -743,17 +743,59 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="获取OpenAI-API-Key"><a href="#获取OpenAI-API-Key" class="headerlink" title="获取OpenAI API Key"></a>获取OpenAI API Key</h2><p><a target="_blank" rel="noopener" href="https://platform.openai.com/account/api-keys">https://platform.openai.com/account/api-keys</a></p>
-<p>获取之后, 添加环境变量:</p>
-<pre><code class="lang-bash">export OPENAI_API_KEY=&quot;&quot;
+        <blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rotate-image/">https://leetcode.cn/problems/rotate-image/</a></p>
+</blockquote>
+<p>代码:</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    void rotate(vector&lt;vector&lt;int&gt;&gt;&amp; matrix) &#123;
+        int n = matrix.size();
+
+        for (int i = 0; i &lt; n; i ++) &#123;
+            for (int j = 0; j &lt; i; j ++) &#123;
+                swap(matrix[i][j], matrix[j][i]);
+            &#125;
+        &#125;
+        for (int i = 0; i &lt; n; i ++) &#123;
+            for (int j = 0, k = n - 1; j &lt; k; j ++, k --) &#123;
+                swap(matrix[i][j], matrix[i][k]);
+            &#125;
+        &#125;
+    &#125;
+&#125;;
 </code></pre>
-<h2 id="下载并使用shell-gpt"><a href="#下载并使用shell-gpt" class="headerlink" title="下载并使用shell-gpt"></a>下载并使用shell-gpt</h2><p>下载: </p>
-<pre><code class="lang-shell">pip3 install shell-gpt
+<h2 id="矩阵旋转操作总结"><a href="#矩阵旋转操作总结" class="headerlink" title="矩阵旋转操作总结"></a>矩阵旋转操作总结</h2><ul>
+<li>顺时针90度: 主对角线(左上到右下)翻转, 然后按中间线左右反转.</li>
+<li>逆时针90度: 主对角线(左上到右下)翻转, 然后按中间线上下翻转.</li>
+<li>180度: 主对角线翻转,  副对角线翻转.</li>
+</ul>
+<p>主对角线翻转写法:</p>
+<pre><code class="lang-cpp">for (int i = 0; i &lt; n; i ++) &#123;
+  for (int j = i + 1; j &lt; n; j ++) &#123;
+    swap(matrix[i][j], matrix[j][i]);
+  &#125;
+&#125;
 </code></pre>
-<p>使用:</p>
-<pre><code class="lang-sh">sgpt &quot;你的prompt&quot;
+<p>副对角线翻转写法:</p>
+<pre><code class="lang-cpp">for (int i = 0; i &lt; n; i ++) &#123;
+  for (int j = 0; j &lt; n - 1 - i; j ++) &#123;
+    swap(matrix[i][j], matrix[j][i]);
+  &#125;
+&#125;
 </code></pre>
-<h2 id="OpenAI-API充值"><a href="#OpenAI-API充值" class="headerlink" title="OpenAI API充值"></a>OpenAI API充值</h2><p><a target="_blank" rel="noopener" href="https://platform.openai.com/account/billing/overview">https://platform.openai.com/account/billing/overview</a></p>
+<p>中间线左右翻转.</p>
+<pre><code class="lang-cpp">for (int i = 0; i &lt; n; i ++ )
+   for (int j = 0, k = n - 1; j &lt; k; j ++, k -- )
+    swap(matrix[i][j], matrix[i][k]);
+</code></pre>
+<p>中间线上下翻转:</p>
+<pre><code class="lang-cpp">for (int i = 0, k = n - 1; i &lt; k; i ++, k --) &#123;
+  for (int j = 0; j &lt; n; j ++) &#123;
+    swap(matrix[i][j], matrix[k][j]);
+  &#125;
+&#125;
+</code></pre>
 
       
        
@@ -766,6 +808,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
