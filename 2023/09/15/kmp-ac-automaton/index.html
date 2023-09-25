@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-对KMP算法的理解 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="Words Muralism: 壁画主义 (mural: 壁画) Strands: 线&#x2F;绳的股 authentic: 正统的 Preoccupation: 全神贯注, 长久思考的事&#x2F;盘算 Flourish: 繁荣 Eurocentrism: 欧洲中心论 Visionary: 有远见的 Narrative: 叙述的 assimilate: 同化 Commodity: 商品 elite: 精华&#x2F;精英">
+<meta name="description" content="Words Dialectics: 辩证法 (Materialist Dialectics: 唯物辩证法) Meteorite: 陨石 impact crater: 陨石坑 megaton: 百万吨级 Blast: 爆炸产生的气浪 Ejecta: 废物, 渣 Debris: 残骸 geological: 地质学的 Sediment: 沉淀物 Deposite: 沉淀 Asteroid: 小行星&#x2F;星">
 <meta property="og:type" content="article">
-<meta property="og:title" content="English Practice Day1">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/09/24/English-day1/index.html">
+<meta property="og:title" content="English Practice Day2">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/09/25/English-day2/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="Words Muralism: 壁画主义 (mural: 壁画) Strands: 线&#x2F;绳的股 authentic: 正统的 Preoccupation: 全神贯注, 长久思考的事&#x2F;盘算 Flourish: 繁荣 Eurocentrism: 欧洲中心论 Visionary: 有远见的 Narrative: 叙述的 assimilate: 同化 Commodity: 商品 elite: 精华&#x2F;精英">
+<meta property="og:description" content="Words Dialectics: 辩证法 (Materialist Dialectics: 唯物辩证法) Meteorite: 陨石 impact crater: 陨石坑 megaton: 百万吨级 Blast: 爆炸产生的气浪 Ejecta: 废物, 渣 Debris: 残骸 geological: 地质学的 Sediment: 沉淀物 Deposite: 沉淀 Asteroid: 小行星&#x2F;星">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-24T09:24:20.471Z">
-<meta property="article:modified_time" content="2023-09-24T10:47:37.967Z">
+<meta property="article:published_time" content="2023-09-25T02:12:18.529Z">
+<meta property="article:modified_time" content="2023-09-25T12:58:39.065Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(51)</small>
+                <small>(52)</small>
             
         </div>
     </li>
@@ -176,7 +176,7 @@
         <div data-rel="English">
             
             English
-            <small>(2)</small>
+            <small>(3)</small>
         </div>
         
     </li>
@@ -201,7 +201,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="51">
+<input type="hidden" id="yelog_site_posts_number" value="52">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +251,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All English "
+           href="/2023/09/25/English-day2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day2">English Practice Day2</span>
+            <span class="post-date" title="2023-09-25 10:12:18">2023/09/25</span>
+        </a>
         
         
         <a  class="All English "
@@ -749,7 +758,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-15 18:23:26'>2023-09-15 18:23</time>
+            Created At : <time class="date" title='Updated At: 2023-09-25 16:41:36'>2023-09-15 18:23</time>
         
     </div>
     <div class="article-meta">
@@ -785,19 +794,15 @@
 <li>…</li>
 <li>直到状态$m$ ($m$是模式串的长度), 表示我喂进去了$m$个字符, 都成功匹配了, 那就说明从原串中找到模式串了, 成功.</li>
 </ul>
-<p>那么需要处理的一个问题是, 如果我现在在一个状态$j$, 遇到了一个没匹配上的字符$c_k$, 那么我应该转移到哪个状态?</p>
+<p>因此, 一共有$m + 1$个状态.</p>
+<hr>
+<p>假设我现在在状态$i$, 有一个字符$c_{i + 1}$没匹配上, 那么应该转移到哪个状态?</p>
+<p>假设应该转移到状态$j$, 那么$p[1…j] = p[i - j + 1, i]$, 并且$j$应该足够大, 那么转移到的状态就是以$s[i]$结尾的最长公共前后缀的长度, 这个长度就是$j$, (下标为1的前提下).</p>
+<p><code>next</code>数组: <code>next[i]</code>表示我如果在状态<code>i</code>, 遇到了没匹配的字符, 应该转移到什么状态, 其实就是模式串$p$以字符<code>p[i]</code>结尾的最长公共前后缀的长度:</p>
 <ul>
-<li>假设我需要转移到状态$i$, 要保证效率的前提下, 这个$i$应该尽量最大, 如果要保持最大, 那么就需要$p[1…i] = p[j - i, j]$, 本质上, 也就是求以$p[j]$结尾的最长公共前后缀, 因此, 当数组下标从1开始时, 状态$j$就需要转移到下标值等于以$p[j]$结尾的最长公共前后缀的长度的位置.</li>
-<li>转移之后, 还需要判断$p[i + 1]$与$c_k$是否相等, 如果相等就可以进一步转移.</li>
-</ul>
-<p>那么如何求最长公共前后缀呢?</p>
-<ul>
-<li>求最长公共前后缀的方法和上面状态机算法没有本质区别:<ul>
-<li>对于$p[1]$, 我就拿$p$的第一个字符喂到状态机中, 看第一个字符如果不匹配模式串$p$, 需要跳到哪里? 答案是跳到状态0.</li>
-<li>对于$p[i]$, 我就拿$p$的第$i$个字符出来喂到状态机中, 状态机最终跳到哪里, 哪里就是以$p[i - 1]$结尾的最长公共前后缀的长度, 假设最终跳到了$p[j]$, 此时如果$p[j + 1] = p[i]$, 那么以$p[i]$结尾的最长公共前后缀的长度就是$j + 1$.</li>
-<li>就这样一直循环, 即可求出以每一个字符结尾的最长公共前后缀的长度.</li>
-</ul>
-</li>
+<li><code>ne[0] = 0</code></li>
+<li><code>ne[1] = 0</code></li>
+<li>对于<code>ne[i]</code>, 首先用字符<code>p[i]</code>喂入状态机, 假设转移到了状态<code>j</code>, 那么<code>j</code>就是以字符<code>p[i - 1]</code>结尾的最长公共前后缀的长度. 此时, 如果<code>p[j + 1] == p[i]</code>, 那么以<code>p[i]</code>结尾的最长公共前后缀的长度就是<code>j + 1</code>.</li>
 </ul>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
 
@@ -814,6 +819,7 @@ int main() &#123;
     cin &gt;&gt; m &gt;&gt; p + 1 &gt;&gt; n &gt;&gt; s + 1;
 
     for (int i = 2, j = 0; i &lt;= m; i ++) &#123;
+      /* j记录以p[i - 1]结尾的最长公共前后缀的长度 */
         while (j &amp;&amp; p[j + 1] != p[i]) j = ne[j];
         if (p[j + 1] == p[i]) j ++;
         ne[i] = j;
@@ -823,6 +829,7 @@ int main() &#123;
         while (j &amp;&amp; p[j + 1] != s[i]) j = ne[j];
         if (p[j + 1] == s[i]) j ++;
         if (j == m) &#123;
+              /* i - (m - 1) - 1 , 最后减1是因为答案要求的下标需要从0, 但是运算的时候是1开始*/
             printf(&quot;%d &quot;, i - m);
             j = ne[j];
         &#125;
@@ -831,7 +838,7 @@ int main() &#123;
     return 0;
 &#125;
 </code></pre>
-<p>KMP算法时间复杂度是$O(m + n)$, 空间复杂度是$O(m)$.</p>
+<p>KMP算法时间复杂度是$O(n + m)$, 空间复杂度是$O(m)$.</p>
 <p>暴力算法时间复杂度是$O(nm)$, 空间复杂度是$O(1)$.</p>
 <h2 id="找出字符串中第一个匹配项的下标"><a href="#找出字符串中第一个匹配项的下标" class="headerlink" title="找出字符串中第一个匹配项的下标"></a>找出字符串中第一个匹配项的下标</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/">https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/</a></p>
@@ -846,6 +853,7 @@ public:
         s = &#39; &#39; + s, p = &#39; &#39; + p;
 
         // 注意next数组的长度是p长度+1
+          // 注意, 这里不能用int next[m + 1], 一定不要在局部用变长数组
         vector&lt;int&gt; next(m + 1);
 
         for (int i = 2, j = 0; i &lt;= m; i ++) &#123;

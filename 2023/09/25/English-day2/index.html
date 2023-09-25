@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-其他类型的算法 | LiGaOg&#39;s blog</title>
+  <title>English Practice Day2 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-其他类型的算法 | LiGaOg&#39;s blog">
+  <meta name="description" content="English Practice Day2 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Words Dialectics: 辩证法 (Materialist Dialectics: 唯物辩证法) Meteorite: 陨石 impact crater: 陨石坑 megaton: 百万吨级 Blast: 爆炸产生的气浪 Ejecta: 废物, 渣 Debris: 残骸 geological: 地质学的 Sediment: 沉淀物 Deposite: 沉淀 Asteroid: 小行星&#x2F;星">
 <meta property="og:type" content="article">
@@ -738,9 +738,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-other-algorithm" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-English-day2" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-其他类型的算法</h1>
+        <h1 class="article-title">English Practice Day2</h1>
     
     <div class="article-meta">
         
@@ -750,7 +750,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="English">English</a>
             
         </span>
         
@@ -758,7 +758,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-25 10:04:22'>2023-09-18 14:43</time>
+            Created At : <time class="date" title='Updated At: 2023-09-25 20:58:39'>2023-09-25 10:12</time>
         
     </div>
     <div class="article-meta">
@@ -769,7 +769,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97"><span class="toc-text">整数转罗马数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0"><span class="toc-text">罗马数字转整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-text">二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="toc-text">用两个栈实现队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC"><span class="toc-text">有效的数独</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Words"><span class="toc-text">Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writing"><span class="toc-text">Writing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Speaking"><span class="toc-text">Speaking</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -785,226 +785,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="整数转罗马数字"><a href="#整数转罗马数字" class="headerlink" title="整数转罗马数字"></a>整数转罗马数字</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/integer-to-roman/">https://leetcode.cn/problems/integer-to-roman/</a></p>
-</blockquote>
-<p>罗马数字的一些对应表如下:</p>
-<pre><code>1    2    3    4    5    6    7    8    9
-I   II   III   IV   V   VI   VII   VIII IX
-
-10   20   30   40   50   60   70   80   90
-X    XX   XXX  XL    L   LX  LXX  LXXX  XC
-
-100  200  300  400  500  600   700    800   900
-C    CC   CCC   CD   D    DC   DCC    DCCC   CM
-
-1000  2000  3000
- M     MM   MMM
-</code></pre><p>基本单位是: <code>1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1</code></p>
-<p>对应的罗马数字的基本元素是<code>M, CM, D, CD, C, XC, L, XL, X, IX, V, IV, I</code></p>
-<p>直接对给定的数据求它们由多少个基本单位组成即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    string intToRoman(int num) &#123;
-        int values[] = &#123;
-            1000,
-            900, 500, 400, 100,
-            90, 50, 40, 10,
-            9, 5, 4, 1
-        &#125;;
-
-        string resp[] = &#123;
-            &quot;M&quot;,
-            &quot;CM&quot;, &quot;D&quot;, &quot;CD&quot;, &quot;C&quot;,
-            &quot;XC&quot;, &quot;L&quot;, &quot;XL&quot;, &quot;X&quot;,
-            &quot;IX&quot;, &quot;V&quot;, &quot;IV&quot;, &quot;I&quot;,
-        &#125;;
-
-        string ans;
-
-        for (int i = 0; i &lt; 13; i ++) &#123;
-            while (num &gt;= values[i]) &#123;
-                num -= values[i];
-                ans += resp[i];
-            &#125;
-        &#125;
-        return ans;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="罗马数字转整数"><a href="#罗马数字转整数" class="headerlink" title="罗马数字转整数"></a>罗马数字转整数</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/roman-to-integer/">https://leetcode.cn/problems/roman-to-integer/</a></p>
-</blockquote>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int romanToInt(string s) &#123;
-            unordered_map&lt;char, int&gt; hash;
-            hash[&#39;I&#39;] = 1;
-            hash[&#39;V&#39;] = 5;
-            hash[&#39;X&#39;] = 10;
-            hash[&#39;L&#39;] = 50;
-            hash[&#39;C&#39;] = 100;
-            hash[&#39;D&#39;] = 500;
-            hash[&#39;M&#39;] = 1000;
-
-            int res = 0;
-            for (int i = 0; i &lt; s.size(); i ++) &#123;
-                if (i + 1 &lt; s.size() &amp;&amp; hash[s[i]] &lt; hash[s[i + 1]]) &#123;
-                    res -= hash[s[i]];
-                &#125;
-                else res += hash[s[i]];
-            &#125;
-            return res;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="移除元素"><a href="#移除元素" class="headerlink" title="移除元素"></a>移除元素</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-element/">https://leetcode.cn/problems/remove-element/</a></p>
-</blockquote>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    int removeElement(vector&lt;int&gt;&amp; nums, int val) &#123;
-        int k = 0;
-
-        for (int i = 0; i &lt; nums.size(); i ++) &#123;
-            if (nums[i] != val) nums[k ++] = nums[i];
-        &#125;
-        return k;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="二维数组中的查找"><a href="#二维数组中的查找" class="headerlink" title="二维数组中的查找"></a>二维数组中的查找</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/16/">https://www.acwing.com/problem/content/16/</a></p>
-</blockquote>
-<p>以最右上角的元素为基准, 如果最右上角的元素比<code>target</code>大, 那么就向左移动一格变小, 如果比<code>target</code>小, 那么就向右移动一格变大.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool searchArray(vector&lt;vector&lt;int&gt;&gt; array, int target) &#123;
-
-        int n = array.size();
-        if (!n) return false;
-        int m = array[0].size();
-
-        int i = 0, j = m - 1;
-        while (i &lt; n &amp;&amp; j &gt;= 0) &#123;
-            if (target &lt; array[i][j]) j --;
-            else if (target &gt; array[i][j]) i ++;
-            else return true;
-        &#125;
-        return false;
-    &#125;
-&#125;;
-</code></pre>
-<h2 id="用两个栈实现队列"><a href="#用两个栈实现队列" class="headerlink" title="用两个栈实现队列"></a>用两个栈实现队列</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/36/">https://www.acwing.com/problem/content/description/36/</a></p>
-</blockquote>
-<pre><code class="lang-cpp">class MyQueue &#123;
-public:
-    stack&lt;int&gt; s1;
-    stack&lt;int&gt; s2;
-    /** Initialize your data structure here. */
-    MyQueue() &#123;
-
-    &#125;
-
-    /** Push element x to the back of queue. */
-    void push(int x) &#123;
-        s1.push(x);
-    &#125;
-
-    /** Removes the element from in front of queue and returns that element. */
-    int pop() &#123;
-        while (s1.size() &gt; 1) &#123;
-            int t = s1.top(); s1.pop();
-            s2.push(t);
-        &#125;
-        int t = s1.top(); s1.pop();
-        while (s2.size()) &#123;
-            int q = s2.top(); s2.pop();
-            s1.push(q);
-        &#125;
-        return t;
-    &#125;
-
-    /** Get the front element. */
-    int peek() &#123;
-        while (s1.size() &gt; 1) &#123;
-            int t = s1.top(); s1.pop();
-            s2.push(t);
-        &#125;
-        int t = s1.top();
-        while (s2.size()) &#123;
-            int q = s2.top(); s2.pop();
-            s1.push(q);
-        &#125;
-        return t;
-    &#125;
-
-    /** Returns whether the queue is empty. */
-    bool empty() &#123;
-        return s1.size() == 0;
-    &#125;
-&#125;;
-
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * bool param_4 = obj.empty();
- */
-</code></pre>
-<h2 id="有效的数独"><a href="#有效的数独" class="headerlink" title="有效的数独"></a>有效的数独</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/valid-sudoku/">https://leetcode.cn/problems/valid-sudoku/</a></p>
-</blockquote>
-<p>枚举行列和每一个小九宫格, 判断即可.</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    bool isValidSudoku(vector&lt;vector&lt;char&gt;&gt;&amp; board) &#123;
-      /* 判重数组 */
-        bool st[9];
-
-        /* 判断行 */
-        for (int i = 0; i &lt; 9; i ++) &#123;
-            memset(st, false, sizeof(st));
-            for (int j = 0; j &lt; 9; j ++) &#123;
-                if (board[i][j] == &#39;.&#39;) continue;
-                int t = board[i][j] - &#39;1&#39;;
-                if (st[t]) return false;
-                st[t] = true;
-            &#125;
-        &#125;
-
-
-        /* 判断列 */
-        for (int i = 0; i &lt; 9; i ++) &#123;
-            memset(st, false, sizeof(st));
-            for (int j = 0; j &lt; 9; j ++) &#123;
-                if (board[j][i] == &#39;.&#39;) continue;
-                int t = board[j][i] - &#39;1&#39;;
-                if (st[t]) return false;
-                st[t] = true;
-            &#125;
-        &#125;
-                /* 判断每一个小九宫格 */
-        for (int i = 0; i &lt; 9; i += 3) &#123;
-            for (int j = 0; j &lt; 9; j += 3) &#123;
-                memset(st, false, sizeof(st));
-                for (int x = i; x &lt; i + 3; x ++) &#123;
-                    for (int y = j; y &lt; j + 3; y ++) &#123;
-                        if (board[x][y] == &#39;.&#39;) continue;
-                        int t = board[x][y] - &#39;1&#39;;
-                        if (st[t]) return false;
-                        st[t] = true;
-                    &#125;
-                &#125;
-            &#125;
-        &#125;
-        return true;
-    &#125;
-&#125;;
-</code></pre>
+        <h2 id="Words"><a href="#Words" class="headerlink" title="Words"></a>Words</h2><ul>
+<li>Dialectics: 辩证法 (Materialist Dialectics: 唯物辩证法)</li>
+<li>Meteorite: 陨石</li>
+<li>impact crater: 陨石坑</li>
+<li>megaton: 百万吨级</li>
+<li>Blast: 爆炸产生的气浪</li>
+<li>Ejecta: 废物, 渣</li>
+<li>Debris: 残骸</li>
+<li>geological: 地质学的</li>
+<li>Sediment: 沉淀物</li>
+<li>Deposite: 沉淀</li>
+<li>Asteroid: 小行星/星状的</li>
+<li>Comet: 彗星</li>
+<li>Glassy: 呆滞的/光滑的</li>
+<li>slosh: 溅出</li>
+<li>stratosphere: 平流层</li>
+<li>rodent: 啮齿动物</li>
+<li>Burrow: 洞穴</li>
+<li>B.C.E: Before Common Era, 耶稣诞生之前, 公元前</li>
+<li>Provision: 供给</li>
+<li>Divorce: 分离/离婚</li>
+<li>crossbar: 横梁</li>
+<li>tank: (尤指故意)输掉(比赛); 倒闭; 破产; 彻底失败;</li>
+<li>Mantissa: 浮点数的数值部分</li>
+<li>Alphanumeric: 数字和字母并用的</li>
+<li>Obviate: 消除</li>
+<li>syllable: 音节</li>
+<li>Delve: 深入 (delve into)</li>
+<li>laboriously: 费力地/辛苦地</li>
+</ul>
+<h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><ul>
+<li>stunning conclusion: 令人震惊的结论</li>
+<li>generate some controversy: 引起质疑</li>
+<li>…Coincided with…: …和…同时发生</li>
+<li>subsequent to: 在…之后</li>
+<li><p>表示促进, facilitate/facilitation</p>
+<ul>
+<li>A second major objective was facilitation of changes both in programs and system configurations.</li>
+</ul>
+</li>
+<li><p>ease of..: 表示..情况的缓解, 例如ease of reprogramming when changes are made in a system configuration.</p>
+</li>
+<li>design criteria: 设计标准, 可以用来代替objective.</li>
+<li>The following principles are established and adopted</li>
+<li>The B5000 system achieves its unique physical and operational modularity through the use of …, modularity是模块化.</li>
+<li>…是可行的, 可以用: It is feasible to…</li>
+<li>prohibitive: 代价高昂, 令人难以承受</li>
+<li>expenditure: 代价/花费, 代替cost</li>
+</ul>
+<h2 id="Speaking"><a href="#Speaking" class="headerlink" title="Speaking"></a>Speaking</h2><ul>
+<li>Things didn’t go as plans.</li>
+<li>It’ only a matter of time.</li>
+<li>Not a chance: 不可能</li>
+<li>Hi, Glad to see you (打招呼)</li>
+<li>You must be kidding me. (惊)</li>
+<li>general knowledge: 常识</li>
+<li>You’re such a …</li>
+<li>That’ s kind of neat: 不错</li>
+<li>We’re getting sidetracked.: 我们偏离话题了</li>
+<li>Get very much out of …: 从…获益甚多</li>
+<li>do something beforehand: 事前做某事</li>
+<li>common practice: 习惯做法</li>
+</ul>
 
       
        
