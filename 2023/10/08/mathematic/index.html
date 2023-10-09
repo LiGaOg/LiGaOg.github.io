@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-数学问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="耍杂技的牛 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;127&#x2F;  假设牛从上到下的排序是0, 1, 2, …$n - 1$, 现在考虑将第$i$头牛和第$i + 1$头牛交换带来的影响.     .. 交换前的危险系数 交换后的危险系数     第i头牛 $w_1+w_2+…+w_{i-1}-s_i$ $w_1+w_2+…+w_{i-1}+w_{i+1}-s_i">
-<meta property="og:type" content="article">
-<meta property="og:title" content="算法题-一类贪心问题的分析">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/10/08/one-greedy/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="耍杂技的牛 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;127&#x2F;  假设牛从上到下的排序是0, 1, 2, …$n - 1$, 现在考虑将第$i$头牛和第$i + 1$头牛交换带来的影响.     .. 交换前的危险系数 交换后的危险系数     第i头牛 $w_1+w_2+…+w_{i-1}-s_i$ $w_1+w_2+…+w_{i-1}+w_{i+1}-s_i">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-10-08T12:00:56.788Z">
-<meta property="article:modified_time" content="2023-10-08T13:43:38.206Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -884,7 +884,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-08 15:33:23'>2023-10-08 13:43</time>
+            Created At : <time class="date" title='Updated At: 2023-10-09 21:21:14'>2023-10-08 13:43</time>
         
     </div>
     <div class="article-meta">
@@ -895,7 +895,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="toc-text">排序不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Huffman%E6%A0%91"><span class="toc-text">Huffman树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="toc-text">绝对值不等式</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="toc-text">排序不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Huffman%E6%A0%91"><span class="toc-text">Huffman树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%9D%E5%AF%B9%E5%80%BC%E4%B8%8D%E7%AD%89%E5%BC%8F"><span class="toc-text">绝对值不等式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%95%E9%99%A4%E6%B3%95%E5%88%A4%E6%96%AD%E8%B4%A8%E6%95%B0"><span class="toc-text">试除法判断质数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B4%A8%E5%9B%A0%E6%95%B0%E5%88%86%E8%A7%A3"><span class="toc-text">质因数分解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BA%BF%E6%80%A7%E7%AD%9B%E8%B4%A8%E6%95%B0"><span class="toc-text">线性筛质数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%95%E9%99%A4%E6%B3%95%E6%B1%82%E7%BA%A6%E6%95%B0"><span class="toc-text">试除法求约数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%BA%A6%E6%95%B0%E4%B8%AA%E6%95%B0"><span class="toc-text">求约数个数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E7%BA%A6%E6%95%B0%E4%B9%8B%E5%92%8C"><span class="toc-text">求约数之和</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0"><span class="toc-text">求最大公约数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B1%82%E6%AC%A7%E6%8B%89%E5%87%BD%E6%95%B0"><span class="toc-text">求欧拉函数</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1023,6 +1023,270 @@ int main()
     return 0;
 &#125;
 </code></pre>
+<h2 id="试除法判断质数"><a href="#试除法判断质数" class="headerlink" title="试除法判断质数"></a>试除法判断质数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/868/">https://www.acwing.com/problem/content/868/</a></p>
+</blockquote>
+<p>时间复杂度是$O(\sqrt n)$.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+/* 试除法判断质数 */
+bool is_prime(int n)
+&#123;
+    if (n &lt; 2) return false;
+
+    for (int i = 2; i &lt;= n / i; i ++)
+    &#123;
+        if (n % i == 0) return false;
+    &#125;
+    return true;
+&#125;
+
+int main()
+&#123;
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int x;
+        cin &gt;&gt; x;
+        if (is_prime(x)) puts(&quot;Yes&quot;);
+        else puts(&quot;No&quot;);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="质因数分解"><a href="#质因数分解" class="headerlink" title="质因数分解"></a>质因数分解</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/869/">https://www.acwing.com/problem/content/869/</a></p>
+</blockquote>
+<p>质因数分解的时间复杂度也是$O(\sqrt n)$</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+void divide(int n)
+&#123;
+    for (int i = 2; i &lt;= n / i; i ++)
+    &#123;
+        int s = 0;
+        while (n % i == 0)
+        &#123;
+            n /= i;
+            s ++;
+        &#125;
+        if (s) printf(&quot;%d %d\n&quot;, i, s);
+    &#125;
+    if (n &gt; 1) printf(&quot;%d 1\n&quot;, n);
+    puts(&quot;&quot;);
+&#125;
+
+int main()
+&#123;
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int x;
+        cin &gt;&gt; x;
+        divide(x);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="线性筛质数"><a href="#线性筛质数" class="headerlink" title="线性筛质数"></a>线性筛质数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/870/">https://www.acwing.com/problem/content/870/</a></p>
+</blockquote>
+<p>筛质数问题本质上是给定$n$, 求$[1, n]$中质数的个数.</p>
+<p>线性筛质数的时间复杂度是$O(n)$, 它的思路是用对于每个合数, 需要用它的最小质因子筛掉它.</p>
+<p>代码如下:</p>
+<pre><code class="lang-cpp">/* 注意这里是n, 而不是n / i */
+for (int i = 2; i &lt;= n; i ++ )
+&#123;
+    if (!st[i]) primes[cnt ++ ] = i;
+    for (int j = 0; primes[j] &lt;= n / i; j ++ )
+    &#123;
+        st[primes[j] * i] = true;
+      /* 由于primes[j]是从小到大枚举的, 因此当这个条件成立时, primes[j]一定是i的最小质因子, 同理primes[j]也是i * primes[j]的最小质因子 */
+      /* 当这个条件不成立时, primes[j]一定比i的最小质因子海啸, primes[j] * i的最小质因子还是primes[j] */
+        if (i % primes[j] == 0) break;
+    &#125;
+&#125;
+</code></pre>
+<p>这个筛法是$O(n)$的关键在于: 每一个合数只会被它的最小质因子筛去, 由于一个合数的最小质因子唯一, 所以每个合数只会被筛一次.</p>
+<p>同类题: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-primes/">https://leetcode.cn/problems/count-primes/</a></p>
+<h2 id="试除法求约数"><a href="#试除法求约数" class="headerlink" title="试除法求约数"></a>试除法求约数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/871/">https://www.acwing.com/problem/content/871/</a></p>
+</blockquote>
+<p>求一个数$n$所有约数的时间复杂度是$O(\sqrt n)$.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+#include &lt;vector&gt;
+
+using namespace std;
+
+vector&lt;int&gt; get_divisors(int n)
+&#123;
+    vector&lt;int&gt; divisors;
+    /* 注意求约数从1开始, 最小的约数是1 */
+    for (int i = 1; i &lt;= n / i; i ++)
+    &#123;
+        if (n % i == 0)
+        &#123;
+            divisors.push_back(i);
+            if (n / i != i) divisors.push_back(n / i);
+        &#125;
+    &#125;
+    sort(divisors.begin(), divisors.end());
+    return divisors;
+&#125;
+
+int main()
+&#123;
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int x;
+        cin &gt;&gt; x;
+
+        auto divisors = get_divisors(x);
+
+        for (auto t : divisors)
+            printf(&quot;%d &quot;, t);
+        puts(&quot;&quot;);
+    &#125;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="求约数个数"><a href="#求约数个数" class="headerlink" title="求约数个数"></a>求约数个数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/872/">https://www.acwing.com/problem/content/872/</a></p>
+</blockquote>
+<p>对于一个数$a$, 将它进行质因数分解: $a = p_{1}^{c_1}p_{2}^{c_2}…p_{n}^{c_n}$</p>
+<p>那么约数个数就是$(c_1 + 1)(c_2 + 1)…(c_n + 1)$</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+typedef long long LL;
+
+/* 将一个质因子映射到它的次幂 */
+unordered_map&lt;int, int&gt; prime;
+
+int main()
+&#123;
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int x;
+        cin &gt;&gt; x;
+
+        for (int i = 2; i &lt;= x / i; i ++)
+        &#123;
+            while (x % i == 0)
+            &#123;
+                x /= i;
+                prime[i] ++;
+            &#125;
+        &#125;
+        if (x &gt; 1) prime[x] ++;
+    &#125;
+
+    LL res = 1;
+    for (auto p: prime) res = res * (p.second + 1) % mod;
+
+    cout &lt;&lt; res &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<h2 id="求约数之和"><a href="#求约数之和" class="headerlink" title="求约数之和"></a>求约数之和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/873/">https://www.acwing.com/problem/content/873/</a></p>
+</blockquote>
+<p>对于一个数$a$, 将它进行质因数分解: $a = p_{1}^{c_1}p_{2}^{c_2}…p_{n}^{c_n}$</p>
+<p>那么约数之和是$(p_1^{0} + p_1^1 + …+p_1^{c_1})(p_2^{0} + p_2^1 + …+p_2^{c_2})…(p_n^{0} + p_n^1 + …+p_n^{c_n})$</p>
+<p>对于多项式$\sum_{i=0}^{n}p^i$可以采用如下代码计算:</p>
+<pre><code class="lang-cpp">int t = 1;
+while (n --)
+  t = t * p + 1;
+</code></pre>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;unordered_map&gt;
+
+using namespace std;
+
+const int mod = 1e9 + 7;
+
+typedef long long LL;
+
+unordered_map&lt;int, int&gt; primes;
+
+int main()
+&#123;
+    int n;
+    cin &gt;&gt; n;
+
+    while (n --)
+    &#123;
+        int x;
+        cin &gt;&gt; x;
+
+        for (int i = 2; i &lt;= x / i; i ++)
+        &#123;
+            while (x % i == 0)
+            &#123;
+                x /= i;
+                primes[i] ++;
+            &#125;
+        &#125;
+        if (x &gt; 1) primes[x] ++;
+    &#125;
+
+    LL res = 1;
+
+    for (auto p: primes)
+    &#123;
+        LL t = 1;
+        int s = p.second;
+
+        while (s --)
+            t = (t * p.first + 1) % mod;
+
+        res = res * t % mod;
+    &#125;
+
+    cout &lt;&lt; res &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="求最大公约数"><a href="#求最大公约数" class="headerlink" title="求最大公约数"></a>求最大公约数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/874/">https://www.acwing.com/problem/content/874/</a></p>
+</blockquote>
+<p>求最大公约数需要用到欧几里得算法, 即$gcd(a, b) = gcd(b, a \% b)$</p>
+<p>证明:</p>
+<p>首先, 有$gcd(a, b) = gcd(a, ka + b)$, 也就是将$a$和$b$进行线性组合之后, 对于公约数来说性质不变.</p>
+<p>由于$a \%b = a - \lfloor \frac{a}{b} \rfloor \times b$, 本质上也是$a$和$b$的线性组合.</p>
+<p>因此, 证明完毕.</p>
+<p>计算的函数就是:</p>
+<pre><code class="lang-cpp">int gcd(int a, int b)
+&#123;
+  return b ? gcd(b, a % b) : a;
+&#125;
+</code></pre>
+<h2 id="求欧拉函数"><a href="#求欧拉函数" class="headerlink" title="求欧拉函数"></a>求欧拉函数</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/875/">https://www.acwing.com/problem/content/875/</a></p>
+</blockquote>
+<p>如果两个数的公约数只有1, 那么两个数互质.</p>
+<p>对于一个正整数$n$, 欧拉函数定义为$[1, n]$中与$n$互质的数的个数.</p>
+<p>如果对$n$进行质因数分解: $n = p_{1}^{c_1}p_{2}^{c_2}…p_{m}^{c_m}$</p>
 
       
        
