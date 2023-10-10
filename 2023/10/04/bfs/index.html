@@ -884,7 +884,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-04 18:41:25'>2023-10-04 13:31</time>
+            Created At : <time class="date" title='Updated At: 2023-10-10 14:01:27'>2023-10-04 13:31</time>
         
     </div>
     <div class="article-meta">
@@ -895,7 +895,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B0%E8%BF%B7%E5%AE%AB"><span class="toc-text">走迷宫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E6%95%B0%E7%A0%81"><span class="toc-text">八数码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E4%B8%AD%E7%82%B9%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="toc-text">图中点的层次</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B5%B0%E8%BF%B7%E5%AE%AB"><span class="toc-text">走迷宫</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E6%95%B0%E7%A0%81"><span class="toc-text">八数码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E4%B8%AD%E7%82%B9%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="toc-text">图中点的层次</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%BA%E5%99%A8%E4%BA%BA%E7%9A%84%E8%BF%90%E5%8A%A8%E8%8C%83%E5%9B%B4"><span class="toc-text">机器人的运动范围</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1087,6 +1087,63 @@ int main()
     cout &lt;&lt; bfs() &lt;&lt; endl;
     return 0;
 &#125;
+</code></pre>
+<h2 id="机器人的运动范围"><a href="#机器人的运动范围" class="headerlink" title="机器人的运动范围"></a>机器人的运动范围</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/22/">https://www.acwing.com/problem/content/description/22/</a></p>
+</blockquote>
+<p>注意题目中“不能进入行坐标和列坐标的数位之和大于 k的格子”, 是数位之和, 不是行坐标和列坐标之和.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+
+    int get_sum(int x)
+    &#123;
+        int cnt = 0;
+        while (x)
+        &#123;
+            cnt += x % 10;
+            x /= 10;
+        &#125;
+        return cnt;
+    &#125;
+    int movingCount(int threshold, int rows, int cols)
+    &#123;
+        typedef pair&lt;int, int&gt; PII;
+
+        int n = rows, m = cols, k = threshold;
+        if (!n || !m) return 0;
+        if (!k) return 1;
+
+        int dx[] = &#123;-1, 0, 1, 0&#125;;
+        int dy[] = &#123;0, 1, 0, -1&#125;;
+
+        queue&lt;PII&gt; q;
+        vector&lt;vector&lt;bool&gt;&gt; st(n, vector&lt;bool&gt;(m, false));
+        int cnt = 1;
+
+        q.push(&#123;0, 0&#125;);
+        st[0][0] = true;
+
+        while (q.size())
+        &#123;
+            auto t = q.front();
+            q.pop();
+
+            int x = t.first, y = t.second;
+            for (int i = 0; i &lt; 4; i ++)
+            &#123;
+                int a = x + dx[i], b = y + dy[i];
+                if (a &gt;= 0 &amp;&amp; a &lt; n &amp;&amp; b &gt;= 0 &amp;&amp; b &lt; m &amp;&amp; !st[a][b] &amp;&amp; get_sum(a) + get_sum(b) &lt;= k)
+                &#123;
+                    st[a][b] = true;
+                    cnt ++;
+                    q.push(&#123;a, b&#125;);
+                &#125;
+            &#125;
+
+        &#125;
+        return cnt;
+    &#125;
+&#125;;
 </code></pre>
 
       

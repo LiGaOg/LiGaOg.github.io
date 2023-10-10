@@ -884,7 +884,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-02 13:38:22'>2023-10-02 12:47</time>
+            Created At : <time class="date" title='Updated At: 2023-10-10 14:31:43'>2023-10-02 12:47</time>
         
     </div>
     <div class="article-meta">
@@ -895,7 +895,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-text">快速排序模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="toc-text">快速选择算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-text">归并排序模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E6%95%B0"><span class="toc-text">归并排序求逆序数</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-text">快速排序模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%80%89%E6%8B%A9%E7%AE%97%E6%B3%95"><span class="toc-text">快速选择算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%A8%A1%E6%9D%BF"><span class="toc-text">归并排序模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E6%B1%82%E9%80%86%E5%BA%8F%E6%95%B0"><span class="toc-text">归并排序求逆序数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%8F%8C%E6%8C%87%E9%92%88%E7%AE%97%E6%B3%95%E7%9A%84%E4%B8%80%E4%B8%AA%E5%BA%94%E7%94%A8-%E8%B0%83%E6%95%B4%E6%95%B0%E7%BB%84%E9%A1%BA%E5%BA%8F%E4%BD%BF%E5%A5%87%E6%95%B0%E4%BD%8D%E4%BA%8E%E5%81%B6%E6%95%B0%E5%89%8D%E9%9D%A2"><span class="toc-text">快速排序双指针算法的一个应用-调整数组顺序使奇数位于偶数前面</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1095,6 +1095,28 @@ int main()
 
     return 0;
 &#125;
+</code></pre>
+<h2 id="快速排序双指针算法的一个应用-调整数组顺序使奇数位于偶数前面"><a href="#快速排序双指针算法的一个应用-调整数组顺序使奇数位于偶数前面" class="headerlink" title="快速排序双指针算法的一个应用-调整数组顺序使奇数位于偶数前面"></a>快速排序双指针算法的一个应用-调整数组顺序使奇数位于偶数前面</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/30/">https://www.acwing.com/problem/content/description/30/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    void reOrderArray(vector&lt;int&gt; &amp;array) &#123;
+
+         int n = array.size();
+
+         if (!n) return ;
+
+         int i = -1, j = n;
+
+         while (i &lt; j)
+         &#123;
+             while (array[++ i] % 2);
+             while (array[-- j] % 2 == 0);
+             if (i &lt; j) swap(array[i], array[j]);
+         &#125;
+    &#125;
+&#125;;
 </code></pre>
 
       

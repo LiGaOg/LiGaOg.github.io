@@ -884,7 +884,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-17 16:23:28'>2023-09-15 21:11</time>
+            Created At : <time class="date" title='Updated At: 2023-10-10 14:22:07'>2023-09-15 21:11</time>
         
     </div>
     <div class="article-meta">
@@ -895,7 +895,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95"><span class="toc-text">快速幂算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#64%E4%BD%8D%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95"><span class="toc-text">64位整数乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4"><span class="toc-text">两数相除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pow-x-n"><span class="toc-text">Pow(x, n)</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82%E7%AE%97%E6%B3%95"><span class="toc-text">快速幂算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#64%E4%BD%8D%E6%95%B4%E6%95%B0%E4%B9%98%E6%B3%95"><span class="toc-text">64位整数乘法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E6%95%B0%E7%9B%B8%E9%99%A4"><span class="toc-text">两数相除</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Pow-x-n"><span class="toc-text">Pow(x, n)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%80%BC%E7%9A%84%E6%95%B4%E6%95%B0%E6%AC%A1%E6%96%B9"><span class="toc-text">数值的整数次方</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1037,7 +1037,7 @@ public:
 
         double res = 1.0;
         // 一定是longlong, n有可能是-2147483648, abs之后就超出int范围
-        LL k = (LL)abs(n);
+        LL k = (LL)abs((LL)n);
 
         while (k) &#123;
             if (k &amp; 1) res = res * x;
@@ -1046,6 +1046,33 @@ public:
         &#125;
 
         if (is_minus) res = 1.0 / res;
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="数值的整数次方"><a href="#数值的整数次方" class="headerlink" title="数值的整数次方"></a>数值的整数次方</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/26/">https://www.acwing.com/problem/content/description/26/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    double Power(double base, int exponent) &#123;
+
+        typedef long long LL;
+
+        if (exponent == 0) return 1.0;
+
+        double res = 1.0;
+
+        double a = base;
+        LL k = (LL)abs((LL)exponent);
+
+        while (k)
+        &#123;
+            if (k &amp; 1) res = res * a;
+            a = a * a;
+            k &gt;&gt;= 1;
+        &#125;
+        if (exponent &lt; 0) res = 1.0 / res;
         return res;
     &#125;
 &#125;;
