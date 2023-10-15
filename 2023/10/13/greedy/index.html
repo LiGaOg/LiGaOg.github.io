@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>算法题-贪心算法的一些问题集合 | LiGaOg&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="算法题-贪心算法的一些问题集合 | LiGaOg&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="连续子数组的最大和 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;50&#x2F;  如果是连续的子数组, 那么对于数组中的每一个数nums[i], 都只有两个选项:  要么加上nums[i] 要么从nums[i]重新开始.  那么每一步直接去最大的一个就可以. class Solution &amp;#123; public:     int maxSubA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法题-贪心算法的一些问题集合">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/10/13/greedy/index.html">
+<meta property="og:site_name" content="LiGaOg&#39;s blog">
+<meta property="og:description" content="连续子数组的最大和 https:&#x2F;&#x2F;www.acwing.com&#x2F;problem&#x2F;content&#x2F;description&#x2F;50&#x2F;  如果是连续的子数组, 那么对于数组中的每一个数nums[i], 都只有两个选项:  要么加上nums[i] 要么从nums[i]重新开始.  那么每一步直接去最大的一个就可以. class Solution &amp;#123; public:     int maxSubA">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-13T06:14:56.083Z">
+<meta property="article:modified_time" content="2023-10-13T06:15:41.491Z">
+<meta property="article:author" content="LiGaOg">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>LiGaOg</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LiGaOg"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:chlijiaao@163.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2381446488&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(72)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工程">
+            
+            工程
+            <small>(9)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="其他">
+            
+            其他
+            <small>(15)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(43)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="English">
+            
+            English
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">About</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="72">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/13/greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-贪心算法的一些问题集合">算法题-贪心算法的一些问题集合</span>
+            <span class="post-date" title="2023-10-13 14:14:56">2023/10/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/12/hardware-metrics/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="衡量处理器性能的指标">衡量处理器性能的指标</span>
+            <span class="post-date" title="2023-10-12 19:04:38">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/12/pipeline/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="硬件的另一种设计模式-流水线">硬件的另一种设计模式-流水线</span>
+            <span class="post-date" title="2023-10-12 18:08:00">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/12/microcode/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="硬件的一种设计模式-Microcode">硬件的一种设计模式-Microcode</span>
+            <span class="post-date" title="2023-10-12 10:52:07">2023/10/12</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/11/English-day4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day4">English Practice Day4</span>
+            <span class="post-date" title="2023-10-11 11:48:42">2023/10/11</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/10/js-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Javascript-一些基础知识点">Javascript-一些基础知识点</span>
+            <span class="post-date" title="2023-10-10 15:15:34">2023/10/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/one-greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-一类贪心问题的分析">算法题-一类贪心问题的分析</span>
+            <span class="post-date" title="2023-10-08 20:00:56">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/discrete/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-保序离散化">算法题-保序离散化</span>
+            <span class="post-date" title="2023-10-08 19:23:36">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/10/08/under-nodejs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="梳理有关Node.js的一些概念">梳理有关Node.js的一些概念</span>
+            <span class="post-date" title="2023-10-08 15:31:15">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/mathematic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-数学问题">算法题-数学问题</span>
+            <span class="post-date" title="2023-10-08 13:43:03">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/05/English-day3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day3">English Practice Day3</span>
+            <span class="post-date" title="2023-10-05 17:27:04">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/graph-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-图论基础算法">算法题-图论基础算法</span>
+            <span class="post-date" title="2023-10-04 18:43:13">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/bfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-广度优先搜索">算法题-广度优先搜索</span>
+            <span class="post-date" title="2023-10-04 13:31:46">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/fib/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-求解斐波那契数列">算法题-求解斐波那契数列</span>
+            <span class="post-date" title="2023-10-04 11:50:18">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/stack-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-利用栈求解表达式的值">算法题-利用栈求解表达式的值</span>
+            <span class="post-date" title="2023-10-03 19:27:04">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/trie/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字典树(Trie)系列题目">算法题-字典树(Trie)系列题目</span>
+            <span class="post-date" title="2023-10-03 19:26:56">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/heap/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-堆系列">算法题-堆系列</span>
+            <span class="post-date" title="2023-10-03 19:24:24">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/union-find/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-并查集系列">算法题-并查集系列</span>
+            <span class="post-date" title="2023-10-03 18:15:27">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/interval/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-区间问题">算法题-区间问题</span>
+            <span class="post-date" title="2023-10-02 14:12:36">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/prefix-sum-diff/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-前缀和与查分">算法题-前缀和与查分</span>
+            <span class="post-date" title="2023-10-02 13:39:43">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/sort-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排序算法">算法题-排序算法</span>
+            <span class="post-date" title="2023-10-02 12:47:09">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/25/English-day2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day2">English Practice Day2</span>
+            <span class="post-date" title="2023-09-25 10:12:18">2023/09/25</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/24/English-day1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day1">English Practice Day1</span>
+            <span class="post-date" title="2023-09-24 17:24:20">2023/09/24</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/23/English-day0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day0">English Practice Day0</span>
+            <span class="post-date" title="2023-09-23 14:50:07">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/23/two-sum-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-两数之和系列题">算法题-两数之和系列题</span>
+            <span class="post-date" title="2023-09-23 13:48:31">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/first-missing-positive/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-缺失的第一个正数">算法题-缺失的第一个正数</span>
+            <span class="post-date" title="2023-09-22 21:26:22">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/rotate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-旋转图像">算法题-旋转图像</span>
+            <span class="post-date" title="2023-09-22 16:41:21">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/jump-game/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-跳跃游戏">算法题-跳跃游戏</span>
+            <span class="post-date" title="2023-09-22 16:00:12">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/judge-sub-sequence/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-判断子序列">算法题-判断子序列</span>
+            <span class="post-date" title="2023-09-22 14:18:51">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/20/dfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-深度优先搜索">算法题-深度优先搜索</span>
+            <span class="post-date" title="2023-09-20 19:36:34">2023/09/20</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/sim-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-高精度加减乘除">算法题-高精度加减乘除</span>
+            <span class="post-date" title="2023-09-19 21:05:46">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/string-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字符串系列问题">算法题-字符串系列问题</span>
+            <span class="post-date" title="2023-09-19 14:51:37">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/18/docker/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="使用docker创建与部署应用环境">使用docker创建与部署应用环境</span>
+            <span class="post-date" title="2023-09-18 16:22:46">2023/09/18</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/18/other-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-其他类型的算法/模拟题">算法题-其他类型的算法/模拟题</span>
+            <span class="post-date" title="2023-09-18 14:43:51">2023/09/18</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/17/lazygit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用lazygit进行高效的版本控制">利用lazygit进行高效的版本控制</span>
+            <span class="post-date" title="2023-09-17 21:16:21">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/17/bit-operation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-位运算系列">算法题-位运算系列</span>
+            <span class="post-date" title="2023-09-17 16:06:00">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/17/make-ppt-markdown/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何使用Markdown制作PPT">如何使用Markdown制作PPT</span>
+            <span class="post-date" title="2023-09-17 14:23:33">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/16/linker-script-value/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何从C语言处获得链接脚本定义的变量">如何从C语言处获得链接脚本定义的变量</span>
+            <span class="post-date" title="2023-09-16 16:16:17">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/binary-tree/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
+            <span class="post-date" title="2023-09-16 13:59:15">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/delete-duplicate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-删除有序数组重复项">算法题-删除有序数组重复项</span>
+            <span class="post-date" title="2023-09-16 13:53:50">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/next-permutation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-下一个排列">算法题-下一个排列</span>
+            <span class="post-date" title="2023-09-16 12:36:00">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/beizeng/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-倍增系列题目">算法题-倍增系列题目</span>
+            <span class="post-date" title="2023-09-15 21:11:13">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/binary-search/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二分系列">算法题-二分系列</span>
+            <span class="post-date" title="2023-09-15 18:26:36">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/kmp-ac-automaton/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-对KMP算法的理解">算法题-对KMP算法的理解</span>
+            <span class="post-date" title="2023-09-15 18:23:26">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/find-duplicate-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-找出数组中重复的数字">算法题-找出数组中重复的数字</span>
+            <span class="post-date" title="2023-09-15 17:57:43">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/13/compile-link/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="程序的编译、链接与执行">程序的编译、链接与执行</span>
+            <span class="post-date" title="2023-09-13 21:03:22">2023/09/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/12/riscv-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="RISC-V体系结构的基础知识">RISC-V体系结构的基础知识</span>
+            <span class="post-date" title="2023-09-12 17:59:34">2023/09/12</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/10/parathesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-括号序列问题">算法题-括号序列问题</span>
+            <span class="post-date" title="2023-09-10 13:35:06">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/10/orbstack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS下轻量的Linux虚拟机">MacOS下轻量的Linux虚拟机</span>
+            <span class="post-date" title="2023-09-10 13:34:51">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/09/linkedlist/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-链表系列问题">算法题-链表系列问题</span>
+            <span class="post-date" title="2023-09-09 11:10:43">2023/09/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/09/catch-most-water/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-盛水最多的容器">算法题-盛水最多的容器</span>
+            <span class="post-date" title="2023-09-09 09:58:50">2023/09/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/regular-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-正则表达式匹配">算法题-正则表达式匹配</span>
+            <span class="post-date" title="2023-09-08 19:58:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/zigzag-conversion/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-N字形变换">算法题-N字形变换</span>
+            <span class="post-date" title="2023-09-08 09:02:30">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/inverse-integer/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-反转整数">算法题-反转整数</span>
+            <span class="post-date" title="2023-09-08 08:59:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/sliding-window/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-单调栈与单调队列模板题">算法题-单调栈与单调队列模板题</span>
+            <span class="post-date" title="2023-09-04 20:16:17">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/catch-rain/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-接雨水系列问题">算法题-接雨水系列问题</span>
+            <span class="post-date" title="2023-09-04 19:45:09">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/permutation-combination/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排列/组合枚举问题">算法题-排列/组合枚举问题</span>
+            <span class="post-date" title="2023-09-03 12:46:46">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/algorithm-complex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何从数据规模推测算法的时间复杂度">如何从数据规模推测算法的时间复杂度</span>
+            <span class="post-date" title="2023-09-03 11:00:12">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/longest-palindromic-substring/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-回文数及最长回文子串">算法题-回文数及最长回文子串</span>
+            <span class="post-date" title="2023-09-03 10:50:09">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/02/match-system/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="设计并使用thrift实现一个匹配系统">设计并使用thrift实现一个匹配系统</span>
+            <span class="post-date" title="2023-09-02 21:28:09">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/under-python/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="梳理有关python的一些概念">梳理有关python的一些概念</span>
+            <span class="post-date" title="2023-09-02 20:56:07">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/ssh-usage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ssh的一些常见用法">ssh的一些常见用法</span>
+            <span class="post-date" title="2023-09-02 20:55:52">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/ranger/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="利用ranger进行终端下的文件管理">利用ranger进行终端下的文件管理</span>
+            <span class="post-date" title="2023-09-02 20:55:44">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/pass/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="终端下的密码管理器">终端下的密码管理器</span>
+            <span class="post-date" title="2023-09-02 20:55:39">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/opensource/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="常见的开源协议?">常见的开源协议?</span>
+            <span class="post-date" title="2023-09-02 20:55:24">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/mac-collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-date" title="2023-09-02 20:55:16">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/iterm2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="配置一个完备的终端模拟器">配置一个完备的终端模拟器</span>
+            <span class="post-date" title="2023-09-02 20:55:05">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/gpt-shell/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="终端中集成ChatGPT服务">终端中集成ChatGPT服务</span>
+            <span class="post-date" title="2023-09-02 20:54:59">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/build-blog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何使用hexo搭建个人博客">如何使用hexo搭建个人博客</span>
+            <span class="post-date" title="2023-09-02 20:54:44">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/amethyst/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS下的简单窗口管理器">MacOS下的简单窗口管理器</span>
+            <span class="post-date" title="2023-09-02 20:54:35">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/academic-typora/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="安装Typora的LaTeX皮肤">安装Typora的LaTeX皮肤</span>
+            <span class="post-date" title="2023-09-02 20:54:29">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/02/median-of-two-sorted-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-寻找两个正序数组的中位数">算法题-寻找两个正序数组的中位数</span>
+            <span class="post-date" title="2023-09-02 10:00:10">2023/09/02</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-greedy" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">算法题-贪心算法的一些问题集合</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="算法">算法</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-10-13 14:15:41'>2023-10-13 14:14</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E5%AD%90%E6%95%B0%E7%BB%84%E7%9A%84%E6%9C%80%E5%A4%A7%E5%92%8C"><span class="toc-text">连续子数组的最大和</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="连续子数组的最大和"><a href="#连续子数组的最大和" class="headerlink" title="连续子数组的最大和"></a>连续子数组的最大和</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/50/">https://www.acwing.com/problem/content/description/50/</a></p>
+</blockquote>
+<p>如果是连续的子数组, 那么对于数组中的每一个数<code>nums[i]</code>, 都只有两个选项:</p>
+<ul>
+<li>要么加上<code>nums[i]</code></li>
+<li>要么从<code>nums[i]</code>重新开始.</li>
+</ul>
+<p>那么每一步直接去最大的一个就可以.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    int maxSubArray(vector&lt;int&gt;&amp; nums) &#123;
+
+        int n = nums.size();
+
+        int res = nums[0];
+        int ans = nums[0];
+
+        for (int i = 1; i &lt; n; i ++)
+        &#123;
+            res = max(res + nums[i], nums[i]);
+            ans = max(ans, res);
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023 LiGaOg
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
