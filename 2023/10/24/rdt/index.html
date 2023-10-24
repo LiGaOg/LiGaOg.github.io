@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>硬件的一种设计模式-Microcode | LiGaOg&#39;s blog</title>
+  <title>计算机网络-可靠数据传输的原理 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="硬件的一种设计模式-Microcode | LiGaOg&#39;s blog">
+  <meta name="description" content="计算机网络-可靠数据传输的原理 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -253,6 +253,42 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 工程 "
+           href="/2023/10/24/hardware-metrics/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-衡量处理器性能的指标">CPU-衡量处理器性能的指标</span>
+            <span class="post-date" title="2023-10-24 15:53:55">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/pipeline/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-硬件的另一种设计模式-流水线">CPU-硬件的另一种设计模式-流水线</span>
+            <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/microcode/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-硬件的一种设计模式-Microcode">CPU-硬件的一种设计模式-Microcode</span>
+            <span class="post-date" title="2023-10-24 15:53:29">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/rdt/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络-可靠数据传输的原理">计算机网络-可靠数据传输的原理</span>
+            <span class="post-date" title="2023-10-24 15:52:37">2023/10/24</span>
+        </a>
+        
+        
         <a  class="All 算法 "
            href="/2023/10/24/binary-tree/"
            data-tag=""
@@ -268,15 +304,6 @@
            data-author="" >
             <span class="post-title" title="如何用docker部署一个运行环境">如何用docker部署一个运行环境</span>
             <span class="post-date" title="2023-10-24 14:35:02">2023/10/24</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/23/rdt/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="可靠数据传输的原理">可靠数据传输的原理</span>
-            <span class="post-date" title="2023-10-23 09:43:23">2023/10/23</span>
         </a>
         
         
@@ -313,33 +340,6 @@
            data-author="" >
             <span class="post-title" title="算法题-贪心算法的一些问题集合">算法题-贪心算法的一些问题集合</span>
             <span class="post-date" title="2023-10-13 14:14:56">2023/10/13</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/hardware-metrics/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="衡量处理器性能的指标">衡量处理器性能的指标</span>
-            <span class="post-date" title="2023-10-12 19:04:38">2023/10/12</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/pipeline/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="硬件的另一种设计模式-流水线">硬件的另一种设计模式-流水线</span>
-            <span class="post-date" title="2023-10-12 18:08:00">2023/10/12</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/microcode/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="硬件的一种设计模式-Microcode">硬件的一种设计模式-Microcode</span>
-            <span class="post-date" title="2023-10-12 10:52:07">2023/10/12</span>
         </a>
         
         
@@ -936,9 +936,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-microcode" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-rdt" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">硬件的一种设计模式-Microcode</h1>
+        <h1 class="article-title">计算机网络-可靠数据传输的原理</h1>
     
     <div class="article-meta">
         
@@ -956,7 +956,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-15 17:18:25'>2023-10-12 10:52</time>
+            Created At : <time class="date" title='Updated At: 2023-10-24 15:52:37'>2023-10-24 15:52</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +967,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Microcode-in-Single-bus-RISC-V-machines"><span class="toc-text">Microcode in Single-bus RISC-V machines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8F%8F%E8%BF%B0%E8%BF%99%E4%B8%AA%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">如何描述这个状态机的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%981-%E5%AE%9E%E7%8E%B0CMOVM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题1-实现CMOVM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%982-%E5%AE%9E%E7%8E%B0MODULOM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题2-实现MODULOM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%983-%E5%AE%9E%E7%8E%B0MINV%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题3-实现MINV指令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rdt1-0-%E5%8F%AF%E9%9D%A0%E4%BF%A1%E9%81%93%E4%B8%8A%E7%9A%84%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93"><span class="toc-text">rdt1.0: 可靠信道上的数据传输</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdt2-0-%E4%BF%A1%E9%81%93%E4%BC%9A%E5%87%BA%E7%8E%B0%E6%AF%94%E7%89%B9%E5%B7%AE%E9%94%99"><span class="toc-text">rdt2.0: 信道会出现比特差错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdt2-1-ACK-NAK%E5%87%BA%E7%8E%B0%E5%B7%AE%E9%94%99"><span class="toc-text">rdt2.1: ACK&#x2F;NAK出现差错</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdt2-2-NAK-free"><span class="toc-text">rdt2.2: NAK-free</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rdt3-0-%E5%88%86%E7%BB%84-ACK%E5%8F%AF%E8%83%BD%E5%87%BA%E7%8E%B0%E4%B8%A2%E5%A4%B1"><span class="toc-text">rdt3.0: 分组&#x2F;ACK可能出现丢失</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8D%8F%E8%AE%AE"><span class="toc-text">流水线协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Go-back-N-protocol"><span class="toc-text">Go-back-N protocol</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Selective-Repeat-protocol"><span class="toc-text">Selective Repeat protocol</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -983,305 +983,81 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Microcode-in-Single-bus-RISC-V-machines"><a href="#Microcode-in-Single-bus-RISC-V-machines" class="headerlink" title="Microcode in Single-bus RISC-V machines"></a>Microcode in Single-bus RISC-V machines</h2><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="/2023/10/12/microcode/singlebus.png" alt="singlebus"></p>
-<p>其中ALUOp一共有如下几种:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>ALUOp</th>
-<th>ALU输出</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>COPY_A</td>
-<td>A</td>
-</tr>
-<tr>
-<td>COPY_B</td>
-<td>B</td>
-</tr>
-<tr>
-<td>INC_A_1</td>
-<td>A+1</td>
-</tr>
-<tr>
-<td>DEC_A_1</td>
-<td>A-1</td>
-</tr>
-<tr>
-<td>INC_A_4</td>
-<td>A+4</td>
-</tr>
-<tr>
-<td>DEC_A_4</td>
-<td>A-4</td>
-</tr>
-<tr>
-<td>ADD</td>
-<td>A+B</td>
-</tr>
-<tr>
-<td>SUB</td>
-<td>A-B</td>
-</tr>
-<tr>
-<td>SLT</td>
-<td>Signed(A) &lt; Signed(B)</td>
-</tr>
-<tr>
-<td>SLTU</td>
-<td>A &lt; B</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="如何描述这个状态机的状态"><a href="#如何描述这个状态机的状态" class="headerlink" title="如何描述这个状态机的状态"></a>如何描述这个状态机的状态</h2><p>这个状态机的状态转移可以用一个大表来描述:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>State</th>
-<th>Pseudocode</th>
-<th>IRLd</th>
-<th>RegSel</th>
-<th>RegWr</th>
-<th>RegEn</th>
-<th>ALd</th>
-<th>BLd</th>
-<th>ALUOp</th>
-<th>ALUEn</th>
-<th>MALd</th>
-<th>MemWr</th>
-<th>MemEn</th>
-<th>ImmSel</th>
-<th>ImmEn</th>
-<th>μBR</th>
-<th>Next State</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>其中, 这个μBR有六个值, 分别是<code>N</code>, <code>J</code>, <code>EZ</code>, <code>NZ</code>, <code>D</code>和<code>S</code>, 他们的意思分别是:</p>
+        <p>可靠数据传输算法是一个状态机算法.</p>
+<h2 id="rdt1-0-可靠信道上的数据传输"><a href="#rdt1-0-可靠信道上的数据传输" class="headerlink" title="rdt1.0: 可靠信道上的数据传输"></a>rdt1.0: 可靠信道上的数据传输</h2><p>rdt1.0假设下层信道完全可靠, 不会出现比特丢失/差错, 那么发送方与接收方的状态机表示如下:</p>
+<p><img src="/2023/10/24/rdt/rdt1.png" alt="rdt1.0"></p>
+<p>当上层调用接口<code>rdt_send</code>进行可靠数据传输时, Sender状态机会改变状态, 执行<code>make_packet</code>和<code>udt_send</code>.</p>
+<p>接收方收到数据后, 会改变状态, 执行<code>extract</code>和<code>deliver</code>.</p>
+<h2 id="rdt2-0-信道会出现比特差错"><a href="#rdt2-0-信道会出现比特差错" class="headerlink" title="rdt2.0: 信道会出现比特差错"></a>rdt2.0: 信道会出现比特差错</h2><p>当下层信道会出现比特差错时, 状态机算法需要提供错误检测和恢复机制.</p>
 <ul>
-<li><code>N</code>: 下一个状态是<code>Current State + 1</code>.</li>
-<li><code>J</code>: 无条件跳转到<code>Next State</code>.</li>
-<li><code>EZ</code>: 下一个状态取决于ALU的输出, 如果ALU输出是0, 那么下一个状态就是<code>Next State</code>, 否则就是<code>Current State + 1</code>.</li>
-<li><code>NZ</code>: 同上, 这个判断的是ALU的输出不是0.</li>
-<li><code>D</code>: 对于下一个状态, 整个计算机会先看<code>IR</code>中的指令, 根据<code>IR</code>中的指令转移到对应的状态.</li>
-<li><code>S</code>: 如果是<code>S</code>, 会先判断当前的微状态μPC是不是正在busy(例如读取内存, 需要好多个cycles), 如果正忙就spin, 如果不忙就转移到下一个状态, microcode涉及内存操作会用这个.</li>
+<li>错误检测可以通过checksum实现.</li>
+<li>恢复机制可以通过ACK机制实现.</li>
 </ul>
-<p>例如取指令这个大状态, 把这个状态叫做<code>FETCH0</code>, 那么<code>FETCH0</code>这个大状态可以分为如下几个microcode来完成:</p>
+<p>描述该算法的FSM如下, 其中发送方有两个状态:</p>
+<p><img src="/2023/10/24/rdt/rdt2.png" alt="rdt2.0"></p>
+<p>0表示等待上层调用<code>rdt_send</code>接口, 1表示等待接收方发过来的ACK/NAK.</p>
+<p>对于发送方, 当上层调用<code>rdt_send</code>接口时, 发送方会用<code>make_packets</code>和<code>udt_send</code>发送数据, 然后进入状态1等待接收方的ACK/NAK.</p>
+<p>对于接收方, 它会把收到的数据进行一个检测, 如果成功就发ACK, 如果不成功就发NAK.</p>
+<p>对于发送方, 如果收到ACK就转移到状态0, 等待上层再次调用, 如果收到NAK就再次发送数据.</p>
+<h2 id="rdt2-1-ACK-NAK出现差错"><a href="#rdt2-1-ACK-NAK出现差错" class="headerlink" title="rdt2.1: ACK/NAK出现差错"></a>rdt2.1: ACK/NAK出现差错</h2><p>如果信道传输的ACK/NAK会出现差错, 那么FSM需要提供特殊的机制进行处理, 算法如下图所示:</p>
+<p><img src="/2023/10/24/rdt/rdt2.1.png" alt="rdt2.1"></p>
+<p>发送方的几个状态表示如下:</p>
 <ul>
-<li>首先, 我需要把寄存器的读信号<code>RegEn</code>设置成1, 然后把寄存器的<code>RegSel</code>设置成<code>PC</code>, 表示我要读<code>PC</code>这个寄存器, 这样总线上就有<code>PC</code>的值.<ul>
-<li>之后, 我把<code>ALd</code>设置成1, 下个周期总线上的<code>PC</code>值会被读到ALU的缓冲区寄存器<code>A</code>中, 用来下一步计算<code>PC+4</code>.</li>
-<li>然后, 再把<code>MALd</code>设置成1, 下个周期总线上的<code>PC</code>值会被读到<code>MA</code>寄存器中, 如果下个周期内存读信号<code>MemEn</code>为1, 那么总线上就能拿到当前<code>PC</code>对应的指令.</li>
-</ul>
+<li><p>0: 等待上层调用(此时发送的packet的序号是0).</p>
 </li>
-<li>然后, 现在到了下一个周期, 我把<code>MemEn</code>设置成1, 总线上就是当前<code>PC</code>对应的指令.<ul>
-<li>之后, 我把<code>IRLd</code>设置成1, 那么下一个周期总线上的<code>PC</code>值就会被读如<code>IR</code>寄存器中.</li>
-</ul>
+<li><p>1: 等待ACK/NAK.</p>
 </li>
-<li>最后, 我把<code>ALUEn</code>设置成1, 然后<code>ALUOp</code>设置成<code>INC_A_4</code>, 那么总线上就会是<code>PC+4</code>的值.<ul>
-<li>之后, 我把<code>RegWr</code>设置成1, 把<code>RegSel</code>设置成<code>PC</code>, 那么下一个周期后, 寄存器中原来的<code>PC</code>就会是<code>PC+4</code>.</li>
+<li>2: 等待上层调用(此时发送的packet的序号时1).</li>
+<li>3: 等待ACK/NAK.</li>
 </ul>
-</li>
-<li>就完成了这个状态机.</li>
-</ul>
-<p>如果用表格描述的话可以这样描述:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>State</th>
-<th>Pseudocode</th>
-<th>IRLd</th>
-<th>RegSel</th>
-<th>RegWr</th>
-<th>RegEn</th>
-<th>ALd</th>
-<th>BLd</th>
-<th>ALUOp</th>
-<th>ALUEn</th>
-<th>MALd</th>
-<th>MemWr</th>
-<th>MemEn</th>
-<th>ImmSel</th>
-<th>ImmEn</th>
-<th>μBR</th>
-<th>Next State</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>FETCH0</td>
-<td>MA, A := PC</td>
-<td>0</td>
-<td>PC</td>
-<td>0</td>
-<td>1</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>N</td>
-<td>*</td>
-</tr>
-<tr>
-<td></td>
-<td>IR := Mem</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>S</td>
-<td>*</td>
-</tr>
-<tr>
-<td></td>
-<td>PC := PC + 4</td>
-<td>0</td>
-<td>PC</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>INC_A_4</td>
-<td>1</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>D</td>
-<td>*</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="描述状态的例题1-实现CMOVM指令"><a href="#描述状态的例题1-实现CMOVM指令" class="headerlink" title="描述状态的例题1-实现CMOVM指令"></a>描述状态的例题1-实现<code>CMOVM</code>指令</h2><p>CMOVM指令的格式为: <code>cmovm rd, rs1, rs2</code>, 语义是如果<code>rs2</code>不是0, 那么<code>Mem[R[rd]] := Mem[R[rs1]]</code>.</p>
-<p>这个指令可以分为如下的microcode:</p>
+<p>算法的简要描述如下:</p>
+<p>当发送方发送packet后, 会等待ACK/NAK.</p>
+<p>接收方接收到packet后, 会检查两件事:</p>
 <ul>
-<li><p><code>A := R[rs2]</code></p>
-</li>
-<li><p><code>MA := R[rs1]</code> + ALU判断状态转移.</p>
-</li>
-<li><p><code>A := Mem</code></p>
-</li>
-<li><p><code>MA := R[rd]</code></p>
-</li>
-<li><p><code>Mem := A</code></p>
-</li>
+<li>packet本身有没有错, 如果有错, 就发NAK, 如果没错, 继续检查:</li>
+<li>packet序号和自身状态编号是否符合, 如果不符合, 会发ACK (不符合的情况只会出现在: 发送方没有收到自己上一次发送的ACK, 这时候再发一次就好了, 让发送方知道自己已经收到了), 如果符合, 就会转移状态.</li>
 </ul>
-<p>因此, 这个题目是有sketch的:</p>
+<h2 id="rdt2-2-NAK-free"><a href="#rdt2-2-NAK-free" class="headerlink" title="rdt2.2: NAK-free"></a>rdt2.2: NAK-free</h2><p>在rdt2.1的基础上, 用上一个packet的ACK代替本次packet的NAK.</p>
 <ul>
-<li>如果你想读取一个寄存器:</li>
-<li><p>做判断: 读到<code>A</code>中</p>
+<li>也就是说, 假设编号是i的packet出错了, 接收方会发送ACK i-1, 来代替NAK i.</li>
+</ul>
+<h2 id="rdt3-0-分组-ACK可能出现丢失"><a href="#rdt3-0-分组-ACK可能出现丢失" class="headerlink" title="rdt3.0: 分组/ACK可能出现丢失"></a>rdt3.0: 分组/ACK可能出现丢失</h2><p>发送方再发送一个packet后会启动一个定时器timer, 如果超时会重新发送packet, 接受到packet后会重启timer.</p>
+<p>状态机表示如下:</p>
+<p><img src="/2023/10/24/rdt/rdt3.png" alt="rdt3.0"></p>
+<p>其中, 发送方的状态表示为:</p>
 <ul>
-<li><p>作为内存地址: 读到<code>MA</code>中.</p>
+<li>0: 等待上层调用, packet编号为0.</li>
+<li>1: 等待ACK0.</li>
+<li>2: 等待上层调用, packet编号为1.</li>
+<li>3: 等待ACK1.</li>
+</ul>
+<p>发送方发送packet0后, 会启动定时器, 然后等待ACK0.</p>
+<p>如果收到了ACK0, 则进入状态2, 如果超时, ACK出现错误, 或者收到了ACK1, 那么就继续重发并重启定时器.</p>
+<p>接收方如果收到了没有出错, 并且编号对的packet, 就发送对应的ACK, 否则就发送上一个packet的ACK表示自己没收到正确的packet.</p>
+<h2 id="流水线协议"><a href="#流水线协议" class="headerlink" title="流水线协议"></a>流水线协议</h2><p>上面的rdt协议都是停止等待协议(Stop-and-Wait protocol), 最典型的特征就是发送方发送packet后, 会进入等待ACK的状态.</p>
+<p>流水线协议是指发送方在没得到接收方确认的情况下能一次发送多个packet的协议.</p>
+<p>流水线协议有如下设置:</p>
 <ul>
-<li><p>如果读内存: 下个周期就把<code>Mem</code>读到<code>A</code>中.</p>
+<li>发送方和接收方都有一个buffer, buffer的大小就表示一次性能发送的packet的个数.</li>
+<li>发送方缓冲区里有一个sliding window, 在sliding window里的元素是发送方发送了但是没确认的packet.<ul>
+<li>每发送一个分组, 就把这个分组enqueue到sliding window中.</li>
+<li>每接收到一个分组的ACK, 就把这个分组dequeue出sliding window.</li>
+</ul>
 </li>
-<li><p>如果写内存: 下个周期就把<code>A</code>写入<code>Mem</code>中.</p>
-</li>
+<li>接收方缓冲区里也有一个sliding window, 在sliding window中的元素表示接收方可以接收的packet.<ul>
+<li>如果收到一个分组, 这个分组的编号在sliding window中, 返回对应的ACK.<ul>
+<li>如果这个分组是sliding window的队头, 那么dequeue, 重复, 这个过程直到发送方没有收到队头的packet.</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p>对应的状态转移表格如下:<br>| State  | Pseudocode            | IRLd | RegSel | RegWr | RegEn | ALd  | BLd  | ALUOp  | ALUEn | MALd | MemWr | MemEn | ImmSel | ImmEn | μBR  | Next State |<br>| ——— | ——————————- | —— | ——— | ——- | ——- | —— | —— | ——— | ——- | —— | ——- | ——- | ——— | ——- | —— | ————— |<br>| CMOVM0 | A := R[rs2]           | 0    | rs2    | 0     | 1     | 1    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|        | MA := R[rs1] + branch | 0    | rs1    | 0     | 1     | 0    | 0    | COPY_A | 0     | 1    | 0     | 0     | 0      | 0     | EZ   | FETCH0     |<br>|        | A := Mem              | 0    | 0      | 0     | 0     | 1    | 0    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    | </em>          |<br>|        | MA := R[rd]           | 0    | rd     | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|        | Mem := A              | 0    | 0      | 0     | 0     | 0    | 0    | COPY_A | 1     | 0    | 1     | 0     | 0      | 0     | S    | </em>          |<br>|        | branch to FETCH0      | 0    | 0      | 0     | 0     | 0    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | J    | FETCH0     |</p>
-<h2 id="描述状态的例题2-实现MODULOM指令"><a href="#描述状态的例题2-实现MODULOM指令" class="headerlink" title="描述状态的例题2-实现MODULOM指令"></a>描述状态的例题2-实现<code>MODULOM</code>指令</h2><p><code>MODULOM</code>指令的格式是: <code>modulom rd, rs1, rs2</code>, 语义是<code>Mem[rd] := Mem[rs1] % Mem[rs2]</code></p>
-<p>其中, <code>modulom</code>算法的实现可以参考:</p>
-<pre><code class="lang-cpp">unsigned int modulom(unsigned int x, unsigned int y) &#123;
-  while (x &gt;= y) x -= y;
-  return x;
-&#125;
-</code></pre>
-<p>首先, 这个题目涉及循环, 可以把Microcode分成三个Label.</p>
-<p>MODULOM0:</p>
-<ul>
-<li><code>MA := R[rs1]</code></li>
-<li><code>A := Mem</code></li>
-<li><code>MA := R[rs2]</code></li>
-<li><code>B := Mem</code></li>
-</ul>
-<p>LOOP:</p>
-<ul>
-<li><code>if A &lt; B goto DONE, MA := R[rd]</code></li>
-<li><code>A := A - B, goto LOOP</code></li>
-</ul>
-<p>DONE:</p>
-<ul>
-<li><code>Mem := A</code></li>
-<li><code>goto FETCH0</code></li>
-</ul>
-<p>状态转移表格如下:<br>| State    | Pseudocode                      | IRLd | RegSel | RegWr | RegEn | ALd  | BLd  | ALUOp  | ALUEn | MALd | MemWr | MemEn | ImmSel | ImmEn | μBR  | Next State |<br>| ———— | ———————————————- | —— | ——— | ——- | ——- | —— | —— | ——— | ——- | —— | ——- | ——- | ——— | ——- | —— | ————— |<br>| MODULOM0 | MA := R[rs1]                    | 0    | rs1    | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|          | A := Mem                        | 0    | 0      | 0     | 0     | 1    | 0    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    |            |<br>|          | MA := R[rs2]                    | 0    | rs2    | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | </em>          |<br>|          | B := Mem                        | 0    | 0      | 0     | 0     | 0    | 1    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    |            |<br>| LOOP     | if A &lt; B goto DONE, MA := R[rd] | 0    | rd     | 0     | 1     | 0    | 0    | SLTU   | 0     | 1    | 0     | 0     | 0      | 0     | NZ   | DONE       |<br>|          | A := A - B, goto LOOP           | 0    | 0      | 0     | 0     | 1    | 0    | SUB    | 1     | 0    | 0     | 0     | 0      | 0     | J    | LOOP       |<br>| DONE     | Mem := A                        | 0    | 0      | 0     | 0     | 0    | 0    | COPY_A | 1     | 0    | 1     | 0     | 0      | 0     | S    |            |<br>|          | goto FETCH0                     | 0    | 0      | 0     | 0     | 0    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | J    | FETCH0     |</p>
-<p>注意最后不要忘记<code>goto FETCH0</code>.</p>
-<p>注意, 如果μBR是<code>S</code>的话, 那么<code>Next State</code>应该是空白, 而不是<code>*</code>.</p>
-<h2 id="描述状态的例题3-实现MINV指令"><a href="#描述状态的例题3-实现MINV指令" class="headerlink" title="描述状态的例题3-实现MINV指令"></a>描述状态的例题3-实现<code>MINV</code>指令</h2><p><code>MINV</code>指令的格式是: <code>minv rd, rs1, rs2</code>, 它的语义是: 找到一个向量中元素的最小值.</p>
-<ul>
-<li><code>rs1</code>指向的是向量起始元素的地址.</li>
-<li><code>rs2</code>指向的是向量终止元素的地址.</li>
-<li><code>rd</code>存储返回的最小值.</li>
-</ul>
-<p>注意, 向量中的元素全部是32位的无符号数.</p>
-<p>这个指令的伪代码可以表示为:</p>
-<pre><code class="lang-cpp">int ans = -1;
-for (int i = start; i &lt; end; i ++) &#123;
-      if (vector[i] &lt; ans) ans = vector[i];
-&#125;
-return ans;
-</code></pre>
-<p>Microcode可以是:</p>
-<p>MINV0:</p>
-<p><code>A := B</code></p>
-<p><code>A := A - B</code></p>
-<p>(这两步是在初始化<code>A</code>为0)</p>
-<p><code>R[rd] := A - 1</code></p>
-<p>(这一步是在初始化最大值为-1, 按照无符号数就是最大值)</p>
-<p>LOOP:</p>
-<p><code>A,MA := R[rs1]</code></p>
-<p><code>B := R[rs2]</code></p>
-<p><code>if not (A &lt; B) goto FETCH0, B := R[rd]</code></p>
-<p><code>R[rs1] := A + 4</code></p>
-<p><code>A := Mem</code></p>
-<p><code>if not (A &lt; B) goto LOOP</code></p>
-<p><code>R[rd] := A, goto LOOP</code></p>
+<h3 id="Go-back-N-protocol"><a href="#Go-back-N-protocol" class="headerlink" title="Go-back-N protocol"></a>Go-back-N protocol</h3><p>对于GBN协议, 发送方buffer大小大于1, 接收方buffer大小等于1.</p>
+<p>假设接收方的sliding window指向了编号是i的packet, 那么只有正确收到了packet i, 接收方才能发送ACK i, 并且sliding window向后滑, 其他情况下需要发送ACK i-1.</p>
+<p>核心: GBN协议是累积确认, 也就是说, 如果GBN协议给发送方ACK i, 证明i及其之前的packet都收到了.</p>
+<h3 id="Selective-Repeat-protocol"><a href="#Selective-Repeat-protocol" class="headerlink" title="Selective Repeat protocol"></a>Selective Repeat protocol</h3><p>对于SR协议, 发送方buffer大小大于1, 接收方buffer大小大于1, 并且两个窗口默认大小相等.</p>
+<p>SR协议是一个一个单独确认, 来一个packet, 如果在接收方sliding window中, 就直接发ACK.</p>
+<p>SR协议虽然是乱序确认, 但是将数据交付上层是按照顺序的.</p>
 
       
        

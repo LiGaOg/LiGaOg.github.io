@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>硬件的另一种设计模式-流水线 | LiGaOg&#39;s blog</title>
+  <title>CPU-硬件的一种设计模式-Microcode | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="硬件的另一种设计模式-流水线 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-硬件的一种设计模式-Microcode | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -253,6 +253,42 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 工程 "
+           href="/2023/10/24/hardware-metrics/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-衡量处理器性能的指标">CPU-衡量处理器性能的指标</span>
+            <span class="post-date" title="2023-10-24 15:53:55">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/pipeline/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-硬件的另一种设计模式-流水线">CPU-硬件的另一种设计模式-流水线</span>
+            <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/microcode/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-硬件的一种设计模式-Microcode">CPU-硬件的一种设计模式-Microcode</span>
+            <span class="post-date" title="2023-10-24 15:53:29">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/rdt/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络-可靠数据传输的原理">计算机网络-可靠数据传输的原理</span>
+            <span class="post-date" title="2023-10-24 15:52:37">2023/10/24</span>
+        </a>
+        
+        
         <a  class="All 算法 "
            href="/2023/10/24/binary-tree/"
            data-tag=""
@@ -268,15 +304,6 @@
            data-author="" >
             <span class="post-title" title="如何用docker部署一个运行环境">如何用docker部署一个运行环境</span>
             <span class="post-date" title="2023-10-24 14:35:02">2023/10/24</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/23/rdt/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="可靠数据传输的原理">可靠数据传输的原理</span>
-            <span class="post-date" title="2023-10-23 09:43:23">2023/10/23</span>
         </a>
         
         
@@ -313,33 +340,6 @@
            data-author="" >
             <span class="post-title" title="算法题-贪心算法的一些问题集合">算法题-贪心算法的一些问题集合</span>
             <span class="post-date" title="2023-10-13 14:14:56">2023/10/13</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/hardware-metrics/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="衡量处理器性能的指标">衡量处理器性能的指标</span>
-            <span class="post-date" title="2023-10-12 19:04:38">2023/10/12</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/pipeline/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="硬件的另一种设计模式-流水线">硬件的另一种设计模式-流水线</span>
-            <span class="post-date" title="2023-10-12 18:08:00">2023/10/12</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/12/microcode/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="硬件的一种设计模式-Microcode">硬件的一种设计模式-Microcode</span>
-            <span class="post-date" title="2023-10-12 10:52:07">2023/10/12</span>
         </a>
         
         
@@ -936,9 +936,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-pipeline" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-microcode" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">硬件的另一种设计模式-流水线</h1>
+        <h1 class="article-title">CPU-硬件的一种设计模式-Microcode</h1>
     
     <div class="article-meta">
         
@@ -956,7 +956,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-13 21:35:27'>2023-10-12 18:08</time>
+            Created At : <time class="date" title='Updated At: 2023-10-24 15:53:29'>2023-10-24 15:53</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +967,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">五级流水线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84Hazard"><span class="toc-text">流水线中的Hazard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3Hazard%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">解决Hazard的几种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Structural-Hazard"><span class="toc-text">Structural Hazard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Hazard"><span class="toc-text">Data Hazard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Control-Hazard"><span class="toc-text">Control Hazard</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%B5%81%E6%B0%B4%E7%BA%BF-%E4%BE%8B%E9%A2%981"><span class="toc-text">理解流水线-例题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%B5%81%E6%B0%B4%E7%BA%BF-%E4%BE%8B%E9%A2%982"><span class="toc-text">理解流水线-例题2</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Microcode-in-Single-bus-RISC-V-machines"><span class="toc-text">Microcode in Single-bus RISC-V machines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8F%8F%E8%BF%B0%E8%BF%99%E4%B8%AA%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">如何描述这个状态机的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%981-%E5%AE%9E%E7%8E%B0CMOVM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题1-实现CMOVM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%982-%E5%AE%9E%E7%8E%B0MODULOM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题2-实现MODULOM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%983-%E5%AE%9E%E7%8E%B0MINV%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题3-实现MINV指令</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -983,1528 +983,305 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="五级流水线"><a href="#五级流水线" class="headerlink" title="五级流水线"></a>五级流水线</h2><pre><code>IF-&gt;ID-&gt;EX-&gt;MEM-&gt;WB
-</code></pre><h2 id="流水线中的Hazard"><a href="#流水线中的Hazard" class="headerlink" title="流水线中的Hazard"></a>流水线中的Hazard</h2><p>流水线中的Hazard一共有三种:</p>
+        <h2 id="Microcode-in-Single-bus-RISC-V-machines"><a href="#Microcode-in-Single-bus-RISC-V-machines" class="headerlink" title="Microcode in Single-bus RISC-V machines"></a>Microcode in Single-bus RISC-V machines</h2><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="/2023/10/24/microcode/singlebus.png" alt="singlebus"></p>
+<p>其中ALUOp一共有如下几种:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>ALUOp</th>
+<th>ALU输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COPY_A</td>
+<td>A</td>
+</tr>
+<tr>
+<td>COPY_B</td>
+<td>B</td>
+</tr>
+<tr>
+<td>INC_A_1</td>
+<td>A+1</td>
+</tr>
+<tr>
+<td>DEC_A_1</td>
+<td>A-1</td>
+</tr>
+<tr>
+<td>INC_A_4</td>
+<td>A+4</td>
+</tr>
+<tr>
+<td>DEC_A_4</td>
+<td>A-4</td>
+</tr>
+<tr>
+<td>ADD</td>
+<td>A+B</td>
+</tr>
+<tr>
+<td>SUB</td>
+<td>A-B</td>
+</tr>
+<tr>
+<td>SLT</td>
+<td>Signed(A) &lt; Signed(B)</td>
+</tr>
+<tr>
+<td>SLTU</td>
+<td>A &lt; B</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="如何描述这个状态机的状态"><a href="#如何描述这个状态机的状态" class="headerlink" title="如何描述这个状态机的状态"></a>如何描述这个状态机的状态</h2><p>这个状态机的状态转移可以用一个大表来描述:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Pseudocode</th>
+<th>IRLd</th>
+<th>RegSel</th>
+<th>RegWr</th>
+<th>RegEn</th>
+<th>ALd</th>
+<th>BLd</th>
+<th>ALUOp</th>
+<th>ALUEn</th>
+<th>MALd</th>
+<th>MemWr</th>
+<th>MemEn</th>
+<th>ImmSel</th>
+<th>ImmEn</th>
+<th>μBR</th>
+<th>Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中, 这个μBR有六个值, 分别是<code>N</code>, <code>J</code>, <code>EZ</code>, <code>NZ</code>, <code>D</code>和<code>S</code>, 他们的意思分别是:</p>
 <ul>
-<li>Structural Hazard: 两个指令在同一时间内, 需要用到同一个硬件资源.<ul>
-<li>例如, 两个指令要同时写回, 但是memory只有一个port.</li>
+<li><code>N</code>: 下一个状态是<code>Current State + 1</code>.</li>
+<li><code>J</code>: 无条件跳转到<code>Next State</code>.</li>
+<li><code>EZ</code>: 下一个状态取决于ALU的输出, 如果ALU输出是0, 那么下一个状态就是<code>Next State</code>, 否则就是<code>Current State + 1</code>.</li>
+<li><code>NZ</code>: 同上, 这个判断的是ALU的输出不是0.</li>
+<li><code>D</code>: 对于下一个状态, 整个计算机会先看<code>IR</code>中的指令, 根据<code>IR</code>中的指令转移到对应的状态.</li>
+<li><code>S</code>: 如果是<code>S</code>, 会先判断当前的微状态μPC是不是正在busy(例如读取内存, 需要好多个cycles), 如果正忙就spin, 如果不忙就转移到下一个状态, microcode涉及内存操作会用这个.</li>
 </ul>
-</li>
-<li><p>Data Hazard: 在流水线上执行的指令之间有依赖.</p>
+<p>例如取指令这个大状态, 把这个状态叫做<code>FETCH0</code>, 那么<code>FETCH0</code>这个大状态可以分为如下几个microcode来完成:</p>
 <ul>
-<li>RAW: 我这个指令写了<code>rd</code>, 下一个指令就要用到<code>rd</code>.</li>
-<li>WAR: 我这个指令读了<code>rd</code>, 下一个指令需要写<code>rd</code>.</li>
-<li>WAW: 上下两个指令要写同一个寄存器.</li>
-</ul>
-<p>在RISC的经典五级流水线上, 只有RAW可以构成Data Hazard.</p>
-</li>
-<li>Control Hazard: 如果遇到了分支或者trap, 流水线应该要有什么反应.</li>
-</ul>
-<h2 id="解决Hazard的几种方式"><a href="#解决Hazard的几种方式" class="headerlink" title="解决Hazard的几种方式"></a>解决Hazard的几种方式</h2><h3 id="Structural-Hazard"><a href="#Structural-Hazard" class="headerlink" title="Structural Hazard"></a>Structural Hazard</h3><ul>
-<li>Structural Hazard可以通过增加硬件的方式解决, 比如写memory多加几个port.</li>
-<li>也可以通过Stall的方式, 让一个指令先执行, 然后再让一个指令执行.</li>
-</ul>
-<h3 id="Data-Hazard"><a href="#Data-Hazard" class="headerlink" title="Data Hazard"></a>Data Hazard</h3><ul>
-<li>Interlock/Stall: 等后面的指令把数准备好之后, 依赖的指令再执行.</li>
-<li>Bypass/Forwarding : <ul>
-<li>ALU bypassing: 等后面的指令的EXE完成之后, 把计算出来的值bypass到ALU的输入, 这样就不用先到寄存器, 然后再读出来了.</li>
-<li>Memory bypassing: 从Memory读出来之后直接bypass到ALU的输入, 就不用先到寄存器了.</li>
+<li>首先, 我需要把寄存器的读信号<code>RegEn</code>设置成1, 然后把寄存器的<code>RegSel</code>设置成<code>PC</code>, 表示我要读<code>PC</code>这个寄存器, 这样总线上就有<code>PC</code>的值.<ul>
+<li>之后, 我把<code>ALd</code>设置成1, 下个周期总线上的<code>PC</code>值会被读到ALU的缓冲区寄存器<code>A</code>中, 用来下一步计算<code>PC+4</code>.</li>
+<li>然后, 再把<code>MALd</code>设置成1, 下个周期总线上的<code>PC</code>值会被读到<code>MA</code>寄存器中, 如果下个周期内存读信号<code>MemEn</code>为1, 那么总线上就能拿到当前<code>PC</code>对应的指令.</li>
 </ul>
 </li>
+<li>然后, 现在到了下一个周期, 我把<code>MemEn</code>设置成1, 总线上就是当前<code>PC</code>对应的指令.<ul>
+<li>之后, 我把<code>IRLd</code>设置成1, 那么下一个周期总线上的<code>PC</code>值就会被读如<code>IR</code>寄存器中.</li>
 </ul>
-<h3 id="Control-Hazard"><a href="#Control-Hazard" class="headerlink" title="Control Hazard"></a>Control Hazard</h3><ul>
-<li>Speculate: 对于分支语句, 可以进行分支预测.</li>
+</li>
+<li>最后, 我把<code>ALUEn</code>设置成1, 然后<code>ALUOp</code>设置成<code>INC_A_4</code>, 那么总线上就会是<code>PC+4</code>的值.<ul>
+<li>之后, 我把<code>RegWr</code>设置成1, 把<code>RegSel</code>设置成<code>PC</code>, 那么下一个周期后, 寄存器中原来的<code>PC</code>就会是<code>PC+4</code>.</li>
 </ul>
-<h2 id="理解流水线-例题1"><a href="#理解流水线-例题1" class="headerlink" title="理解流水线-例题1"></a>理解流水线-例题1</h2><p>考虑这样一段代码:</p>
-<pre><code class="lang-assembly">addi x2, x0, 0x700
-LOOP:
-add x1, x2, x0
-lw x2, 4(x2)
-bne x2, x0, LOOP
+</li>
+<li>就完成了这个状态机.</li>
+</ul>
+<p>如果用表格描述的话可以这样描述:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Pseudocode</th>
+<th>IRLd</th>
+<th>RegSel</th>
+<th>RegWr</th>
+<th>RegEn</th>
+<th>ALd</th>
+<th>BLd</th>
+<th>ALUOp</th>
+<th>ALUEn</th>
+<th>MALd</th>
+<th>MemWr</th>
+<th>MemEn</th>
+<th>ImmSel</th>
+<th>ImmEn</th>
+<th>μBR</th>
+<th>Next State</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FETCH0</td>
+<td>MA, A := PC</td>
+<td>0</td>
+<td>PC</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>N</td>
+<td>*</td>
+</tr>
+<tr>
+<td></td>
+<td>IR := Mem</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>S</td>
+<td>*</td>
+</tr>
+<tr>
+<td></td>
+<td>PC := PC + 4</td>
+<td>0</td>
+<td>PC</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>INC_A_4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>D</td>
+<td>*</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="描述状态的例题1-实现CMOVM指令"><a href="#描述状态的例题1-实现CMOVM指令" class="headerlink" title="描述状态的例题1-实现CMOVM指令"></a>描述状态的例题1-实现<code>CMOVM</code>指令</h2><p>CMOVM指令的格式为: <code>cmovm rd, rs1, rs2</code>, 语义是如果<code>rs2</code>不是0, 那么<code>Mem[R[rd]] := Mem[R[rs1]]</code>.</p>
+<p>这个指令可以分为如下的microcode:</p>
+<ul>
+<li><p><code>A := R[rs2]</code></p>
+</li>
+<li><p><code>MA := R[rs1]</code> + ALU判断状态转移.</p>
+</li>
+<li><p><code>A := Mem</code></p>
+</li>
+<li><p><code>MA := R[rd]</code></p>
+</li>
+<li><p><code>Mem := A</code></p>
+</li>
+</ul>
+<p>因此, 这个题目是有sketch的:</p>
+<ul>
+<li>如果你想读取一个寄存器:</li>
+<li><p>做判断: 读到<code>A</code>中</p>
+<ul>
+<li><p>作为内存地址: 读到<code>MA</code>中.</p>
+<ul>
+<li><p>如果读内存: 下个周期就把<code>Mem</code>读到<code>A</code>中.</p>
+</li>
+<li><p>如果写内存: 下个周期就把<code>A</code>写入<code>Mem</code>中.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>对应的状态转移表格如下:<br>| State  | Pseudocode            | IRLd | RegSel | RegWr | RegEn | ALd  | BLd  | ALUOp  | ALUEn | MALd | MemWr | MemEn | ImmSel | ImmEn | μBR  | Next State |<br>| ——— | ——————————- | —— | ——— | ——- | ——- | —— | —— | ——— | ——- | —— | ——- | ——- | ——— | ——- | —— | ————— |<br>| CMOVM0 | A := R[rs2]           | 0    | rs2    | 0     | 1     | 1    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|        | MA := R[rs1] + branch | 0    | rs1    | 0     | 1     | 0    | 0    | COPY_A | 0     | 1    | 0     | 0     | 0      | 0     | EZ   | FETCH0     |<br>|        | A := Mem              | 0    | 0      | 0     | 0     | 1    | 0    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    | </em>          |<br>|        | MA := R[rd]           | 0    | rd     | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|        | Mem := A              | 0    | 0      | 0     | 0     | 0    | 0    | COPY_A | 1     | 0    | 1     | 0     | 0      | 0     | S    | </em>          |<br>|        | branch to FETCH0      | 0    | 0      | 0     | 0     | 0    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | J    | FETCH0     |</p>
+<h2 id="描述状态的例题2-实现MODULOM指令"><a href="#描述状态的例题2-实现MODULOM指令" class="headerlink" title="描述状态的例题2-实现MODULOM指令"></a>描述状态的例题2-实现<code>MODULOM</code>指令</h2><p><code>MODULOM</code>指令的格式是: <code>modulom rd, rs1, rs2</code>, 语义是<code>Mem[rd] := Mem[rs1] % Mem[rs2]</code></p>
+<p>其中, <code>modulom</code>算法的实现可以参考:</p>
+<pre><code class="lang-cpp">unsigned int modulom(unsigned int x, unsigned int y) &#123;
+  while (x &gt;= y) x -= y;
+  return x;
+&#125;
 </code></pre>
-<p>假设架构是这样一个五级流水线:</p>
-<p><img src="/2023/10/12/pipeline/arch1.png" alt="arch1"></p>
-<p>模拟这个架构下流水线的执行过程, 假设LOOP内的代码执行4次, branch prediction的结果总是not taken:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Instr</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-<th>21</th>
-<th>22</th>
-<th>23</th>
-<th>24</th>
-<th>25</th>
-<th>26</th>
-<th>27</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addi</td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>首先, 这个题目涉及循环, 可以把Microcode分成三个Label.</p>
+<p>MODULOM0:</p>
 <ul>
-<li>这段代码的CPI是多少 ?(CPI从第一条指令commit开始, 从最后一条指令commit为止)<ul>
-<li>CPI = (27 - 5 + 1) / 13 = 22/13, 注意<code>branch</code>    指令也需要<code>M</code>和<code>W</code>, 因为要改<code>PC</code>.</li>
-<li>千万要注意这个<code>+1</code>一定不要忘.</li>
+<li><code>MA := R[rs1]</code></li>
+<li><code>A := Mem</code></li>
+<li><code>MA := R[rs2]</code></li>
+<li><code>B := Mem</code></li>
 </ul>
-</li>
-<li>如果把<code>M</code>这个阶段分解成<code>M1</code>和<code>M2</code>, 那么CPI是多少 ? (M2之后可以进行load-use bypass)</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Instr</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-<th>21</th>
-<th>22</th>
-<th>23</th>
-<th>24</th>
-<th>25</th>
-<th>26</th>
-<th>27</th>
-<th>28</th>
-<th>29</th>
-<th>30</th>
-<th>31</th>
-<th>32</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addi</td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>LOOP:</p>
 <ul>
-<li>CPI = (32 - 6 + 1) / 13 = 27 / 13</li>
-<li><p>如果branch prediction的结果总是对的, 那么CPI是多少?<br>| Instr | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   | 11   | 12   | 13   | 14   | 15   | 16   | 17   | 18   | 19   | 20   | 21   | 22   |<br>| ——- | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— |<br>| addi  | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| add   |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| lw    |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| bne   |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| add   |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |<br>| lw    |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |<br>| bne   |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |<br>| add   |      |      |      |      |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |<br>| lw    |      |      |      |      |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |<br>| bne   |      |      |      |      |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |<br>| add   |      |      |      |      |      |      |      |      |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |<br>| lw    |      |      |      |      |      |      |      |      |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |<br>| bne   |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |</p>
-</li>
-<li><p>CPI = (21 - 5 + 1) / 13 = 17 / 13</p>
-</li>
+<li><code>if A &lt; B goto DONE, MA := R[rd]</code></li>
+<li><code>A := A - B, goto LOOP</code></li>
 </ul>
-<h2 id="理解流水线-例题2"><a href="#理解流水线-例题2" class="headerlink" title="理解流水线-例题2"></a>理解流水线-例题2</h2><p>假设我有一个用单周期实现的CPU, 它的cycle time是7ns, 我现在把它改造成了五级流水线, 流水线的各个阶段所需的时间分别是: IF, 1ns; ID, 1.5ns; EX, 1ns; MEM, 2ns and WB 1.5ns, 流水线寄存器的delay是0.1ns.</p>
+<p>DONE:</p>
 <ul>
-<li>这个五级流水线的cycle time是多少?<ul>
-<li>在流水线中, cycle time取决于耗时最长的stage, 也就是MEM的2ns, 然后加上流水线寄存器delay的0.1ns, 最后是2.1ns.</li>
-<li>如果是单周期实现的话, 那么cycle time就是1 + 1.5 + 1 + 2 + 1.5 = 7ns, 就是题目中给的7ns.</li>
+<li><code>Mem := A</code></li>
+<li><code>goto FETCH0</code></li>
 </ul>
-</li>
-<li>如果每四条指令就有一个stall, 那么这个五级流水线的CPI是多少?<ul>
-<li>5 / 4 = 1.25.</li>
+<p>状态转移表格如下:<br>| State    | Pseudocode                      | IRLd | RegSel | RegWr | RegEn | ALd  | BLd  | ALUOp  | ALUEn | MALd | MemWr | MemEn | ImmSel | ImmEn | μBR  | Next State |<br>| ———— | ———————————————- | —— | ——— | ——- | ——- | —— | —— | ——— | ——- | —— | ——- | ——- | ——— | ——- | —— | ————— |<br>| MODULOM0 | MA := R[rs1]                    | 0    | rs1    | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | <em>          |<br>|          | A := Mem                        | 0    | 0      | 0     | 0     | 1    | 0    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    |            |<br>|          | MA := R[rs2]                    | 0    | rs2    | 0     | 1     | 0    | 0    | 0      | 0     | 1    | 0     | 0     | 0      | 0     | N    | </em>          |<br>|          | B := Mem                        | 0    | 0      | 0     | 0     | 0    | 1    | 0      | 0     | 0    | 0     | 1     | 0      | 0     | S    |            |<br>| LOOP     | if A &lt; B goto DONE, MA := R[rd] | 0    | rd     | 0     | 1     | 0    | 0    | SLTU   | 0     | 1    | 0     | 0     | 0      | 0     | NZ   | DONE       |<br>|          | A := A - B, goto LOOP           | 0    | 0      | 0     | 0     | 1    | 0    | SUB    | 1     | 0    | 0     | 0     | 0      | 0     | J    | LOOP       |<br>| DONE     | Mem := A                        | 0    | 0      | 0     | 0     | 0    | 0    | COPY_A | 1     | 0    | 1     | 0     | 0      | 0     | S    |            |<br>|          | goto FETCH0                     | 0    | 0      | 0     | 0     | 0    | 0    | 0      | 0     | 0    | 0     | 0     | 0      | 0     | J    | FETCH0     |</p>
+<p>注意最后不要忘记<code>goto FETCH0</code>.</p>
+<p>注意, 如果μBR是<code>S</code>的话, 那么<code>Next State</code>应该是空白, 而不是<code>*</code>.</p>
+<h2 id="描述状态的例题3-实现MINV指令"><a href="#描述状态的例题3-实现MINV指令" class="headerlink" title="描述状态的例题3-实现MINV指令"></a>描述状态的例题3-实现<code>MINV</code>指令</h2><p><code>MINV</code>指令的格式是: <code>minv rd, rs1, rs2</code>, 它的语义是: 找到一个向量中元素的最小值.</p>
+<ul>
+<li><code>rs1</code>指向的是向量起始元素的地址.</li>
+<li><code>rs2</code>指向的是向量终止元素的地址.</li>
+<li><code>rd</code>存储返回的最小值.</li>
 </ul>
-</li>
-<li>那么五级流水线的machine对于单周期machine的speedup是多少?<ul>
-<li>首先, speedup是execution time的比值, 根据iron law可以计算.</li>
-<li>那么比值就是<code>(I * 1 * 7) / (I * 1.25 * 2.1) = 2.67</code>.</li>
-</ul>
-</li>
-<li>假设流水线的stage的数量无限, 那么speedup是多少?<ul>
-<li>如果流水线stage数量无限, 那么CPI应该是无限接近于1, 并且cycle time仅仅等于流水线寄存器的delay, 那么比值就是<code>(I * 1 * 7) / (I * 1 * 0.1) = 70</code>.</li>
-</ul>
-</li>
-</ul>
+<p>注意, 向量中的元素全部是32位的无符号数.</p>
+<p>这个指令的伪代码可以表示为:</p>
+<pre><code class="lang-cpp">int ans = -1;
+for (int i = start; i &lt; end; i ++) &#123;
+      if (vector[i] &lt; ans) ans = vector[i];
+&#125;
+return ans;
+</code></pre>
+<p>Microcode可以是:</p>
+<p>MINV0:</p>
+<p><code>A := B</code></p>
+<p><code>A := A - B</code></p>
+<p>(这两步是在初始化<code>A</code>为0)</p>
+<p><code>R[rd] := A - 1</code></p>
+<p>(这一步是在初始化最大值为-1, 按照无符号数就是最大值)</p>
+<p>LOOP:</p>
+<p><code>A,MA := R[rs1]</code></p>
+<p><code>B := R[rs2]</code></p>
+<p><code>if not (A &lt; B) goto FETCH0, B := R[rd]</code></p>
+<p><code>R[rs1] := A + 4</code></p>
+<p><code>A := Mem</code></p>
+<p><code>if not (A &lt; B) goto LOOP</code></p>
+<p><code>R[rd] := A, goto LOOP</code></p>
 
       
        
