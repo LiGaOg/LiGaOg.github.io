@@ -253,12 +253,21 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 算法 "
+           href="/2023/10/24/binary-tree/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
+            <span class="post-date" title="2023-10-24 14:35:16">2023/10/24</span>
+        </a>
+        
+        
         <a  class="All 工程 "
-           href="/2023/10/23/docker-env/"
+           href="/2023/10/24/docker-env/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="如何用docker部署一个运行环境">如何用docker部署一个运行环境</span>
-            <span class="post-date" title="2023-10-23 15:15:17">2023/10/23</span>
+            <span class="post-date" title="2023-10-24 14:35:02">2023/10/24</span>
         </a>
         
         
@@ -623,15 +632,6 @@
         
         
         <a  class="All 算法 "
-           href="/2023/09/16/binary-tree/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
-            <span class="post-date" title="2023-09-16 13:59:15">2023/09/16</span>
-        </a>
-        
-        
-        <a  class="All 算法 "
            href="/2023/09/16/delete-duplicate/"
            data-tag=""
            data-author="" >
@@ -956,7 +956,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-04 20:23:18'>2023-09-04 20:16</time>
+            Created At : <time class="date" title='Updated At: 2023-10-24 15:50:58'>2023-09-04 20:16</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +967,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E5%8D%95%E8%B0%83%E6%A0%88"><span class="toc-text">模板题-单调栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%9D%BF%E9%A2%98-%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-text">模板题-滑动窗口最大值与最小值</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%85%E5%90%ABmin%E5%87%BD%E6%95%B0%E7%9A%84%E6%A0%88"><span class="toc-text">包含min函数的栈</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1076,6 +1076,47 @@ public:
          return ans;
     &#125;
 &#125;;
+</code></pre>
+<h2 id="包含min函数的栈"><a href="#包含min函数的栈" class="headerlink" title="包含min函数的栈"></a>包含min函数的栈</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/90/">https://www.acwing.com/problem/content/90/</a></p>
+</blockquote>
+<p>再维护一个专门存最小值的栈即可.</p>
+<pre><code class="lang-cpp">class MinStack &#123;
+public:
+    /** initialize your data structure here. */
+    stack&lt;int&gt; stk, stk_min;
+    MinStack() &#123;
+
+    &#125;
+
+    void push(int x) &#123;
+        stk.push(x);
+        if (stk_min.size()) x = min(x, stk_min.top());
+        stk_min.push(x);
+    &#125;
+
+    void pop() &#123;
+        stk.pop();
+        stk_min.pop();
+    &#125;
+
+    int top() &#123;
+        return stk.top();
+    &#125;
+
+    int getMin() &#123;
+        return stk_min.top();
+    &#125;
+&#125;;
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * MinStack obj = new MinStack();
+ * obj.push(x);
+ * obj.pop();
+ * int param_3 = obj.top();
+ * int param_4 = obj.getMin();
+ */
 </code></pre>
 
       
