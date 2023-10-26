@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>处理器的高速缓存 | LiGaOg&#39;s blog</title>
+  <title>CPU-衡量处理器性能的指标 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="处理器的高速缓存 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-衡量处理器性能的指标 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -254,11 +254,20 @@
         
         
         <a  class="All 工程 "
-           href="/2023/10/24/hardware-metrics/"
+           href="/2023/10/26/hardware-metrics/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="CPU-衡量处理器性能的指标">CPU-衡量处理器性能的指标</span>
-            <span class="post-date" title="2023-10-24 15:53:55">2023/10/24</span>
+            <span class="post-date" title="2023-10-26 10:16:41">2023/10/26</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/25/cache-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-处理器的高速缓存">CPU-处理器的高速缓存</span>
+            <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
         </a>
         
         
@@ -322,15 +331,6 @@
            data-author="" >
             <span class="post-title" title="English Practice Day4">English Practice Day4</span>
             <span class="post-date" title="2023-10-18 17:23:37">2023/10/18</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/16/cache-basic/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="处理器的高速缓存">处理器的高速缓存</span>
-            <span class="post-date" title="2023-10-16 22:47:47">2023/10/16</span>
         </a>
         
         
@@ -936,9 +936,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-cache-basic" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-hardware-metrics" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">处理器的高速缓存</h1>
+        <h1 class="article-title">CPU-衡量处理器性能的指标</h1>
     
     <div class="article-meta">
         
@@ -956,7 +956,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-16 22:47:47'>2023-10-16 22:47</time>
+            Created At : <time class="date" title='Updated At: 2023-10-26 10:17:51'>2023-10-26 10:16</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +967,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Cache"><span class="toc-text">为什么需要Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A1%E9%87%8FCache%E6%80%A7%E8%83%BD%E7%9A%84%E6%8C%87%E6%A0%87"><span class="toc-text">衡量Cache性能的指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-text">Cache的工作原理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Mapped-Cache"><span class="toc-text">Direct Mapped Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fully-Associative-Cache"><span class="toc-text">Fully Associative Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E7%A7%8DCache%E6%9E%B6%E6%9E%84%E7%9A%84%E8%81%94%E7%B3%BB"><span class="toc-text">三种Cache架构的联系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Miss%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-text">Cache Miss的来源</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iron-Law"><span class="toc-text">Iron Law</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8Iron-Law%E5%88%86%E6%9E%90-%E4%BE%8B%E9%A2%981"><span class="toc-text">利用Iron Law分析-例题1</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -983,81 +983,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="为什么需要Cache"><a href="#为什么需要Cache" class="headerlink" title="为什么需要Cache"></a>为什么需要Cache</h2><ul>
-<li>Spatial Locality: CPU访问了内存的一个地址, 它还会访问这个地址周围的地址.</li>
-<li><p>Temporal Locality: CPU再某个时间访问了一个地址, 它很有可能在最近还访问.</p>
-</li>
-<li><p>Cache一般集成在CPU内部的SRAM中, 如果cache命中, 可以以更少的时钟周期拿到数据.</p>
-</li>
-</ul>
-<h2 id="衡量Cache性能的指标"><a href="#衡量Cache性能的指标" class="headerlink" title="衡量Cache性能的指标"></a>衡量Cache性能的指标</h2><ul>
-<li>AMAT (Average Memory Access Time)<ul>
-<li><code>AMAT = HIT TIME + MISS RATE * MISS PENALTY</code></li>
-</ul>
-</li>
-<li>因此, 有三种方法优化Cache的性能:<ul>
-<li>减少Hit time.<ul>
-<li>用更快更小的cache.</li>
-</ul>
-</li>
-<li>减少Miss rate.<ul>
-<li>用更大的cache, cache的策略选的好一点.</li>
-</ul>
-</li>
-<li>减少Miss penalty.<ul>
-<li>减少main memory的访问速度.</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="Cache的工作原理"><a href="#Cache的工作原理" class="headerlink" title="Cache的工作原理"></a>Cache的工作原理</h2><h3 id="Direct-Mapped-Cache"><a href="#Direct-Mapped-Cache" class="headerlink" title="Direct Mapped Cache"></a>Direct Mapped Cache</h3><p>首先, Cache存储了很多cache block, 每一个block有一个大小<code>b</code>, 假设这个cache的大小是<code>C</code>, 那么就一共有<code>C / b</code>个cache block.</p>
-<p>对于一个物理地址:</p>
+        <h2 id="Iron-Law"><a href="#Iron-Law" class="headerlink" title="Iron Law"></a>Iron Law</h2><p>Iron Law的公式如下:</p>
+<script type="math/tex; mode=display">
+\frac{Time}{Program} = \frac{Instructions}{Program} \times \frac{Cycles}{Instructions} \times \frac{Time}{Cycle}</script><ul>
+<li>第一项是: 程序对应的指令的总数.</li>
+<li>第二项是: CPI, 单位指令的cycle总数.</li>
+<li><p>第三项是: cycle time, 就是一个cycle的时间, 是频率的倒数.</p>
 <ul>
-<li>最后的<code>log(b)</code>位可以看做这个地址在cache block中的offset.</li>
-<li>之后再往前的<code>log(C / b)</code>为可以作为index, 定位你访问的数据在哪个cache block.</li>
-<li>再往前的所有Bits可以看做一个Tag, 每一个cache block也有一个Tag.<ul>
-<li>如果这两个Tag相同, 那么cache hit.</li>
-<li>如果这两个Tag不同, 那么cache miss, 系统会从main memory中读取相应的block, 写入对应的cache block, 然后写入Tag.</li>
+<li>时钟频率就是1s有多少个cycle, 例如2.5GHz, 就是1s有2.5G个cycle.</li>
 </ul>
 </li>
-<li>每个cache block还有一个valid bit, 标识这个block中是否存储了从main memory中带来的数据, 并且这个数据是否有效.</li>
 </ul>
-<h3 id="N-way-Set-Associative-Cache"><a href="#N-way-Set-Associative-Cache" class="headerlink" title="N-way Set Associative Cache"></a>N-way Set Associative Cache</h3><p>现在, 我把大小为<code>C</code>的Cache分成了若干个Set, 每一个Set中有<code>N</code>个cache blocks, 每一个cache block的大小是<code>b</code>.</p>
-<p>对于一个物理地址:</p>
+<p>如果要减小指令总数, 有以下几种办法:</p>
 <ul>
-<li>最后的<code>log(b)</code>还是cache block中的offset.</li>
-<li>再往前的<code>log(C/N)</code>可以作为<code>index</code>, 定位你的数据在哪一个Set.</li>
-<li>再往前的所有Bits可以看做一个Tag, 每一个cache block对应一个Tag.<ul>
-<li>定位到Set之后, 访问的物理地址的Tag需要和Set中的每一个cache block的Tag对比, 如果有一个一样, 那么就cache hit.</li>
-<li>如果都不一样, 那么就cache miss, 系统会从main memory中把对应的block读进Set中, 至于放到Set中的哪一个block, 这个就取决于cache replacement policy.</li>
+<li>把RISC换成CISC.</li>
+<li>算法写好一点.</li>
+<li>编译器好一点.</li>
 </ul>
-</li>
-<li>同样, 每个cache block也有valid bit.</li>
-</ul>
-<h3 id="Fully-Associative-Cache"><a href="#Fully-Associative-Cache" class="headerlink" title="Fully Associative Cache"></a>Fully Associative Cache</h3><p>现在Cache存储了很多的block, 每一个block大小为<code>b</code>, cache的大小为<code>C</code>.</p>
-<p>对于一个物理地址:</p>
+<p>如果要减少CPI, 有以下几种方法:</p>
 <ul>
-<li>最后<code>log(b)</code>标识cache block中的offset.</li>
-<li>然后, 剩下的所有bits全部是<code>Tag</code>, 物理地址的Tag需要和所有<code>C / b</code>个cache block的Tag做比较:<ul>
-<li>如果有一个相同, 那么就cache hit.</li>
-<li>如果都不同, 那么cache miss, CPU把block从内存中读出来后, 会按照cache replacement policy放到一个cache block中.</li>
+<li>把微架构从Microcode换成Pipeline.</li>
+<li>在流水线中采用bypassing.</li>
+<li>Branch prediction.</li>
 </ul>
-</li>
-<li>同样, 每个cache block也有valid bit.</li>
-</ul>
-<h3 id="三种Cache架构的联系"><a href="#三种Cache架构的联系" class="headerlink" title="三种Cache架构的联系"></a>三种Cache架构的联系</h3><p>假设Cache的大小是<code>C</code>, cache block的大小是<code>b</code>.</p>
+<p>如何减少cycle time:</p>
 <ul>
-<li>Direct Mapped Cache相当于1-way Set Associative Cache, 每个Set中cache block的个数是<code>C / b</code>.</li>
-<li>Fully Associative Cache相当于<code>C / b</code>-way Set Associative Cache, 一共就1个Set.</li>
+<li>减少关键路径(可以在延时大的组合逻辑上添加寄存器增加流水线深度, 但是会带来面积的增加)</li>
+<li>采用更好的VLSI技术.</li>
+<li>把CISC换成RISC.</li>
 </ul>
-<h2 id="Cache-Miss的来源"><a href="#Cache-Miss的来源" class="headerlink" title="Cache Miss的来源"></a>Cache Miss的来源</h2><ul>
-<li>Compulsory Miss: 第一次访问肯定Cache Miss, 因为Cache里面就没有东西.</li>
-<li>Capacity Miss: Cache已经放满了, 再来一个Cache中没有的肯定Miss.</li>
-<li>Conflict: Conflict的精准定义是, 如果这个Miss在Fully Associative Cache中不会发生, 那么这个Miss就是Conflict Miss.<ul>
-<li>Conflict Miss和Cache replacement policy相关.</li>
-</ul>
-</li>
+<h2 id="利用Iron-Law分析-例题1"><a href="#利用Iron-Law分析-例题1" class="headerlink" title="利用Iron Law分析-例题1"></a>利用Iron Law分析-例题1</h2><p>在RISC流水线中, 对于branch delay slots或者load-use delay slots, 如果使用Hardware interlock代替software interlock, 会对iron law的三项有什么影响?</p>
+<p>(Software interlock就是编译器在有Hazard的时候主动添加nops指令加入bubble, 但是这个只在有真正需要bubble的地方才会加.)</p>
+<ul>
+<li>指令总数: 减少, 因为software interlock还会引入额外指令.</li>
+<li>CPI: 增加, 如果采用hardware interlock会引入bubble.</li>
+<li>Cycle Time: 引入hardware interlock逻辑会变复杂, 因此cycle time可能提高.</li>
 </ul>
 
       
@@ -1071,6 +1031,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 

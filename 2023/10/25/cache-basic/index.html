@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CPU-衡量处理器性能的指标 | LiGaOg&#39;s blog</title>
+  <title>CPU-处理器的高速缓存 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="CPU-衡量处理器性能的指标 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-处理器的高速缓存 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -254,11 +254,20 @@
         
         
         <a  class="All 工程 "
-           href="/2023/10/24/hardware-metrics/"
+           href="/2023/10/26/hardware-metrics/"
            data-tag=""
            data-author="" >
             <span class="post-title" title="CPU-衡量处理器性能的指标">CPU-衡量处理器性能的指标</span>
-            <span class="post-date" title="2023-10-24 15:53:55">2023/10/24</span>
+            <span class="post-date" title="2023-10-26 10:16:41">2023/10/26</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/25/cache-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-处理器的高速缓存">CPU-处理器的高速缓存</span>
+            <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
         </a>
         
         
@@ -322,15 +331,6 @@
            data-author="" >
             <span class="post-title" title="English Practice Day4">English Practice Day4</span>
             <span class="post-date" title="2023-10-18 17:23:37">2023/10/18</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/16/cache-basic/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="处理器的高速缓存">处理器的高速缓存</span>
-            <span class="post-date" title="2023-10-16 22:47:47">2023/10/16</span>
         </a>
         
         
@@ -936,9 +936,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-hardware-metrics" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-cache-basic" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CPU-衡量处理器性能的指标</h1>
+        <h1 class="article-title">CPU-处理器的高速缓存</h1>
     
     <div class="article-meta">
         
@@ -956,7 +956,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-24 15:53:55'>2023-10-24 15:53</time>
+            Created At : <time class="date" title='Updated At: 2023-10-26 10:15:09'>2023-10-25 08:46</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +967,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Iron-Law"><span class="toc-text">Iron Law</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A9%E7%94%A8Iron-Law%E5%88%86%E6%9E%90-%E4%BE%8B%E9%A2%981"><span class="toc-text">利用Iron Law分析-例题1</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Cache"><span class="toc-text">为什么需要Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A1%E9%87%8FCache%E6%80%A7%E8%83%BD%E7%9A%84%E6%8C%87%E6%A0%87"><span class="toc-text">衡量Cache性能的指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Cache的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Mapped-Cache"><span class="toc-text">Direct-Mapped Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fully-Associative-Cache"><span class="toc-text">Fully-Associative Cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Replacement-Policy"><span class="toc-text">Cache Replacement Policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Miss%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-text">Cache Miss的来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E4%B8%8E%E5%86%85%E5%AD%98%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-text">Cache与内存写操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Buffer"><span class="toc-text">Write Buffer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98"><span class="toc-text">Cache的一些例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-Cache-Organization"><span class="toc-text">例题1-Cache Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982-Replacement-Policies%E7%9A%84Trace"><span class="toc-text">例题2-Replacement Policies的Trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%983-Cache-Optimization"><span class="toc-text">例题3-Cache Optimization</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -983,37 +983,398 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Iron-Law"><a href="#Iron-Law" class="headerlink" title="Iron Law"></a>Iron Law</h2><p>Iron Law的公式如下:</p>
-<script type="math/tex; mode=display">
-\frac{Time}{Program} = \frac{Instructions}{Program} \times \frac{Cycles}{Instructions} \times \frac{Time}{Cycle}</script><ul>
-<li>第一项是: 程序对应的指令的总数.</li>
-<li>第二项是: CPI, 单位指令的cycle总数.</li>
-<li>第三项是: cycle time, 就是一个周期的时间, 是频率的倒数.</li>
+        <h2 id="为什么需要Cache"><a href="#为什么需要Cache" class="headerlink" title="为什么需要Cache"></a>为什么需要Cache</h2><ul>
+<li>Spatial Locality: CPU访问了内存的一个地址, 它还会访问这个地址周围的地址.</li>
+<li><p>Temporal Locality: CPU再某个时间访问了一个地址, 它很有可能在最近还访问.</p>
+</li>
+<li><p>Cache一般集成在CPU内部的SRAM中, 如果cache命中, 可以以更少的时钟周期拿到数据.</p>
+</li>
 </ul>
-<p>如果要减小指令总数, 有以下几种办法:</p>
-<ul>
-<li>把RISC换成CISC.</li>
-<li>算法写好一点.</li>
-<li>编译器好一点.</li>
+<h2 id="衡量Cache性能的指标"><a href="#衡量Cache性能的指标" class="headerlink" title="衡量Cache性能的指标"></a>衡量Cache性能的指标</h2><ul>
+<li>AMAT (Average Memory Access Time)<ul>
+<li><code>AMAT = HIT TIME + MISS RATE * MISS PENALTY</code></li>
 </ul>
-<p>如果要减少CPI, 有以下几种方法:</p>
-<ul>
-<li>把微架构从Microcode换成Pipeline.</li>
-<li>在流水线中采用bypassing.</li>
-<li>Branch prediction.</li>
+</li>
+<li>因此, 有三种方法优化Cache的性能:<ul>
+<li>减少Hit time.<ul>
+<li>用更快更小的cache.</li>
 </ul>
-<p>如何减少cycle time:</p>
-<ul>
-<li>减少关键路径(可以在延时大的组合逻辑上添加寄存器增加流水线深度, 但是会带来面积的增加)</li>
-<li>采用更好的VLSI技术.</li>
-<li>把CISC换成RISC.</li>
+</li>
+<li>减少Miss rate.<ul>
+<li>用更大的cache, cache的策略选的好一点.</li>
 </ul>
-<h2 id="利用Iron-Law分析-例题1"><a href="#利用Iron-Law分析-例题1" class="headerlink" title="利用Iron Law分析-例题1"></a>利用Iron Law分析-例题1</h2><p>在RISC流水线中, 对于branch delay slots或者load-use delay slots, 如果使用Hardware interlock代替software interlock, 会对iron law的三项有什么影响?</p>
-<p>(Software interlock就是编译器在有Hazard的时候主动添加nops指令加入bubble, 但是这个只在有真正需要bubble的地方才会加.)</p>
+</li>
+<li>减少Miss penalty.<ul>
+<li>减少main memory的访问速度.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cache的架构"><a href="#Cache的架构" class="headerlink" title="Cache的架构"></a>Cache的架构</h2><h3 id="N-way-Set-Associative-Cache"><a href="#N-way-Set-Associative-Cache" class="headerlink" title="N-way Set Associative Cache"></a>N-way Set Associative Cache</h3><p>可以把Cache理解成一个二维数组:</p>
 <ul>
-<li>指令总数: 减少, 因为software interlock还会引入额外指令.</li>
-<li>CPI: 增加, 如果采用hardware interlock会引入bubble.</li>
-<li>Cycle Time: 引入hardware interlock逻辑会变复杂, 因此cycle time可能提高.</li>
+<li>每一行叫做一个Set.</li>
+<li>每一列叫做一个Way.</li>
+<li>一行一列的元素叫做一个Cache Line.</li>
+</ul>
+<p>对于一个N-way Set Associative Cache, 它的列数就是N.</p>
+<p>那么如何计算对于N-way Set Associative Cache来说, 一个地址怎么找到对应的Cache Line呢?</p>
+<p>首先, 假设Cache Line的大小是<code>b</code>个字节, 那么地址最后的<code>log2(b)</code>位就是Offset.</p>
+<p>之后, 我需要计算有几个Set, 也就是有几行? </p>
+<ul>
+<li>假设Cache总大小是<code>C</code>个字节, 那么Set的个数就是<code>C / (b * N)</code>.</li>
+<li>那么Index就是<code>log2(C / (b * N))</code>位.</li>
+</ul>
+<p>剩下的位就是Valid bit, Dirty bit以及Tag bits.</p>
+<p>地址映射的时候, 先根据Index找到Set的编号, 然后同时比较地址的Tag和所有Way的Tag, 如果Tag一样并且Valid bit是1, 那么就是Cache hit.</p>
+<h3 id="Direct-Mapped-Cache"><a href="#Direct-Mapped-Cache" class="headerlink" title="Direct-Mapped Cache"></a>Direct-Mapped Cache</h3><p>Directed-Mapped Cache相当于Way是1的Set Associative Cache (列数是1).</p>
+<h3 id="Fully-Associative-Cache"><a href="#Fully-Associative-Cache" class="headerlink" title="Fully-Associative Cache"></a>Fully-Associative Cache</h3><p>Fully-Associative Cache相当于Set数是1的Set Associative Cache (函数是1).</p>
+<h2 id="Cache-Replacement-Policy"><a href="#Cache-Replacement-Policy" class="headerlink" title="Cache Replacement Policy"></a>Cache Replacement Policy</h2><p>Cache Replacement处理的问题是: </p>
+<ul>
+<li>如果Set Associative Cache中的一个Set满了, 这时候又要进来一个Cache Line, 那么这个Cache Line要放到哪个位置?</li>
+</ul>
+<p>有如下几种算法:</p>
+<ul>
+<li><p>Random: 随机一个Cache Line出去.</p>
+</li>
+<li><p>FIFO: 最先进来的Cache Line出去.</p>
+</li>
+<li>LRU: 让最久没被使用过的Cache Line出去.</li>
+<li>MRU: 让最近使用过的Cache Line出去.<ul>
+<li>NMRU: <ul>
+<li>首先记录一下谁是最近使用过的Cache Line (和MRU相似)</li>
+<li>剩下的Cache Line随机一个出去.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cache-Miss的来源"><a href="#Cache-Miss的来源" class="headerlink" title="Cache Miss的来源"></a>Cache Miss的来源</h2><ul>
+<li><p>Compulsory Miss: </p>
+<ul>
+<li>第一次访问肯定Cache Miss, 因为Cache里面就没有东西.</li>
+<li>改进: 增加Cache Line Size, 但是Conflict Miss会增加, 并且Miss Penalty会增加.</li>
+</ul>
+</li>
+<li><p>Capacity Miss: </p>
+<ul>
+<li>Cache太小了, 你要的Cache Line已经被请出去了.</li>
+<li>改进: 增加Cache Size, 但是Hit Time会增加.</li>
+</ul>
+</li>
+<li><p>Conflict: </p>
+<ul>
+<li>Conflict的精准定义是: 如果这个Miss在Fully Associative Cache中不会发生, 那么这个Miss就是Conflict Miss.</li>
+<li>Conflict Miss和Cache replacement policy相关.</li>
+<li>改进: 增加Cache Size和Associativity, 但是会增加Hit Time.</li>
+</ul>
+</li>
+</ul>
+<h2 id="Cache与内存写操作"><a href="#Cache与内存写操作" class="headerlink" title="Cache与内存写操作"></a>Cache与内存写操作</h2><p>假设我现在要写一个内存地址, 假设写入的地址有Cache Hit, 那么Cache有两种策略处理:</p>
+<ul>
+<li>Write through: 直接在Cache和main memory中同时修改即可.</li>
+<li>Write Back: 现在Cache中写, 然后当这个Cache Line被evicted出去的时候再同步到Memory中.<ul>
+<li>如果采用Write Back策略, 那么就需要在Cache Line中增加一个Dirty Bit, 标识这个Cache Line是不是被写过.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Write-Buffer"><a href="#Write-Buffer" class="headerlink" title="Write Buffer"></a>Write Buffer</h3><p>当你采用Write Back策略的时候, 如果一个被修改过的Cache Line被evicted出去了, 那么这个修改就要被同步到main memory中.</p>
+<p>这个时候, 如果你有一个读内存的请求 (cache miss了, 需要访问main memory), 并且这个请求的地址和刚才修改的cache line毫不相关, 那么这个读内存的请求就得等刚才evicted cache line写完内存才能开始, 这就很浪费时间.</p>
+<p>这个时候, 我可以把这个cache line放到一个write buffer中, 之后再让write buffer中的东西同步到main memory中, 放到write buffer很快, 那么刚才读内存的请求就可以很快得到响应.</p>
+<p>并且还有一个好处: 如果读内存正好读到了Write Buffer中的Cache line, 就可以直接将读到的数据bypass, 这个可以减少Miss Penalty.</p>
+<h2 id="Cache的一些例题"><a href="#Cache的一些例题" class="headerlink" title="Cache的一些例题"></a>Cache的一些例题</h2><h3 id="例题1-Cache-Organization"><a href="#例题1-Cache-Organization" class="headerlink" title="例题1-Cache Organization"></a>例题1-Cache Organization</h3><p>有一个1KB大小的, 4-way的Set Associative Cache, Cache line的大小是32B, 地址是12bits, 请问地址的bits怎么划分成Tag, Index和Offset?</p>
+<ul>
+<li><p>怎么找Offset ?</p>
+<ul>
+<li>Cache line的大小是32B, 那么Offset就有5位.</li>
+</ul>
+</li>
+<li>怎么找Index? <ul>
+<li>4-way表示一个Set中有4个Cache line.</li>
+<li>那么一个Set的大小就是<code>32B * 4</code></li>
+<li>那么总共的Set的个数就是<code>1024B / (32B * 4) = 2^&#123;10&#125;B / 2^&#123;7&#125;B = 2^&#123;3&#125;</code>.</li>
+<li>那么Index就有3位.</li>
+</ul>
+</li>
+<li>剩下的最后4位就是Tag.</li>
+</ul>
+<h3 id="例题2-Replacement-Policies的Trace"><a href="#例题2-Replacement-Policies的Trace" class="headerlink" title="例题2-Replacement Policies的Trace"></a>例题2-Replacement Policies的Trace</h3><p>假设有一个4-way的Set Associative Cache, 有如下地址访问序列: <code>A, B, C, D, B, A, E</code>, 其中<code>A, B, C, D, E</code>是不同的地址, 但是会被map到相同的Set, 给定一个下面的trace表格:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Access</th>
+<th>Way0</th>
+<th>Way1</th>
+<th>Way2</th>
+<th>Way3</th>
+<th>Policy State after request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>其中, 列<code>Way0-Way3</code>表示的是Set中这一个Way的内容.</p>
+<p>Policy State after request是一个编号, 这个编号表示如果要evict cache line, 需要让哪一个cache line出去.</p>
+<p>请根据表格画出上述地址访问序列的trace:</p>
+<ul>
+<li>NMRU</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Access</th>
+<th>Way0</th>
+<th>Way1</th>
+<th>Way2</th>
+<th>Way3</th>
+<th>Policy State after request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td>2</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td></td>
+<td>3</td>
+</tr>
+<tr>
+<td>D</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>0</td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td>Hit</td>
+<td></td>
+<td></td>
+<td>0</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Hit</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+</tr>
+<tr>
+<td>E</td>
+<td>A</td>
+<td>E</td>
+<td>C</td>
+<td>D</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><p>LRU</p>
+<ul>
+<li>注意, LRU的state有些特殊, 例如如果state是<code>[3, 2, 1, 0]</code>, 那么0是least recently used, 最后放到的位置是0</li>
+<li>初始状态是<code>[3, 2, 1, 0]</code></li>
+</ul>
+</li>
+</ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Access</th>
+<th>Way0</th>
+<th>Way1</th>
+<th>Way2</th>
+<th>Way3</th>
+<th>Policy State after request</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>A</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[0, 3, 2, 1]</td>
+</tr>
+<tr>
+<td>B</td>
+<td>A</td>
+<td>B</td>
+<td></td>
+<td></td>
+<td>[1, 0, 3, 2]</td>
+</tr>
+<tr>
+<td>C</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td></td>
+<td>[2, 1, 0, 3]</td>
+</tr>
+<tr>
+<td>D</td>
+<td>A</td>
+<td>B</td>
+<td>C</td>
+<td>D</td>
+<td>[3, 2, 1, 0]</td>
+</tr>
+<tr>
+<td>B</td>
+<td></td>
+<td>Hit</td>
+<td></td>
+<td></td>
+<td>[1, 3, 2, 0]</td>
+</tr>
+<tr>
+<td>A</td>
+<td>Hit</td>
+<td></td>
+<td></td>
+<td></td>
+<td>[0, 1, 3, 2]</td>
+</tr>
+<tr>
+<td>E</td>
+<td>A</td>
+<td>B</td>
+<td>E</td>
+<td>D</td>
+<td>[2, 0, 1, 3]</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="例题3-Cache-Optimization"><a href="#例题3-Cache-Optimization" class="headerlink" title="例题3-Cache Optimization"></a>例题3-Cache Optimization</h3><p>请按照表格描述下面因素对Cache性能的影响:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Hit Time</th>
+<th>Miss Penalty</th>
+<th>Miss Rate</th>
+<th>Hardware Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Smaller/Simpler Cache</td>
+<td>Decrease</td>
+<td>No change</td>
+<td>Increase</td>
+<td>Decrease</td>
+</tr>
+<tr>
+<td>Multi-level Caches</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>Decrease</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Smart replacement</td>
+<td>May Increase (维护replacement算法变量)</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Pipelined writes</td>
+<td>Decrease</td>
+<td>No change</td>
+<td>No change</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Write Buffer</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>No change</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Sub-blocks(sector cache)</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>Increase</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Code optimization</td>
+<td>No change</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>No change</td>
+</tr>
+<tr>
+<td>Compiler Prefetching</td>
+<td>No change</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>No change</td>
+</tr>
+<tr>
+<td>Hardware prefetch</td>
+<td>No change</td>
+<td>Increase</td>
+<td>Decrease</td>
+<td>Increase</td>
+</tr>
+<tr>
+<td>Victim Cache</td>
+<td>No change</td>
+<td>Decrease</td>
+<td>No change</td>
+<td>Increase</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li>Sub-blocks(sector cache)是什么意思?<ul>
+<li>把cache line分成若干个小块, 每次Miss只从memory中取其中的小块, 就不用取整个cache line.</li>
+</ul>
+</li>
+<li>Compiler Prefetching是什么意思?<ul>
+<li>假设你的Compiler知道你要做矩阵乘法, 那么他就可以插入一些指令让Cache充满你的矩阵的数据.</li>
+</ul>
+</li>
 </ul>
 
       
