@@ -6,17 +6,27 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-处理器的高速缓存 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="逻辑综合概念逻辑综合是根据时序&#x2F;面积等约束, 将Verilog设计, 结合工艺库转换成门级网表的过程, 其中, 重点是时序约束. Port和Pin的区别通常来说, 一个Cell的引脚叫做Pin, 一个Design Block或者整个的SoC的IO叫做Pprt. 对于Cadence的EDA工具来说, Port被叫做I&#x2F;O Pin. 寄存器的setup time与hold time对于寄存器来说, 有">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EDA-逻辑综合一些知识点">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="逻辑综合概念逻辑综合是根据时序&#x2F;面积等约束, 将Verilog设计, 结合工艺库转换成门级网表的过程, 其中, 重点是时序约束. Port和Pin的区别通常来说, 一个Cell的引脚叫做Pin, 一个Design Block或者整个的SoC的IO叫做Pprt. 对于Cadence的EDA工具来说, Port被叫做I&#x2F;O Pin. 寄存器的setup time与hold time对于寄存器来说, 有">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sh.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/variable.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sta.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/clock.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/wireload.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/skew.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/setup.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/hold.png">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/clkq.png">
+<meta property="article:published_time" content="2023-10-30T12:13:39.156Z">
+<meta property="article:modified_time" content="2023-10-31T03:38:12.769Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sh.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +129,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(74)</small>
+                <small>(76)</small>
             
         </div>
     </li>
@@ -131,7 +141,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(11)</small>
+            <small>(13)</small>
         </div>
         
     </li>
@@ -201,7 +211,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="74">
+<input type="hidden" id="yelog_site_posts_number" value="76">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +261,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/30/logic-synthesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="EDA-逻辑综合一些知识点">EDA-逻辑综合一些知识点</span>
+            <span class="post-date" title="2023-10-30 20:13:39">2023/10/30</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/26/virtualmem/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-虚拟内存与MMU的架构">CPU-虚拟内存与MMU的架构</span>
+            <span class="post-date" title="2023-10-26 10:32:12">2023/10/26</span>
+        </a>
         
         
         <a  class="All 工程 "
@@ -956,7 +984,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-26 10:15:09'>2023-10-25 08:46</time>
+            Created At : <time class="date" title='Updated At: 2023-10-26 20:57:25'>2023-10-25 08:46</time>
         
     </div>
     <div class="article-meta">
@@ -967,7 +995,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Cache"><span class="toc-text">为什么需要Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A1%E9%87%8FCache%E6%80%A7%E8%83%BD%E7%9A%84%E6%8C%87%E6%A0%87"><span class="toc-text">衡量Cache性能的指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Cache的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Mapped-Cache"><span class="toc-text">Direct-Mapped Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fully-Associative-Cache"><span class="toc-text">Fully-Associative Cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Replacement-Policy"><span class="toc-text">Cache Replacement Policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Miss%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-text">Cache Miss的来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E4%B8%8E%E5%86%85%E5%AD%98%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-text">Cache与内存写操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Buffer"><span class="toc-text">Write Buffer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98"><span class="toc-text">Cache的一些例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-Cache-Organization"><span class="toc-text">例题1-Cache Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982-Replacement-Policies%E7%9A%84Trace"><span class="toc-text">例题2-Replacement Policies的Trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%983-Cache-Optimization"><span class="toc-text">例题3-Cache Optimization</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81Cache"><span class="toc-text">为什么需要Cache</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A1%E9%87%8FCache%E6%80%A7%E8%83%BD%E7%9A%84%E6%8C%87%E6%A0%87"><span class="toc-text">衡量Cache性能的指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Cache的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Direct-Mapped-Cache"><span class="toc-text">Direct-Mapped Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fully-Associative-Cache"><span class="toc-text">Fully-Associative Cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Replacement-Policy"><span class="toc-text">Cache Replacement Policy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache-Miss%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="toc-text">Cache Miss的来源</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E4%B8%8E%E5%86%85%E5%AD%98%E5%86%99%E6%93%8D%E4%BD%9C"><span class="toc-text">Cache与内存写操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Buffer"><span class="toc-text">Write Buffer</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BE%8B%E9%A2%98"><span class="toc-text">Cache的一些例题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%981-Cache-Organization"><span class="toc-text">例题1-Cache Organization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%982-Replacement-Policies%E7%9A%84Trace"><span class="toc-text">例题2-Replacement Policies的Trace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%983-Cache-Optimization"><span class="toc-text">例题3-Cache Optimization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%984-Prefetch"><span class="toc-text">例题4-Prefetch</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1375,6 +1403,24 @@
 <li>假设你的Compiler知道你要做矩阵乘法, 那么他就可以插入一些指令让Cache充满你的矩阵的数据.</li>
 </ul>
 </li>
+</ul>
+<h3 id="例题4-Prefetch"><a href="#例题4-Prefetch" class="headerlink" title="例题4-Prefetch"></a>例题4-Prefetch</h3><p>看如下这段代码:</p>
+<pre><code class="lang-cpp">int A[32][32];
+int sum = 0;
+
+for (int j = 0; j &lt; 32; j ++) &#123;
+  for (int i = 0; i &lt; 32; i ++) &#123;
+    // Prefetch from A + M * i + j + OFFSET
+    prefetch(&amp;A[i][j] + OFFSET);
+    sum += A[i][j];
+  &#125;
+&#125;
+</code></pre>
+<p>假设cache line的大小是128B, 如果没有prefetch, 那么<code>sum += A[i][j]</code>需要耗费50个cycles, 其中40cycles浪费在了L1 cache miss上, 10cycles花费在加法上. 现在加上了<code>prefetch</code>, 请问<code>OFFSET</code>设置成多少, 才能够让循环所需要的cycle数目最小?</p>
+<ul>
+<li>首先, 加法需要10cycles, prefetch的数据返回需要40cycles.</li>
+<li>那么, 我可以在每次循环开始前, 都prefetch四次循环的数据, 然后再运行四次循环, 这样每次循环的平均cycle数目就是<code>(40 + 10 * 4) / 4 = 20</code>.</li>
+<li>那么Offset就是<code>32 * 4 = 128</code>.</li>
 </ul>
 
       
