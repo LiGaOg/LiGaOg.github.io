@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-求解斐波那契数列 | LiGaOg&#39;s blog</title>
+  <title>算法题-二叉树系列题目 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-求解斐波那契数列 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-二叉树系列题目 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -954,9 +954,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-fib" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-binary-tree" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-求解斐波那契数列</h1>
+        <h1 class="article-title">算法题-二叉树系列题目</h1>
     
     <div class="article-meta">
         
@@ -974,7 +974,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-04 18:44:08'>2023-10-04 11:50</time>
+            Created At : <time class="date" title='Updated At: 2023-11-03 13:47:34'>2023-11-03 13:17</time>
         
     </div>
     <div class="article-meta">
@@ -985,7 +985,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97%E4%BB%8B%E7%BB%8D"><span class="toc-text">斐波那契数列介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BB%9A%E5%8A%A8%E5%8F%98%E9%87%8F"><span class="toc-text">滚动变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E5%B9%82"><span class="toc-text">快速幂</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">中序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95"><span class="toc-text">递归写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%86%99%E6%B3%95"><span class="toc-text">迭代写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">前序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-1"><span class="toc-text">递归写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%86%99%E6%B3%95-1"><span class="toc-text">迭代写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">后序遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-2"><span class="toc-text">递归写法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%86%99%E6%B3%95-2"><span class="toc-text">迭代写法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%8B%E5%AD%97%E5%BD%A2%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">之字形层序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E5%BA%8F%E4%B8%AD%E5%BA%8F%E6%81%A2%E5%A4%8D%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">前序中序恢复二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8E%E5%BA%8F%E4%B8%AD%E5%BA%8F%E6%81%A2%E5%A4%8D%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">后序中序恢复二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E8%8A%82%E7%82%B9"><span class="toc-text">二叉树的下一个节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="toc-text">二叉搜索树的后序遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%92%8C%E6%98%AF%E6%9F%90%E4%B8%80%E5%80%BC%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="toc-text">二叉树中和是某一值的路径</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%91%E7%9A%84%E5%AD%90%E7%BB%93%E6%9E%84"><span class="toc-text">树的子结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%95%9C%E5%83%8F"><span class="toc-text">二叉树的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91"><span class="toc-text">对称的二叉树</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1001,77 +1001,552 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="斐波那契数列介绍"><a href="#斐波那契数列介绍" class="headerlink" title="斐波那契数列介绍"></a>斐波那契数列介绍</h2><p>$f(0) = 1$</p>
-<p>$f(1) = 1$</p>
-<p>$f(n) = f(n - 1) + f(n - 2), n \in Z, n \geqslant 2$</p>
-<p>注意: </p>
-<ul>
-<li>有些题目会把第0项定义成0.</li>
-<li>爬楼梯问题, 爬0阶楼梯的方案数是1.</li>
-</ul>
-<h2 id="滚动变量"><a href="#滚动变量" class="headerlink" title="滚动变量"></a>滚动变量</h2><p>时间复杂度是$O(n)$, 空间复杂度是$O(1)$</p>
-<pre><code class="lang-cpp">int fib(int n)
-&#123;
-    int a = 1, b = 1;
-  while (n --)
-  &#123;
-    int c = a + b;
-    a = b, b = c;
-  &#125;
-  return a;
-&#125;
-</code></pre>
-<h2 id="快速幂"><a href="#快速幂" class="headerlink" title="快速幂"></a>快速幂</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/19/">https://www.acwing.com/problem/content/19/</a></p>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/climbing-stairs/description/">https://leetcode.cn/problems/climbing-stairs/description/</a></p>
+        <h2 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-inorder-traversal/">https://leetcode.cn/problems/binary-tree-inorder-traversal/</a></p>
 </blockquote>
-<p>快速幂可以在$O(logn)$的时间复杂度内求解斐波那契数列的第$n$项.</p>
-<p>定义向量$X_n = [a_n, a_{n - 1}]$, 那么$X_1 = [a_1, a_0]$</p>
-<p>可以找到矩阵</p>
-<script type="math/tex; mode=display">
-A = \begin{bmatrix}
-1 & 1 \\
-1 & 0 \\
-\end{bmatrix}</script><p>使得$X_n = X_{n - 1} \times A$</p>
-<p>那么$X_n = X_1 \times A^{n-1}$</p>
-<p>那么, 求斐波那契数列的问题就转化成了求矩阵$A^{n-1}$的问题, 这个问题可以用快速幂求解.</p>
-<p>注意, 这个方法第0项需要单独判断, 因为要保证$n - 1 \geqslant 0$.</p>
+<h3 id="递归写法"><a href="#递归写法" class="headerlink" title="递归写法"></a>递归写法</h3><pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; ans;
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123;
+        dfs(root);
+        return ans;
+    &#125;
+    void dfs(TreeNode *root) &#123;
+        if (!root) return ;
+        dfs(root-&gt;left);
+        ans.push_back(root-&gt;val);
+        dfs(root-&gt;right);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="迭代写法"><a href="#迭代写法" class="headerlink" title="迭代写法"></a>迭代写法</h3><pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+
+    vector&lt;int&gt; ans;
+    stack&lt;TreeNode*&gt; stk;
+    vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123;
+        while (root || stk.size()) 
+        &#123;
+            while (root)
+            &#123;
+                stk.push(root);
+                root = root-&gt;left;
+            &#125;
+
+            root = stk.top();
+            stk.pop();
+            ans.push_back(root-&gt;val);
+            root = root-&gt;right;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-preorder-traversal/">https://leetcode.cn/problems/binary-tree-preorder-traversal/</a></p>
+</blockquote>
+<h3 id="递归写法-1"><a href="#递归写法-1" class="headerlink" title="递归写法"></a>递归写法</h3><pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; ans;
+    vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;
+        dfs(root);
+        return ans;
+    &#125;
+    void dfs(TreeNode *root) &#123;
+        if (!root) return ;
+        ans.push_back(root-&gt;val);
+        dfs(root-&gt;left);
+        dfs(root-&gt;right);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="迭代写法-1"><a href="#迭代写法-1" class="headerlink" title="迭代写法"></a>迭代写法</h3><pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; ans;
+    stack&lt;TreeNode *&gt; stk;
+    vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123;
+        while (root || stk.size())
+        &#123;
+            while (root)
+            &#123;
+                ans.push_back(root-&gt;val);
+                stk.push(root);
+                root = root-&gt;left;
+            &#125;
+
+            root = stk.top();
+            stk.pop();
+            root = root-&gt;right;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-postorder-traversal/">https://leetcode.cn/problems/binary-tree-postorder-traversal/</a></p>
+</blockquote>
+<h3 id="递归写法-2"><a href="#递归写法-2" class="headerlink" title="递归写法"></a>递归写法</h3><pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; ans;
+    vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123;
+        dfs(root);
+        return ans;
+    &#125;
+    void dfs(TreeNode *root) &#123;
+        if (!root) return ;
+        dfs(root-&gt;left);
+        dfs(root-&gt;right);
+        ans.push_back(root-&gt;val);
+    &#125;
+&#125;;
+</code></pre>
+<h3 id="迭代写法-2"><a href="#迭代写法-2" class="headerlink" title="迭代写法"></a>迭代写法</h3><p> 先按照根右左的顺序遍历, 然后反向即可.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; ans;
+    stack&lt;TreeNode *&gt; stk;
+    vector&lt;int&gt; postorderTraversal(TreeNode* root) &#123;
+        while (root || stk.size()) &#123;
+            while (root) &#123;
+                ans.push_back(root-&gt;val);
+                stk.push(root);
+                root = root-&gt;right;
+            &#125;
+            root = stk.top();
+            stk.pop();
+            root = root-&gt;left;
+        &#125;
+        reverse(ans.begin(), ans.end());
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="层序遍历"><a href="#层序遍历" class="headerlink" title="层序遍历"></a>层序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-level-order-traversal">https://leetcode.cn/problems/binary-tree-level-order-traversal</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/41/">https://www.acwing.com/problem/content/description/41/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/42/">https://www.acwing.com/problem/content/42/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123;
+        vector&lt;vector&lt;int&gt;&gt; ans;
+        if (!root) return ans;
+
+        queue&lt;TreeNode *&gt; q;
+        q.push(root);
+
+        while (q.size()) &#123;
+            vector&lt;int&gt; level;
+            int len = q.size();
+
+          /* 每一层单独放 */
+            while (len --) &#123;
+                auto t = q.front();
+                q.pop();
+                level.push_back(t-&gt;val);
+                if (t-&gt;left) q.push(t-&gt;left);
+                if (t-&gt;right) q.push(t-&gt;right);
+            &#125;
+            ans.push_back(level);
+        &#125;
+
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="之字形层序遍历"><a href="#之字形层序遍历" class="headerlink" title="之字形层序遍历"></a>之字形层序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/43/">https://www.acwing.com/problem/content/description/43/</a></p>
+</blockquote>
+<p>在层序遍历的基础上用一个变量控制一下是否反转<code>level</code>即可.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;vector&lt;int&gt;&gt; printFromTopToBottom(TreeNode* root) &#123;
+
+        vector&lt;vector&lt;int&gt;&gt; ans;
+        if (!root) return ans;
+
+        queue&lt;TreeNode *&gt; q;
+        q.push(root);
+
+        bool rev = false;
+
+        while (q.size())
+        &#123;
+            vector&lt;int&gt; level;
+            int len = q.size();
+
+            while (len --)
+            &#123;
+                auto t = q.front();
+                q.pop();
+                level.push_back(t-&gt;val);
+                if (t-&gt;left) q.push(t-&gt;left);
+                if (t-&gt;right) q.push(t-&gt;right);
+            &#125;
+            if (rev) reverse(level.begin(), level.end());
+            ans.push_back(level);
+            rev = !rev;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="前序中序恢复二叉树"><a href="#前序中序恢复二叉树" class="headerlink" title="前序中序恢复二叉树"></a>前序中序恢复二叉树</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/">https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/</a></p>
+</blockquote>
+<p>首先, 前序遍历序列的第一个元素就是根节点, 通过哈希表可以找到第一个元素在中序遍历中的位置, 假设根节点在中序遍历中的下标是$k$.</p>
+<p>假设前序遍历的下标范围是$[pl, pr]$, 中序遍历的下标范围是$[il, ir]$, 那么:</p>
+<ul>
+<li>左子树在前序遍历的下标范围是$[pl + 1, pl + 1 + (k - 1 - il + 1) - 1]$</li>
+<li>右子树在前序遍历的下标范围是$[pl + 1 +  (k - il + 1) - 1 + 1, pr]$</li>
+<li>左子树在中序遍历的下标范围是$[il, k - 1]$</li>
+<li>右子树在中序遍历的下标范围是$[k + 1, ir]$</li>
+</ul>
+<p>然后递归建树即可.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    unordered_map&lt;int, int&gt; hash;
+    TreeNode *dfs(vector&lt;int&gt; &amp;preorder, vector&lt;int&gt; &amp;inorder, int pl, int pr, int il, int ir) &#123;
+        if (pl &gt; pr) return NULL;
+        int val = preorder[pl];
+        int k = hash[val];
+        TreeNode *root = new TreeNode(val);
+
+        root-&gt;left = dfs(preorder, inorder, pl + 1, pl + 1 + k - 1 - il, il, k - 1);
+        root-&gt;right = dfs(preorder, inorder, pl + 1 + k - 1 - il + 1, pr, k + 1, ir);
+
+        return root;
+    &#125;
+    TreeNode* buildTree(vector&lt;int&gt;&amp; preorder, vector&lt;int&gt;&amp; inorder) &#123;
+        int n = inorder.size();
+        for (int i = 0; i &lt; n; i++) hash[inorder[i]] = i;
+        return dfs(preorder, inorder, 0, n - 1, 0, n - 1);
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="后序中序恢复二叉树"><a href="#后序中序恢复二叉树" class="headerlink" title="后序中序恢复二叉树"></a>后序中序恢复二叉树</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description">https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/description</a></p>
+</blockquote>
+<p>分析思路和上一题相同.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) &#123;&#125;
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    unordered_map&lt;int, int&gt; hash;
+
+    TreeNode *dfs(vector&lt;int&gt; &amp;inorder, vector&lt;int&gt; &amp;postorder, int il, int ir, int pl, int pr) &#123;
+        if (pl &gt; pr) return NULL;
+        int val = postorder[pr];
+        int k = hash[val];
+
+        TreeNode *root = new TreeNode(val);
+
+        root-&gt;left = dfs(inorder, postorder, il, k - 1, pl, pl + k - 1 - il);
+        root-&gt;right = dfs(inorder, postorder, k + 1, ir, pl + k - 1 - il + 1, pr - 1);
+
+        return root;
+    &#125;
+
+    TreeNode* buildTree(vector&lt;int&gt;&amp; inorder, vector&lt;int&gt;&amp; postorder) &#123;
+        int n = inorder.size();
+        for (int i = 0; i &lt; n; i++) hash[inorder[i]] = i;
+        return dfs(inorder, postorder, 0, n - 1, 0, n - 1); 
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="二叉树的下一个节点"><a href="#二叉树的下一个节点" class="headerlink" title="二叉树的下一个节点"></a>二叉树的下一个节点</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/31/">https://www.acwing.com/problem/content/description/31/</a></p>
+</blockquote>
+<p>分两种情况:</p>
+<ul>
+<li>第一: 如果给定节点有右子树, 那么下一个节点就是右子树最左边的节点, 对应左根右的右这一部分.</li>
+<li>第二: 如果给定节点没有右子树, 那么它需要向上, 找到节点$p$, 使得$p.father.left = p$, 那么$p$就是下一个节点, 对应左根右的根这一部分.</li>
+</ul>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode *father;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL), father(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    TreeNode* inorderSuccessor(TreeNode* p) &#123;
+        if (p-&gt;right) &#123;
+            p = p-&gt;right;
+            while (p-&gt;left) p = p-&gt;left;
+            return p;
+        &#125;
+        else &#123;
+            while (p-&gt;father &amp;&amp; p-&gt;father-&gt;right == p) p = p-&gt;father;
+            return p-&gt;father;
+        &#125;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="二叉搜索树的后序遍历"><a href="#二叉搜索树的后序遍历" class="headerlink" title="二叉搜索树的后序遍历"></a>二叉搜索树的后序遍历</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/44/">https://www.acwing.com/problem/content/44/</a></p>
+</blockquote>
 <pre><code class="lang-cpp">class Solution &#123;
 public:
-    void mul(int a[2][2], int b[2][2], int c[2][2])
-    &#123;
-        int tmp[2][2] = &#123;&#123;0, 0&#125;, &#123;0, 0&#125;&#125;;
-        for (int i = 0; i &lt; 2; i ++)
-            for (int j = 0; j &lt; 2; j ++)
-                for (int k = 0; k &lt; 2; k ++)
-                    tmp[i][j] += a[i][k] * b[k][j];
-
-        for (int i = 0; i &lt; 2; i ++)
-            for (int j = 0; j &lt; 2; j ++)
-                c[i][j] = tmp[i][j];
+    bool verifySequenceOfBST(vector&lt;int&gt; sequence) &#123;
+        int n = sequence.size();
+        if (!n) return true;
+        return dfs(0, n - 1, sequence);
     &#125;
-    int Fibonacci(int n) &#123;
 
-        if (n == 0) return 0;
-        /* 定义初始向量[a1, a0] */
-        int x[2] = &#123;1, 0&#125;;
-        /* 定义矩阵A */
-        int A[2][2] = &#123;&#123;1, 1&#125;, &#123;1, 0&#125;&#125;;
-        /* 要计算A的n - 1次幂 */
-        int k = n - 1;
+    bool dfs(int l, int r, vector&lt;int&gt; &amp;sequence) &#123;
+        if (l &gt;= r) return true;
 
-        int res[2][2] = &#123;&#123;1, 0&#125;, &#123;0, 1&#125;&#125;;
+        int index = l, root = sequence[r];
 
-        /* 快速幂 */
-        while (k)
+        while (index &lt; r &amp;&amp; sequence[index] &lt; root) index ++;
+
+        for (int i = index; i &lt; r; i ++)
+            if (sequence[i] &lt; root)
+                return false;
+        return dfs(l, index - 1, sequence) &amp;&amp; dfs(index, r - 1, sequence);
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="二叉树中和是某一值的路径"><a href="#二叉树中和是某一值的路径" class="headerlink" title="二叉树中和是某一值的路径"></a>二叉树中和是某一值的路径</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/45/">https://www.acwing.com/problem/content/description/45/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    vector&lt;int&gt; path;
+    vector&lt;vector&lt;int&gt;&gt; ans;
+
+    vector&lt;vector&lt;int&gt;&gt; findPath(TreeNode* root, int sum) &#123;
+
+        if (!root) return ans;
+        dfs(root, sum);
+        return ans;
+    &#125;
+
+    void dfs(TreeNode *root, int sum)
+    &#123;
+        if (!root) return ;
+
+        path.push_back(root-&gt;val);
+        sum -= root-&gt;val;
+
+        if (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; !sum)
         &#123;
-            /* mul的意思是把res * A的值放到res中 */
-            if (k &amp; 1) mul(res, A, res);
-            mul(A, A, A);
-            k &gt;&gt;= 1;
+            ans.push_back(path);
+            path.pop_back();
+            sum += root-&gt;val;
+            return ;
         &#125;
-        /* 计算x和A^&#123;n-1&#125;的乘积的第一项 */
-        return x[0] * res[0][0] + x[1] * res[1][0];
+
+        dfs(root-&gt;left, sum);
+        dfs(root-&gt;right, sum);
+
+        sum += root-&gt;val;
+        path.pop_back();
+
+        return ;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="树的子结构"><a href="#树的子结构" class="headerlink" title="树的子结构"></a>树的子结构</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/35/">https://www.acwing.com/problem/content/35/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    /* 判断r2子树是否是r1子树的子结构 */
+    bool dfs(TreeNode *r1, TreeNode *r2) &#123;
+        if (!r2) return true;
+        if (!r1) return false;
+        if (r1-&gt;val != r2-&gt;val) return false;
+        return dfs(r1-&gt;left, r2-&gt;left) &amp;&amp; dfs(r1-&gt;right, r2-&gt;right);
+    &#125;
+
+    bool hasSubtree(TreeNode* pRoot1, TreeNode* pRoot2) &#123;
+        /* 如果是有一个是NULL, 那么就不是子结构 */
+        if (!pRoot1 || !pRoot2) return false;
+        if (dfs(pRoot1, pRoot2)) return true;
+        return hasSubtree(pRoot1-&gt;left, pRoot2) || hasSubtree(pRoot1-&gt;right, pRoot2);
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="二叉树的镜像"><a href="#二叉树的镜像" class="headerlink" title="二叉树的镜像"></a>二叉树的镜像</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/37/">https://www.acwing.com/problem/content/description/37/</a></p>
+</blockquote>
+<p>将二叉树变成镜像的方法就是递归地把左右节点交换即可.</p>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    void mirror(TreeNode* root) &#123;
+
+        if (!root) return ;
+        mirror(root-&gt;left);
+        mirror(root-&gt;right);
+
+        auto t = root-&gt;left;
+        root-&gt;left = root-&gt;right;
+        root-&gt;right = t;
+    &#125;
+&#125;;
+</code></pre>
+<h2 id="对称的二叉树"><a href="#对称的二叉树" class="headerlink" title="对称的二叉树"></a>对称的二叉树</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/38/">https://www.acwing.com/problem/content/description/38/</a></p>
+</blockquote>
+<pre><code class="lang-cpp">/**
+ * Definition for a binary tree node.
+ * struct TreeNode &#123;
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;
+ * &#125;;
+ */
+class Solution &#123;
+public:
+    /* 判断p和q所在的子树是否对称 */
+    bool dfs(TreeNode *p, TreeNode *q) &#123;
+        if (!p || !q) return !p &amp;&amp; !q;
+        if (p-&gt;val != q-&gt;val) return false;
+        return dfs(p-&gt;left, q-&gt;right) &amp;&amp; dfs(p-&gt;right, q-&gt;left);
+    &#125;
+    bool isSymmetric(TreeNode* root) &#123;
+        if (!root) return true;
+        return dfs(root-&gt;left, root-&gt;right);
     &#125;
 &#125;;
 </code></pre>

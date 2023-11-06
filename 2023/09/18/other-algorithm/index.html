@@ -6,27 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-其他类型的算法/模拟题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="逻辑综合概念逻辑综合是根据时序&#x2F;面积等约束, 将Verilog设计, 结合工艺库转换成门级网表的过程, 其中, 重点是时序约束. Port和Pin的区别通常来说, 一个Cell的引脚叫做Pin, 一个Design Block或者整个的SoC的IO叫做Pprt. 对于Cadence的EDA工具来说, Port被叫做I&#x2F;O Pin. 寄存器的setup time与hold time对于寄存器来说, 有">
-<meta property="og:type" content="article">
-<meta property="og:title" content="EDA-逻辑综合一些知识点">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="逻辑综合概念逻辑综合是根据时序&#x2F;面积等约束, 将Verilog设计, 结合工艺库转换成门级网表的过程, 其中, 重点是时序约束. Port和Pin的区别通常来说, 一个Cell的引脚叫做Pin, 一个Design Block或者整个的SoC的IO叫做Pprt. 对于Cadence的EDA工具来说, Port被叫做I&#x2F;O Pin. 寄存器的setup time与hold time对于寄存器来说, 有">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sh.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/variable.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sta.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/clock.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/wireload.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/skew.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/setup.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/hold.png">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/clkq.png">
-<meta property="article:published_time" content="2023-10-30T12:13:39.156Z">
-<meta property="article:modified_time" content="2023-10-31T03:38:12.769Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ligaog.github.io.com/2023/10/30/logic-synthesis/sh.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -263,6 +253,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 算法 "
+           href="/2023/11/03/binary-tree/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
+            <span class="post-date" title="2023-11-03 13:17:54">2023/11/03</span>
+        </a>
+        
+        
         <a  class="All 工程 "
            href="/2023/10/30/logic-synthesis/"
            data-tag=""
@@ -323,15 +322,6 @@
            data-author="" >
             <span class="post-title" title="计算机网络-可靠数据传输的原理">计算机网络-可靠数据传输的原理</span>
             <span class="post-date" title="2023-10-24 15:52:37">2023/10/24</span>
-        </a>
-        
-        
-        <a  class="All 算法 "
-           href="/2023/10/24/binary-tree/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
-            <span class="post-date" title="2023-10-24 14:35:16">2023/10/24</span>
         </a>
         
         
@@ -984,7 +974,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-24 15:40:19'>2023-09-18 14:43</time>
+            Created At : <time class="date" title='Updated At: 2023-10-31 14:02:46'>2023-09-18 14:43</time>
         
     </div>
     <div class="article-meta">
@@ -995,7 +985,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97"><span class="toc-text">整数转罗马数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0"><span class="toc-text">罗马数字转整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-text">二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="toc-text">用两个栈实现队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC"><span class="toc-text">有效的数独</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%A0%88"><span class="toc-text">手写栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-text">模拟散列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5"><span class="toc-text">逆时针打印矩阵</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B4%E6%95%B0%E8%BD%AC%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97"><span class="toc-text">整数转罗马数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BD%97%E9%A9%AC%E6%95%B0%E5%AD%97%E8%BD%AC%E6%95%B4%E6%95%B0"><span class="toc-text">罗马数字转整数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E9%99%A4%E5%85%83%E7%B4%A0"><span class="toc-text">移除元素</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9F%A5%E6%89%BE"><span class="toc-text">二维数组中的查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E4%B8%A4%E4%B8%AA%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97"><span class="toc-text">用两个栈实现队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%89%E6%95%88%E7%9A%84%E6%95%B0%E7%8B%AC"><span class="toc-text">有效的数独</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%86%99%E6%A0%88"><span class="toc-text">手写栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E6%8B%9F%E6%95%A3%E5%88%97%E8%A1%A8"><span class="toc-text">模拟散列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%86%E6%97%B6%E9%92%88%E6%89%93%E5%8D%B0%E7%9F%A9%E9%98%B5"><span class="toc-text">逆时针打印矩阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88%E7%9A%84%E5%8E%8B%E5%85%A5-%E5%BC%B9%E5%87%BA%E5%BA%8F%E5%88%97"><span class="toc-text">栈的压入&#x2F;弹出序列</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1393,6 +1383,33 @@ public:
     &#125;
 &#125;;
 </code></pre>
+<h2 id="栈的压入-弹出序列"><a href="#栈的压入-弹出序列" class="headerlink" title="栈的压入/弹出序列"></a>栈的压入/弹出序列</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/40/">https://www.acwing.com/problem/content/description/40/</a></p>
+</blockquote>
+<p>直接用一个栈真实模拟即可, 如果最后模拟完压入弹出序列之后栈为空, 那么就是一个合法的压入/弹出序列.</p>
+<pre><code class="lang-cpp">class Solution &#123;
+public:
+    bool isPopOrder(vector&lt;int&gt; pushV,vector&lt;int&gt; popV) &#123;
+
+        int n = pushV.size(), m = popV.size();
+        if (n != m) return false;
+
+        stack&lt;int&gt; stk;
+        int index = 0;
+
+        for (auto x : pushV)
+        &#123;
+            stk.push(x);
+            while (stk.size() &amp;&amp; popV[index] == stk.top())
+            &#123;
+                stk.pop();
+                index ++;
+            &#125;
+        &#125;
+        return stk.empty();
+    &#125;
+&#125;;
+</code></pre>
 
       
        
@@ -1405,6 +1422,46 @@ public:
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
