@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-寻找两个正序数组的中位数 | LiGaOg&#39;s blog</title>
+  <title>Rust-环境配置以及一些基础知识 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-寻找两个正序数组的中位数 | LiGaOg&#39;s blog">
+  <meta name="description" content="Rust-环境配置以及一些基础知识 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -963,9 +963,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-median-of-two-sorted-array" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-rustsetup" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-寻找两个正序数组的中位数</h1>
+        <h1 class="article-title">Rust-环境配置以及一些基础知识</h1>
     
     <div class="article-meta">
         
@@ -975,7 +975,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -983,7 +983,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 17:23:22'>2023-09-02 10:00</time>
+            Created At : <time class="date" title='Updated At: 2023-11-06 23:27:12'>2023-11-06 21:29</time>
         
     </div>
     <div class="article-meta">
@@ -994,7 +994,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%92%E5%BD%92"><span class="toc-text">递归</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E7%9A%84%E4%B8%8B%E8%BD%BD"><span class="toc-text">rust的下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cargo"><span class="toc-text">Cargo</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E7%9A%84Hello-World"><span class="toc-text">rust的Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E6%B3%A8%E9%87%8A"><span class="toc-text">rust注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E6%A0%BC%E5%BC%8F%E5%8C%96%E6%89%93%E5%8D%B0"><span class="toc-text">rust格式化打印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="toc-text">rust转义字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E5%8F%98%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">rust变量的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E6%95%B4%E6%95%B0%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust整数类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">rust浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E5%B8%83%E5%B0%94%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust布尔类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E5%AD%97%E7%AC%A6%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust字符类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E6%95%B0%E7%BB%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust数组类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#rust%E7%9A%84tuple%E7%B1%BB%E5%9E%8B"><span class="toc-text">rust的tuple类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">rust运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E5%87%BD%E6%95%B0"><span class="toc-text">rust函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%BD%93%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="toc-text">函数体表达式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">rust条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rust%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-text">rust循环语句</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1010,58 +1010,248 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/median-of-two-sorted-arrays/">https://leetcode.cn/problems/median-of-two-sorted-arrays/</a></p>
-</blockquote>
-<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><p>考虑这样一个问题:</p>
-<blockquote>
-<p>在两个排序的数组之间, 寻找第k小数.</p>
-</blockquote>
-<p>如果这个问题能够解决, 那么中位数就是第<code>(n + m) / 2</code>小的数.</p>
-<p>假设两个正序数组分别是$A$和$B$, 考虑$A[\frac{k}{2}]$和$B[\frac{k}{2}]$两个数:</p>
+        <h2 id="rust的下载"><a href="#rust的下载" class="headerlink" title="rust的下载"></a>rust的下载</h2><p>rust的下载地址是: <a target="_blank" rel="noopener" href="https://www.rust-lang.org/learn/get-started">https://www.rust-lang.org/learn/get-started</a></p>
+<p>其中, 如果用的是Unix系统, 用这一行命令就可以完成下载:</p>
+<pre><code class="lang-bash">curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://sh.rustup.rs | sh
+</code></pre>
+<p>之后, 如果你想更新<code>rust</code>, 可以用<code>rustup update</code>这个命令.</p>
+<h2 id="Cargo"><a href="#Cargo" class="headerlink" title="Cargo"></a>Cargo</h2><p>Cargo相当于是rust工程的管理工具, 类似于Python的pip.</p>
+<p>Cargo的安装目录在<code>~/.cargo</code>中, 用<code>cargo</code>下载的包全都在这里.</p>
+<h2 id="rust的Hello-World"><a href="#rust的Hello-World" class="headerlink" title="rust的Hello World"></a>rust的Hello World</h2><p>rust的Hello World如下:</p>
+<pre><code class="lang-rust">fn main() &#123;
+  println!(&quot;Hello World&quot;);
+&#125;
+</code></pre>
+<p>使用<code>rustc</code>编译:</p>
+<pre><code class="lang-bash">rustc test.rs
+</code></pre>
+<p>然后运行:</p>
+<pre><code class="lang-bash">./test
+</code></pre>
+<p>其中, <code>println!()</code>是换行打印, <code>print!()</code>是不换行打印.</p>
+<h2 id="rust注释"><a href="#rust注释" class="headerlink" title="rust注释"></a>rust注释</h2><p>rust的注释和C/C++一样, 单行是<code>//</code>, 多行是<code>/**/</code></p>
+<p>rust还有一种特殊的多行注释<code>///</code>, 在这种多行注释中可以使用markdown进行渲染:</p>
+<pre><code class="lang-rust">/// Adds one to the number given.
+///
+/// # Examples
+///
+/// 
+/// let x = add(1, 2);
+///
+///
+
+fn add(a: i32, b: i32) -&gt; i32 &#123;
+    return a + b;
+&#125;
+
+fn main() &#123;
+    println!(&quot;&#123;&#125;&quot;,add(2,3));
+&#125;
+</code></pre>
+<p>在这种注释下, 开发者可以使用<code>cargo doc</code>功能自动生成具有可读性的文档.</p>
+<h2 id="rust格式化打印"><a href="#rust格式化打印" class="headerlink" title="rust格式化打印"></a>rust格式化打印</h2><p>rust中使用<code>&#123;&#125;</code>来进行格式化打印, 例如:</p>
+<pre><code class="lang-rust">println!(&quot;a is &#123;&#125;, b is &#123;&#125;, c is &#123;&#125;&quot;, a, b, c);
+</code></pre>
+<h2 id="rust转义字符"><a href="#rust转义字符" class="headerlink" title="rust转义字符"></a>rust转义字符</h2><p>rust中转义字符和C/C++一样, 都是<code>\</code>.</p>
+<p>但是对于两个字符特殊, 这两个字符是<code>&#123;</code>和<code>&#125;</code>.</p>
+<p>如果要打印<code>&#123;</code>:</p>
+<pre><code class="lang-rust">println!(&quot;&#123;&#123;");
+```
+
+如果要打印`&#125;`:
+
+```rust
+println!("&#125;&#125;&quot;);
+</code></pre>
+<h2 id="rust变量的定义"><a href="#rust变量的定义" class="headerlink" title="rust变量的定义"></a>rust变量的定义</h2><p>首先, rust是一种强类型语言.</p>
+<p>如果要定义变量, 可以使用<code>let</code>关键字, 例如:</p>
+<pre><code class="lang-rust">let a = 123;
+</code></pre>
+<p>其中, rust会自动判别变量的类型.</p>
+<p>首先, 由于rust是强类型语言, 这种写法会被报错:</p>
+<pre><code class="lang-rust">a = &quot;abc&quot;
+</code></pre>
+<p>其次, rust不允许==有精度损失的类型转换==, 因此, 下面的写法会被报错:</p>
+<pre><code class="lang-rust">a = 4.56;
+</code></pre>
+<p>再次, 如果只是用<code>let</code>定义变量, 那么变量默认为不可变, 因此, 下面的写法会被报错:</p>
+<pre><code class="lang-rust">a = 456;
+</code></pre>
+<p>但是, 不可变的变量可以被重新绑定, 因此, 下面的写法是正确的:</p>
+<pre><code class="lang-rust">let a = 123;
+let b = 456;
+</code></pre>
+<p>这种重新绑定在rust中叫做重影(Shadowing).</p>
+<p>如果要定义一个可变的变量, 那么可以用<code>mut</code>关键字:</p>
+<pre><code class="lang-rust">let mut a = 1;
+a = 2;
+</code></pre>
+<p>但是, 由于rust是强类型的语言, 可变的变量只有值可以改变, 类型不能变化, 因此, 下面的代码会报错:</p>
+<pre><code class="lang-rust">let mut s = &quot;123&quot;;
+s = s.len()
+</code></pre>
+<h2 id="rust数据类型"><a href="#rust数据类型" class="headerlink" title="rust数据类型"></a>rust数据类型</h2><p>如果要在变量定义的时候要定义上数据类型, 可以这样写:</p>
+<pre><code class="lang-rust">let mut x : f32 = 3.0;
+let y : f64 = 1.0;
+</code></pre>
+<h3 id="rust整数类型"><a href="#rust整数类型" class="headerlink" title="rust整数类型"></a>rust整数类型</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>几位</th>
+<th>无符号</th>
+<th>有符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8位</td>
+<td>u8</td>
+<td>i8</td>
+</tr>
+<tr>
+<td>16位</td>
+<td>u16</td>
+<td>i16</td>
+</tr>
+<tr>
+<td>32位</td>
+<td>u32</td>
+<td>i32</td>
+</tr>
+<tr>
+<td>64位</td>
+<td>u64</td>
+<td>i64</td>
+</tr>
+<tr>
+<td>128位</td>
+<td>u128</td>
+<td>i128</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="rust浮点数"><a href="#rust浮点数" class="headerlink" title="rust浮点数"></a>rust浮点数</h3><p>浮点数有<code>f32</code>和<code>f64</code>两种.</p>
+<h3 id="rust布尔类型"><a href="#rust布尔类型" class="headerlink" title="rust布尔类型"></a>rust布尔类型</h3><p>布尔类型的关键字是<code>bool</code>, 值只能是<code>true/false</code>.</p>
+<h3 id="rust字符类型"><a href="#rust字符类型" class="headerlink" title="rust字符类型"></a>rust字符类型</h3><p>字符类型的关键字是<code>char</code>, 注意, ==在rust中, 字符一共占用4个字节==.</p>
+<h3 id="rust数组类型"><a href="#rust数组类型" class="headerlink" title="rust数组类型"></a>rust数组类型</h3><p>rust数组下标也是从0开始.</p>
+<p>rust使用<code>[]</code>来定义一个数组, 数组中的元素必须是同一类型:</p>
+<pre><code class="lang-rust">let a = [ &quot;January&quot;, &quot;February&quot;, &quot;March&quot; ];
+</code></pre>
+<p>如果要声明数组类型:</p>
+<pre><code class="lang-rust">// 类型是i32, 长度是5的数组
+let b: [i32; 5] = [1, 2, 3, 4, 5]
+</code></pre>
+<p>如果要定义一个数组元素相同的元素, 可以:</p>
+<pre><code class="lang-rust">// 元素是3, 长度是5的数组
+let c = [3; 5]
+</code></pre>
+<h3 id="rust的tuple类型"><a href="#rust的tuple类型" class="headerlink" title="rust的tuple类型"></a>rust的tuple类型</h3><p>rust中的tuple可以包含不同的元素, 使用<code>()</code>定义一个tuple:</p>
+<pre><code class="lang-rust">let tup: (i32, f64, u8) = (500, 6.4, 1)
+</code></pre>
+<p>可以把元组中的变量拆开赋给不同的变量:</p>
+<pre><code class="lang-rust">let (x, y, z) = tup;
+</code></pre>
+<h2 id="rust运算符"><a href="#rust运算符" class="headerlink" title="rust运算符"></a>rust运算符</h2><p>加法: <code>+</code></p>
+<p>减法: <code>-</code></p>
+<p>乘法: <code>*</code></p>
+<p>除法: <code>/</code></p>
 <ul>
-<li>如果$A[\frac{k}{2}] &lt; B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$A[\frac{k}{2}]$的数的个数就小于$k$, 此时两个数组中第$k$小的数肯定不会在$A$数组第$\frac{k}{2}$个元素的左边.</li>
-<li>如果$A[\frac{k}{2}] &gt; B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$B[\frac{k}{2}]$的数的个数就小于$k$, 此时两个数组中第$k$小的数肯定不会在$B$数组第$\frac{k}{2}$个元素的左边.</li>
-<li>如果$A[\frac{k}{2}] = B[\frac{k}{2}]$, 那么$A, B$数组中, 小于等于$A[\frac{k}{2}]$或$B[\frac{k}{2}]$的数的个数就等于$k$, 此时$A[\frac{k}{2}]$或者$B[\frac{k}{2}]$就是第$k$小的数.</li>
+<li>和C/C++的用法一行, 整数除法是向下取整</li>
 </ul>
-<p>根据以上分析, 定义一个函数, 函数的签名为<code>find(A, i, B, j, k)</code>, 表示给定两个数组$A, B$, 下标从$i, j$开始, 找到两个数组中第$k$小的数, 那么就可以用这个函数递归解决.</p>
-<p>时间复杂度是$O(logk)$, 由于$k$最多是$m + n$, 那么时间复杂度就是$O(log(m + n))$</p>
-<pre><code class="lang-cpp">class Solution &#123;
-public:
-    double findMedianSortedArrays(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123;
-
-        int tot = nums1.size() + nums2.size();
-        if (tot % 2 == 0) &#123;
-            int left = find(nums1, 0, nums2, 0, tot / 2);
-            int right = find(nums1, 0, nums2, 0, tot / 2 + 1);
-            return (left + right) / 2.0;
-        &#125;
-        else &#123;
-            return (double)find(nums1, 0, nums2, 0, tot / 2 + 1);
-        &#125;
-    &#125;
-
-    int find(vector&lt;int&gt; &amp;nums1, int i, vector&lt;int&gt; &amp;nums2, int j, int k) &#123;
-
-        /* 让nums1作为元素个数较少的数组 */
-        if (nums1.size() - i &gt; nums2.size() - j) return find(nums2, j, nums1, i, k);
-
-        /* nums1为空的话, 直接返回nums2第k小的元素 */
-        if (nums1.size() == i) return nums2[j + k - 1];
-
-        /* k = 1时, 递归终止 */
-        if (k == 1) return min(nums1[i], nums2[j]);
-
-        int si = min((int)(nums1.size() - 1), i + k / 2 - 1);
-        int sj = j + (k - k / 2) - 1;
-
-        if (nums1[si] &gt; nums2[sj]) 
-            return find(nums1, i, nums2, sj + 1, k - (sj - j + 1));
-        else
-            return find(nums1, si + 1, nums2, j, k - (si - i + 1));
-    &#125;
+<p>取模: <code>%</code></p>
+<p>rust中没有<code>++</code>和<code>--</code>, 只有<code>+=</code>和<code>-=</code>.</p>
+<h2 id="rust函数"><a href="#rust函数" class="headerlink" title="rust函数"></a>rust函数</h2><p>rust的函数定义如下:</p>
+<pre><code class="lang-rust">fn main() &#123;
+  println!(&quot;Hello World&quot;);
+&#125;
+</code></pre>
+<p>如果要带参数和返回值:</p>
+<pre><code class="lang-rust">fn add(a: i32, b: i32) -&gt; i32 &#123;
+  return a + b;
+&#125;
+</code></pre>
+<h3 id="函数体表达式"><a href="#函数体表达式" class="headerlink" title="函数体表达式"></a>函数体表达式</h3><p>rust中, 可以使用<code>&#123;&#125;</code>定义一个比较复杂的表达式, 定义的文法如下:</p>
+<pre><code class="lang-rust">&#123;
+  // Statement也可以没有
+  Statement
+  Expression
+&#125;
+</code></pre>
+<p>其中, <code>Statement</code>是末尾带<code>;</code>的那种语句, 而Expression就是单独的表达式, 例如:</p>
+<pre><code class="lang-rust">let y = &#123;
+  let x = 3;
+  x + 1
 &#125;;
 </code></pre>
+<p>此时, <code>y</code>的值就是4.</p>
+<h2 id="rust条件语句"><a href="#rust条件语句" class="headerlink" title="rust条件语句"></a>rust条件语句</h2><p>rust条件语句的格式如下:</p>
+<pre><code class="lang-rust">fn main() &#123;
+
+  let a = 12;
+  let b;
+
+  if a &gt; 0 &#123;
+      b = 1;  
+  &#125;
+  else if a &lt; 0 &#123;
+    b = 2;
+  &#125;
+  else &#123;
+    b = 0;
+  &#125;
+&#125;
+</code></pre>
+<p>需要说明几点:</p>
+<ul>
+<li>按照rust的要求, <code>if</code>或者<code>else if</code>后面必须是<code>bool</code>类型.</li>
+<li><code>if/else if</code>后面不需要加<code>()</code>, 但是不是不可以.</li>
+<li>无论后面是不是单个语句, 都必须用<code>&#123;&#125;</code>.</li>
+</ul>
+<p>结合函数体表达式, rust中的三目运算符可以定义为:</p>
+<pre><code class="lang-rust">let number = if a &gt; 0 &#123;1&#125; else &#123;-1&#125;;
+</code></pre>
+<h2 id="rust循环语句"><a href="#rust循环语句" class="headerlink" title="rust循环语句"></a>rust循环语句</h2><p>while循环的格式:</p>
+<pre><code class="lang-rust">while number != 4 &#123;
+  //...
+&#125;
+</code></pre>
+<p>For循环遍历数组中的值, 可以使用<code>iter()</code>迭代器:</p>
+<pre><code class="lang-rust">let a = [1, 2, 3, 4, 5];
+
+for item in a.iter() &#123;
+  // item去除的是数组的值
+  println!(&quot;&#123;&#125;&quot;, item)
+&#125;
+</code></pre>
+<p>如果要数组下标, 可以用<code>a..b</code>, 表示$[a, b]$:</p>
+<pre><code class="lang-rust">for i in 0..5 &#123;
+  println!(&quot;a[&#123;&#125;] = &#123;&#125;&quot;, i, a[i]);
+&#125;
+</code></pre>
+<p>rust中还支持一种无限循环<code>loop</code>, 相当于<code>while (true)</code></p>
+<pre><code class="lang-rust">loop &#123;
+  //...
+&#125;
+</code></pre>
+<p>退出循环可以使用<code>break</code>.</p>
+<p>其中, rust有一种新东西, 可以在<code>loop</code>循环中使用<code>break</code>关键字, 实现<code>return</code>类似的功能, 可以给循环一个返回值, 这样就不用使用额外的变量记录循环中的值了, 例如:</p>
+<pre><code class="lang-rust">let a = [1, 2, 3, 4, 5];
+let mut i = 0;
+
+// 查找数组中元素2的下标
+let location = loop &#123;
+
+  let ch = a[i];
+  if a[i] == 2 &#123;
+    break i;
+  &#125;
+
+  i += 1;
+&#125;
+</code></pre>
+<p>注意, 这种写法只针对<code>loop</code>循环, 其他循环不能使用.</p>
 
       
        
