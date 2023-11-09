@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-利用栈求解表达式的值 | LiGaOg&#39;s blog</title>
+  <title>算法题-国王无双dp统计方案数 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-利用栈求解表达式的值 | LiGaOg&#39;s blog">
+  <meta name="description" content="算法题-国王无双dp统计方案数 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -990,9 +990,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-stack-expression" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-guowangwushuang" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-利用栈求解表达式的值</h1>
+        <h1 class="article-title">算法题-国王无双dp统计方案数</h1>
     
     <div class="article-meta">
         
@@ -1010,7 +1010,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-03 19:27:04'>2023-10-03 19:27</time>
+            Created At : <time class="date" title='Updated At: 2023-11-08 10:25:48'>2023-11-07 15:54</time>
         
     </div>
     <div class="article-meta">
@@ -1021,7 +1021,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="toc-text">表达式求值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE"><span class="toc-text">题目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5"><span class="toc-text">输入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B7%E4%BE%8B"><span class="toc-text">样例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E8%A7%A3"><span class="toc-text">题解</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1037,79 +1037,123 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/3305/">https://www.acwing.com/problem/content/description/3305/</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/456/">https://www.acwing.com/problem/content/description/456/</a></p>
-</blockquote>
-<p>直接背模板:</p>
+        <h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p>牛牛最近三国演义入了迷，他时常幻想着自己是一代枭雄，坐拥城池百万，精锐无数。</p>
+<p>然而他只能做做美梦玩玩三国无双的游戏罢了 qwq。</p>
+<p>游戏中牛牛有 $n$ 座城池，城池编号为 1∼$n$，由于某些城池地理位置极其重要，因此牛牛要设置一些关卡来建立防御工程。现在牛牛有 $m$ 个工程计划，每个工程计划有两个整数 $L$,$R$，表示从第$L$座城池到第 $R$座城池中，至少有一个城池被设置为关卡。</p>
+<p>牛牛想知道，为了使得每个计划都满足，有多少中不同的设置关卡的方法？</p>
+<h2 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h2><p>第一行输入两个整数$n$和 $m$，其中 $n$表示城池的数量，$m$表示工程计划的数量。</p>
+<p>接下来 $m$ 行，每行两个整数 $L$,$R$，表示该计划要求从第 $L$座城池到第 $R$ 座城池中，至少有一个城池被设置为关卡。</p>
+<p>$1 \leqslant n, m \leqslant 10^5, 1 \leqslant L \leqslant R \leqslant n$.</p>
+<h2 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h2><pre><code>输入：
+3 2
+2 3
+1 2
+
+输出：
+5
+
+提示：
+用1表示关卡，0表示普通城池，那么这5种方案分别是: 010，011，110，111，101
+
+输入：
+12 3
+1 7
+6 12
+5 10
+
+输出：
+3988
+</code></pre><h2 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h2><p>状态表示: $f(i)$表示只考虑前$i$个城池, 第$i$个城池设置为关卡的所有方案数.</p>
+<p>状态计算: 假设$l_i$表示所有右端点小于等于$i$的区间中, 左端点的最大值 (如果所有区间右端点都大于$i$, 那么$l_i = 0$).</p>
+<p>那么$f(0) = 0, f(i) = \sum_{j = l_{i-1}}^{i-1}f(j), i \geqslant 0$</p>
+<p>代码如下:</p>
+<p>最终统计答案时, 答案是$f(l_n) + f(l_n + 1) + … + f(n)$</p>
 <pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;unordered_map&gt;
-#include &lt;stack&gt;
+#include &lt;algorithm&gt;
 
 using namespace std;
 
-/* 将运算符映射到优先级上 */
-unordered_map&lt;char, int&gt; pr = &#123;
-    &#123; &#39;+&#39;, 1 &#125;,
-    &#123; &#39;-&#39;, 1 &#125;,
-    &#123; &#39;*&#39;, 2 &#125;,
-    &#123; &#39;/&#39;, 2 &#125;
-&#125;;
+const int N = 1010, mod = 1e9 + 7;
 
-/* 存储运算数的栈 */
-stack&lt;int&gt; nums;
-/* 存储运算符的栈 */
-stack&lt;char&gt; op;
+typedef long long LL;
 
-/* 表达式 */
-string str;
+int n, m;
+LL f[N];
+int lp[N];
 
-void eval()
-&#123;
-    int b = nums.top(); nums.pop();
-    int a = nums.top(); nums.pop();
-
-    char c = op.top(); op.pop();
-
-    if (c == &#39;+&#39;) nums.push(a + b);
-    else if (c == &#39;-&#39;) nums.push(a - b);
-    else if (c == &#39;*&#39;) nums.push(a * b);
-    else nums.push(a / b);
-&#125;
 
 int main()
 &#123;
-    cin &gt;&gt; str;
+    cin &gt;&gt; n &gt;&gt; m;
 
-    for (int i = 0; i &lt; str.size(); i ++)
+    for (int i = 0; i &lt; m; i ++)
     &#123;
-        /* 如果是左括号, 加入运算符的栈 */
-        if (str[i] == &#39;(&#39;) op.push(str[i]);
-        /* 如果是右括号, 那么需要eval括号内表达式的值 */
-        else if (str[i] == &#39;)&#39;)
-        &#123;
-            while (op.size() &amp;&amp; op.top() != &#39;(&#39;) eval();
-            op.pop();
-        &#125;
-        /* 如果是数位, 那么需要找到整个数, 然后放到nums栈中 */
-        else if (isdigit(str[i]))
-        &#123;
-            int x = 0, j = i;
-              /* 这个j ++不要忘记 */
-            while (j &lt; str.size() &amp;&amp; isdigit(str[j])) x = 10 * x + str[j ++] - &#39;0&#39;;
-            i = j - 1;
-            nums.push(x);
-        &#125;
-        /* 如果是运算符, 需要先eval优先级高的运算符, 然后放到栈中 */
-        else
-        &#123;
-            while (op.size() &amp;&amp; pr[op.top()] &gt;= pr[str[i]]) eval();
-            op.push(str[i]);
-        &#125;
+        int l, r;
+        cin &gt;&gt; l &gt;&gt; r;
+        lp[r] = max(lp[r], l);
     &#125;
-    while (op.size()) eval();
 
-    cout &lt;&lt; nums.top() &lt;&lt; endl;
+    f[0] = 1;
+    int l = 0;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        for (int j = l; j &lt;= i - 1; j ++) f[i] = (f[i] + f[j]) % mod;
+        l = max(l, lp[i]);
+
+    &#125;
+
+    LL ans = 0;
+    for (int i = l; i &lt;= n; i ++) ans = (ans + f[i]) % mod;
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+
+    return 0;
+&#125;
+</code></pre>
+<p>一种优化方法: 前缀和</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+const int N = 1010, mod = 1e9 + 7;
+
+typedef long long LL;
+
+int n, m;
+LL s[N];
+int lp[N];
+
+
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 0; i &lt; m; i ++)
+    &#123;
+        int l, r;
+        cin &gt;&gt; l &gt;&gt; r;
+        lp[r] = max(lp[r], l);
+    &#125;
+
+    s[0] = 1;
+    int l = 0;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        if (l &gt; 0) s[i] = s[i - 1] + s[i - 1] - s[l - 1];
+        else s[i] = s[i - 1] + s[i - 1];
+        l = max(l, lp[i]);
+
+    &#125;
+
+    LL ans = 0;
+    if (l &gt; 0) ans = s[n] - s[l - 1];
+    else ans = s[n];
+
+    cout &lt;&lt; ans &lt;&lt; endl;
+
     return 0;
 &#125;
 </code></pre>
@@ -1125,46 +1169,6 @@ int main()
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
