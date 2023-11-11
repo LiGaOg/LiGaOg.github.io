@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-旋转图像 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="TL;DR 在Ubuntu 22.04 LTS平台进行实验  下载所有依赖 首先确保安装了rust, 可以按照官网用一行命令下载.  下载所有依赖: sudo apt install -y pkg-config libglib2.0-dev libpixman-1-dev   从源码开始编译并下载qemu: wget https:&#x2F;&#x2F;download.qemu.org&#x2F;qemu-5.0.0.tar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust-怎么使用rust在裸机上写代码">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/11/09/rust_boot/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="TL;DR 在Ubuntu 22.04 LTS平台进行实验  下载所有依赖 首先确保安装了rust, 可以按照官网用一行命令下载.  下载所有依赖: sudo apt install -y pkg-config libglib2.0-dev libpixman-1-dev   从源码开始编译并下载qemu: wget https:&#x2F;&#x2F;download.qemu.org&#x2F;qemu-5.0.0.tar">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/11/09/rust_boot/memlayout.png">
+<meta property="article:published_time" content="2023-11-09T12:42:44.558Z">
+<meta property="article:modified_time" content="2023-11-11T02:37:06.983Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/11/09/rust_boot/memlayout.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(80)</small>
+                <small>(81)</small>
             
         </div>
     </li>
@@ -131,7 +133,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(15)</small>
+            <small>(16)</small>
         </div>
         
     </li>
@@ -201,7 +203,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="80">
+<input type="hidden" id="yelog_site_posts_number" value="81">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +253,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/09/rust_boot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-怎么使用rust在裸机上写代码">Rust-怎么使用rust在裸机上写代码</span>
+            <span class="post-date" title="2023-11-09 20:42:44">2023/11/09</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -329,7 +340,7 @@
            href="/2023/10/25/cache-basic/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-cache基础知识与设计策略">CPU-cache基础知识与设计策略</span>
+            <span class="post-title" title="CPU-缓存的基础知识与设计策略">CPU-缓存的基础知识与设计策略</span>
             <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
         </a>
         

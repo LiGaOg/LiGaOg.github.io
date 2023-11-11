@@ -2,21 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CPU-cache基础知识与设计策略 | LiGaOg&#39;s blog</title>
+  <title>CPU-缓存的基础知识与设计策略 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="CPU-cache基础知识与设计策略 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-缓存的基础知识与设计策略 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="TL;DR 在Ubuntu 22.04 LTS平台进行实验  下载所有依赖 首先确保安装了rust, 可以按照官网用一行命令下载.  下载所有依赖: sudo apt install -y pkg-config libglib2.0-dev libpixman-1-dev   从源码开始编译并下载qemu: wget https:&#x2F;&#x2F;download.qemu.org&#x2F;qemu-5.0.0.tar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust-怎么使用rust在裸机上写代码">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/11/09/rust_boot/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="TL;DR 在Ubuntu 22.04 LTS平台进行实验  下载所有依赖 首先确保安装了rust, 可以按照官网用一行命令下载.  下载所有依赖: sudo apt install -y pkg-config libglib2.0-dev libpixman-1-dev   从源码开始编译并下载qemu: wget https:&#x2F;&#x2F;download.qemu.org&#x2F;qemu-5.0.0.tar">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/11/09/rust_boot/memlayout.png">
+<meta property="article:published_time" content="2023-11-09T12:42:44.558Z">
+<meta property="article:modified_time" content="2023-11-11T02:37:06.983Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/11/09/rust_boot/memlayout.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(80)</small>
+                <small>(81)</small>
             
         </div>
     </li>
@@ -131,7 +133,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(15)</small>
+            <small>(16)</small>
         </div>
         
     </li>
@@ -201,7 +203,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="80">
+<input type="hidden" id="yelog_site_posts_number" value="81">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +253,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/09/rust_boot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-怎么使用rust在裸机上写代码">Rust-怎么使用rust在裸机上写代码</span>
+            <span class="post-date" title="2023-11-09 20:42:44">2023/11/09</span>
+        </a>
         
         
         <a  class="All 算法 "
@@ -329,7 +340,7 @@
            href="/2023/10/25/cache-basic/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-cache基础知识与设计策略">CPU-cache基础知识与设计策略</span>
+            <span class="post-title" title="CPU-缓存的基础知识与设计策略">CPU-缓存的基础知识与设计策略</span>
             <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
         </a>
         
@@ -992,7 +1003,7 @@
     <div class="pjax">
         <article id="post-cache-basic" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CPU-cache基础知识与设计策略</h1>
+        <h1 class="article-title">CPU-缓存的基础知识与设计策略</h1>
     
     <div class="article-meta">
         
@@ -1010,7 +1021,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-09 09:05:46'>2023-10-25 08:46</time>
+            Created At : <time class="date" title='Updated At: 2023-11-11 10:37:36'>2023-10-25 08:46</time>
         
     </div>
     <div class="article-meta">
@@ -1021,7 +1032,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Cache的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%BBCache%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%BE%E8%AE%A1"><span class="toc-text">读Cache的流水线设计</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">Cache的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#N-way-Set-Associative-Cache"><span class="toc-text">N-way Set Associative Cache</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AECache%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">访问Cache的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tag%E4%B8%8EData%E5%B9%B6%E8%A1%8C%E8%AE%BF%E9%97%AE"><span class="toc-text">Tag与Data并行访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tag%E4%B8%8EData%E4%B8%B2%E8%A1%8C%E8%AE%BF%E9%97%AE"><span class="toc-text">Tag与Data串行访问</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%80%89%E6%8B%A9%E4%B8%B2%E8%A1%8C%E8%BF%98%E6%98%AF%E5%B9%B6%E8%A1%8C"><span class="toc-text">如何选择串行还是并行?</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%A8%E7%9B%B8%E8%BF%9ECache%E6%9E%B6%E6%9E%84"><span class="toc-text">全相连Cache架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%99%E5%85%A5Cache%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">写入Cache的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Through%E4%B8%8ENon-Write-Allocate"><span class="toc-text">Write Through与Non-Write Allocate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Back%E4%B8%8EWrite-Allocate"><span class="toc-text">Write Back与Write Allocate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache%E5%86%99%E5%85%A5%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">Cache写入的流水线</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E6%9B%BF%E6%8D%A2%E7%AE%97%E6%B3%95"><span class="toc-text">Cache替换算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LRU-Pseudo-LRU"><span class="toc-text">LRU&#x2F;Pseudo-LRU</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Random"><span class="toc-text">Random</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cache%E7%9A%84%E5%A4%9A%E7%BA%A7%E7%BB%93%E6%9E%84"><span class="toc-text">Cache的多级结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#L1-Cache"><span class="toc-text">L1 Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#L2-Cache"><span class="toc-text">L2 Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Inclusive-Exclusive"><span class="toc-text">Inclusive&#x2F;Exclusive</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Inclusive"><span class="toc-text">Inclusive</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Exclusive"><span class="toc-text">Exclusive</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BC%98%E5%8C%96Cache%E7%9A%84%E4%B8%80%E4%BA%9B%E5%B0%8F%E6%8A%80%E5%B7%A7"><span class="toc-text">优化Cache的一些小技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Write-Buffer"><span class="toc-text">Write Buffer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Filter-Cache"><span class="toc-text">Filter Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Victim-Cache"><span class="toc-text">Victim Cache</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Prefetching"><span class="toc-text">Prefetching</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Hardware-Prefetching"><span class="toc-text">Hardware Prefetching</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Software-Prefetching"><span class="toc-text">Software Prefetching</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1041,14 +1052,16 @@
 <ul>
 <li>一行叫做一个Set.</li>
 <li>一列叫做一个Way.</li>
-<li>其中的元素有若干属性:<ul>
+</ul>
+<p>其中的元素有如下属性:</p>
+<ul>
 <li>有效位(Valid bit): 这个元素是不是存储数据了.</li>
 <li>Tag: 用来判断Cache是否命中.</li>
 <li>Cache Data: 存储的数据.</li>
 </ul>
-</li>
-</ul>
+<blockquote>
 <p>那么如何根据一个地址(这里先当作物理地址)定位Cache中的元素呢?</p>
+</blockquote>
 <ul>
 <li>第一步: 根据Cache Data, 计算Offset所占用的位数.<ul>
 <li>例如Cache Data的大小是$A$个字节, 那么Offset占用的位数就是$log_2(A)$.</li>
@@ -1069,7 +1082,193 @@
 <li>Direct Mapped Cache: Way的个数是1.</li>
 <li>Fully Associative Cache: Set的个数是1.</li>
 </ul>
-<h2 id="读Cache的流水线设计"><a href="#读Cache的流水线设计" class="headerlink" title="读Cache的流水线设计"></a>读Cache的流水线设计</h2><p>读Cache一般都涉及到CPU中的关键路径, 读取Cache一般都设计成流水线:</p>
+<h2 id="访问Cache的设计"><a href="#访问Cache的设计" class="headerlink" title="访问Cache的设计"></a>访问Cache的设计</h2><h3 id="Tag与Data并行访问"><a href="#Tag与Data并行访问" class="headerlink" title="Tag与Data并行访问"></a>Tag与Data并行访问</h3><p>工作原理如下:</p>
+<p><img src="/2023/10/25/cache-basic/cacheread.png" alt="cacheread"></p>
+<p>其中Tag的读取和Data的读取是并行的, 根据Tag比较的结果, 用多路选择器选择对应的Data, 然后根据Offset定位最后的数据输出.</p>
+<p>设计优点:</p>
+<ul>
+<li>如果Cache Hit, 那么能够在一个周期内完成Cache的访问.</li>
+</ul>
+<p>设计缺点:</p>
+<ul>
+<li>时钟频率较低.</li>
+<li>功耗较大, 因为有很多信号需要驱动.</li>
+</ul>
+<p>如果需要提高时钟频率, 可以将Cache的访问设计成如下流水线:</p>
+<ul>
+<li>第一阶段 (Address Calculation): 根据地址计算Tag, Index和Offset.</li>
+<li>第二阶段 (Disambiguation): 检查load/store指令之间的dependency, 看是否能bypass.</li>
+<li>第三阶段 (Cache Access): 并行读取tag和Data.</li>
+<li>第四阶段 (Result Drive): 将读取的Data根据Offset进行调整后输出.</li>
+</ul>
+<h3 id="Tag与Data串行访问"><a href="#Tag与Data串行访问" class="headerlink" title="Tag与Data串行访问"></a>Tag与Data串行访问</h3><p>串行访问是指: Tag读取完之后, 再根据Tag比较的结果取读取Data.</p>
+<p>设计优点:</p>
+<ul>
+<li>无需多路选择器, 对于Data无需访问所有Way的数据, 并且使能信号的个数减少, 功耗降低.</li>
+</ul>
+<p>设计缺点:</p>
+<ul>
+<li>时钟频率更低.</li>
+</ul>
+<p>串行访问也可以设计成流水线, 在上面并行访问的第三阶段拆成两个, 分别访问Tag和访问Data即可.</p>
+<h3 id="如何选择串行还是并行"><a href="#如何选择串行还是并行" class="headerlink" title="如何选择串行还是并行?"></a>如何选择串行还是并行?</h3><p>并行流水线的最突出的优点是: 访问Cache可以少一个时钟周期.</p>
+<p>串行流水线最突出的优点是: 时钟频率更高, 功耗更低.</p>
+<h2 id="全相连Cache架构"><a href="#全相连Cache架构" class="headerlink" title="全相连Cache架构"></a>全相连Cache架构</h2><ul>
+<li><p>全相连Cache一般使用CAM(Content Address Memory)进行实现. CAM可以理解成一个哈希表, 输入一个内容后, CAM会把这个内容和自己存储的所有表项进行比较, 如果匹配就会输出对应的值.</p>
+</li>
+<li><p>在全相连Cache中, 键就是Tag, 值就是Data.</p>
+</li>
+<li><p>由于全相连的Cache涉及很多的比较, 因此延时会更大, 所以全相连的Cache容量一般不会太大.</p>
+</li>
+<li><p>TLB就是一种特殊的全相连Cache.</p>
+</li>
+</ul>
+<h2 id="写入Cache的设计"><a href="#写入Cache的设计" class="headerlink" title="写入Cache的设计"></a>写入Cache的设计</h2><p>首先, Cache分为I-Cache与D-Cache, 只有D-Cache涉及写入的问题.</p>
+<h3 id="Write-Through与Non-Write-Allocate"><a href="#Write-Through与Non-Write-Allocate" class="headerlink" title="Write Through与Non-Write Allocate"></a>Write Through与Non-Write Allocate</h3><p>假设有数据要写入Cache:</p>
+<ul>
+<li>如果Cache Hit, 选择将写入数据同时写到D-Cache和下级存储器, 就是Write Through.</li>
+<li>如果Cache Miss, 选择直接将数据写到下级存储器, 不用写到D-Cache, 就是Non-Write Allocate.</li>
+</ul>
+<p>工作流程如下:</p>
+<p><img src="/2023/10/25/cache-basic/writethrough.png" alt="WriteThrough"></p>
+<p>设计优点: 方便管理各级存储器的一致性.</p>
+<p>设计缺点: 效率低, 访问下级存储器时间很长, 内存写指令一般比较多.</p>
+<h3 id="Write-Back与Write-Allocate"><a href="#Write-Back与Write-Allocate" class="headerlink" title="Write Back与Write Allocate"></a>Write Back与Write Allocate</h3><p>假设有数据要写入Cache:</p>
+<ul>
+<li>如果Cache Hit, 选择先将数据写入Cache, 然后标记这个Cache Line为dirty, 当这个Cache Line被替换时再写入下级存储器.</li>
+<li>如果Cache Miss, 选择先将数据从下级存储器拿上来放到Cache中, 然后写入Cache, 然后标记Cache dirty, 就是Write Allocate.</li>
+</ul>
+<p>流程如下:</p>
+<p><img src="/2023/10/25/cache-basic/writeback.png" alt="WriteBack"></p>
+<h3 id="Cache写入的流水线"><a href="#Cache写入的流水线" class="headerlink" title="Cache写入的流水线"></a>Cache写入的流水线</h3><p>对于写Cache来说, Tag的读取和写Data的操作必须是串行的 (只有比较完Tag, 确认要写的地址真在Cache里, 才可以写Cache), 对于频率比较高的处理器很难在一个周期完成, 需要流水线.</p>
+<p>通常流水线如下:</p>
+<ul>
+<li>第一阶段 (Address Calculation): 根据地址计算Tag, Index和Offset.</li>
+<li>第二阶段 (Disambiguation): 检查load/store指令之间的dependency, 看是否能把store的结果bypass给load.</li>
+<li>第三阶段: 读取tag, 判断Cache Hit/Miss.</li>
+<li>第四阶段: 根据Cache Hit/Miss的结果以及Cache写入策略决定下面的操作.</li>
+</ul>
+<h2 id="Cache替换算法"><a href="#Cache替换算法" class="headerlink" title="Cache替换算法"></a>Cache替换算法</h2><p>当读取/写入D-Cache时, 如果发生了Cache Miss, 并且Cache的某个Set已经放满了, 就需要从这个Set中找一个Cache Line驱逐出去, 选哪个Cache Line驱逐就是Cache的替换算法.</p>
+<h3 id="LRU-Pseudo-LRU"><a href="#LRU-Pseudo-LRU" class="headerlink" title="LRU/Pseudo-LRU"></a>LRU/Pseudo-LRU</h3><p>LRU算法就是选择最近没被使用过的一个Cache Line进行驱逐. 但是, 当Cache中Way的个数增多后, 实现LRU的代价就比较高, 因此, 一般采用伪LRU进行实现.</p>
+<p>假设一个Cache Set中有$N$个Way, 那么用$log_2(N)$个比特存储LRU信息.</p>
+<ul>
+<li>第0个比特:<ul>
+<li>如果是0, 表示Way $[0, \frac{N}{2}]$没被使用.</li>
+<li>如果是1, 表示Way $[\frac{N}{2}+1, N - 1]$没被使用.</li>
+</ul>
+</li>
+<li>第1个比特: 取决于第0个比特的情况<ul>
+<li>如果是0, 并且第0个比特是0: 表示$[0, \frac{N}{4}]$没被使用.</li>
+<li>如果是0, 并且第0个比特是1: 表示$[\frac{N}{4}+1, \frac{N}{2}]$没被使用.</li>
+<li>如果是1, 并且第0个比特是0: 表示$[\frac{N}{2}+1, \frac{N-1}{2}]$没被使用.</li>
+<li>如果是1, 并且第0个比特是1: 表示$[\frac{N-1}{2}+1, N-1]$没被使用.</li>
+</ul>
+</li>
+</ul>
+<p>就这样, 看一个比特就能把没被使用的区间缩小一半, 最终就可以定位到一个Way的Cache Line.</p>
+<h3 id="Random"><a href="#Random" class="headerlink" title="Random"></a>Random</h3><p>Random算法是考虑到Cache替换算法如果过于复杂, 会影响CPU的频率.</p>
+<p>一般在实现时, 采用时钟算法(Clock Algorithm):</p>
+<ul>
+<li>维护一个计数器, 计数器宽度是$log_2(N)$, 其中$N$是Cache Way的个数.</li>
+<li>每个时钟周期加1.</li>
+<li>计数器的内容就是要替换的Cache Line所在Way的编号.</li>
+</ul>
+<h2 id="Cache的多级结构"><a href="#Cache的多级结构" class="headerlink" title="Cache的多级结构"></a>Cache的多级结构</h2><h3 id="L1-Cache"><a href="#L1-Cache" class="headerlink" title="L1 Cache"></a>L1 Cache</h3><ul>
+<li><p>L1 Cache采用SRAM实现, 最靠近处理器, 最快, 容量最小.</p>
+</li>
+<li><p>可以分为L1 I-Cache和L1 D-Cache.</p>
+</li>
+<li>一个CPU有一个L1 Cache.</li>
+<li>一般采用Write Through和Non-Write Allocate.</li>
+</ul>
+<h3 id="L2-Cache"><a href="#L2-Cache" class="headerlink" title="L2 Cache"></a>L2 Cache</h3><ul>
+<li>L2 Cache比较大 (MB单位), 要求比较全.</li>
+<li>要尽可能提高L2 Cache的命中率, 防止访问DRAM.</li>
+<li>L2 Cache可以一个CPU一个, 也可以几个CPU共享, 取决于实现.</li>
+<li>一般采用Write Back和Write Allocate.</li>
+</ul>
+<h3 id="Inclusive-Exclusive"><a href="#Inclusive-Exclusive" class="headerlink" title="Inclusive/Exclusive"></a>Inclusive/Exclusive</h3><p>Inclusive和Exclusive描述了L1 Cache和L2 Cache之间的关系.</p>
+<h4 id="Inclusive"><a href="#Inclusive" class="headerlink" title="Inclusive"></a>Inclusive</h4><p>如果L1 Cache和L2 Cache之间是Inclusive的关系, 那么:</p>
+<ul>
+<li>如果L1 Cache Hit, 那么数据直接给CPU, 和L2 Cache没关系.</li>
+<li>如果L1 Cache Miss, L2 Cache Hit, 那么数据给CPU后, L2 Cache中的Cache Line要放到L1 Cache中, L2 Cache还保存这个Cache Line.<ul>
+<li>如果Cache Line放到L1 Cache的过程中, 出现了replacement, 那么直接replace就行, 跟L2 Cache没关系.</li>
+</ul>
+</li>
+<li>如果L1 Cache和L2 Cache都Miss, 那么从DRAM中取出数据填到L1 Cache和L2 Cache中.<ul>
+<li>如果Cache Line放到L2 Cache的过程中, 出现了replacement, 那么需要告诉L1 Cache, 让L1 Cache里对应的Cache Line置为无效.</li>
+</ul>
+</li>
+</ul>
+<p>优点: 方便管理缓存一致性.</p>
+<p>缺点: 浪费硬件资源.</p>
+<h4 id="Exclusive"><a href="#Exclusive" class="headerlink" title="Exclusive"></a>Exclusive</h4><p>如果L1 Cache和L2 Cache之间是Exclusive的关系, 那么:</p>
+<ul>
+<li>如果L1 Cache Hit, 那么数据直接给CPU, 和L2 Cache没关系.</li>
+<li>如果L1 Cache Miss, L2 Cache Hit, 那么数据给CPU后, L2 Cache中的Cache Line要放到L1 Cache中, L2 Cache中去除这个Cache Line.<ul>
+<li>如果Cache Line放到L1 Cache的过程中, 出现了replacement, 被驱逐的Cache Line转移到L2 Cache.</li>
+</ul>
+</li>
+<li>如果L1 Cache和L2 Cache都Miss, 那么从DRAM中取出数据只填到L1 Cache中.<ul>
+<li>如果放到L1 Cache的过程中出现了replacement, 被驱逐的Cache Line要转移到L2 Cache中.</li>
+</ul>
+</li>
+</ul>
+<p>优点: 节省了硬件资源.</p>
+<p>缺点: 缓存一致性算法复杂, 可能会影响CPU性能.</p>
+<p>大多数处理器采用了Inclusive的策略.</p>
+<h2 id="优化Cache的一些小技巧"><a href="#优化Cache的一些小技巧" class="headerlink" title="优化Cache的一些小技巧"></a>优化Cache的一些小技巧</h2><h3 id="Write-Buffer"><a href="#Write-Buffer" class="headerlink" title="Write Buffer"></a>Write Buffer</h3><p>无论读写, 当D-Cache发生Cache Miss时, 需要有如下几个动作:</p>
+<ul>
+<li>从D-Cache中驱逐一个Cache Line.</li>
+<li>如果被驱逐的Cache Line是Dirty, 要写入下级存储器 (Write Back).</li>
+<li>从下级存储器把Cache Line读出来, 并写入D-Cache.</li>
+</ul>
+<p>此时对于下级存储器来说, 我既需要读取对应的Cache Line, 有需要把D-Cache中Dirty的Cache Line写入, 如果下级存储器只有一个读写端口, 那么这两个操作必须串行也就是说:</p>
+<ul>
+<li>先把Dirty的Cache Line写入.</li>
+<li>再把Cache Line取出来放到D Cache.</li>
+</ul>
+<p>此时, 由于是串行, 再加上访问下级存储器延时较高, 性能就会受影响.</p>
+<p>此时, 可以加一个Write Buffer, 把Dirty的Cache Line写入Write Buffer, 和把Cache Line取出来放到D Cache这两个过程可以并行.</p>
+<p>对于Write Through的D Cache, 直接就先写入Write Buffer, 可以提高很多性能.</p>
+<p>当读取Cache发生Cache Miss时, 注意还要检查Write Buffer.</p>
+<h3 id="Filter-Cache"><a href="#Filter-Cache" class="headerlink" title="Filter Cache"></a>Filter Cache</h3><p>Filter Cache的目的是减少偶然使用的数据, 提高Cache的利用率.</p>
+<ul>
+<li>当发生Cache Miss时, 从下级存储器拿出来的Cache Line会先被放到Filter Cache中.</li>
+<li>当再次使用Filter Cache中的数据时, 数据才会从Filter Cache搬到真正的Cache.</li>
+</ul>
+<h3 id="Victim-Cache"><a href="#Victim-Cache" class="headerlink" title="Victim Cache"></a>Victim Cache</h3><p>Victim Cache的目的是存储暂时被踢出Cache的Cache Line, 减少Conflict Miss.</p>
+<ul>
+<li>Victim Cache位于L1 Cache和L2 Cache之间.</li>
+<li>Victim Cache一般是一个Fully Associative Cache.</li>
+<li>工作原理:<ul>
+<li>当Cache Line从L1 Cache被踢出去时, 会放到Victim Cache中.</li>
+<li>如果L1 Cache Miss, 但是Victim Cache Hit, 那么Cache Line会从Victim Cache搬到L1 Cache.</li>
+<li>因此, L1 Cache和Victim Cache之间是Exclusive的关系.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Prefetching"><a href="#Prefetching" class="headerlink" title="Prefetching"></a>Prefetching</h3><h4 id="Hardware-Prefetching"><a href="#Hardware-Prefetching" class="headerlink" title="Hardware Prefetching"></a>Hardware Prefetching</h4><p>首先, 这种Hardware Prefetching一般针对I-Cache, 对于D-Cache来说, 由于数据访问的规律不好把握, 因此Prefetch的效果不是很好.</p>
+<p>工作原理:</p>
+<ul>
+<li>当I-Cache出现Cache Miss时, 会把对应的Cache Line放到I-Cache中.</li>
+<li>除此之外, 还有一个Prefetch Buffer, 里面存储后面连续的几块数据.</li>
+<li>当I-Cache出现Cache Miss, 但是在Prefetch Buffer中命中了:<ul>
+<li>对应的Cache Line会从Prefetch Buffer中搬到L1 Cache, </li>
+<li>Prefetch Buffer会从下级存储器再读取一个Cache Line.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为什么需要Prefetch Buffer?</p>
+</blockquote>
+<p>如果没有Prefetch Buffer, 那么分支预测如果错误, 会导致没用的数据读入I-Cache, 降低了I-Cache的利用率.</p>
+<h4 id="Software-Prefetching"><a href="#Software-Prefetching" class="headerlink" title="Software Prefetching"></a>Software Prefetching</h4><p>Software Prefetching一般针对D-Cache, 在程序的编译阶段, 编译器会对程序进行静态分析, 来确定哪些数据需要进行预取, 编译器可以插入预取指令(prefetching instruction).</p>
+<p>如果CPU支持虚拟内存, 那么预取指令可能会导致异常 (例如Page Fault), 此时有两种处理方法:</p>
+<ul>
+<li>处理异常: 这种预取指令叫做Faulting Prefetch Instruction.</li>
+<li>不处理异常: 这种预取指令叫做Nonfaulting Prefetch Instruction, 此时发生异常的预取指令就变成了空指令, 一般CPU都采用这种方式.</li>
+</ul>
 
       
        
