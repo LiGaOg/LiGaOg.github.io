@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CPU-硬件的另一种设计模式-流水线 | LiGaOg&#39;s blog</title>
+  <title>CPU-处理器设计准则以及对流水线 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="CPU-硬件的另一种设计模式-流水线 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-处理器设计准则以及对流水线 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(81)</small>
+                <small>(82)</small>
             
         </div>
     </li>
@@ -131,7 +131,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(16)</small>
+            <small>(17)</small>
         </div>
         
     </li>
@@ -201,7 +201,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="81">
+<input type="hidden" id="yelog_site_posts_number" value="82">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +251,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/12/go-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-环境配置与基础知识">Go-环境配置与基础知识</span>
+            <span class="post-date" title="2023-11-12 12:42:28">2023/11/12</span>
+        </a>
         
         
         <a  class="All 工程 "
@@ -347,7 +356,7 @@
            href="/2023/10/24/pipeline/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-硬件的另一种设计模式-流水线">CPU-硬件的另一种设计模式-流水线</span>
+            <span class="post-title" title="CPU-处理器设计准则以及对流水线">CPU-处理器设计准则以及对流水线</span>
             <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
         </a>
         
@@ -689,7 +698,7 @@
            href="/2023/09/16/linker-script-value/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何从C语言处获得链接脚本定义的变量">如何从C语言处获得链接脚本定义的变量</span>
+            <span class="post-title" title="C语言-如何获得链接脚本定义的变量">C语言-如何获得链接脚本定义的变量</span>
             <span class="post-date" title="2023-09-16 16:16:17">2023/09/16</span>
         </a>
         
@@ -752,7 +761,7 @@
            href="/2023/09/13/compile-link/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="程序的编译、链接与执行">程序的编译、链接与执行</span>
+            <span class="post-title" title="C语言-有关链接过程的一些知识点">C语言-有关链接过程的一些知识点</span>
             <span class="post-date" title="2023-09-13 21:03:22">2023/09/13</span>
         </a>
         
@@ -1001,7 +1010,7 @@
     <div class="pjax">
         <article id="post-pipeline" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CPU-硬件的另一种设计模式-流水线</h1>
+        <h1 class="article-title">CPU-处理器设计准则以及对流水线</h1>
     
     <div class="article-meta">
         
@@ -1019,7 +1028,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-24 15:53:36'>2023-10-24 15:53</time>
+            Created At : <time class="date" title='Updated At: 2023-11-13 11:01:31'>2023-10-24 15:53</time>
         
     </div>
     <div class="article-meta">
@@ -1030,7 +1039,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E7%BA%A7%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">五级流水线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84Hazard"><span class="toc-text">流水线中的Hazard</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3Hazard%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F"><span class="toc-text">解决Hazard的几种方式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Structural-Hazard"><span class="toc-text">Structural Hazard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Data-Hazard"><span class="toc-text">Data Hazard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Control-Hazard"><span class="toc-text">Control Hazard</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%B5%81%E6%B0%B4%E7%BA%BF-%E4%BE%8B%E9%A2%981"><span class="toc-text">理解流水线-例题1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%90%86%E8%A7%A3%E6%B5%81%E6%B0%B4%E7%BA%BF-%E4%BE%8B%E9%A2%982"><span class="toc-text">理解流水线-例题2</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%B8%80%E4%B8%AA%E7%A8%8B%E5%BA%8F%E6%9B%B4%E5%BF%AB"><span class="toc-text">如何让一个程序更快?</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="toc-text">常见的例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%BE%E8%AE%A1"><span class="toc-text">流水线设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF"><span class="toc-text">流水线的基本信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CPU%E4%B8%AD%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E7%9A%84%E5%88%92%E5%88%86"><span class="toc-text">CPU中的流水线的划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-text">指令相关性</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E6%89%A7%E8%A1%8C"><span class="toc-text">顺序执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BA%E5%BA%8F%E8%B6%85%E6%A0%87%E9%87%8F%E5%A4%84%E7%90%86%E5%99%A8%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">顺序超标量处理器的流水线</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ScoreBoard%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">ScoreBoard的结构</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1046,1528 +1055,112 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="五级流水线"><a href="#五级流水线" class="headerlink" title="五级流水线"></a>五级流水线</h2><pre><code>IF-&gt;ID-&gt;EX-&gt;MEM-&gt;WB
-</code></pre><h2 id="流水线中的Hazard"><a href="#流水线中的Hazard" class="headerlink" title="流水线中的Hazard"></a>流水线中的Hazard</h2><p>流水线中的Hazard一共有三种:</p>
+        <h2 id="如何让一个程序更快"><a href="#如何让一个程序更快" class="headerlink" title="如何让一个程序更快?"></a>如何让一个程序更快?</h2><p>在CPU的设计中, 有一个经典公式叫做: Iron’s Law:</p>
 <ul>
-<li>Structural Hazard: 两个指令在同一时间内, 需要用到同一个硬件资源.<ul>
-<li>例如, 两个指令要同时写回, 但是memory只有一个port.</li>
+<li>程序运行的时间 = 程序的指令总数 x 平均一个指令的周期数(Cycles Per Instruction, CPI) x 一个周期的时间(cycle time).</li>
 </ul>
-</li>
-<li><p>Data Hazard: 在流水线上执行的指令之间有依赖.</p>
+<p>因此, 同这个公式来看, 有三种提高性能的方法:</p>
 <ul>
-<li>RAW: 我这个指令写了<code>rd</code>, 下一个指令就要用到<code>rd</code>.</li>
-<li>WAR: 我这个指令读了<code>rd</code>, 下一个指令需要写<code>rd</code>.</li>
-<li>WAW: 上下两个指令要写同一个寄存器.</li>
+<li>减少指令总数:<ul>
+<li>采用更好的算法.</li>
+<li>采用更好的编译器.</li>
+<li>选择更好的ISA.</li>
 </ul>
-<p>在RISC的经典五级流水线上, 只有RAW可以构成Data Hazard.</p>
 </li>
-<li>Control Hazard: 如果遇到了分支或者trap, 流水线应该要有什么反应.</li>
+<li>减少一个指令的平均周期数.<ul>
+<li>CPU的微架构.</li>
 </ul>
-<h2 id="解决Hazard的几种方式"><a href="#解决Hazard的几种方式" class="headerlink" title="解决Hazard的几种方式"></a>解决Hazard的几种方式</h2><h3 id="Structural-Hazard"><a href="#Structural-Hazard" class="headerlink" title="Structural Hazard"></a>Structural Hazard</h3><ul>
-<li>Structural Hazard可以通过增加硬件的方式解决, 比如写memory多加几个port.</li>
-<li>也可以通过Stall的方式, 让一个指令先执行, 然后再让一个指令执行.</li>
-</ul>
-<h3 id="Data-Hazard"><a href="#Data-Hazard" class="headerlink" title="Data Hazard"></a>Data Hazard</h3><ul>
-<li>Interlock/Stall: 等后面的指令把数准备好之后, 依赖的指令再执行.</li>
-<li>Bypass/Forwarding : <ul>
-<li>ALU bypassing: 等后面的指令的EXE完成之后, 把计算出来的值bypass到ALU的输入, 这样就不用先到寄存器, 然后再读出来了.</li>
-<li>Memory bypassing: 从Memory读出来之后直接bypass到ALU的输入, 就不用先到寄存器了.</li>
+</li>
+<li>减少cycle time, 提高时钟频率.<ul>
+<li>CPU的微架构.</li>
+<li>选择更好的工艺.</li>
 </ul>
 </li>
 </ul>
-<h3 id="Control-Hazard"><a href="#Control-Hazard" class="headerlink" title="Control Hazard"></a>Control Hazard</h3><ul>
-<li>Speculate: 对于分支语句, 可以进行分支预测.</li>
-</ul>
-<h2 id="理解流水线-例题1"><a href="#理解流水线-例题1" class="headerlink" title="理解流水线-例题1"></a>理解流水线-例题1</h2><p>考虑这样一段代码:</p>
-<pre><code class="lang-assembly">addi x2, x0, 0x700
-LOOP:
-add x1, x2, x0
-lw x2, 4(x2)
-bne x2, x0, LOOP
-</code></pre>
-<p>假设架构是这样一个五级流水线:</p>
-<p><img src="/2023/10/24/pipeline/arch1.png" alt="arch1"></p>
-<p>模拟这个架构下流水线的执行过程, 假设LOOP内的代码执行4次, branch prediction的结果总是not taken:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Instr</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-<th>21</th>
-<th>22</th>
-<th>23</th>
-<th>24</th>
-<th>25</th>
-<th>26</th>
-<th>27</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addi</td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M</td>
-<td>W</td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>一般来说, CPI和时钟频率是trade off的关系.</p>
 <ul>
-<li>这段代码的CPI是多少 ?(CPI从第一条指令commit开始, 从最后一条指令commit为止)<ul>
-<li>CPI = (27 - 5 + 1) / 13 = 22/13, 注意<code>branch</code>    指令也需要<code>M</code>和<code>W</code>, 因为要改<code>PC</code>.</li>
-<li>千万要注意这个<code>+1</code>一定不要忘.</li>
+<li>降低CPI, 设计复杂度就会上升, 时钟频率就会降低.</li>
+<li>通过增加流水线级数提高时钟频率的话, 当分支预测失败时, 会有更大的penalty, 导致CPI猛增.</li>
 </ul>
-</li>
-<li>如果把<code>M</code>这个阶段分解成<code>M1</code>和<code>M2</code>, 那么CPI是多少 ? (M2之后可以进行load-use bypass)</li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Instr</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-<th>18</th>
-<th>19</th>
-<th>20</th>
-<th>21</th>
-<th>22</th>
-<th>23</th>
-<th>24</th>
-<th>25</th>
-<th>26</th>
-<th>27</th>
-<th>28</th>
-<th>29</th>
-<th>30</th>
-<th>31</th>
-<th>32</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>addi</td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>add</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>lw</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>bne</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>D</td>
-<td>D</td>
-<td>D</td>
-<td>X</td>
-<td>M1</td>
-<td>M2</td>
-<td>W</td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td>F</td>
-<td>F</td>
-<td>D</td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>..</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td>F</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<h3 id="常见的例子"><a href="#常见的例子" class="headerlink" title="常见的例子"></a>常见的例子</h3><p>对于超标量处理器/VLIW处理器来说, 一个周期能够执行多个指令, 可以大大减少CPI.</p>
+<p>采用更深的流水线, 能够减少cycle time, 提高时钟频率.</p>
+<p>采用更好的EDA也可以提高时钟频率.</p>
+<p>采用更好的硅工艺, 也可以提高时钟频率.</p>
+<h2 id="流水线设计"><a href="#流水线设计" class="headerlink" title="流水线设计"></a>流水线设计</h2><h3 id="流水线的基本信息"><a href="#流水线的基本信息" class="headerlink" title="流水线的基本信息"></a>流水线的基本信息</h3><p>流水线设计可以降低cycle time, 提高时钟频率.</p>
+<p>当CPU没有流水线时, 假设它的cycle time是$D$, 假设使用了$n$级流水线, 那么cycle time就会变成: $\frac{D}{n} + S$, 其中$S$是流水线寄存器的延迟.</p>
+<p>但是, 加入流水线后, 面积会变大, 假设$G$表示没有流水线时的面积, $L$表示流水线寄存器及其附带的控制逻辑所增加的面积, 那么加入$n$级流水线后, 面积为: $G + nL$.</p>
+<p>此时, 我们希望找到一个流水线级数$n$, 使得加入流水线后, cycle time和面积的乘积最小, 也就是函数:</p>
+<script type="math/tex; mode=display">
+f(n) = (G + nL)(\frac{D}{n} + S)</script><p>最小, 这个函数存在极小值点.</p>
+<h3 id="CPU中的流水线的划分"><a href="#CPU中的流水线的划分" class="headerlink" title="CPU中的流水线的划分"></a>CPU中的流水线的划分</h3><p>划分时需要注意:</p>
 <ul>
-<li>CPI = (32 - 6 + 1) / 13 = 27 / 13</li>
-<li><p>如果branch prediction的结果总是对的, 那么CPI是多少?<br>| Instr | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    | 10   | 11   | 12   | 13   | 14   | 15   | 16   | 17   | 18   | 19   | 20   | 21   | 22   |<br>| ——- | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— | —— |<br>| addi  | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| add   |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| lw    |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| bne   |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |      |<br>| add   |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |      |<br>| lw    |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |      |      |<br>| bne   |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |      |<br>| add   |      |      |      |      |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |      |<br>| lw    |      |      |      |      |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |      |      |      |      |<br>| bne   |      |      |      |      |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |      |      |      |      |<br>| add   |      |      |      |      |      |      |      |      |      |      |      |      | F    | F    | D    | X    | M    | W    |      |      |      |      |<br>| lw    |      |      |      |      |      |      |      |      |      |      |      |      |      |      | F    | D    | X    | M    | W    |      |      |      |<br>| bne   |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      | F    | D    | D    | X    | M    | W    |      |</p>
-</li>
-<li><p>CPI = (21 - 5 + 1) / 13 = 17 / 13</p>
-</li>
+<li>尽量让每个流水线阶段的时间近似相等.</li>
+<li>CPU的cycle time取决于耗时最长的流水线阶段.</li>
 </ul>
-<h2 id="理解流水线-例题2"><a href="#理解流水线-例题2" class="headerlink" title="理解流水线-例题2"></a>理解流水线-例题2</h2><p>假设我有一个用单周期实现的CPU, 它的cycle time是7ns, 我现在把它改造成了五级流水线, 流水线的各个阶段所需的时间分别是: IF, 1ns; ID, 1.5ns; EX, 1ns; MEM, 2ns and WB 1.5ns, 流水线寄存器的delay是0.1ns.</p>
+<p>对于CISC指令来说, 由于指令长度可变, 对于流水线的任何一个阶段, 耗时变化都会很大, 很难用流水线进行实现.</p>
+<p>对于RISC指令来说, 指令长度固定精简, 因此更适合用流水线进行实现.</p>
+<p>典型的RISC指令流水线划分如下:</p>
+<p><img src="/2023/10/24/pipeline/riscpipeline.png" alt="RISC Pipeline"></p>
 <ul>
-<li>这个五级流水线的cycle time是多少?<ul>
-<li>在流水线中, cycle time取决于耗时最长的stage, 也就是MEM的2ns, 然后加上流水线寄存器delay的0.1ns, 最后是2.1ns.</li>
-<li>如果是单周期实现的话, 那么cycle time就是1 + 1.5 + 1 + 2 + 1.5 = 7ns, 就是题目中给的7ns.</li>
+<li>Fetch: 从PC作为索引, 读取I-Cache中的指令, 然后放到指令寄存器中.</li>
+<li>Decode: 将指令进行解码, 然后读取Register File.</li>
+<li>Execute: 完成计算任务, 包括地址计算.</li>
+<li>Read Memory: 访问D-Cache/物理内存, 只针对load/store类型的指令, 其他指令在这个阶段不做任何事情.</li>
+<li>Write Back: 如果指令存在目的寄存器, 需要将最后结果写入目的寄存器.</li>
+</ul>
+<p>实际上, 上面的流水线划分并不是最优化的, 各个阶段的延时差距可能比较大, 如果需要优化, 可以采用下面的方法:</p>
+<ul>
+<li>合并: 将若干流水线阶段进行合并, 可以把流水线各个阶段的延时变得均衡, 适用于对性能要求不高的低功耗设计.</li>
+<li>拆分: 将流水线深度变深, 可以获得更高的时钟频率, 但是面积增大, 功耗增多, 分支预测penalty增加.</li>
+</ul>
+<h3 id="指令相关性"><a href="#指令相关性" class="headerlink" title="指令相关性"></a>指令相关性</h3><p>阻碍程序并行执行的根本原因在于指令之间存在相关性, 一般有三种相关性:</p>
+<ul>
+<li>RAW:  上一个指令写一个寄存器, 下一个指令就要把它读出来.<ul>
+<li>这时, 必须等到上一个指令写完, 下一个指令才能读.</li>
+<li>这种相关性无法避免.</li>
 </ul>
 </li>
-<li>如果每四条指令就有一个stall, 那么这个五级流水线的CPI是多少?<ul>
-<li>5 / 4 = 1.25.</li>
+<li>WAR: 上一个指令正在读一个寄存器, 下一个指令要写这个寄存器.<ul>
+<li>需要等到上一个指令读完, 下一个指令再写.</li>
+<li>这种相关性可以避免, 只需要下一个指令写到别的寄存器就行.</li>
 </ul>
 </li>
-<li>那么五级流水线的machine对于单周期machine的speedup是多少?<ul>
-<li>首先, speedup是execution time的比值, 根据iron law可以计算.</li>
-<li>那么比值就是<code>(I * 1 * 7) / (I * 1.25 * 2.1) = 2.67</code>.</li>
-</ul>
-</li>
-<li>假设流水线的stage的数量无限, 那么speedup是多少?<ul>
-<li>如果流水线stage数量无限, 那么CPI应该是无限接近于1, 并且cycle time仅仅等于流水线寄存器的delay, 那么比值就是<code>(I * 1 * 7) / (I * 1 * 0.1) = 70</code>.</li>
+<li>WAW: 上一个指令和下一个指令写了同一个寄存器.<ul>
+<li>需要等到上一个指令写完, 下一个指令再写.</li>
+<li>这种相关性也可以避免, 只需要下一个指令写到别的寄存器就行.</li>
 </ul>
 </li>
 </ul>
+<p>三种相关性不仅适用于寄存器, load/store指令中的地址也适用.</p>
+<p>如果是CPU顺序执行, WAR和WAW不会发生, RAW可以通过bypass的方式解决.</p>
+<h2 id="顺序执行"><a href="#顺序执行" class="headerlink" title="顺序执行"></a>顺序执行</h2><p>一般来说, Superscalar CPU执行指令可以分为四个阶段:</p>
+<ul>
+<li>Frontend: Fetch &amp; Decode.</li>
+<li>Issue: 把指令送到FU.</li>
+<li>Write Back: 将FU算完的数据写到一个Buffer中.</li>
+<li>Commit: 将Buffer中的数据同步到寄存器中.</li>
+</ul>
+<p>如果顺序执行, 那么这四个阶段都是顺序的.</p>
+<p>如果乱序执行, 那么Issue和Write Back是乱序的, 其他的都是顺序的.</p>
+<h3 id="顺序超标量处理器的流水线"><a href="#顺序超标量处理器的流水线" class="headerlink" title="顺序超标量处理器的流水线"></a>顺序超标量处理器的流水线</h3><p>顺序执行的Superscalar CPU的流水线如下:</p>
+<p><img src="/2023/10/24/pipeline/ipipeline.png" alt="Superscala Inorder Pipeline"></p>
+<p>要实现这个流水线, 需要以下结构:</p>
+<ul>
+<li>要有多个FU.</li>
+<li>为了保证Write Back是顺序执行的, 所有FU计算的流水线阶段必须相等.</li>
+<li>ScoreBoard用来辅助Issue, 记录了流水线中每条指令的执行情况.</li>
+</ul>
+<h4 id="ScoreBoard的结构"><a href="#ScoreBoard的结构" class="headerlink" title="ScoreBoard的结构"></a>ScoreBoard的结构</h4><p>ScoreBoard会对每个架构寄存器记录一个表项, 这个架构寄存器就是指令的目的寄存器.</p>
+<p>在ScoreBoard中一般会记录以下信息:</p>
+<ul>
+<li>这个指令的结果是否已经被写入架构寄存器?</li>
+<li>这个指令在哪个FU中运行?</li>
+<li>这个指令到达FU的哪个阶段了?<ul>
+<li>如果到达最后阶段, 就可以进行bypass.</li>
+</ul>
+</li>
+</ul>
+<p>一个指令只有在ScoreBoard中查询到它的源操作数已经准备好了, 并且后面没有指令阻塞才能够被issue.</p>
 
       
        
@@ -2580,6 +1173,46 @@ bne x2, x0, LOOP
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
