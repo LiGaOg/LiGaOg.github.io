@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="Go-环境配置与基础知识 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="异常的分类和常见类型在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:  CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常. 虚拟地址转换时出现的异常: 如果TLB Miss, 那么会出现异常. 如果转换关系在页表中不存在, 出现Page Fau">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU-对于异常的一些理解">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/11/13/exception/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="异常的分类和常见类型在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:  CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常. 虚拟地址转换时出现的异常: 如果TLB Miss, 那么会出现异常. 如果转换关系在页表中不存在, 出现Page Fau">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/11/13/exception/epipeline.png">
+<meta property="article:published_time" content="2023-11-13T12:34:38.708Z">
+<meta property="article:modified_time" content="2023-11-13T13:18:05.084Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/11/13/exception/epipeline.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(82)</small>
+                <small>(83)</small>
             
         </div>
     </li>
@@ -131,7 +133,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(17)</small>
+            <small>(18)</small>
         </div>
         
     </li>
@@ -201,7 +203,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="82">
+<input type="hidden" id="yelog_site_posts_number" value="83">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -251,6 +253,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/13/exception/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-对于异常的一些理解">CPU-对于异常的一些理解</span>
+            <span class="post-date" title="2023-11-13 20:34:38">2023/11/13</span>
+        </a>
         
         
         <a  class="All 工程 "
@@ -383,7 +394,7 @@
            href="/2023/10/24/docker-env/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="如何用docker部署一个运行环境">如何用docker部署一个运行环境</span>
+            <span class="post-title" title="Docker-如何用docker部署一个运行环境">Docker-如何用docker部署一个运行环境</span>
             <span class="post-date" title="2023-10-24 14:35:02">2023/10/24</span>
         </a>
         
@@ -770,7 +781,7 @@
            href="/2023/09/12/riscv-basic/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="RISC-V-基础知识以及一些基本指令">RISC-V-基础知识以及一些基本指令</span>
+            <span class="post-title" title="CPU-RISC-V的基础知识以及一些基本指令">CPU-RISC-V的基础知识以及一些基本指令</span>
             <span class="post-date" title="2023-09-12 17:59:34">2023/09/12</span>
         </a>
         
@@ -878,7 +889,7 @@
            href="/2023/09/02/match-system/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="设计并使用thrift实现一个匹配系统">设计并使用thrift实现一个匹配系统</span>
+            <span class="post-title" title="Web-使用thrift实现匹配微服务">Web-使用thrift实现匹配微服务</span>
             <span class="post-date" title="2023-09-02 21:28:09">2023/09/02</span>
         </a>
         
@@ -1028,7 +1039,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-13 11:01:46'>2023-11-12 12:42</time>
+            Created At : <time class="date" title='Updated At: 2023-11-13 20:26:25'>2023-11-12 12:42</time>
         
     </div>
     <div class="article-meta">
@@ -1039,7 +1050,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">Go语言的环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84Hello-World"><span class="toc-text">Go语言的Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Go语言的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-text">Go语言的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">变量的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">变量的声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%B8%B8%E9%87%8F"><span class="toc-text">Go语言的常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">Go语言的运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">Go语言的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">Go语言的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88"><span class="toc-text">Go语言的指针</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">Go语言的环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84Hello-World"><span class="toc-text">Go语言的Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Go语言的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-text">Go语言的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">变量的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">变量的声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%B8%B8%E9%87%8F"><span class="toc-text">Go语言的常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">Go语言的运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">Go语言的函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">Go语言的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88"><span class="toc-text">Go语言的指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">Go语言结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-text">成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">成员函数</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1138,11 +1149,17 @@ const a, b, c = 1, false, &quot;str&quot;
 <h2 id="Go语言的条件语句"><a href="#Go语言的条件语句" class="headerlink" title="Go语言的条件语句"></a>Go语言的条件语句</h2><p>条件语句的格式如下:</p>
 <pre><code class="lang-go">if 布尔表达式 &#123;
 
-&#125;
-else if 布尔表达式 &#123;
+&#125; else if 布尔表达式 &#123;
+
+&#125; else &#123;
 
 &#125;
-else &#123;
+</code></pre>
+<p>注意, 不允许<code>else if</code>或者<code>else</code>单独占一行, 例如:</p>
+<pre><code class="lang-go">if ... &#123;
+
+&#125;
+else ... &#123;
 
 &#125;
 </code></pre>
@@ -1221,6 +1238,78 @@ func main() &#123;
 &#125;
 </code></pre>
 <p>Go语言中, 空指针的关键词是<code>nil</code>.</p>
+<h2 id="Go语言结构体"><a href="#Go语言结构体" class="headerlink" title="Go语言结构体"></a>Go语言结构体</h2><h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>Go语言结构体的定义如下:</p>
+<pre><code class="lang-go">type 结构体名字 struct &#123;
+
+  成员变量名1 type1,
+  成员变量名2 type2,
+  成员变量名3 type3,
+&#125;
+</code></pre>
+<p>例如:</p>
+<pre><code class="lang-go">type Books struct &#123;
+  title string,
+  author string,
+  book_id int
+&#125;
+</code></pre>
+<p>创建结构体实例的代码:</p>
+<pre><code class="lang-go">book = Books&#123; title: &quot;haha&quot;, author: &quot;haha&quot;, book_id: 1 &#125;
+</code></pre>
+<p>访问结构体成员变量可以用<code>.</code></p>
+<pre><code class="lang-go">fmt.Println(book.title)
+fmt.Println(book.author)
+fmt.Println(book.book_id)
+</code></pre>
+<p>结构体作为函数参数, 它的类型就是<code>Books</code></p>
+<pre><code class="lang-go">func printBook(book Books) &#123;
+  fmt.Println(book.title)
+&#125;
+</code></pre>
+<p>当结构体作为函数参数时, 数据会被拷贝, 也就是值传递, 如果不需要拷贝, 可以传递结构体指针.</p>
+<p>结构体指针的定义如下:</p>
+<pre><code class="lang-go">var struct_pointer *Books
+// 取结构体指针
+
+struct_pointer = &amp;book
+</code></pre>
+<p>对于结构体指针来说, 访问成员变量应该是<code>*(struct_pointer).成员变量</code>, 但是Go为了简化, 使用结构体指针访问成员变量时也用<code>.</code></p>
+<p>注意:</p>
+<ul>
+<li>结构体内的成员变量如果小写, 那么只能包内使用, 如果大写, 就可以包外使用.</li>
+</ul>
+<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><p>Go语言中, 不允许在结构体内部定义成员函数, 而是采用组合的方式, 将某个函数绑定成某个结构体的成员函数.</p>
+<p>Go语言中结构体的成员方法有两种, 一种是值方法, 一种是指针方法.</p>
+<ul>
+<li>值方法: 方法内不需要修改成员变量.</li>
+<li>指针方法: 方法内需要修改成员变量.</li>
+</ul>
+<p>假设我现在有一个结构体<code>Student</code>:</p>
+<pre><code class="lang-go">type Student struct &#123;
+  name string
+&#125;
+</code></pre>
+<p>假设我要有一个get方法, 获取<code>name</code>的值, 可以这样定义:</p>
+<pre><code class="lang-go">func (s Student) GetName() string &#123;
+  return s.name
+&#125;
+</code></pre>
+<p>这个方法就是值方法.</p>
+<p>调用例子如下:</p>
+<pre><code class="lang-go">// name变量私有, 但是GetName是公共方法
+student := Student &#123;
+  name: &quot;haha&quot;
+&#125;
+
+fmt.Println(student.GetName())
+</code></pre>
+<p>那么Set方法就需要修改<code>name</code>的值, 就是指针方法:</p>
+<pre><code class="lang-go">func (s *Student) SetName(name string) &#123;
+  s.name = name
+&#125;
+</code></pre>
+<p>这个就相当于其他语言中的<code>this</code>指针.</p>
+<p>一般来说, 都会选用指针方法, 因为值方法会涉及数据的拷贝, 在大对象中很影响性能.</p>
 
       
        

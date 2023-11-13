@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MacOS下的简单窗口管理器 | LiGaOg&#39;s blog</title>
+  <title>CPU-对于异常的一些理解 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="MacOS下的简单窗口管理器 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-对于异常的一些理解 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="异常的分类和常见类型在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:  CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常. 虚拟地址转换时出现的异常: 如果TLB Miss, 那么会出现异常. 如果转换关系在页表中不存在, 出现Page Fau">
 <meta property="og:type" content="article">
@@ -1019,9 +1019,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-amethyst" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-exception" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MacOS下的简单窗口管理器</h1>
+        <h1 class="article-title">CPU-对于异常的一些理解</h1>
     
     <div class="article-meta">
         
@@ -1031,7 +1031,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -1039,7 +1039,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:54:35'>2023-09-02 20:54</time>
+            Created At : <time class="date" title='Updated At: 2023-11-13 21:18:05'>2023-11-13 20:34</time>
         
     </div>
     <div class="article-meta">
@@ -1050,7 +1050,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Amethyst%E4%B8%8B%E8%BD%BD"><span class="toc-text">Amethyst下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Amethyst%E7%AE%A1%E7%90%86%E7%AA%97%E5%8F%A3%E7%9A%84%E9%80%BB%E8%BE%91"><span class="toc-text">使用Amethyst管理窗口的逻辑</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Tall%E5%B8%83%E5%B1%80"><span class="toc-text">Tall布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Fullscreen%E5%B8%83%E5%B1%80"><span class="toc-text">Fullscreen布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Two-Pane%E5%B8%83%E5%B1%80"><span class="toc-text">Two Pane布局</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E7%9A%84%E5%88%86%E7%B1%BB%E5%92%8C%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%9E%8B"><span class="toc-text">异常的分类和常见类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%BE%E5%87%86%E5%BC%82%E5%B8%B8"><span class="toc-text">精准异常</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%E7%9A%84%E4%B8%80%E4%BA%9B%E8%AE%BE%E8%AE%A1"><span class="toc-text">异常处理的一些设计</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1066,20 +1066,69 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Amethyst下载"><a href="#Amethyst下载" class="headerlink" title="Amethyst下载"></a>Amethyst下载</h2><p>一条命令不多说:</p>
-<pre><code class="lang-bash">brew install --cask amethyst
-</code></pre>
-<p>下载之后, 在系统偏好设置-调度中心中, 将[根据最近的情况自动排列空间]取消, 然后给amethyst赋予辅助功能权限.</p>
-<h2 id="使用Amethyst管理窗口的逻辑"><a href="#使用Amethyst管理窗口的逻辑" class="headerlink" title="使用Amethyst管理窗口的逻辑"></a>使用Amethyst管理窗口的逻辑</h2><h3 id="Tall布局"><a href="#Tall布局" class="headerlink" title="Tall布局"></a>Tall布局</h3><p>基本格式大概是这样的, 在打开的多个窗口中, 有一个Master窗口, 多个Slave窗口.</p>
-<p><img src="/2023/09/02/amethyst/master.png" alt="master"></p>
-<p>这种布局在Amethyst中叫做Tall, 其中, 使用<code>mod</code>和<code>j, k</code>组合可以切换窗口的聚焦.</p>
-<p>可以用<code>mod</code>和<code>h, l</code>调节Master窗口的大小.</p>
-<p>使用<code>mod</code>和<code>Enter</code>, 可以把一个Slave窗口选拔成一个Master窗口.</p>
-<p>使用<code>mod</code>和<code>w</code>可以从Slave Pane直接跳转到master pane.</p>
-<h3 id="Fullscreen布局"><a href="#Fullscreen布局" class="headerlink" title="Fullscreen布局"></a>Fullscreen布局</h3><p>Fullscreen布局只将一个窗口占满全部屏幕, 适合需要在一个窗口聚焦工作的场景, 可以使用<code>mod</code>和<code>z</code>结合切换布局(需要自己配置).</p>
-<h3 id="Two-Pane布局"><a href="#Two-Pane布局" class="headerlink" title="Two Pane布局"></a>Two Pane布局</h3><p>Two Pane布局和Tall布局没有本质区别, 唯一的区别在于右面不是所有Slave可见, 而是只有一个Slave可见.</p>
-<p>使用<code>mod</code>和<code>s</code>可以切换到Two Pane布局(需要自己配置)</p>
-<p>可以使用<code>mod</code>和<code>i</code>查看当前的Layout.<br>使用<code>mod</code>和<code>q</code>可以重启Amethyst.</p>
+        <h2 id="异常的分类和常见类型"><a href="#异常的分类和常见类型" class="headerlink" title="异常的分类和常见类型"></a>异常的分类和常见类型</h2><p>在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:</p>
+<ul>
+<li>CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常.</li>
+<li>虚拟地址转换时出现的异常:<ul>
+<li>如果TLB Miss, 那么会出现异常.</li>
+<li>如果转换关系在页表中不存在, 出现Page Fault.</li>
+<li>程序出现了被保护的页, 访问权限异常.</li>
+</ul>
+</li>
+<li>执行指令自身会出现异常, 例如<code>trap</code>指令, OS需要这些指令实现系统调用.</li>
+</ul>
+<h2 id="精准异常"><a href="#精准异常" class="headerlink" title="精准异常"></a>精准异常</h2><p>在CPU中, 所有异常的处理过程都是一样的, 当出现异常时:</p>
+<ul>
+<li>出现异常之前的指令都必须执行完成.</li>
+<li>产生异常, 以及产生异常之后的指令都不允许完成.</li>
+<li>CPU会跳转到Exception Handler执行.</li>
+<li>从Exception Handler返回后, 需要重新执行导致异常的指令, 但不是绝对的, 需要根据异常的类型决定.</li>
+</ul>
+<p>如果能够实现以上四步, 那么在CPU外部看来, 异常就和没发生过一样, 这种方式称为精准异常(precise exception).</p>
+<h2 id="异常处理的一些设计"><a href="#异常处理的一些设计" class="headerlink" title="异常处理的一些设计"></a>异常处理的一些设计</h2><p>对于CPU来说, 一般有一个寄存器保存发生异常的指令pc, 一般叫epc.</p>
+<p>还有一个寄存器保留发生异常的类型信息, 一般叫cause.</p>
+<p>在异常处理程序中, 又可能会修改通用寄存器的值, 因此需要提前将这些寄存器的值保留到栈上.</p>
+<p>在流水线上, 任何阶段都有可能出现异常:</p>
+<ul>
+<li>Fetch: <ul>
+<li>I-TLB Miss.</li>
+<li>Page Fault.</li>
+</ul>
+</li>
+<li>Decode:<ul>
+<li>未定义的指令编码.</li>
+</ul>
+</li>
+<li>Execute:<ul>
+<li>除0.</li>
+<li>溢出.</li>
+</ul>
+</li>
+<li>Memory:<ul>
+<li>D-TLB Miss.</li>
+<li>Page Fault.</li>
+<li>地址没对齐.</li>
+</ul>
+</li>
+</ul>
+<p>假设这个流水线是顺序执行的, 那么对于异常的处理步骤如下:</p>
+<ul>
+<li>首先, 我需要在流水线中找到一个异常处理点(Commit Point), 要求这个处理点之后, CPU不会再发生异常.<ul>
+<li>例如在五级流水线上, Memory阶段之后, 后面就不会再发生异常.</li>
+<li>所有异常都会在到达流水线的异常处理点之后再进行处理.</li>
+</ul>
+</li>
+<li>每个指令的PC值都会随着流水线进行移动, 如果出现异常, 会在Commit Point中将PC写入epc寄存器.</li>
+<li>流水线中, 如果某个阶段出现异常, 那么异常信息也会随着流水线进行移动, 并且在Commit Point中写入cause寄存器.</li>
+<li>当到达Commit Point时:<ul>
+<li>首先, 把引起异常的指令从流水线中Flush, 不要让它进入Write Back阶段.</li>
+<li>之后, 将后面已经取出的指令, 以及这些指令与异常有关的流水线寄存器Flush.</li>
+<li>然后, 写入epc和cause寄存器.</li>
+<li>然后, PC变成epc, CPU取出异常处理指令.</li>
+</ul>
+</li>
+</ul>
+<p><img src="/2023/11/13/exception/epipeline.png" alt="Exception Pipeline"></p>
 
       
        
