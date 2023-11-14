@@ -2,23 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CPU-硬件的一种设计模式-Microcode | LiGaOg&#39;s blog</title>
+  <title>CPU-使用Microcode实现复杂的硬件指令 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="CPU-硬件的一种设计模式-Microcode | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-使用Microcode实现复杂的硬件指令 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="异常的分类和常见类型在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:  CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常. 虚拟地址转换时出现的异常: 如果TLB Miss, 那么会出现异常. 如果转换关系在页表中不存在, 出现Page Fau">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CPU-对于异常的一些理解">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/11/13/exception/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="异常的分类和常见类型在CPU设计中, 除了分支指令, 异常也可以打断程序的执行. 异常大致会有下面这几类:  CPU外部引起的异常, 这种异常也叫做中断(Interrupt), 中断本质上和CPU内部执行的指令没有关系, CPU在任何时期都可能会出现中断, 中断也叫做异步异常. 虚拟地址转换时出现的异常: 如果TLB Miss, 那么会出现异常. 如果转换关系在页表中不存在, 出现Page Fau">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/11/13/exception/epipeline.png">
-<meta property="article:published_time" content="2023-11-13T12:34:38.708Z">
-<meta property="article:modified_time" content="2023-11-13T13:18:05.084Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ligaog.github.io.com/2023/11/13/exception/epipeline.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -376,7 +374,7 @@
            href="/2023/10/24/microcode/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-硬件的一种设计模式-Microcode">CPU-硬件的一种设计模式-Microcode</span>
+            <span class="post-title" title="CPU-使用Microcode实现复杂的硬件指令">CPU-使用Microcode实现复杂的硬件指令</span>
             <span class="post-date" title="2023-10-24 15:53:29">2023/10/24</span>
         </a>
         
@@ -1021,7 +1019,7 @@
     <div class="pjax">
         <article id="post-microcode" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CPU-硬件的一种设计模式-Microcode</h1>
+        <h1 class="article-title">CPU-使用Microcode实现复杂的硬件指令</h1>
     
     <div class="article-meta">
         
@@ -1039,7 +1037,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-13 19:40:33'>2023-10-24 15:53</time>
+            Created At : <time class="date" title='Updated At: 2023-11-14 10:56:29'>2023-10-24 15:53</time>
         
     </div>
     <div class="article-meta">
@@ -1050,7 +1048,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Microcode-in-Single-bus-RISC-V-machines"><span class="toc-text">Microcode in Single-bus RISC-V machines</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84%E5%9B%BE"><span class="toc-text">架构图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%8F%8F%E8%BF%B0%E8%BF%99%E4%B8%AA%E7%8A%B6%E6%80%81%E6%9C%BA%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-text">如何描述这个状态机的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%981-%E5%AE%9E%E7%8E%B0CMOVM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题1-实现CMOVM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%982-%E5%AE%9E%E7%8E%B0MODULOM%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题2-实现MODULOM指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%8F%E8%BF%B0%E7%8A%B6%E6%80%81%E7%9A%84%E4%BE%8B%E9%A2%983-%E5%AE%9E%E7%8E%B0MINV%E6%8C%87%E4%BB%A4"><span class="toc-text">描述状态的例题3-实现MINV指令</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CPU%E7%9A%84%E4%B8%80%E7%A7%8D%E7%89%B9%E6%AE%8A%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-Microcode"><span class="toc-text">CPU的一种特殊设计模式-Microcode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E7%AE%80%E5%8D%95%E7%9A%84Microcode-Machine"><span class="toc-text">一种简单的Microcode Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spec"><span class="toc-text">Spec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B"><span class="toc-text">工作过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E4%BA%9B%E4%BE%8B%E5%AD%90"><span class="toc-text">一些例子</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#FETCH%E6%8C%87%E4%BB%A4"><span class="toc-text">FETCH指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CMOVM%E6%8C%87%E4%BB%A4"><span class="toc-text">CMOVM指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MODULOM%E6%8C%87%E4%BB%A4"><span class="toc-text">MODULOM指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MINV%E6%8C%87%E4%BB%A4"><span class="toc-text">MINV指令</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1066,7 +1064,35 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Microcode-in-Single-bus-RISC-V-machines"><a href="#Microcode-in-Single-bus-RISC-V-machines" class="headerlink" title="Microcode in Single-bus RISC-V machines"></a>Microcode in Single-bus RISC-V machines</h2><h2 id="架构图"><a href="#架构图" class="headerlink" title="架构图"></a>架构图</h2><p><img src="/2023/10/24/microcode/singlebus.png" alt="singlebus"></p>
+        <h2 id="CPU的一种特殊设计模式-Microcode"><a href="#CPU的一种特殊设计模式-Microcode" class="headerlink" title="CPU的一种特殊设计模式-Microcode"></a>CPU的一种特殊设计模式-Microcode</h2><p>在ISA中, 尤其是CISC, 一条指令可能会完成非常复杂的任务, 这样就不好实现.</p>
+<p>这时, 我们可以将这一条复杂的指令, 分解成若干的简单指令, 然后直接执行简单指令即可.</p>
+<p>这种简单指令就叫做Microcode.</p>
+<p>对于CPI而言, 一条复杂指令的CPI就等于若干简单指令的CPI之和.</p>
+<h2 id="一种简单的Microcode-Machine"><a href="#一种简单的Microcode-Machine" class="headerlink" title="一种简单的Microcode Machine"></a>一种简单的Microcode Machine</h2><h3 id="Spec"><a href="#Spec" class="headerlink" title="Spec"></a>Spec</h3><p><img src="/2023/10/24/microcode/singlebus.png" alt="singlebus"></p>
+<p>这中Microcode Machine是一种单总线的结构, 每一次只能有一个结构写入总线, 但是可以有很多结构读取总线.</p>
+<p>这种Machine的spec如下:</p>
+<ul>
+<li>IR: Instruction Register, 里面存储着将要被执行的Microcode.<ul>
+<li>其中的控制信号是<code>IRLd</code>, 当<code>IRLd</code>为1时, 在当前周期, 总线上的数据会被读取到IR中.</li>
+</ul>
+</li>
+<li>Decode: 用来翻译Microcode, 看看这个微码需要用哪些寄存器.<ul>
+<li><code>ImmEn</code>: 当<code>ImmEn</code>为1时, 在当前周期, Decode会把立即数写入总线.</li>
+<li><code>ImmSel</code>: 这个信号是控制输入哪一种立即数, RISC-V中立即数可以分为I, J, U, S, B型.</li>
+</ul>
+</li>
+<li>Register File: 寄存器文件中包括<code>PC</code>, <code>RA</code>和一些通用寄存器.、<ul>
+<li><code>RegEn</code>: 和<code>RegSel</code>一起使用, 如果这个信号是1, 在当前周期, 对应寄存器的数据会写入总线.</li>
+<li><code>RegWr</code>: 和<code>RegSel</code>一起使用, 如果这个信号是1, 在当前周期, 总线上的数据会写入对应寄存器.</li>
+</ul>
+</li>
+<li>ALU:<ul>
+<li><code>ALd</code>, <code>BLd</code>: 当这两个信号是1时, 总线上的数据会被读取到<code>A, B</code>中, 这两个寄存器存储ALU的源操作数.</li>
+<li><code>ALUOp</code>: ALU的计算类型.</li>
+<li><code>ALUEn</code>: 在当前周期将ALU计算得到的数据写入总线.</li>
+</ul>
+</li>
+</ul>
 <p>其中ALUOp一共有如下几种:</p>
 <div class="table-container">
 <table>
@@ -1120,7 +1146,13 @@
 </tbody>
 </table>
 </div>
-<h2 id="如何描述这个状态机的状态"><a href="#如何描述这个状态机的状态" class="headerlink" title="如何描述这个状态机的状态"></a>如何描述这个状态机的状态</h2><p>这个状态机的状态转移可以用一个大表来描述:</p>
+<ul>
+<li>MA: 当一个地址写入MA之后, 下一个周期如果设置<code>MemEn</code>为1, 会把从内存中读出的数据写到总线上. 如果下一个周期<code>MemWr</code>为1, 会把总线的数据读入内存.<ul>
+<li><code>MALd</code>: 如果设置为1, 当前周期总线的数据会被写到<code>MA</code>中.</li>
+</ul>
+</li>
+</ul>
+<h3 id="工作过程"><a href="#工作过程" class="headerlink" title="工作过程"></a>工作过程</h3><p>这个Microcode Machine的工作过程可以用一个表格来描述:</p>
 <div class="table-container">
 <table>
 <thead>
@@ -1166,7 +1198,9 @@
 </tbody>
 </table>
 </div>
-<p>其中, 这个μBR有六个值, 分别是<code>N</code>, <code>J</code>, <code>EZ</code>, <code>NZ</code>, <code>D</code>和<code>S</code>, 他们的意思分别是:</p>
+<p>其中, <code>State</code>表示当前执行的宏观指令, <code>Pseudocode</code>是宏观指令对应的Microcode.</p>
+<p>μBR和Next State共同控制要转移到的下一个状态.</p>
+<p>这个μBR有六个值, 分别是<code>N</code>, <code>J</code>, <code>EZ</code>, <code>NZ</code>, <code>D</code>和<code>S</code>, 他们的意思分别是:</p>
 <ul>
 <li><code>N</code>: 下一个状态是<code>Current State + 1</code>.</li>
 <li><code>J</code>: 无条件跳转到<code>Next State</code>.</li>
@@ -1175,7 +1209,7 @@
 <li><code>D</code>: 对于下一个状态, 整个计算机会先看<code>IR</code>中的指令, 根据<code>IR</code>中的指令转移到对应的状态.</li>
 <li><code>S</code>: 如果是<code>S</code>, 会先判断当前的微状态μPC是不是正在busy(例如读取内存, 需要好多个cycles), 如果正忙就spin, 如果不忙就转移到下一个状态, microcode涉及内存操作会用这个.</li>
 </ul>
-<p>例如取指令这个大状态, 把这个状态叫做<code>FETCH0</code>, 那么<code>FETCH0</code>这个大状态可以分为如下几个microcode来完成:</p>
+<h3 id="一些例子"><a href="#一些例子" class="headerlink" title="一些例子"></a>一些例子</h3><h4 id="FETCH指令"><a href="#FETCH指令" class="headerlink" title="FETCH指令"></a>FETCH指令</h4><p>例如取指令这个大状态, 把这个状态叫做<code>FETCH0</code>, 那么<code>FETCH0</code>这个大状态可以分为如下几个microcode来完成:</p>
 <ul>
 <li>首先, 我需要把寄存器的读信号<code>RegEn</code>设置成1, 然后把寄存器的<code>RegSel</code>设置成<code>PC</code>, 表示我要读<code>PC</code>这个寄存器, 这样总线上就有<code>PC</code>的值.<ul>
 <li>之后, 我把<code>ALd</code>设置成1, 下个周期总线上的<code>PC</code>值会被读到ALU的缓冲区寄存器<code>A</code>中, 用来下一步计算<code>PC+4</code>.</li>
@@ -1277,7 +1311,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="描述状态的例题1-实现CMOVM指令"><a href="#描述状态的例题1-实现CMOVM指令" class="headerlink" title="描述状态的例题1-实现CMOVM指令"></a>描述状态的例题1-实现<code>CMOVM</code>指令</h2><p>CMOVM指令的格式为: <code>cmovm rd, rs1, rs2</code>, 语义是如果<code>rs2</code>不是0, 那么<code>Mem[R[rd]] := Mem[R[rs1]]</code>.</p>
+<h4 id="CMOVM指令"><a href="#CMOVM指令" class="headerlink" title="CMOVM指令"></a>CMOVM指令</h4><p>CMOVM指令的格式为: <code>cmovm rd, rs1, rs2</code>, 语义是如果<code>rs2</code>不是0, 那么<code>Mem[R[rd]] := Mem[R[rs1]]</code>.</p>
 <p>这个指令可以分为如下的microcode:</p>
 <ul>
 <li><p><code>A := R[rs2]</code></p>
@@ -1449,7 +1483,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="描述状态的例题2-实现MODULOM指令"><a href="#描述状态的例题2-实现MODULOM指令" class="headerlink" title="描述状态的例题2-实现MODULOM指令"></a>描述状态的例题2-实现<code>MODULOM</code>指令</h2><p><code>MODULOM</code>指令的格式是: <code>modulom rd, rs1, rs2</code>, 语义是<code>Mem[rd] := Mem[rs1] % Mem[rs2]</code></p>
+<h4 id="MODULOM指令"><a href="#MODULOM指令" class="headerlink" title="MODULOM指令"></a>MODULOM指令</h4><p><code>MODULOM</code>指令的格式是: <code>modulom rd, rs1, rs2</code>, 语义是<code>Mem[rd] := Mem[rs1] % Mem[rs2]</code></p>
 <p>其中, <code>modulom</code>算法的实现可以参考:</p>
 <pre><code class="lang-cpp">unsigned int modulom(unsigned int x, unsigned int y) &#123;
   while (x &gt;= y) x -= y;
@@ -1656,7 +1690,7 @@
 </div>
 <p>注意最后不要忘记<code>goto FETCH0</code>.</p>
 <p>注意, 如果μBR是<code>S</code>的话, 那么<code>Next State</code>应该是空白, 而不是<code>*</code>.</p>
-<h2 id="描述状态的例题3-实现MINV指令"><a href="#描述状态的例题3-实现MINV指令" class="headerlink" title="描述状态的例题3-实现MINV指令"></a>描述状态的例题3-实现<code>MINV</code>指令</h2><p><code>MINV</code>指令的格式是: <code>minv rd, rs1, rs2</code>, 它的语义是: 找到一个向量中元素的最小值.</p>
+<h4 id="MINV指令"><a href="#MINV指令" class="headerlink" title="MINV指令"></a>MINV指令</h4><p><code>MINV</code>指令的格式是: <code>minv rd, rs1, rs2</code>, 它的语义是: 找到一个向量中元素的最小值.</p>
 <ul>
 <li><code>rs1</code>指向的是向量起始元素的地址.</li>
 <li><code>rs2</code>指向的是向量终止元素的地址.</li>
