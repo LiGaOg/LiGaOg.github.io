@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>排队论-排队论的一些基础知识和模型 | LiGaOg&#39;s blog</title>
+  <title>排队论-基础知识和常见的排队模型 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="排队论-排队论的一些基础知识和模型 | LiGaOg&#39;s blog">
+  <meta name="description" content="排队论-基础知识和常见的排队模型 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -317,7 +317,7 @@
            href="/2023/11/07/network-queue/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="排队论-排队论的一些基础知识和模型">排队论-排队论的一些基础知识和模型</span>
+            <span class="post-title" title="排队论-基础知识和常见的排队模型">排队论-基础知识和常见的排队模型</span>
             <span class="post-date" title="2023-11-07 11:26:15">2023/11/07</span>
         </a>
         
@@ -1043,7 +1043,7 @@
     <div class="pjax">
         <article id="post-network-queue" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">排队论-排队论的一些基础知识和模型</h1>
+        <h1 class="article-title">排队论-基础知识和常见的排队模型</h1>
     
     <div class="article-meta">
         
@@ -1061,7 +1061,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-16 20:43:37'>2023-11-07 11:26</time>
+            Created At : <time class="date" title='Updated At: 2023-11-16 22:12:44'>2023-11-07 11:26</time>
         
     </div>
     <div class="article-meta">
@@ -1072,7 +1072,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-text">排队系统的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E2%80%99s-Theorem"><span class="toc-text">Little’s Theorem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E2%80%99s-Theorem%E7%9A%84%E6%A6%82%E7%8E%87%E5%BD%A2%E5%BC%8F"><span class="toc-text">Little’s Theorem的概率形式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E2%80%99-Theorem%E8%AF%81%E6%98%8E"><span class="toc-text">Little’ Theorem证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%AF%84%E4%BB%B7%E6%8C%87%E6%A0%87"><span class="toc-text">排队系统的评价指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A9%AC%E5%B0%94%E5%8F%AF%E5%A4%AB%E6%8E%92%E9%98%9F%E6%A8%A1%E5%9E%8B"><span class="toc-text">马尔可夫排队模型</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E9%87%8F%E5%8C%96"><span class="toc-text">排队系统的结构与量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markov%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="toc-text">Markov排队系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86"><span class="toc-text">Little定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="toc-text">Little定理的证明</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1088,73 +1088,45 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="排队系统的组成"><a href="#排队系统的组成" class="headerlink" title="排队系统的组成"></a>排队系统的组成</h2><p>一个排队系统需要考虑以下几个因素:</p>
+        <h2 id="排队系统的结构与量化"><a href="#排队系统的结构与量化" class="headerlink" title="排队系统的结构与量化"></a>排队系统的结构与量化</h2><p>一个排队系统主要由两个部分组成:</p>
 <ul>
-<li>顾客到达的方式:<ul>
-<li>顾客可以是无限的, 也可以是有限的.</li>
-<li>顾客到达的时间间隔的概率分布, 一般服从参数为$\lambda$的负指数分布.</li>
+<li>Server: 用来处理顾客的请求.</li>
+<li>Queue: 如果Server被占用, 那么顾客需要在Queue中进行排队.</li>
 </ul>
+<p>对于一个排队系统来说, 在时刻$t$, 有如下的几个量需要关注:</p>
+<ul>
+<li>$p_n(t)$: 在时刻$t$, 排队系统中有$n$个人的概率.</li>
+<li>$\lambda_n(t)$: 在时刻$t$, 排队系统中有$n$个人的情况下, 单位时间内会来多少份顾客, $\frac{1}{\lambda_n(t)}$就是在时刻$t$, 两个相邻顾客到达的时间间隔.</li>
+<li>$\mu_n(t)$: 在时刻$t$, 排队系统中有$n$个人的情况下, 单位时间内会走多少份顾客, 这个也是Server的处理速率.</li>
+</ul>
+<h2 id="Markov排队系统"><a href="#Markov排队系统" class="headerlink" title="Markov排队系统"></a>Markov排队系统</h2><p>如果当$t$趋于正无穷时, 这个排队系统中的人数会趋于一个定值, 那么这个排队系统就会达到一个稳态, 这时, 这个排队系统就可以使用Markov链进行分析.</p>
+<p>因为当$t \rightarrow +\infin$时, 系统趋于稳态, 因此:</p>
+<ul>
+<li>$\lim\limits_{t \rightarrow +\infin} p_n(t) = p_n$</li>
+<li>$\lim\limits_{t \rightarrow +\infin} \lambda_n(t) = \lambda_n$, 其中, 这个$\lambda_n$并不代表$\lambda$是$n$的函数, 而是表示当排队系统的稳态是$n$的这种情况下的$\lambda$值.</li>
+<li>$\lim\limits_{t \rightarrow +\infin} \mu_n(t) = \mu_n$</li>
+</ul>
+<p>排队系统达到稳态, 更深层次的理解是排队系统的稳态转移达到了一种动态平衡, 一种状态不会随便迁移到另一种状态, 这种现象可以用Markov链建模:</p>
+<p><img src="/2023/11/07/network-queue/image-20231116203203061.png" alt="Markov Chain"></p>
+<p>由于系统趋于稳态, 因此对于任何一个状态$n$而言, 进入系统的顾客等于离开系统的顾客, 因此:</p>
+<ul>
+<li><p>对于状态0 : $p_0\lambda_0 = p_1\mu_1$, 那么就有: $p_1 = \frac{\lambda_0}{\mu_1}p_0$.</p>
+</li>
+<li><p>对于状态1: $p_0\lambda_0 + p_2\mu_2 = p_1\mu_1 + p_1\lambda_1$, 因为$p_0\lambda_0 = p_1\mu_1$, 因此$p_2 = \frac{\lambda_1}{\mu_2}p_1 = \frac{\lambda_1 \lambda_0}{\mu_2 \mu_1}p_0$</p>
 </li>
 </ul>
-<blockquote>
-<p>注意, 下面三种说法是等价的</p>
-</blockquote>
-<ul>
-<li>顾客相继到达的时间间隔服从参数是$\lambda$的负指数分布.</li>
-<li>顾客相继到达的时间间隔服从参数是$\frac{1}{\lambda}$的指数分布.</li>
-<li>单位时间内到达的顾客数服从参数是$\lambda$的泊松分布.</li>
-</ul>
-<ul>
-<li><p>排队的规则:</p>
-<ul>
-<li>等待: 如果顾客发现Server满了, 就在Queue中等待.</li>
-<li>离开: 如果顾客发现Server满了, 就直接离开.</li>
-</ul>
-</li>
-<li><p>Queue的类型: 单列/多列.</p>
-</li>
-<li><p>顾客接受服务的类型:</p>
-<ul>
-<li>等待式.</li>
-<li>抢占式.</li>
-</ul>
-</li>
-<li>Server的类型: 一个Server/多个Server.</li>
-</ul>
-<p>一个排队系统可以表示为: A/B/C/D/E/F</p>
-<ul>
-<li>A: 顾客到达的时间间隔分布.</li>
-<li>B: Server处理时间的分布.</li>
-<li>C: Server的数目.</li>
-<li>D: 排队系统中最多有多少个顾客, 一般没有限制, 也就是无限.</li>
-<li>E: 顾客源的数目, 可以是有限个, 可以是无限, 一般是无限.</li>
-<li>F: 服务规则, 一般是先到先服务(FCFS).</li>
-</ul>
-<h2 id="Little’s-Theorem"><a href="#Little’s-Theorem" class="headerlink" title="Little’s Theorem"></a>Little’s Theorem</h2><p>在一个排队系统中, 我们真正关心的有三个量:</p>
-<ul>
-<li>在某个时刻$t$, 我的排队系统中有多少人, 假设这个量是$N(t)$.</li>
-<li>在某个时刻$t$, 有多少人来过我的系统, 假设这个量是$\lambda (t)$.</li>
-<li>在某个时刻$t$, 所有来过我的系统中排队的人的平均等待时间$T_t$.</li>
-</ul>
-<p>如果$N(t)$使用$[0, t]$内的平均值来估计, 那么表达式为:</p>
+<p>那么对于任意的状态$n$, 就有:</p>
 <script type="math/tex; mode=display">
-N_t = \frac{1}{t}\int_{0}^{t}N(\tau)d\tau</script><p>同样, 假设$\alpha(t)$是在$[0, t]$内来我的排队系统中排队的总人数, 那么$\lambda_t$的表达式是:</p>
-<script type="math/tex; mode=display">
-\lambda_t = \frac{\alpha(t)}{t}</script><p>每个顾客的平均等待时间就是:</p>
-<script type="math/tex; mode=display">
-T_t = \frac{\sum_{i=1}^{\alpha(t)}T_i}{\alpha(t)}</script><p>其中, 这三个值随着$t \rightarrow +\infin$, 可能会趋于一个稳态:</p>
-<script type="math/tex; mode=display">
-N = \lim_{t\rightarrow +\infin} N_t \\
-\lambda = \lim_{t\rightarrow +\infin} \lambda_t \\
-T = \lim_{t\rightarrow +\infin}T_t \\</script><p>Little’s Theorem的内容就是:</p>
-<script type="math/tex; mode=display">
-N = \lambda T</script><p>也就是说, 一个排队系统, 它在某个时刻$t$的顾客数$N$, 和在这个时刻的来客量, 以及这个时刻每个顾客的平均等待时间有关.</p>
-<h2 id="Little’s-Theorem的概率形式"><a href="#Little’s-Theorem的概率形式" class="headerlink" title="Little’s Theorem的概率形式"></a>Little’s Theorem的概率形式</h2><p>定义$p_n(t)$: 在时刻$t$, 这个排队系统中有$n$个人的概率, 当时间$t$趋于正无穷时, 排队系统有$n$个人的概率会趋于稳定, 也就是说:</p>
-<p>$\lim\limits_{t \rightarrow +\infin} p_n(t) = p_n$.</p>
-<p>在时刻$t$, 排队系统中的平均人数可以表示为: $N(t) = \sum_{n=0}^{+\infin}np_n(t)$, 当$t \rightarrow +\infin$时, $\lim\limits_{t \rightarrow +\infin} N(t) = N = \sum_{n=0}^{+\infin}np_n$.</p>
-<p>对于第$i$位顾客的平均等待时间$T_i$, 当$i \rightarrow +\infin$ (当$i \rightarrow \infin$时, $t \rightarrow +\infin$)时, 会趋于稳定, 因此$\lim\limits_{i \rightarrow +\infin}T_i = T$.</p>
-<p>对于$\lambda$, 定义$\alpha(t)$为在$[0, t]$内的来客总量, 那么, $\lambda = \lim\limits_{t \rightarrow \infin} \frac{\alpha(t)}{t}$.</p>
-<h2 id="Little’-Theorem证明"><a href="#Little’-Theorem证明" class="headerlink" title="Little’ Theorem证明"></a>Little’ Theorem证明</h2><p>观察如下图:</p>
+p_n = \frac{\lambda_{n-1}\lambda_{n-2}...\lambda_0}{\mu_n \mu_{n-1}...\mu_1}p_0</script><p>因此, 任意一个$p_i$都可以用$p_0$进行表示.</p>
+<p>又由于: $p_0 + p_1 + … + p_n = 1$, 可以求出$p_0$.</p>
+<p>求出$p_0$之后, 任意一个$p_i$就可以表示为$\lambda_i$与$\mu_i$的表达式.</p>
+<p>因此, 如果一个排队系统可以趋于稳态, 那么根据Markov链的性质, 系统中有$n$个顾客的概率$p_n$就取决于系统的来客率$\lambda_n$以及Server的处理速度$\mu_n$.</p>
+<h2 id="Little定理"><a href="#Little定理" class="headerlink" title="Little定理"></a>Little定理</h2><p>对于一个达到稳态的排队系统, 假设最终排队系统中的人数是$n$, 那么有: $n = \lambda_nT$.</p>
+<ul>
+<li>其中$T$表示每一个顾客的平均等待时间.</li>
+</ul>
+<p>因此, 对于一个达到稳态的排队系统, 借助Little定理, 我们还可以分析出每一个顾客的平均等待时间.</p>
+<h2 id="Little定理的证明"><a href="#Little定理的证明" class="headerlink" title="Little定理的证明"></a>Little定理的证明</h2><p>观察如下图:</p>
 <p><img src="/2023/11/07/network-queue/image-20231116153625915.png" alt="Proof of Little&#39;s Theorem"></p>
 <p>假设我的排队系统在时刻0中, 总人数是0, 也就是$N(0) = 0$.</p>
 <p>在这个图中:</p>
@@ -1165,48 +1137,7 @@ N = \lambda T</script><p>也就是说, 一个排队系统, 它在某个时刻$t$
 <p>那么在时刻$t$, 我的排队系统中的总人数就是$N(t) = \alpha(t) - \beta(t)$.</p>
 <p>中间部分的阴影面积可以表示为: $\int_{0}^{t}N(\tau)d\tau$, 也可以表示为$\sum_{i=1}^{\alpha(t)}T_i$, 其中$T_i$表示顾客$i$的平均等待时间.</p>
 <p>那么就有: $\frac{1}{t}\int_{0}^{t}N(\tau)d\tau = \frac{1}{t}\sum_{i=1}^{\alpha(t)}T_i = \frac{\alpha(t)}{t}\frac{\sum_{i=1}^{\alpha(t)}T_i}{\alpha(t)}$.</p>
-<p>两边同时取$\lim_{t\rightarrow +\infin}$, 就可以得到Little’s Theorem.</p>
-<h2 id="排队系统的评价指标"><a href="#排队系统的评价指标" class="headerlink" title="排队系统的评价指标"></a>排队系统的评价指标</h2><p>排队系统的评价指标有五个:</p>
-<ul>
-<li>$p_n$: 系统中有$n$个顾客的概率.</li>
-<li>$N$: 系统的平均顾客数.</li>
-<li>$N_q$: 系统中排队等待的平均顾客数.</li>
-<li>$T$: 顾客平均停留时间.</li>
-<li>$T_q$: 顾客平均排队时间.</li>
-</ul>
-<p>设定如下参数:</p>
-<ul>
-<li>$\lambda$: 单位时间内顾客的平均到达率.</li>
-<li>$\mu$: 单位时间内服务台的平均服务率.</li>
-<li>$\frac{1}{\lambda}$: 相邻两个顾客到达的平均间隔时间.</li>
-<li>$\frac{1}{\mu}$: Server对每个顾客的平均服务时间.</li>
-<li>$\rho = \frac{\lambda}{\mu}$: Server的繁忙度.</li>
-</ul>
-<p>那么根据Little定理, 有如下等式成立:</p>
-<ul>
-<li>$N = \lambda T$</li>
-<li>$N_q = \lambda T_q$</li>
-<li>$T = T_q + \frac{1}{\mu}$</li>
-<li>$N = N_q + \rho$</li>
-</ul>
-<h2 id="马尔可夫排队模型"><a href="#马尔可夫排队模型" class="headerlink" title="马尔可夫排队模型"></a>马尔可夫排队模型</h2><p>假设$N(t)$为一个排队系统在时刻$t$的总人数, 那么马尔可夫排队模型满足:</p>
-<ul>
-<li>假设$N(t) = n$, 从$t$开始到下一个顾客来的时间间隔服从参数是$\lambda_n$的负指数分布.</li>
-<li>假设$N(t) = n$, 从$t$开始到上一个顾客走的时间间隔服从参数是$\mu_n$的负指数分布.</li>
-<li>同一个时刻, 只有一个顾客到达/离开.</li>
-</ul>
-<p>当$t \rightarrow \infin$时, 这个排队系统会趋于平稳状态, 也就是说, 排队系统中有$n$个顾客的概率是一个定值$p_n$.</p>
-<p>当排队系统趋于稳定时, 对于任意一个状态$n$, 进入这个系统的顾客总量应该是等于离开这个系统的顾客总量.</p>
-<p>状态转移图如下所示:</p>
-<p><img src="/2023/11/07/network-queue/image-20231116203203061.png" alt="Markov Chain"></p>
-<p>那么</p>
-<p>对于状态0 : $p_0\lambda_0 = p_1\mu_1$, 那么就有: $p_1 = \frac{\lambda_0}{\mu_1}p_0$.</p>
-<p>对于状态1: $p_0\lambda_0 + p_2\mu_2 = p_1\mu_1 + p_1\lambda_1$, 因为$p_0\lambda_0 = p_1\mu_1$, 因此$p_2 = \frac{\lambda_1}{\mu_2}p_1 = \frac{\lambda_1 \lambda_0}{\mu_2 \mu_1}p_0$</p>
-<p>那么对于任意的状态$n$, 就有:</p>
-<script type="math/tex; mode=display">
-p_n = \frac{\lambda_{n-1}\lambda_{n-2}...\lambda_0}{\mu_n \mu_{n-1}...\mu_1}p_0</script><p>因此, 任意一个$p_i$都可以用$p_0$进行表示.</p>
-<p>又由于: $p_0 + p_1 + … + p_n = 1$, 可以求出$p_0$.</p>
-<p>求出$p_0$之后, 任意一个$p_i$就可以表示为$\lambda_i$与$\mu_i$的表达式.</p>
+<p>两边同时取$\lim\limits_{t\rightarrow +\infin}$, 就可以得到Little定理.</p>
 
       
        
