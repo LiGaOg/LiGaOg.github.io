@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-利用栈求解表达式的值 | LiGaOg&#39;s blog</title>
+  <title>概率论-基础知识以及常见的概率分布 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-利用栈求解表达式的值 | LiGaOg&#39;s blog">
+  <meta name="description" content="概率论-基础知识以及常见的概率分布 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -1041,9 +1041,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-stack-expression" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-probability_type" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-利用栈求解表达式的值</h1>
+        <h1 class="article-title">概率论-基础知识以及常见的概率分布</h1>
     
     <div class="article-meta">
         
@@ -1053,7 +1053,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="数学">数学</a>
             
         </span>
         
@@ -1061,7 +1061,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-03 19:27:04'>2023-10-03 19:27</time>
+            Created At : <time class="date" title='Updated At: 2023-11-16 16:43:11'>2023-11-16 16:17</time>
         
     </div>
     <div class="article-meta">
@@ -1072,7 +1072,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A8%E8%BE%BE%E5%BC%8F%E6%B1%82%E5%80%BC"><span class="toc-text">表达式求值</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%87%BD%E6%95%B0%E5%92%8C%E5%AF%86%E5%BA%A6%E5%87%BD%E6%95%B0"><span class="toc-text">分布函数和密度函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A6%BB%E6%95%A3%E5%9E%8B%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-text">离散型随机变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B3%8A%E6%9D%BE%E5%88%86%E5%B8%83"><span class="toc-text">泊松分布</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E7%BB%AD%E6%80%A7%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F"><span class="toc-text">连续性随机变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%88%86%E5%B8%83"><span class="toc-text">指数分布</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1088,83 +1088,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="表达式求值"><a href="#表达式求值" class="headerlink" title="表达式求值"></a>表达式求值</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/3305/">https://www.acwing.com/problem/content/description/3305/</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/456/">https://www.acwing.com/problem/content/description/456/</a></p>
-</blockquote>
-<p>直接背模板:</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-#include &lt;unordered_map&gt;
-#include &lt;stack&gt;
-
-using namespace std;
-
-/* 将运算符映射到优先级上 */
-unordered_map&lt;char, int&gt; pr = &#123;
-    &#123; &#39;+&#39;, 1 &#125;,
-    &#123; &#39;-&#39;, 1 &#125;,
-    &#123; &#39;*&#39;, 2 &#125;,
-    &#123; &#39;/&#39;, 2 &#125;
-&#125;;
-
-/* 存储运算数的栈 */
-stack&lt;int&gt; nums;
-/* 存储运算符的栈 */
-stack&lt;char&gt; op;
-
-/* 表达式 */
-string str;
-
-void eval()
-&#123;
-    int b = nums.top(); nums.pop();
-    int a = nums.top(); nums.pop();
-
-    char c = op.top(); op.pop();
-
-    if (c == &#39;+&#39;) nums.push(a + b);
-    else if (c == &#39;-&#39;) nums.push(a - b);
-    else if (c == &#39;*&#39;) nums.push(a * b);
-    else nums.push(a / b);
-&#125;
-
-int main()
-&#123;
-    cin &gt;&gt; str;
-
-    for (int i = 0; i &lt; str.size(); i ++)
-    &#123;
-        /* 如果是左括号, 加入运算符的栈 */
-        if (str[i] == &#39;(&#39;) op.push(str[i]);
-        /* 如果是右括号, 那么需要eval括号内表达式的值 */
-        else if (str[i] == &#39;)&#39;)
-        &#123;
-            while (op.size() &amp;&amp; op.top() != &#39;(&#39;) eval();
-            op.pop();
-        &#125;
-        /* 如果是数位, 那么需要找到整个数, 然后放到nums栈中 */
-        else if (isdigit(str[i]))
-        &#123;
-            int x = 0, j = i;
-              /* 这个j ++不要忘记 */
-            while (j &lt; str.size() &amp;&amp; isdigit(str[j])) x = 10 * x + str[j ++] - &#39;0&#39;;
-            i = j - 1;
-            nums.push(x);
-        &#125;
-        /* 如果是运算符, 需要先eval优先级高的运算符, 然后放到栈中 */
-        else
-        &#123;
-            while (op.size() &amp;&amp; pr[op.top()] &gt;= pr[str[i]]) eval();
-            op.push(str[i]);
-        &#125;
-    &#125;
-    while (op.size()) eval();
-
-    cout &lt;&lt; nums.top() &lt;&lt; endl;
-    return 0;
-&#125;
-</code></pre>
-
+        <h2 id="分布函数和密度函数"><a href="#分布函数和密度函数" class="headerlink" title="分布函数和密度函数"></a>分布函数和密度函数</h2><p>一个随机变量$X$的分布函数是: $F(x) = P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:</p>
+<ul>
+<li>$x \in R$.</li>
+<li>$F(x) \in [0, 1]$.</li>
+<li>$x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$.</li>
+<li>$\lim\limits_{x \rightarrow+\infin} F(x) = 1$.</li>
+<li>$\lim\limits_{x \rightarrow-\infin} F(x) = 0$.</li>
+</ul>
+<p>假设密度函数是$f(x)$, 那么</p>
+<ul>
+<li>$F(x) = \int_{-\infin}^{x}f(x)dx$.</li>
+<li>$f(x) = F’(x)$.</li>
+</ul>
+<h2 id="离散型随机变量"><a href="#离散型随机变量" class="headerlink" title="离散型随机变量"></a>离散型随机变量</h2><h3 id="泊松分布"><a href="#泊松分布" class="headerlink" title="泊松分布"></a>泊松分布</h3><p>泊松分布有一个大于0的参数$\lambda &gt; 0$, 如果随机变量$X$服从泊松分布, 那么$X \sim P(\lambda)$.</p>
+<p>泊松分布的分布列是: $P\{X = k\} = \frac{\lambda^k}{k!}e^{-\lambda}, k = 0, 1, 2, …$</p>
+<h2 id="连续性随机变量"><a href="#连续性随机变量" class="headerlink" title="连续性随机变量"></a>连续性随机变量</h2><h3 id="指数分布"><a href="#指数分布" class="headerlink" title="指数分布"></a>指数分布</h3><p>指数分布有一个大于0的参数$\lambda &gt; 0$, 如果随机变量$X$服从指数分布, 那么$X \sim Exp(\lambda)$.</p>
+<p>指数分布的密度函数是:</p>
+<script type="math/tex; mode=display">
+f(x) = \begin{cases} 
+    \lambda e^{-\lambda} & x > 0\\
+    0 & x \leqslant 0
+\end{cases}</script>
       
        
     </div>

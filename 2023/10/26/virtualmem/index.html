@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(83)</small>
+                <small>(84)</small>
             
         </div>
     </li>
@@ -131,7 +131,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(18)</small>
+            <small>(17)</small>
         </div>
         
     </li>
@@ -147,6 +147,21 @@
             
             其他
             <small>(15)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数学">
+            
+            数学
+            <small>(2)</small>
         </div>
         
     </li>
@@ -201,7 +216,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="83">
+<input type="hidden" id="yelog_site_posts_number" value="84">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -253,6 +268,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 数学 "
+           href="/2023/11/16/probability_type/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="概率论-基础知识以及常见的概率分布">概率论-基础知识以及常见的概率分布</span>
+            <span class="post-date" title="2023-11-16 16:17:37">2023/11/16</span>
+        </a>
+        
+        
         <a  class="All 工程 "
            href="/2023/11/13/exception/"
            data-tag=""
@@ -289,11 +313,11 @@
         </a>
         
         
-        <a  class="All 工程 "
+        <a  class="All 数学 "
            href="/2023/11/07/network-queue/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="计算机网络-排队论模型">计算机网络-排队论模型</span>
+            <span class="post-title" title="排队论-排队论的一些基础知识和模型">排队论-排队论的一些基础知识和模型</span>
             <span class="post-date" title="2023-11-07 11:26:15">2023/11/07</span>
         </a>
         
@@ -365,7 +389,7 @@
            href="/2023/10/24/pipeline/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-处理器设计准则以及对流水线">CPU-处理器设计准则以及对流水线</span>
+            <span class="post-title" title="CPU-处理器设计准则以及流水线">CPU-处理器设计准则以及流水线</span>
             <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
         </a>
         
@@ -1037,7 +1061,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-13 10:05:39'>2023-10-26 10:32</time>
+            Created At : <time class="date" title='Updated At: 2023-11-15 09:49:20'>2023-10-26 10:32</time>
         
     </div>
     <div class="article-meta">
@@ -1069,7 +1093,7 @@
 <p>对于物理地址空间, 一般划分为若干个Frame, 称为Physical Frame.</p>
 <p>对于虚拟地址空间, 一般划分为若干个Page, 称为Virtual Page.</p>
 <p>Physical Frame的大小和Virtual Page的大小相等, 典型值为4KB.</p>
-<p>对于一个物理地址, 它可以被划分为两部分:</p>
+<p>对于一个虚拟地址, 它可以被划分为两部分:</p>
 <ul>
 <li>VPN (Virtual Page Number): 这个字节在第几个Virtual Page.</li>
 <li>Offset: 这个字节在这个Virtual Page的偏移量.</li>
@@ -1158,7 +1182,7 @@
 <h2 id="内存保护"><a href="#内存保护" class="headerlink" title="内存保护"></a>内存保护</h2><p>在系统中运行着不同的进程, 这些进程会运行在不同的权限(privilege mode). </p>
 <ul>
 <li>用户进程不能随便修改操作系统的内容, 但是可以读取操作系统的一些内容, 例如系统调用等.</li>
-<li>物理内存可以专门划分一块特权区域供OS使用, OS可以直接使用物理地址寻址(不用页表), 这个区域不允许用户进程使用.</li>
+<li>物理内存可以专门划分一块特权区域供OS使用, OS可以直接使用物理地址寻址这个区域(不用页表), 这个区域不允许用户进程使用.</li>
 </ul>
 <p>因此, 不同进程对于相同的Physical Frame来说, 访问权限是不一样的.</p>
 <p>这种功能一般在硬件上进行实现, PTE会预留若干比特, 专门存储Physical Frame的访问权限.</p>
@@ -1219,7 +1243,7 @@
 </ul>
 </li>
 <li>如何选择?<ul>
-<li>当CPU流水线深度不深时, 可以采用软件实现.</li>
+<li>当CPU流水线深度不深时, 可以采用软件实现, 因为当TLB Miss时, 从流水线中被flush的指令也不会很多.</li>
 </ul>
 </li>
 </ul>
@@ -1229,14 +1253,18 @@
 </blockquote>
 <p>当读内存时, 需要把对应的PTE的use位设置成1.</p>
 <p>当写内存时, 需要把对应的PTE的use, dirty位设置成1.</p>
-<p>但是, TLB如果采用Write Back, 这些位会先写入TLB中, 当TLB中的某个PTE被踢出去后, 数据才会同步到页表.</p>
+<p>但是, 如果TLB采用了Write Back, 那么这些操作会先被同步到TLB中.</p>
+<ul>
+<li>将dirty bit设置成1表示这个页的内容被改变过了, 但是这个dirty bit不会马上同步到PTE中, 而是先写入TLB中.</li>
+</ul>
+<p>当TLB中的某个PTE被踢出去后, 数据才会同步到页表的PTE中.</p>
 <blockquote>
 <p>TLB使用Write Back写入时的问题?</p>
 </blockquote>
 <p>在页表中, 所有PTE的use, dirty位的信息可能过时, 最新信息可能在TLB中.</p>
 <p>但是发生Page Fault时, OS需要利用这些信息去选择Physical Frame进行置换.</p>
 <p>因此, OS需要先将TLB的信息同步到Physical Frame, 然后在进行页面置换, 同步的过程需要大量访问物理内存, 效率低.</p>
-<p>因此, 可以有这个假设: ==所有被TLB缓存的PTE对应的Physical Frame都不允许被置换==. OS可以想办法知道哪些PTE是存储在TLB中的.</p>
+<p>因此, 可以有这个假设: 所有被TLB缓存的PTE对应的Physical Frame都不允许被置换. OS可以想办法知道哪些PTE是存储在TLB中的.</p>
 <blockquote>
 <p>TLB写入的另一个问题</p>
 </blockquote>
@@ -1300,7 +1328,7 @@
 <p>之后, PFN中剩余的比特当作Tag, 用来判断Cache是否命中.</p>
 <p>如果两个虚拟地址映射到了同一个物理地址, 那么:</p>
 <ul>
-<li>他们Offset相同, 那么他们对应的Cache Line一定在这$2^n$个Cache Line中.</li>
+<li>他们Offset相同, 那么他们对应的Cache Line一定是这$2^n$个Cache Line中的其中一个.</li>
 <li>他们物理地址相同, 那么最终多路选择器只会选择出来一个Cache Line, 因此他们就映射到了同一个Cache Line.</li>
 </ul>
 <p>设计缺点:</p>
@@ -1331,7 +1359,7 @@
 </ul>
 <p>PID由OS进行管理:</p>
 <ul>
-<li>当进程总数大于PID能表示的范围时, OS需要选择一个进程, 将它的TLB, 以及PTR清空, 并且将这个PID分配给新的进程.</li>
+<li>当进程总数大于PID能表示的范围时, OS需要选择一个进程, 将它的TLB, 以及PTR清空(页表的内容还在, 因为这个进程没被杀死), 并且将这个PID分配给新的进程.</li>
 <li>OS还需要保留原来进程的页表PTR, 当恢复进程时需要恢复PTR.</li>
 </ul>
 <h3 id="对Cache的控制"><a href="#对Cache的控制" class="headerlink" title="对Cache的控制"></a>对Cache的控制</h3><p>有下面几种情况需要对Cache进行控制:</p>
@@ -1362,7 +1390,7 @@
 <ul>
 <li>访问Cache的过程和TLB/MMU进行地址转换的过程可以同时进行.</li>
 </ul>
-<p>VIPT可以分为三种情况: 分类依据是页的大小和Cache大小的关系.</p>
+<p>VIPT可以分为三种情况: 分类依据是页的大小和Cache大小的关系, 这两者的关系决定了VIPT Cache是否会有重名问题.</p>
 <ul>
 <li><p>如果页大小大于等于Cache大小, 那么索引Cache的位数就小于虚拟地址中Offset的位数, 因为虚拟地址和物理地址的Offset是相同的, 因此这种情况本质上就是使用物理地址索引Cache.</p>
 <ul>
@@ -1386,12 +1414,15 @@
 <li>如果在L2 Cache中也出现了Cache Miss, 那么写入L2 Cache时, 会将虚拟地址中多出来的那$n$位也写入L2 Cache对应的Cache Line.</li>
 <li>如果在L2 Cache中Hit了, 那么L2 Cache会检查那多存储的$n$位:<ul>
 <li>如果这$n$位和我这个虚拟地址的$n$位不相等, 那么就说明L1 Cache中存在一个Cache Line, 对应的虚拟地址和我重名, 此时需要:<ul>
-<li>根据这$n$位, 以及虚拟地址的Offset从L1 Cache中找到对应的Cache Line.</li>
-<li>如果这个Cache Line是dirty的, 那么需要将它的修改同步到L2 Cache.</li>
+<li>根据L2 Cache中存的这$n$位, 以及虚拟地址的Offset从L1 Cache中找到对应的Cache Line.<ul>
+<li>直接把这两部分拼起来索引L1 Cache就行.</li>
+</ul>
+</li>
+<li>如果在L1 Cache中找到的这个Cache Line是dirty的, 那么需要先将它的修改同步到L2 Cache.</li>
 <li>然后将这个Cache Line置为无效.</li>
 </ul>
 </li>
-<li>然后, 将L2 Cache对应的Cache Line搬到L1 Cache中的对应位置.</li>
+<li>然后, 将L2 Cache对应的Cache Line再搬到刚才找到的, L1 Cache中的对应位置.</li>
 </ul>
 </li>
 </ul>

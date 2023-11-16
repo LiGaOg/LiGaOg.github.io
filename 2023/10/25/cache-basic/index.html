@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(83)</small>
+                <small>(84)</small>
             
         </div>
     </li>
@@ -131,7 +131,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(18)</small>
+            <small>(17)</small>
         </div>
         
     </li>
@@ -147,6 +147,21 @@
             
             其他
             <small>(15)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数学">
+            
+            数学
+            <small>(2)</small>
         </div>
         
     </li>
@@ -201,7 +216,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="83">
+<input type="hidden" id="yelog_site_posts_number" value="84">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -253,6 +268,15 @@
     <nav id="title-list-nav">
         
         
+        <a  class="All 数学 "
+           href="/2023/11/16/probability_type/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="概率论-基础知识以及常见的概率分布">概率论-基础知识以及常见的概率分布</span>
+            <span class="post-date" title="2023-11-16 16:17:37">2023/11/16</span>
+        </a>
+        
+        
         <a  class="All 工程 "
            href="/2023/11/13/exception/"
            data-tag=""
@@ -289,11 +313,11 @@
         </a>
         
         
-        <a  class="All 工程 "
+        <a  class="All 数学 "
            href="/2023/11/07/network-queue/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="计算机网络-排队论模型">计算机网络-排队论模型</span>
+            <span class="post-title" title="排队论-排队论的一些基础知识和模型">排队论-排队论的一些基础知识和模型</span>
             <span class="post-date" title="2023-11-07 11:26:15">2023/11/07</span>
         </a>
         
@@ -365,7 +389,7 @@
            href="/2023/10/24/pipeline/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-处理器设计准则以及对流水线">CPU-处理器设计准则以及对流水线</span>
+            <span class="post-title" title="CPU-处理器设计准则以及流水线">CPU-处理器设计准则以及流水线</span>
             <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
         </a>
         
@@ -1037,7 +1061,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-13 09:45:32'>2023-10-25 08:46</time>
+            Created At : <time class="date" title='Updated At: 2023-11-15 08:55:20'>2023-10-25 08:46</time>
         
     </div>
     <div class="article-meta">
@@ -1075,12 +1099,13 @@
 <li>Tag: 用来判断Cache是否命中.</li>
 <li>Cache Data: 存储的数据.</li>
 </ul>
+<p>这一个元素就是一个Cache Line.</p>
 <blockquote>
 <p>那么如何根据一个地址(这里先当作物理地址)定位Cache中的元素呢?</p>
 </blockquote>
 <ul>
-<li>第一步: 根据Cache Data, 计算Offset所占用的位数.<ul>
-<li>例如Cache Data的大小是$A$个字节, 那么Offset占用的位数就是$log_2(A)$.</li>
+<li>第一步: 根据Cache Line数据部分的大小, 计算Offset所占用的位数.<ul>
+<li>例如Cache Line数据部分的大小是$A$个字节, 那么Offset占用的位数就是$log_2(A)$.</li>
 </ul>
 </li>
 <li><p>第二步: 根据Set的个数, 得到地址中的Index位.</p>
@@ -1099,7 +1124,7 @@
 <li>Fully Associative Cache: Set的个数是1.</li>
 </ul>
 <h2 id="访问Cache的设计"><a href="#访问Cache的设计" class="headerlink" title="访问Cache的设计"></a>访问Cache的设计</h2><h3 id="Tag与Data并行访问"><a href="#Tag与Data并行访问" class="headerlink" title="Tag与Data并行访问"></a>Tag与Data并行访问</h3><p>工作原理如下:</p>
-<p><img src="/2023/10/25/cache-basic/cacheread.png" alt="cacheread"></p>
+<p><img src="/2023/10/25/cache-basic/cacheread.png" alt="并行读取Tag和Data"></p>
 <p>其中Tag的读取和Data的读取是并行的, 根据Tag比较的结果, 用多路选择器选择对应的Data, 然后根据Offset定位最后的数据输出.</p>
 <p>设计优点:</p>
 <ul>
@@ -1164,7 +1189,7 @@
 <li>第三阶段: 读取tag, 判断Cache Hit/Miss.</li>
 <li>第四阶段: 根据Cache Hit/Miss的结果以及Cache写入策略决定下面的操作.</li>
 </ul>
-<h2 id="Cache替换算法"><a href="#Cache替换算法" class="headerlink" title="Cache替换算法"></a>Cache替换算法</h2><p>当读取/写入D-Cache时, 如果发生了Cache Miss, 并且Cache的某个Set已经放满了, 就需要从这个Set中找一个Cache Line驱逐出去, 选哪个Cache Line驱逐就是Cache的替换算法.</p>
+<h2 id="Cache替换算法"><a href="#Cache替换算法" class="headerlink" title="Cache替换算法"></a>Cache替换算法</h2><p>当读取/写入D-Cache时, 如果发生了Cache Miss, 就需要从下级存储器把对应的Cache Line放到Set中, 但是如果Cache的某个Set已经放满了, 就需要从这个Set中找一个Cache Line驱逐出去, 选哪个Cache Line驱逐就是Cache的替换算法.</p>
 <h3 id="LRU-Pseudo-LRU"><a href="#LRU-Pseudo-LRU" class="headerlink" title="LRU/Pseudo-LRU"></a>LRU/Pseudo-LRU</h3><p>LRU算法就是选择最近没被使用过的一个Cache Line进行驱逐. 但是, 当Cache中Way的个数增多后, 实现LRU的代价就比较高, 因此, 一般采用伪LRU进行实现.</p>
 <p>假设一个Cache Set中有$N$个Way, 那么用$log_2(N)$个比特存储LRU信息.</p>
 <ul>
@@ -1194,7 +1219,7 @@
 </li>
 <li><p>可以分为L1 I-Cache和L1 D-Cache.</p>
 </li>
-<li>一个CPU有一个L1 Cache.</li>
+<li>一个CPU有一个L1 Cache, 多个CPU就有多个L1 Cache.</li>
 <li>一般采用Write Through和Non-Write Allocate.</li>
 </ul>
 <h3 id="L2-Cache"><a href="#L2-Cache" class="headerlink" title="L2 Cache"></a>L2 Cache</h3><ul>
@@ -1246,7 +1271,7 @@
 </ul>
 <p>此时, 由于是串行, 再加上访问下级存储器延时较高, 性能就会受影响.</p>
 <p>此时, 可以加一个Write Buffer, 把Dirty的Cache Line写入Write Buffer, 和把Cache Line取出来放到D Cache这两个过程可以并行.</p>
-<p>对于Write Through的D Cache, 直接就先写入Write Buffer, 可以提高很多性能.</p>
+<p>对于Write Through的D Cache, 直接就先写入Write Buffer, 可以提高很多性能, 因此, 对于Write Through的Cache, Write Buffer是很必要的.</p>
 <p>当读取Cache发生Cache Miss时, 注意还要检查Write Buffer.</p>
 <h3 id="Filter-Cache"><a href="#Filter-Cache" class="headerlink" title="Filter Cache"></a>Filter Cache</h3><p>Filter Cache的目的是减少偶然使用的数据, 提高Cache的利用率.</p>
 <ul>
@@ -1279,6 +1304,7 @@
 <p>为什么需要Prefetch Buffer?</p>
 </blockquote>
 <p>如果没有Prefetch Buffer, 那么分支预测如果错误, 会导致没用的数据读入I-Cache, 降低了I-Cache的利用率.</p>
+<p>如果有了Prefetch Buffer, 那么直接把Prefetch Buffer中的数据置为无效即可.</p>
 <h4 id="Software-Prefetching"><a href="#Software-Prefetching" class="headerlink" title="Software Prefetching"></a>Software Prefetching</h4><p>Software Prefetching一般针对D-Cache, 在程序的编译阶段, 编译器会对程序进行静态分析, 来确定哪些数据需要进行预取, 编译器可以插入预取指令(prefetching instruction).</p>
 <p>如果CPU支持虚拟内存, 那么预取指令可能会导致异常 (例如Page Fault), 此时有两种处理方法:</p>
 <ul>
