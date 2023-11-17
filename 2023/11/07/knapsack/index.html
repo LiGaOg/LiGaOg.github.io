@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-背包问题的模板总结 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
+<meta property="og:type" content="article">
+<meta property="og:title" content="概率论-基础知识以及常见的概率分布">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/11/16/probability_type/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-11-16T08:17:37.336Z">
+<meta property="article:modified_time" content="2023-11-17T13:58:41.159Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(84)</small>
+                <small>(83)</small>
             
         </div>
     </li>
@@ -131,7 +131,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(17)</small>
+            <small>(16)</small>
         </div>
         
     </li>
@@ -216,7 +216,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="84">
+<input type="hidden" id="yelog_site_posts_number" value="83">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -364,15 +364,6 @@
            data-author="" >
             <span class="post-title" title="CPU-虚拟内存的基础知识和设计">CPU-虚拟内存的基础知识和设计</span>
             <span class="post-date" title="2023-10-26 10:32:12">2023/10/26</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/10/26/hardware-metrics/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="CPU-衡量处理器性能的指标">CPU-衡量处理器性能的指标</span>
-            <span class="post-date" title="2023-10-26 10:16:41">2023/10/26</span>
         </a>
         
         
@@ -1061,7 +1052,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-08 10:47:39'>2023-11-07 10:47</time>
+            Created At : <time class="date" title='Updated At: 2023-11-17 14:16:53'>2023-11-07 10:47</time>
         
     </div>
     <div class="article-meta">
@@ -1072,7 +1063,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">01背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">完全背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">多重背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E5%81%9A%E6%B3%95"><span class="toc-text">朴素做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%98%E5%8C%96"><span class="toc-text">二进制优化</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">01背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">完全背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">多重背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%B4%E7%B4%A0%E5%81%9A%E6%B3%95"><span class="toc-text">朴素做法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%98%E5%8C%96"><span class="toc-text">二进制优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-text">分组背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A3%85%E7%AE%B1%E9%97%AE%E9%A2%98"><span class="toc-text">装箱问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%A0%E7%89%A9%E5%B0%8F%E7%B2%BE%E7%81%B5%E4%B9%8B%E6%94%B6%E6%9C%8D"><span class="toc-text">宠物小精灵之收服</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%BB%84%E5%90%88"><span class="toc-text">数字组合</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1158,6 +1149,10 @@ int main()
     return 0;
 &#125;
 </code></pre>
+<p>同类题:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/425/">https://www.acwing.com/problem/content/425/</a></li>
+</ul>
 <h2 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h2><blockquote>
 <p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/3/">https://www.acwing.com/problem/content/3/</a></p>
 </blockquote>
@@ -1278,6 +1273,165 @@ int main()
             for (int j = m; j &gt;= s * v; j --)
                 f[j] = max(f[j], f[j - s * v] + s * w);
         &#125;
+    &#125;
+
+    cout &lt;&lt; f[m] &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="分组背包问题"><a href="#分组背包问题" class="headerlink" title="分组背包问题"></a>分组背包问题</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/description/9/">https://www.acwing.com/problem/content/description/9/</a></p>
+</blockquote>
+<p>在分组背包问题中, 不再有$n$个物品, 而是有$n$组物品, 每组物品中只能选择一个物品.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 110;
+
+int n, m;
+int v[N][N], w[N][N], s[N];
+int f[N];
+
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        cin &gt;&gt; s[i];
+        for (int j = 0; j &lt; s[i]; j ++)
+            cin &gt;&gt; v[i][j] &gt;&gt; w[i][j];
+    &#125;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        for (int j = m; j &gt;= 0; j --)
+        &#123;
+            for (int k = 0; k &lt; s[i]; k ++)
+            &#123;
+                if (j &gt;= v[i][k])
+                    f[j] = max(f[j], f[j - v[i][k]] + w[i][k]);
+            &#125;
+        &#125;
+    &#125;
+
+    cout &lt;&lt; f[m] &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="装箱问题"><a href="#装箱问题" class="headerlink" title="装箱问题"></a>装箱问题</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://acwing.com/problem/content/1026/">https://acwing.com/problem/content/1026/</a></p>
+</blockquote>
+<p>这个问题中, 背包的价值等于体积, 也就是说, 在背包的总体积不超过$V$的情况下, 总体积之和最大.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 20010;
+
+int n, m;
+int f[N];
+
+int main()
+&#123;
+    cin &gt;&gt; m;
+    cin &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        int v;
+        cin &gt;&gt; v;
+        for (int j = m; j &gt;= v; j --)
+        &#123;
+            f[j] = max(f[j], f[j - v] + v);
+        &#125;
+    &#125;
+
+    cout &lt;&lt; m - f[m] &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="宠物小精灵之收服"><a href="#宠物小精灵之收服" class="headerlink" title="宠物小精灵之收服"></a>宠物小精灵之收服</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/1024/">https://www.acwing.com/problem/content/1024/</a></p>
+</blockquote>
+<p>在本题中有两种限制:</p>
+<ul>
+<li>收服精灵用的精灵球小于等于上限.</li>
+<li>扣的血必须小于上限, 注意这里不一样, 必须给皮卡丘留1点血.</li>
+</ul>
+<p>在这两种限制之下要求能够收服的精灵数的最大值.</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 1010;
+
+int n, m1, m2;
+int f[N][N];
+
+int main()
+&#123;
+    cin &gt;&gt; m1 &gt;&gt; m2 &gt;&gt; n;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        int v1, v2;
+        cin &gt;&gt; v1 &gt;&gt; v2;
+
+        for (int j1 = m1; j1 &gt;= v1; j1 --)
+        &#123;
+            for (int j2 = m2; j2 &gt;= v2; j2 --)
+            &#123;
+                f[j1][j2] = max(f[j1][j2], f[j1 - v1][j2 - v2] + 1);
+            &#125;
+        &#125;
+    &#125;
+    /* 注意这里皮卡丘的血必须大于0 */
+    int ans = f[m1][m2 - 1];
+    cout &lt;&lt; ans &lt;&lt; &#39; &#39;;
+
+    int index = m2 - 1;
+    while (index &gt;= 0 &amp;&amp; f[m1][index] == ans) index --;
+    index ++;
+
+    cout &lt;&lt; m2 - index &lt;&lt; endl;
+    return 0;
+&#125;
+</code></pre>
+<h2 id="数字组合"><a href="#数字组合" class="headerlink" title="数字组合"></a>数字组合</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/280/">https://www.acwing.com/problem/content/280/</a></p>
+</blockquote>
+<p>本题是01背包问题求方案数.</p>
+<p>状态表示: $f(i, j)$表示只考虑前$i$个物品, 物品体积之和正好是$j$的方案数.</p>
+<p>状态计算:</p>
+<ul>
+<li>不考虑第$i$个物品: <code>f[i][j] += f[i - 1][j]</code>.</li>
+<li>考虑第$i$个物品: <code>f[i][j] += f[i - 1][j - v[i]]</code></li>
+</ul>
+<p>本质上和原来的01背包问题相同:</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+using namespace std;
+
+const int N = 110, M = 10010;
+
+int n, m;
+int f[M];
+
+int main()
+&#123;
+    cin &gt;&gt; n &gt;&gt; m;
+
+    f[0] = 1;
+
+    for (int i = 1; i &lt;= n; i ++)
+    &#123;
+        int v;
+        cin &gt;&gt; v;
+
+        for (int j = m; j &gt;= v; j --)
+            f[j] += f[j - v];
     &#125;
 
     cout &lt;&lt; f[m] &lt;&lt; endl;
