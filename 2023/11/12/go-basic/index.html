@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Go-环境配置与基础知识 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
-<meta property="og:type" content="article">
-<meta property="og:title" content="概率论-基础知识以及常见的概率分布">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/11/16/probability_type/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-16T08:17:37.336Z">
-<meta property="article:modified_time" content="2023-11-17T13:58:41.159Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -1052,7 +1052,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-17 14:00:50'>2023-11-12 12:42</time>
+            Created At : <time class="date" title='Updated At: 2023-11-23 23:30:21'>2023-11-12 12:42</time>
         
     </div>
     <div class="article-meta">
@@ -1063,7 +1063,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">Go语言的环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84Hello-World"><span class="toc-text">Go语言的Hello World</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">Go语言的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-text">Go语言的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">变量的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">变量的声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%B8%B8%E9%87%8F"><span class="toc-text">Go语言的常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">Go语言的运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-text">Go语言的循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">Go语言的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F"><span class="toc-text">定义格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">函数的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%97%AD%E5%8C%85"><span class="toc-text">函数闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">Go语言的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8C%87%E9%92%88"><span class="toc-text">Go语言的指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">Go语言结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-text">成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%8E%A5%E5%8F%A3"><span class="toc-text">Go语言的接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-text">Go语言异常处理</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84"><span class="toc-text">项目结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E6%A8%A1%E5%9D%97"><span class="toc-text">初始化模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#package"><span class="toc-text">package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%BC%E5%85%A5%E8%87%AA%E5%B7%B1%E7%9A%84package"><span class="toc-text">导入自己的package</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E9%A1%B9%E7%9B%AE"><span class="toc-text">运行项目</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BE%9D%E8%B5%96%E7%AE%A1%E7%90%86"><span class="toc-text">依赖管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%AF%BC%E5%85%A5"><span class="toc-text">匿名导入</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99package%E8%B5%B7%E5%88%AB%E5%90%8D"><span class="toc-text">给package起别名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%AF%BC%E5%85%A5-1"><span class="toc-text">匿名导入</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B8%83%E5%B0%94%E5%80%BC"><span class="toc-text">布尔值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%99%E7%B1%BB%E5%9E%8B%E8%B5%B7%E5%88%AB%E5%90%8D"><span class="toc-text">给类型起别名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8F%98%E9%87%8F"><span class="toc-text">Go语言的变量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E"><span class="toc-text">变量的声明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E5%A3%B0%E6%98%8E%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">变量的声明与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-text">类型转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E9%87%8F"><span class="toc-text">常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-text">运算符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-text">条件语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AA%E7%8E%AF%E8%AF%AD%E5%8F%A5"><span class="toc-text">循环语句</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%87%BD%E6%95%B0"><span class="toc-text">函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E6%A0%BC%E5%BC%8F"><span class="toc-text">定义格式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">函数的数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B0"><span class="toc-text">匿名函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E9%97%AD%E5%8C%85"><span class="toc-text">函数闭包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Go%E8%AF%AD%E8%A8%80%E7%9A%84%E6%95%B0%E7%BB%84"><span class="toc-text">Go语言的数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%87%E7%89%87"><span class="toc-text">切片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-text">切片的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%87%E7%89%87%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="toc-text">切片的创建</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E9%92%88"><span class="toc-text">指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">深拷贝与浅拷贝</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93"><span class="toc-text">结构体</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E5%8D%A0%E4%BD%8D%E7%AC%A6"><span class="toc-text">结构体占位符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F"><span class="toc-text">成员变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-text">成员函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#map"><span class="toc-text">map</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3"><span class="toc-text">接口</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1079,32 +1079,74 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Go语言的环境配置"><a href="#Go语言的环境配置" class="headerlink" title="Go语言的环境配置"></a>Go语言的环境配置</h2><p>直接去Go语言官网下载release包, 然后配置环境变量即可.</p>
-<p>然后配置代理, 让<code>go install</code>走国内的代理服务器:</p>
-<pre><code class="lang-bash">go env -w GOPROXY=https://goproxy.cn
+        <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><p>go语言的官网: <a target="_blank" rel="noopener" href="https://go.dev/">https://go.dev/</a></p>
+<p>在官网中, 可以下载到对应操作系统的安装包.</p>
+<p>安装之后, Linux上默认的安装路径应该是在<code>/usr/local/go</code>中, 其中会有以下几个文件夹:</p>
+<ul>
+<li><code>src</code>: 里面存储了所有go的标准库的源代码.</li>
+<li><code>bin</code>: 里面存储了由go语言源码编译而成的可执行文件.</li>
+</ul>
+<p>我们把这次安装的go叫做系统go.</p>
+<p>安装之后, 需要设置若干环境变量:</p>
+<ul>
+<li><p><code>GOROOT</code>: 设置为系统go文件夹所在的位置, 例如<code>/usr/local/go</code>.</p>
+</li>
+<li><p><code>GOPROXY</code>: 下载第三方包时走国内的代理, 可以通过这一个命令进行设置:</p>
+<pre><code class="lang-bash"># 这个命令需要写到.zshrc中
+go env -w GOPROXY=https://goproxy.cn
 </code></pre>
-<h2 id="Go语言的Hello-World"><a href="#Go语言的Hello-World" class="headerlink" title="Go语言的Hello World"></a>Go语言的Hello World</h2><pre><code class="lang-go">// hello.go
-package main
-
-import &quot;fmt&quot;
-
-func main() &#123;
-  fmt.Println(&quot;Hello World!&quot;)
-&#125;
+</li>
+<li><p><code>GO111MODULE</code>: 将这个环境变量设置为<code>on</code>, 表示启用<code>go mod</code>管理依赖.</p>
+<pre><code class="lang-bash">go env -w GO111MODULE=on
+</code></pre>
+</li>
+</ul>
+<h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><h3 id="初始化模块"><a href="#初始化模块" class="headerlink" title="初始化模块"></a>初始化模块</h3><p>在创建完你的项目目录后, 在工作目录下执行:</p>
+<pre><code class="lang-bash">go mod init &lt;module名字&gt;
 </code></pre>
 <ul>
-<li><code>package main</code>: 指明了这个文件属于哪个包, <code>package main</code>表示这个文件是一个单独的可执行程序.</li>
-<li><code>import &quot;fmt&quot;</code>: 导入了<code>fmt</code>这个包.</li>
-<li>Go语言的单行注释是<code>//</code>, 多行注释是<code>/**/</code>.</li>
-<li>当一个标识符(变量, 函数, 类型)以大写字母开头时, 这个标识符可以被包外部引用(public), 如果以小写字母开头, 这个标识符只能被包内部引用(protected).</li>
+<li>注意: 这个module的名字没必要和你的项目文件夹的名字一样.</li>
 </ul>
-<p>运行:</p>
-<pre><code class="lang-bash">go run hello.go
+<h3 id="package"><a href="#package" class="headerlink" title="package"></a>package</h3><ul>
+<li>Go语言中, 组成一个package的所有的go文件需要在<font color="red">同一个目录</font>.</li>
+<li>package的名字没必要和目录一致.</li>
+<li>同一个package中的所有代码成分可以互相调用, 就和没有分开文件写一样.</li>
+</ul>
+<h3 id="导入自己的package"><a href="#导入自己的package" class="headerlink" title="导入自己的package"></a>导入自己的package</h3><p>导入语句是package, 假设在你项目的任意位置中的任意一个go文件中, 导入项目中任意一个位置的模块, 需要在文件开头写:</p>
+<pre><code class="lang-go">import &quot;&lt;module名字&gt;/package所在的路径&quot;
 </code></pre>
-<p>生成二进制文件:</p>
-<pre><code class="lang-bash">go build hello.go
+<p>注意这个package的路径, 就是这个package相对项目根目录的路径, 但是在使用时, 还需要用package的名字, 而不是目录的名字.</p>
+<h3 id="运行项目"><a href="#运行项目" class="headerlink" title="运行项目"></a>运行项目</h3><ul>
+<li><p>Go语言项目中, 只允许有一个<code>main</code>函数作为程序入口, 而且这个<code>main</code>函数的package名字必须是<code>main</code>.</p>
+</li>
+<li><p>运行时, 只需要用<code>go run &lt;写main函数的文件名/main函数所在的目录&gt;</code>就可以启动项目.</p>
+</li>
+</ul>
+<h2 id="依赖管理"><a href="#依赖管理" class="headerlink" title="依赖管理"></a>依赖管理</h2><p>Go语言的依赖管理非常简单, 当你在项目中, <code>import</code>了第三方库之后, 只需要在项目根目录执行:</p>
+<pre><code class="lang-bash">go mod tidy
 </code></pre>
-<h2 id="Go语言的数据类型"><a href="#Go语言的数据类型" class="headerlink" title="Go语言的数据类型"></a>Go语言的数据类型</h2><h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><p>有符号:</p>
+<p>这个命令会自动检测你的项目中的所有<code>import</code>, 一旦这个导入没有在<code>go.mod</code>中同步, 那么就会自动同步, 这个同步包括两个方面:</p>
+<ul>
+<li>你的项目代码里<code>import</code>了, 但是<code>go.mod</code>中没有记录.</li>
+<li>你的项目代码里没有<code>import</code>, 但是<code>go.mod</code>中有记录.</li>
+</ul>
+<h2 id="匿名导入"><a href="#匿名导入" class="headerlink" title="匿名导入"></a>匿名导入</h2><h3 id="给package起别名"><a href="#给package起别名" class="headerlink" title="给package起别名"></a>给package起别名</h3><p>当你用<code>import</code>导入了一个package, 可以给这个package起一个别名, 例如:</p>
+<pre><code class="lang-go">import (
+    niubi &quot;fmt&quot;
+)
+</code></pre>
+<p>然后使用这个package时, 就可以用:</p>
+<pre><code class="lang-go">niubi.Println(&quot;Hello World&quot;)
+</code></pre>
+<h3 id="匿名导入-1"><a href="#匿名导入-1" class="headerlink" title="匿名导入"></a>匿名导入</h3><p>匿名导入就是把包的名字起成下划线<code>_</code>, 例如:</p>
+<pre><code class="lang-go">import (
+    _ &quot;fmt&quot;
+)
+</code></pre>
+<p>此时, 这个包无论使用还是没有使用, go的编译器都不会报错.</p>
+<p>之所以会使用匿名导入, 是因为程序想要调用这个package的<code>init</code>函数, <code>init</code>函数就是在导入这个package之前首先会执行的一个函数.</p>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p>打印数据类型的占位符是<code>%t</code>.</p>
+<h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><p>有符号:</p>
 <ul>
 <li><code>int8</code>: 8位.</li>
 <li><p><code>int16</code>: 16位.</p>
@@ -1115,7 +1157,7 @@ func main() &#123;
 </ul>
 <p>无符号: </p>
 <ul>
-<li><code>uint8</code>: 8位.</li>
+<li><code>uint8</code>: 8位, 和<code>byte</code>类型一样.</li>
 <li><p><code>uint16</code>: 16位.</p>
 </li>
 <li><p><code>uint32</code>: 32位.</p>
@@ -1128,10 +1170,26 @@ func main() &#123;
 <h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><ul>
 <li><code>float32</code>: IEEE-754 32位浮点数.</li>
 <li><code>float64</code>: IEEE-754 64位浮点数.</li>
+<li>打印<code>n</code>位小数的占位符是: <code>%.nf</code>.</li>
+<li>注意: 如果使用<code>:=</code>完成声明与赋值, 那么编译器会自动推断为<code>float64</code>.</li>
 </ul>
 <h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><ul>
-<li>关键字是<code>string</code>.</li>
+<li>声明类型的关键词是<code>string</code>.</li>
+<li>如果在代码中用<code>&quot;hahaha&quot;</code>定义一个字符串, 那么这是一个<font color="red">字符串常量</font>, 不可修改.</li>
+<li><p>Go中, 字符串的本质就是一个不可变的byte数组.</p>
+<ul>
+<li>如果使用<code>foreach</code>循环遍历的话, 会得到<code>byte</code>类型的数据.</li>
+<li>如果需要按照字符打印, 可以使用<code>%c</code>占位符.</li>
+<li>注意, 如果字符中出现了汉字, 那么一个汉字占3个byte.</li>
 </ul>
+</li>
+<li><p><code>len()</code>函数可以获取字符串的长度.</p>
+</li>
+<li>字符串可以使用<code>+</code>进行拼接.</li>
+</ul>
+<h3 id="给类型起别名"><a href="#给类型起别名" class="headerlink" title="给类型起别名"></a>给类型起别名</h3><p>可以使用<code>type</code>关键字给类型起一个别名, 文法是:</p>
+<pre><code class="lang-go">type 别名 原始类型
+</code></pre>
 <h2 id="Go语言的变量"><a href="#Go语言的变量" class="headerlink" title="Go语言的变量"></a>Go语言的变量</h2><h3 id="变量的声明"><a href="#变量的声明" class="headerlink" title="变量的声明"></a>变量的声明</h3><p>变量声明的文法是: <code>var id1, id2, ... type</code>, 例如:</p>
 <pre><code class="lang-go">var a string
 var a, b, c int
@@ -1148,21 +1206,34 @@ a, b = 1, 2
 <p>第三种: 使用<code>:=</code>表达式</p>
 <pre><code class="lang-go">a, b := 1, 2
 </code></pre>
-<p>此时, 编译器会自动推断<code>a, b</code>的类型, 但是这种写法只适用于定义并初始化局部变量, 全局变量不能使用.</p>
+<p>此时, 编译器会自动推断<code>a, b</code>的类型, 但是这种写法只适用于定义并初始化局部变量, <font color="red">全局变量不能使用</font>.</p>
 <h3 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h3><p>类型转换的文法是: <code>type(id)</code>.</p>
 <p>例如:</p>
 <pre><code class="lang-go">a := 1
 var b float64 = float64(a)
 </code></pre>
-<h2 id="Go语言的常量"><a href="#Go语言的常量" class="headerlink" title="Go语言的常量"></a>Go语言的常量</h2><p>常量的定义格式是:</p>
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量的定义格式是:</p>
 <pre><code class="lang-go">const id [type] = val
 </code></pre>
+<ul>
+<li>如果不指明<code>type</code>, 那么编译器会自动推断.</li>
+</ul>
 <p>例如:</p>
 <pre><code class="lang-go">const N int = 1;
 const a, b, c = 1, false, &quot;str&quot;
 </code></pre>
-<h2 id="Go语言的运算符"><a href="#Go语言的运算符" class="headerlink" title="Go语言的运算符"></a>Go语言的运算符</h2><p>Go语言的运算符和C++的运算符完全一致.</p>
-<h2 id="Go语言的条件语句"><a href="#Go语言的条件语句" class="headerlink" title="Go语言的条件语句"></a>Go语言的条件语句</h2><p>条件语句的格式如下:</p>
+<p>Go语言中有一种特殊的常量叫做<code>iota</code>, 用法如下:</p>
+<pre><code class="lang-go">const (
+    a = iota
+    b
+    c
+      d = iota
+      e
+)
+</code></pre>
+<p>每一个<code>iota</code>的值都是0, 如果下面没有赋值, 那么会从<code>iota</code>的0值开始递增, 当再次遇到<code>iota</code>时, 值又变成0, 例如这个例子中, <code>a = 0, b = 1, c = 2, d = 0, e = 1</code>.</p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>Go语言的运算符和C++的运算符完全一致.</p>
+<h2 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h2><p>条件语句的格式如下:</p>
 <pre><code class="lang-go">if 布尔表达式 &#123;
 
 &#125; else if 布尔表达式 &#123;
@@ -1179,7 +1250,7 @@ else ... &#123;
 
 &#125;
 </code></pre>
-<h2 id="Go语言的循环语句"><a href="#Go语言的循环语句" class="headerlink" title="Go语言的循环语句"></a>Go语言的循环语句</h2><ul>
+<h2 id="循环语句"><a href="#循环语句" class="headerlink" title="循环语句"></a>循环语句</h2><ul>
 <li><p><code>for</code>循环:</p>
 <pre><code class="lang-go">for i := 0; i &lt;= 10; i ++ &#123;
   //...
@@ -1193,8 +1264,16 @@ else ... &#123;
 // 等价于while 布尔表达式 &#123;&#125;
 </code></pre>
 </li>
+<li><p>数组中的<code>foreach</code>循环:</p>
+<pre><code class="lang-go">for i, element := range arr &#123;
+  // 其中i是下标, element是其中的元素
+&#125;
+</code></pre>
+</li>
+<li><p><code>break</code>和<code>continue</code>的用法与其他语言一致.</p>
+</li>
 </ul>
-<h2 id="Go语言的函数"><a href="#Go语言的函数" class="headerlink" title="Go语言的函数"></a>Go语言的函数</h2><h3 id="定义格式"><a href="#定义格式" class="headerlink" title="定义格式"></a>定义格式</h3><p>函数的定义格式如下:</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h3 id="定义格式"><a href="#定义格式" class="headerlink" title="定义格式"></a>定义格式</h3><p>函数的定义格式如下:</p>
 <pre><code class="lang-go">func function_name(para1 type, para2 type) returnType &#123;
 
 &#125;
@@ -1294,7 +1373,30 @@ func main() &#123;
 <p>访问数组:</p>
 <pre><code class="lang-go">fmt.Println(numbers[2])
 </code></pre>
-<h2 id="Go语言的指针"><a href="#Go语言的指针" class="headerlink" title="Go语言的指针"></a>Go语言的指针</h2><p>Go语言中, 指针的类型表达式是:</p>
+<p>注意, 数组类型有如下特点:</p>
+<ul>
+<li>数组在声明时, 必须指定长度, 并且指定长度之后, <font color="red">长度不可变</font>.</li>
+</ul>
+<p>如果需要动态数组, 可以使用切片这种数据类型.</p>
+<p>数组的长度可以使用<code>len(arr)</code>来获取.</p>
+<h2 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h2><h3 id="切片的定义"><a href="#切片的定义" class="headerlink" title="切片的定义"></a>切片的定义</h3><p>切片本质上是一个结构体, 它的定义如下:</p>
+<pre><code class="lang-go">type slice struct &#123;
+  array unsafe.Pointer
+  len int
+  cap int
+&#125;
+</code></pre>
+<ul>
+<li><code>array</code>: 这个指针指向了一个数组, 因此, 切片在进行<code>:=</code>赋值的时候需要仔细考虑.</li>
+<li><code>len</code>: 表示目前切片的长度.</li>
+<li><code>cap</code>: 表示这个切片实际占用内存的大小, 内存需要分配比切片长度更长的内存, 当超过实际内存长度的时候需要扩容.</li>
+</ul>
+<h3 id="切片的创建"><a href="#切片的创建" class="headerlink" title="切片的创建"></a>切片的创建</h3><p>定义切片的类型关键字是<code>[]type</code>, 例如<code>[]int</code>等, 就相当于不指定数组大小的数组定义.</p>
+<p>创建一个切片需要用<code>make</code>关键字, 例如:</p>
+<pre><code class="lang-go">my_slice = make([]int, 3)
+</code></pre>
+<p>表示创建一个元素是<code>int</code>类型, 长度是3的切片, 数据初始化为0值.</p>
+<h2 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h2><p>Go语言中, 指针的类型表达式是:</p>
 <pre><code class="lang-go">var ptr *type
 </code></pre>
 <p>也就是在原来的<code>type</code>前面加一个<code>*</code>.</p>
@@ -1322,18 +1424,28 @@ func main() &#123;
 &#125;
 </code></pre>
 <p>Go语言中, 空指针的关键词是<code>nil</code>.</p>
-<h2 id="Go语言结构体"><a href="#Go语言结构体" class="headerlink" title="Go语言结构体"></a>Go语言结构体</h2><h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>Go语言结构体的定义如下:</p>
+<p>打印指针可以用<code>%p</code>占位符.</p>
+<h2 id="深拷贝与浅拷贝"><a href="#深拷贝与浅拷贝" class="headerlink" title="深拷贝与浅拷贝"></a>深拷贝与浅拷贝</h2><p>规律如下:</p>
+<ul>
+<li>Go语言中, 如果使用<code>=</code>赋值, 并且没有取指针<code>&amp;</code>, 那么都是深拷贝.</li>
+<li>如果使用了<code>&amp;</code>, 那么就是浅拷贝.</li>
+<li>注意, 如果一个结构体中有个成员变量是指针类型, 然后用<code>:=</code>赋值, 那么虽然是深拷贝, 但是指针拷贝的值是一样的, 指针指向的数据并没有拷贝 (切片).</li>
+</ul>
+<h2 id="结构体"><a href="#结构体" class="headerlink" title="结构体"></a>结构体</h2><h3 id="结构体占位符"><a href="#结构体占位符" class="headerlink" title="结构体占位符"></a>结构体占位符</h3><p>打印一个结构体变量可以使用<code>%#v</code>这个占位符, 使用这个占位符, 会把结构体的包, 成员变量名称都会打印出来.</p>
+<h3 id="成员变量"><a href="#成员变量" class="headerlink" title="成员变量"></a>成员变量</h3><p>Go语言结构体的定义如下:</p>
+<font color="red">注意: 不同成员变量的声明之间没有`,`</font>
+
 <pre><code class="lang-go">type 结构体名字 struct &#123;
 
-  成员变量名1 type1,
-  成员变量名2 type2,
-  成员变量名3 type3,
+  成员变量名1 type1
+  成员变量名2 type2
+  成员变量名3 type3
 &#125;
 </code></pre>
 <p>例如:</p>
 <pre><code class="lang-go">type Books struct &#123;
-  title string,
-  author string,
+  title string
+  author string
   book_id int
 &#125;
 </code></pre>
@@ -1394,7 +1506,33 @@ fmt.Println(student.GetName())
 </code></pre>
 <p>这个就相当于其他语言中的<code>this</code>指针.</p>
 <p>一般来说, 都会选用指针方法, 因为值方法会涉及数据的拷贝, 在大对象中很影响性能.</p>
-<h2 id="Go语言的接口"><a href="#Go语言的接口" class="headerlink" title="Go语言的接口"></a>Go语言的接口</h2><p>接口的定义如下:</p>
+<h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><p>Go语言中map是一种特殊的数据结构, 它的类型表达式是: <code>map[key的类型]value的类型</code>.</p>
+<ul>
+<li>注意, 有些数据类型不能作为key, 例如函数, 切片.</li>
+<li>所有数据类型都可以作为value.</li>
+</ul>
+<p>创建map可以使用<code>make</code>函数:</p>
+<pre><code class="lang-go">// 长度是3的map
+my_map = make(map[string]int, 3)
+// 也可以创建长度不固定的map
+my_map = make(map[string]int)
+</code></pre>
+<p>插入一个键值对可以直接写:</p>
+<pre><code class="lang-go">my_map[&quot;c&quot;] = 1
+</code></pre>
+<p>删除一个键值对可以用<code>delete</code>函数:</p>
+<pre><code class="lang-go">delete(my_map, &quot;c&quot;)
+</code></pre>
+<p>遍历map中所有的键值对可以用foreach循环:</p>
+<pre><code class="lang-go">for key, value := range my_map &#123;
+
+&#125;
+</code></pre>
+<p>注意, 如果要从map中根据key找value, 需要处理异常, 需要这样写:</p>
+<pre><code class="lang-go">ele, exists := my_map[&quot;c&quot;]
+</code></pre>
+<p>此时, 如果对应的key没有在map中, 那么<code>exists</code>的值就是<code>false</code>, 需要做异常处理.</p>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>接口的定义如下:</p>
 <pre><code class="lang-go">type interface_name interface &#123;
 
   function_name1(para_name1 paratype1, ...) [return_type1]
@@ -1422,12 +1560,6 @@ func (p *Person) SetName(name string) &#123;
   p.name = name
 &#125;
 </code></pre>
-<h2 id="Go语言异常处理"><a href="#Go语言异常处理" class="headerlink" title="Go语言异常处理"></a>Go语言异常处理</h2><p>Go语言的异常处理非常简单, Go语言提供了一个关于异常的内置接口:</p>
-<pre><code class="lang-go">type error interface &#123;
-  Error() string
-&#125;
-</code></pre>
-<p>一个类只需要实现这个接口, 并且在可能出现异常的函数中多加一个<code>string</code>类型的返回值<code>errorInfo</code>即可, <code>errorInfo</code>就是调用<code>Error()</code>方法得到的.</p>
 
       
        

@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="排队论-基础知识和常见的排队模型 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
-<meta property="og:type" content="article">
-<meta property="og:title" content="概率论-基础知识以及常见的概率分布">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/11/16/probability_type/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="分布函数和密度函数一个随机变量$X$的分布函数是: $F(x) &#x3D; P(X \leqslant x)$, 也就是随机变量$X$不超过$x$的概率, 其中:  定义域: $x \in R$. 值域: $F(x) \in [0, 1]$. 单调不减: $x_1 &lt; x_2$, 那么$F(x_1) \leqslant F(x_2)$. 右极限: $\lim\limits_{x \rightarro">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-11-16T08:17:37.336Z">
-<meta property="article:modified_time" content="2023-11-17T13:58:41.159Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -1052,7 +1052,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-11-17 21:55:05'>2023-11-07 11:26</time>
+            Created At : <time class="date" title='Updated At: 2023-11-19 23:19:44'>2023-11-07 11:26</time>
         
     </div>
     <div class="article-meta">
@@ -1063,7 +1063,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E9%87%8F%E5%8C%96"><span class="toc-text">排队系统的结构与量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markov%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="toc-text">Markov排队系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86"><span class="toc-text">Little定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="toc-text">Little定理的证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">排队系统的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-1-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;1 Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89n%E4%B8%AA%E9%A1%BE%E5%AE%A2%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">有n个顾客的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0"><span class="toc-text">系统中平均顾客数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue%E4%B8%AD%E7%9A%84%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0"><span class="toc-text">Queue中的平均顾客数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4"><span class="toc-text">顾客的平均停留时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="toc-text">顾客的平均等待时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%8C%87%E6%A0%87"><span class="toc-text">其他指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E5%90%8E%E5%BF%85%E9%A1%BB%E7%AD%89%E5%BE%85k%E4%B8%AA%E9%A1%BE%E5%AE%A2%E4%BB%A5%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">顾客到达后必须等待k个顾客以上的概率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4%E8%B6%85%E8%BF%87t%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">顾客停留时间超过t的概率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-m-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;m Queueing System</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%93%E6%9E%84%E4%B8%8E%E9%87%8F%E5%8C%96"><span class="toc-text">排队系统的结构与量化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Markov%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F"><span class="toc-text">Markov排队系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86"><span class="toc-text">Little定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Little%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E"><span class="toc-text">Little定理的证明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84%E8%A1%A8%E7%A4%BA"><span class="toc-text">排队系统的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-1-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;1 Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89n%E4%B8%AA%E9%A1%BE%E5%AE%A2%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">有n个顾客的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0"><span class="toc-text">系统中平均顾客数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue%E4%B8%AD%E7%9A%84%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0"><span class="toc-text">Queue中的平均顾客数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4"><span class="toc-text">顾客的平均停留时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="toc-text">顾客的平均等待时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%8C%87%E6%A0%87"><span class="toc-text">其他指标</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%88%B0%E8%BE%BE%E5%90%8E%E5%BF%85%E9%A1%BB%E7%AD%89%E5%BE%85k%E4%B8%AA%E9%A1%BE%E5%AE%A2%E4%BB%A5%E4%B8%8A%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">顾客到达后必须等待k个顾客以上的概率</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4%E8%B6%85%E8%BF%87t%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">顾客停留时间超过t的概率</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-m-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;m Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89-n-%E4%B8%AA%E9%A1%BE%E5%AE%A2%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">有$n$个顾客的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E4%BA%BA%E6%95%B0%E5%A4%9A%E4%BA%8Em%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">系统中人数多于m的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue%E4%B8%AD%E5%B9%B3%E5%9D%87%E6%9C%89%E5%A4%9A%E5%B0%91%E4%B8%AA%E4%BA%BA-Server%E5%85%A8%E9%83%A8%E7%B9%81%E5%BF%99"><span class="toc-text">Queue中平均有多少个人(Server全部繁忙)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99-%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4-Server%E5%85%A8%E9%83%A8%E7%B9%81%E5%BF%99"><span class="toc-text">顾客的平均停留&#x2F;等待时间(Server全部繁忙)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-m-m-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;m&#x2F;m Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89n%E4%B8%AA%E9%A1%BE%E5%AE%A2%E7%9A%84%E6%A6%82%E7%8E%87-1"><span class="toc-text">有n个顾客的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%A2%AB%E9%98%BB%E5%A1%9E%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">系统被阻塞的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0%E9%87%8F"><span class="toc-text">系统中的平均顾客数量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4-1"><span class="toc-text">顾客的平均停留时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-M-%E2%88%9E-Queueing-System"><span class="toc-text">M&#x2F;M&#x2F;∞ Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%890%E4%B8%AA%E9%A1%BE%E5%AE%A2%E7%9A%84%E6%A6%82%E7%8E%87"><span class="toc-text">有0个顾客的概率</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%A1%BE%E5%AE%A2%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC"><span class="toc-text">系统中顾客的平均值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4"><span class="toc-text">顾客平均停留时间</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8E%92%E9%98%9F%E7%B3%BB%E7%BB%9F%E7%9A%84PASTA%E6%80%A7%E8%B4%A8"><span class="toc-text">排队系统的PASTA性质</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#M-G-1-Queueing-System"><span class="toc-text">M&#x2F;G&#x2F;1 Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%B9%B3%E5%9D%87%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="toc-text">顾客平均等待时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Queue%E4%B8%AD%E7%9A%84%E5%B9%B3%E5%9D%87%E9%A1%BE%E5%AE%A2%E6%95%B0-1"><span class="toc-text">Queue中的平均顾客数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%BE%E5%AE%A2%E5%B9%B3%E5%9D%87%E5%81%9C%E7%95%99%E6%97%B6%E9%97%B4-1"><span class="toc-text">顾客平均停留时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E4%B8%AD%E9%A1%BE%E5%AE%A2%E5%B9%B3%E5%9D%87%E6%95%B0"><span class="toc-text">系统中顾客平均数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E7%A7%8D%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5-M-D-1"><span class="toc-text">一种特殊情况: M&#x2F;D&#x2F;1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%A6%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84M-G-1-Queueing-System"><span class="toc-text">带优先级的M&#x2F;G&#x2F;1 Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E6%8A%A2%E5%8D%A0%E5%BC%8F%E7%9A%84M-G-1-Queueing-System"><span class="toc-text">非抢占式的M&#x2F;G&#x2F;1 Queueing System</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B9%B3%E5%9D%87%E7%9A%84Residual-Time"><span class="toc-text">平均的Residual Time</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E4%B8%BAk%E7%9A%84%E9%A1%BE%E5%AE%A2%E5%B9%B3%E5%9D%87%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="toc-text">优先级为k的顾客平均等待时间</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A2%E5%8D%A0%E5%BC%8F%E7%9A%84M-G-1-Queueing-System"><span class="toc-text">抢占式的M&#x2F;G&#x2F;1 Queueing System</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1129,13 +1129,14 @@ p_n = \frac{\lambda_{n-1}\lambda_{n-2}...\lambda_0}{\mu_n \mu_{n-1}...\mu_1}p_0<
 <p>中间部分的阴影面积可以表示为: $\int_{0}^{t}N(\tau)d\tau$, 也可以表示为$\sum_{i=1}^{\alpha(t)}T_i$, 其中$T_i$表示顾客$i$的平均等待时间.</p>
 <p>那么就有: $\frac{1}{t}\int_{0}^{t}N(\tau)d\tau = \frac{1}{t}\sum_{i=1}^{\alpha(t)}T_i = \frac{\alpha(t)}{t}\frac{\sum_{i=1}^{\alpha(t)}T_i}{\alpha(t)}$.</p>
 <p>两边同时取$\lim\limits_{t\rightarrow +\infin}$, 就可以得到Little定理.</p>
-<h2 id="排队系统的表示"><a href="#排队系统的表示" class="headerlink" title="排队系统的表示"></a>排队系统的表示</h2><p>排队系统可以使用A/B/C/D/E来表示, 其中:</p>
+<h2 id="排队系统的表示"><a href="#排队系统的表示" class="headerlink" title="排队系统的表示"></a>排队系统的表示</h2><p>排队系统可以使用A/B/C/D/E/F来表示, 其中:</p>
 <ul>
 <li>A: 单位时间来的顾客数$\lambda$的分布.</li>
 <li>B: 单位时间走的顾客数$\mu$的分布, 也是Server的处理速率的分布.</li>
 <li>C: Server的个数.</li>
 <li>D: 排队系统中最多允许有几个顾客.</li>
-<li>E: 服务规则, 例如FCFS等.</li>
+<li>E: 顾客源有多少个顾客, 可以是∞, 也可以有限个.</li>
+<li>F: 服务规则, 例如FCFS等.</li>
 </ul>
 <h2 id="M-M-1-Queueing-System"><a href="#M-M-1-Queueing-System" class="headerlink" title="M/M/1 Queueing System"></a>M/M/1 Queueing System</h2><p>M/M/1的全称是M/M/1/∞/∞/FCFS.</p>
 <p>当系统繁忙度$\rho = \frac{\lambda}{\mu} \in (0, 1)$时, 系统会趋于稳态.</p>
@@ -1226,15 +1227,204 @@ T_q = \frac{\lambda}{\mu(\mu - \lambda)}</script><h3 id="其他指标"><a href="
 </tbody>
 </table>
 </div>
-<h2 id="M-M-m-Queueing-System"><a href="#M-M-m-Queueing-System" class="headerlink" title="M/M/m Queueing System"></a>M/M/m Queueing System</h2><p>M/M/m Queueing System和M/M/1的区别在于, Server的个数是m.</p>
+<h2 id="M-M-m-Queueing-System"><a href="#M-M-m-Queueing-System" class="headerlink" title="M/M/m Queueing System"></a>M/M/m Queueing System</h2><p>M/M/m Queueing System和M/M/1的区别在于, Server的个数是m, 它的全称是M/M/m/∞/∞/FCFS</p>
 <p>假设单位时间内, 每个Server的平均服务率是$\mu$, 那么Server整体的服务率就是$\bar{\mu}$可以表示为:</p>
 <script type="math/tex; mode=display">
 \bar{\mu} = \begin{cases}
     k\mu & 0 \leqslant k < m \\
     m\mu & k \geqslant m
-\end{cases}</script><p>Server的繁忙度就是: $\rho = \frac{\lambda}{m\mu}$</p>
-<p>当$0 &lt; \rho &lt; 1$时, M/M/m Queueing System会趋于一个稳态.</p>
-
+\end{cases}</script><p>注意, 此时M/M/m Queueing System中, $\bar{\mu}$就和排队系统中的人数有关了, 在进行下面的推导时需要格外注意.</p>
+<p>系统的繁忙度$\rho = \frac{\lambda}{m \mu}$, 只有当$\rho \in (0, 1)$时, 系统才会趋于稳定.</p>
+<h3 id="有-n-个顾客的概率"><a href="#有-n-个顾客的概率" class="headerlink" title="有$n$个顾客的概率"></a>有$n$个顾客的概率</h3><p>对于状态0来说: $\lambda p_0 = \mu p_1$, 也就是$p_1 = \frac{\lambda}{\mu} p_0$.</p>
+<p>对于状态1来说: $\lambda p_0 + 2\mu p_2 = \mu p_1 + \lambda p_1$, 也就可以得到: $2\mu p_2 = \lambda p_1$, 因此, $p_2 = \frac{\lambda}{2\mu}p_1 = \frac{\lambda^2}{2\mu^2}p_0$.</p>
+<p>对于状态2来说: 可以得到: $p_3 = \frac{\lambda}{3\mu}p_2 = \frac{\lambda^3}{6 \mu^3}p_0$.</p>
+<p>因此, 最终$p_n$和$p_0$的关系可以表示为:</p>
+<script type="math/tex; mode=display">
+p_n = \begin{cases}
+    \frac{1}{n!}(\frac{\lambda}{\mu})^np_0 &  n\leqslant m \\
+    \frac{1}{m! \times m^{n-m}}(\frac{\lambda}{\mu})^n p_0 & n > m\\
+\end{cases}</script><p>如果用系统的繁忙度来表示, 只需要将$\frac{\lambda}{\mu} = m \rho$代入即可, 得到的表达式为:</p>
+<script type="math/tex; mode=display">
+p_n = \begin{cases}
+    \frac{(m\rho)^n}{n!}p_0 & n \leqslant m\\
+    \frac{m^m \rho^{n}}{m!} p_0 & n > m
+\end{cases}</script><p>那么, 根据$\sum_{i=0}^{n}p_i = 1$, 将上面的表达式代入, 可以得到:</p>
+<p>$\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!}p_0 + \sum_{i=m}^{n}\frac{m^m \rho^i}{m!}p_0 = 1$, 可以得到:</p>
+<script type="math/tex; mode=display">
+p_0 = (\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!} + \sum_{i=m}^{n}\frac{m^m \rho^i}{m!})^{-1}</script><p>当$n \rightarrow +\infin$时, $\sum_{i=m}^{n} \rho^i$这一项会趋于一个定值, 因为$\rho \in (0, 1)$.</p>
+<p>$\sum_{i=m}^{n}\rho^i = \sum_{i=0}^{n}\rho^i - \sum_{i=0}^{m-1}\rho^i = \frac{\rho^{m-1} - \rho^{n}}{1 - \rho}$, 当$n \rightarrow \infin$时, 这个定值是$\frac{\rho^{m}}{1 - \rho}$.</p>
+<p>因此, 最终$p_0$的表达式就是:</p>
+<script type="math/tex; mode=display">
+p_0 = (\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!} + \frac{(m\rho)^m}{m!(1 - \rho)})^{-1}</script><p>那么最终$p_n$的表达式就是:</p>
+<script type="math/tex; mode=display">
+p_n = \begin{cases}
+    \frac{(m\rho)^n}{n!}(\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!} + \frac{(m\rho)^m}{m!(1 - \rho)})^{-1} & n \leqslant m\\
+    \frac{m^m \rho^{n}}{m!} (\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!} + \frac{(m\rho)^m}{m!(1 - \rho)})^{-1} & n > m
+\end{cases}</script><h3 id="系统中人数多于m的概率"><a href="#系统中人数多于m的概率" class="headerlink" title="系统中人数多于m的概率"></a>系统中人数多于m的概率</h3><p>在M/M/m Queueing System中, 如果需要确定Server的个数$m$, 我们需要计算某几个指标.</p>
+<p>首先, 一个指标是排队系统中人数多于$m$的概率是多少, 假设这个数值是$p_q$.</p>
+<p>那么$p_q = \sum_{i = m}^{\infin}p_i = \sum_{i=m}^{\infin}\frac{m^m \rho^i}{m!}p_0 = \frac{(m\rho)^m}{m!(1-\rho)}p_0$.</p>
+<p>此时, 如果将$p_0$的表达式代入, 就可以得到:</p>
+<script type="math/tex; mode=display">
+p_q = \frac{\frac{(m\rho)^m}{m!(1-\rho)}}{\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!} + \frac{(m\rho)^m}{m!(1 - \rho)}}</script><p>这个公式就叫做Erlang-C公式.</p>
+<p>可以根据这个公式确定$m$的个数, 来让排队系统中多于$m$人的概率小于一个阈值.</p>
+<p>对于Erlang-C公式, 还存在一个Erlang-C表, 这个表的形式是:</p>
+<ul>
+<li>行: 代表Server的数目$m$.</li>
+<li>列: 代表$p_q$, 也就是系统中人数多于$m$的概率是多少, 这个概率以%为单位.</li>
+</ul>
+<p>这个Erlang-C表格可以辅助确定$m$的数值, $m$的数值有如下两个约束:</p>
+<ul>
+<li>排队系统的稳定条件: $\rho = \frac{\lambda}{m\mu} \in (0, 1)$, 这个可以求出$m &gt; \frac{\lambda}{\mu}$.</li>
+<li>$p_q$的限制, 一般要求$p_q$小于一个概率.</li>
+</ul>
+<p>因此, 有了这两个限制, 就可以在Erlang-C表格中, 先找到$p_q$的对应值, 然后向下找到第一个$m &gt; \frac{\lambda}{\mu}$, 并且概率满足要求的最小的$m$, 就符合题意.</p>
+<p><img src="/2023/11/07/network-queue/image-20231119134405314.png" alt="Erlang-C Table"></p>
+<h3 id="Queue中平均有多少个人-Server全部繁忙"><a href="#Queue中平均有多少个人-Server全部繁忙" class="headerlink" title="Queue中平均有多少个人(Server全部繁忙)"></a>Queue中平均有多少个人(Server全部繁忙)</h3><p>另外一个指标是, 假设现在$m$个Server都是繁忙状态, 那么我的Queue中平均有多少个人, 设这个值是$N_q$.</p>
+<p>那么有: $N_q = \sum_{i=0}^{+\infin}ip_{i+m} = \sum_{i=0}^{+\infin}i \frac{m^m \rho^{i+m}}{m!}p_0 = \frac{(m\rho)^m}{m!}p_0\sum_{i=0}^{+\infin}i\rho^i$.</p>
+<p>现在要计算$\sum_{i=0}^{+\infin} i\rho^i$, 这个无穷级数可以使用错位相减法, 最终的结果是$\frac{\rho}{(1-\rho)^2}$.</p>
+<p>那么$N_q = \frac{(m\rho)^m}{m!}p_0 \frac{\rho}{(1-\rho)^2} = p_q \times \frac{\rho}{1 - \rho}$.</p>
+<h3 id="顾客的平均停留-等待时间-Server全部繁忙"><a href="#顾客的平均停留-等待时间-Server全部繁忙" class="headerlink" title="顾客的平均停留/等待时间(Server全部繁忙)"></a>顾客的平均停留/等待时间(Server全部繁忙)</h3><p>设m个Server全部繁忙的前提下, 顾客的平均等待时间是$T_q$, 那么根据Little定理:</p>
+<ul>
+<li>$T_q = \frac{N_q}{\lambda} = p_q \times \frac{\rho}{1 - \rho} \times \frac{1}{\lambda}$.</li>
+</ul>
+<p>设顾客在排队系统中的平均停留时间是$T$, 那么$T$包括两个时间:</p>
+<ul>
+<li>一个是平均等待时间.</li>
+<li>一个是Server处理请求的时间, 这个时间就是$\frac{1}{\mu}$.</li>
+</ul>
+<p>那么$T = T_q + \frac{1}{\mu} = p_q \times \frac{\rho}{1 - \rho} \times \frac{1}{\lambda} + \frac{1}{\mu}$.</p>
+<h2 id="M-M-m-m-Queueing-System"><a href="#M-M-m-m-Queueing-System" class="headerlink" title="M/M/m/m Queueing System"></a>M/M/m/m Queueing System</h2><p>M/M/m/m Queueing System比M/M/m多了一个要求, 在排队系统中最多只能有$m$个顾客.</p>
+<ul>
+<li>但是现在在排队系统中, 有$m$个Server, 因此, 还隐含着另外一个意思, 也就是说系统中是没有Queue的, 如果超过$m$个顾客来到了这个排队系统, 那么超过的部分就会直接离开.</li>
+</ul>
+<h3 id="有n个顾客的概率-1"><a href="#有n个顾客的概率-1" class="headerlink" title="有n个顾客的概率"></a>有n个顾客的概率</h3><p>在这种排队系统中, 只有$m+1$个状态, 状态转移图如下:</p>
+<p><img src="/2023/11/07/network-queue/image-20231119191833186.png" alt="Markov chain for M/M/m/m Queueing System"></p>
+<p>有Markov状态转移方程可以推导出: $p_n = \frac{\lambda^n}{n! \mu^n}p_0$.</p>
+<p>将$\rho = \frac{\lambda}{m\mu}$代入, 可以得到:</p>
+<script type="math/tex; mode=display">
+p_n = \frac{(m\rho)^n}{n!}p_0</script><p>又由于$\sum_{i=0}^{m}p_i = 1$, 代入可以求出:</p>
+<script type="math/tex; mode=display">
+p_0 = (\sum_{i=0}^{m}\frac{(m\rho)^i}{i!})^{-1}</script><h3 id="系统被阻塞的概率"><a href="#系统被阻塞的概率" class="headerlink" title="系统被阻塞的概率"></a>系统被阻塞的概率</h3><p>当M/M/m/m排队系统中$m$个Server全都被占满的时候, 整个系统就不再接受顾客了, 这种情况就是被阻塞了.</p>
+<p>系统被阻塞的概率: </p>
+<script type="math/tex; mode=display">
+p_b = p_m = \frac{(m\rho)^m}{m!\sum_{i=0}^{m}\frac{(m\rho)^i}{i!}}</script><p>这个公式叫做Erlang-B公式, 同样, 也有一个Erlang-B表格.</p>
+<p><img src="/2023/11/07/network-queue/image-20231119192633301.png" alt="Erlang-B Table"></p>
+<p>可以根据稳定条件$\frac{\lambda}{m\mu} \in (0, 1)$以及对阻塞概率$p_b$的要求找到最小的合适的Server数量$m$.</p>
+<h3 id="系统中的平均顾客数量"><a href="#系统中的平均顾客数量" class="headerlink" title="系统中的平均顾客数量"></a>系统中的平均顾客数量</h3><p>系统中的平均顾客数量可以表示为: $\bar{N} = \sum_{i=0}^mip_i = \sum_{i=0}^{m}i\frac{(m\rho)^i}{i!}p_0$.</p>
+<p>将第一项删除, 可以得到: $\bar{N} = \sum_{i=1}^m i\frac{(m\rho)^i}{i!}p_0 = \sum_{i=1}^m\frac{(m\rho)^i}{(i-1)!}p_0 = m\rho\sum_{i=1}^m\frac{(m\rho)^{i-1}}{(i-1)!}p_0$.</p>
+<p>然后再进行一次等价变形: $\bar{N} = m\rho\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!}p_0 = m\rho(1 - p_m)$.</p>
+<p>因此, 在M/M/m/m系统中, 平均的顾客数量就是:</p>
+<script type="math/tex; mode=display">
+\bar{N} = m\rho(1 - p_m) = m\rho(1 - p_b)</script><h3 id="顾客的平均停留时间-1"><a href="#顾客的平均停留时间-1" class="headerlink" title="顾客的平均停留时间"></a>顾客的平均停留时间</h3><p>由于M/M/m/m 会存在阻塞的情况, 因此需要计算真实进入这个系统的来客率, 假设这个来客率是$\lambda_{acc}$, 那么:</p>
+<script type="math/tex; mode=display">
+\lambda_{acc} = \lambda(1 - p_m) = \lambda(1 - p_b)</script><p>那么根据Little定理, 顾客的平均停留时间就是:</p>
+<script type="math/tex; mode=display">
+T = \frac{\bar{N}}{\lambda_{acc}} = \frac{m\rho}{\lambda} = \frac{1}{\mu}</script><p>平均等待时间直接就是0, 因为根本没有队列.</p>
+<h2 id="M-M-∞-Queueing-System"><a href="#M-M-∞-Queueing-System" class="headerlink" title="M/M/∞ Queueing System"></a>M/M/∞ Queueing System</h2><p>M/M/∞就是M/M/m 当Server的个数m趋于正无穷时候的情况.</p>
+<h3 id="有0个顾客的概率"><a href="#有0个顾客的概率" class="headerlink" title="有0个顾客的概率"></a>有0个顾客的概率</h3><p>对于这个系统, 状态有无穷多个, 状态转移图如下:</p>
+<p><img src="/2023/11/07/network-queue/image-20231119193817980.png" alt="Markov Chain for M/M/∞"></p>
+<p>在M/M/m系统中, $p_0$的表达式为: $p_0 = (\sum_{i=0}^{m-1}\frac{(m\rho)^i}{i!})^{-1}$.</p>
+<p>当$m \rightarrow \infin$时,  $p_0 = \sum_{i=0}^{+\infin} \frac{(m\rho)^i}{i!} = e^{-m\rho}$.</p>
+<p>根据麦克劳林级数: $e^x = \sum_{i=0}^{+\infin}\frac{x^i}{i!}$.</p>
+<p>在M/M/m系统中, $p_n$和$p_0$的关系是: $p_n = \frac{(m\rho)^n}{n!}p_0$.</p>
+<h3 id="系统中顾客的平均值"><a href="#系统中顾客的平均值" class="headerlink" title="系统中顾客的平均值"></a>系统中顾客的平均值</h3><p>系统中顾客的平均值$\bar{N} = \sum_{i=0}^\infin ip_i = \sum_{i=1}^{\infin}i\frac{(m\rho)^i}{i!}e^{-m\rho} = m\rho e^{-m\rho}\sum_{i=1}^{\infin}\frac{(m\rho)^{i-1}}{(i-1)!} = m\rho e^{-m\rho} \times e^{m\rho} = m\rho$.</p>
+<p>因此, 在M/M/∞ 系统中:</p>
+<script type="math/tex; mode=display">
+\bar{N} = m\rho</script><h3 id="顾客平均停留时间"><a href="#顾客平均停留时间" class="headerlink" title="顾客平均停留时间"></a>顾客平均停留时间</h3><p>根据Little定理, $T = \frac{\bar{N}}{\lambda} = \frac{m\rho}{\lambda} = \frac{1}{\mu}$.</p>
+<p>由于是无限的Server, 因此, 平均等待时间是0, Queue的长度也是0.</p>
+<h2 id="排队系统的PASTA性质"><a href="#排队系统的PASTA性质" class="headerlink" title="排队系统的PASTA性质"></a>排队系统的PASTA性质</h2><blockquote>
+<p>PASTA的全称是Poisson Arrivals See Time Averages.</p>
+</blockquote>
+<p>如果一个排队系统, 它的单位时间的到达人数服从参数是$\lambda &gt; 0$的泊松分布, 那么这个排队系统就具有PASTA性质, 这个性质表述为:</p>
+<ul>
+<li>一个人在任意$t$时刻来了, 看到前面有$n$个人的概率, 和这个系统本身有$n$个人的概率是一样的.</li>
+</ul>
+<p>下面是PASTA性质的证明:</p>
+<ul>
+<li>$N(t)$: 这个排队系统在$t$时刻拥有的人数.</li>
+<li>$p_n(t)$: 这个排队系统在$t$时刻有$n$个人的概率.</li>
+<li>$A(a, b)$: 一个事件, 表示一个人在时间段$[a, b]$内到达排队系统.</li>
+</ul>
+<p>那么, 一个人在$t$时刻来了, 看到前面有$n$个人的概率就可以被表示成: $\lim\limits_{\Delta t \rightarrow 0}\{N(t) = n \ |\ A(t, t + \Delta t)\}$.</p>
+<p>根据贝叶斯公式:</p>
+<script type="math/tex; mode=display">
+\lim\limits_{\Delta t \rightarrow 0}P\{N(t) = n \ |\ A(t, t + \Delta t)\} = \lim\limits_{\Delta t \rightarrow 0} \frac{P\{A(t, t + \Delta t) \ |\ N(t) = n\} \times P\{N(t) = n\}}{P\{A(t, t + \Delta t)\}}</script><p>由于泊松分布的性质, $P\{A(t, t + \Delta t) \ |\ N(t) = n\} = P\{A(t, t + \Delta t)\}$.</p>
+<p>因此, 右侧就等于$\lim\limits_{\Delta t \rightarrow 0 }P\{N(t) = n\} = p_n$, 也就证明完毕.</p>
+<h2 id="M-G-1-Queueing-System"><a href="#M-G-1-Queueing-System" class="headerlink" title="M/G/1 Queueing System"></a>M/G/1 Queueing System</h2><p>M/G/1 Queueing System和M/M/1的区别在于, Server处理顾客的分布不再是泊松分布, 而可能是任意分布.</p>
+<ul>
+<li>那么, 就不能再用Markov排队系统去求解$p_n$.</li>
+</ul>
+<h3 id="顾客平均等待时间"><a href="#顾客平均等待时间" class="headerlink" title="顾客平均等待时间"></a>顾客平均等待时间</h3><p>假设在M/G/1 Queueing System中:</p>
+<ul>
+<li>$x_i$: Server处理第$i$个到来的顾客需要的时间, 它们的期望$E(x_i) = x = \frac{1}{\mu}$.</li>
+<li>$N_i$: 当第$i$个顾客到来的时候, 它发现队列中有多少个人.</li>
+<li>$R_i$: 当第$i$个顾客到来的时候, 它可能会发现Server在忙, 那么Server忙多久可以处理下一个顾客, 这个$R_i$就是这个时间, 叫做residual service time.</li>
+</ul>
+<p>那么假设第$i$个顾客的等待时间是$T_q(i)$, 那么:</p>
+<script type="math/tex; mode=display">
+T_q(i) = R_i + \sum_{j = i-N_i}^{i-1}x_j</script><p> 然后让两边同时取期望, 就得到: $E[T_q(i)] = E(R_i) + E[\sum_{j=i - N_i}^{i-1}x_j]$.</p>
+<p>由于$x_i$和$N_i$独立, 因此: $E[T_q(i)] = E(R_i) + E[\sum_{j=i - N_i}^{i-1}x_j] = E(R_i) + E(x)E(N_i) = E(R_i) + \frac{1}{\mu}E(N_i)$.</p>
+<p>设$R$是平均的residual time, 那么$R = \lim\limits_{i \rightarrow +\infin} E(R_i)$.</p>
+<p>将等式两边同时取$i \rightarrow +\infin$的极限, 可以得到: $T_q = R + \frac{1}{\mu} N_q$, 其中$T_q, R, N_q, \mu$都是平均值.</p>
+<p>又根据Little定理, $N_q = \lambda T_q$, 可以得到$T_q = R + \rho T_q$, 因此M/G/1系统的平均等待时间就是:</p>
+<script type="math/tex; mode=display">
+T_q = \frac{R}{1 - \rho}</script><p>之后, 需要计算所有顾客residual service time的平均值, $R_i$随时间的变化图如下:</p>
+<p><img src="/2023/11/07/network-queue/image-20231119203642338.png" alt="Residual Time"></p>
+<p>取一个时间段$[0, t]$, 那么$R(t) = \frac{1}{t} \int_{0}^{t}R(\tau)d\tau$, 这个积分本质上就是求若干个三角形的面积之和.</p>
+<p>那么$R(t) = \frac{1}{t}\sum_{i=1}^{M(t)} \frac{1}{2}x_i^2$, 其中$M(t)$表示时刻$t$前面有几个这样完整的等腰直角三角形, 因为后面要取$t \rightarrow \infin$的极限, 所以不考虑细节.</p>
+<p>然后做一次等价变形: $R(t) = \frac{1}{2} \frac{M(t)}{t} \frac{\sum_{i=1}^{M(t)}x_i^2}{M(t)} $.</p>
+<p>然后, 等式两边取$t \rightarrow \infin$的极限:</p>
+<ul>
+<li>观察$\frac{M(t)}{t}$, 这个本质上是顾客到达的平均速率(一个顾客就是一个等腰三角形), 当$t$趋于正无穷时, 这个值就趋近于$\lambda$.</li>
+</ul>
+<p>因此, 可以得到平均的residual time是:</p>
+<script type="math/tex; mode=display">
+R = \frac{\lambda}{2}E[x^2]</script><p>由此, 可以得到最终的顾客平均等待时间是:</p>
+<script type="math/tex; mode=display">
+T_q = \frac{\lambda E[x^2]}{2(1 - \rho)}</script><p>这个公式叫做Pollaczek-Khinchine formula, 简称PK公式.</p>
+<p>根据期望的性质, $E[x^2] = D[x] + (E[x])^2$, 因此只要知道了$E(x)$以及$D(x)$, 就可以知道$E[x^2]$.</p>
+<h3 id="Queue中的平均顾客数-1"><a href="#Queue中的平均顾客数-1" class="headerlink" title="Queue中的平均顾客数"></a>Queue中的平均顾客数</h3><p>根据Little定理, Queue中的平均顾客数: $N_q = \lambda T_q = \frac{\lambda^2 E[x^2]}{2(1 - \rho)}$</p>
+<h3 id="顾客平均停留时间-1"><a href="#顾客平均停留时间-1" class="headerlink" title="顾客平均停留时间"></a>顾客平均停留时间</h3><p>$T = T_q + x = \frac{\lambda E[x^2]}{2(1 - \rho)} + \frac{1}{\mu}$.</p>
+<h3 id="系统中顾客平均数"><a href="#系统中顾客平均数" class="headerlink" title="系统中顾客平均数"></a>系统中顾客平均数</h3><p>根据Little定理, $N = \lambda T = \frac{\lambda^2 E[x^2]}{2(1 - \rho)} + \rho$.</p>
+<h3 id="一种特殊情况-M-D-1"><a href="#一种特殊情况-M-D-1" class="headerlink" title="一种特殊情况: M/D/1"></a>一种特殊情况: M/D/1</h3><p>D表示Server的处理速率是一个常数, 那么$E[x^2] = (E[x])^2 = \frac{1}{\mu^2}$.</p>
+<p>代入PK公式, 可以得到: $T_q = \frac{\rho}{2\mu(1 - \rho)}$.</p>
+<p>对于M/M/1系统来说, $T_q = \frac{\rho}{\mu(1-\rho)}$, 这个值是明显大于M/D/1的.</p>
+<p>因此, M/D/1系统比M/M/1系统的平均等待时间更短.</p>
+<h2 id="带优先级的M-G-1-Queueing-System"><a href="#带优先级的M-G-1-Queueing-System" class="headerlink" title="带优先级的M/G/1 Queueing System"></a>带优先级的M/G/1 Queueing System</h2><p>之前讨论的M/G/1 Queueing System的服务方式是FCFS, 现在的服务方式是以优先级为基础的, 需要做出如下调整:</p>
+<ul>
+<li>假设优先级分为$n$个级别, 越小表示有越高的优先级, $1, 2, 3, …, n$.</li>
+<li>现在有$n$个平行的Queue, 分别存储对应优先级的顾客, 例如优先级是1的顾客到编号是1的Queue.</li>
+<li>如果Server空了, 高优先级的队列中的顾客先来.</li>
+</ul>
+<p>如果考虑优先级, 那么系统又可以分为抢占式和非抢占式:</p>
+<ul>
+<li>非抢占式: 如果低优先级顾客的正在服务, 这个时候来了一个高优先级的, 那么等低优先级的服务完, 高优先级的再上.</li>
+<li>抢占式: 高优先级的来了之后直接抢占Server, 等所有高优先级的服务完了, 低优先级的再服务.</li>
+</ul>
+<h3 id="非抢占式的M-G-1-Queueing-System"><a href="#非抢占式的M-G-1-Queueing-System" class="headerlink" title="非抢占式的M/G/1 Queueing System"></a>非抢占式的M/G/1 Queueing System</h3><p>假设有下列notation:</p>
+<ul>
+<li>$\lambda_k$: 优先级为$k$的顾客的平均到达率.</li>
+<li>$\mu_k$: 优先级为$k$的顾客的平均离开率.</li>
+<li>$N_{q,k}$: 优先级为$k$的顾客的queue中的平均顾客数.</li>
+<li>$T_{q, k}$: 优先级为$k$的顾客在queue中的平均等待时间.</li>
+<li>$\rho_k$: 对于优先级为$k$的顾客的Server的繁忙度.</li>
+<li>$R$: 对于所有顾客平均的residual time.</li>
+</ul>
+<p>对于这个Queueing System, 它能够趋于稳定的条件是: $\rho = \sum_{i=1}^n \rho_i &lt; 1$.</p>
+<h4 id="平均的Residual-Time"><a href="#平均的Residual-Time" class="headerlink" title="平均的Residual Time"></a>平均的Residual Time</h4><h4 id="优先级为k的顾客平均等待时间"><a href="#优先级为k的顾客平均等待时间" class="headerlink" title="优先级为k的顾客平均等待时间"></a>优先级为k的顾客平均等待时间</h4><p>对于优先级是1的顾客, 根据PK公式: $T_{q, 1} = R + \frac{1}{\mu_1}N_{q, 1}$.</p>
+<p>根据Little定理, $N_{q, 1} = \lambda T_{q, 1}$, 可以求出: $T_{q, 1} = \frac{R}{1 - \rho_1}$.</p>
+<p>对于优先级是2的顾客: $T_{q, 2} = R + \frac{1}{\mu_1} N_{q, 1} + \frac{1}{\mu_2} N_{q, 2} + \frac{1}{\mu_1} \lambda_1 T_{q, 2}$, 这个公式包含三个部分:</p>
+<ul>
+<li>处理优先级是1的顾客.</li>
+<li>处理优先级是2的顾客.</li>
+<li>处理一个优先级是2的顾客时, 优先级为1的顾客可能来了, 那么处理完这个优先级是2的顾客后, 又需要处理这部分多余的顾客, 这个过程会交替进行.</li>
+</ul>
+<p>然后, 将Little定理: $N_{q, k} = \lambda_k T_{q, k}$代入上面的式子, 可以得到:</p>
+<p>$T_{q, 2} = R + \rho_1 T_{q, 1} + \rho_2 T_{q, 2} + \rho_1 T_{q, 2}$.</p>
+<p>可以求出: $T_{q, 2} = \frac{R + \rho_1 T_{q, 1}}{(1 - \rho_1 - \rho_2)}$, 之后, 将$T_{q, 1} = \frac{R}{1 - \rho_1}$代入, 可以得到$T_{q, 2} = \frac{R}{(1 - \rho_1)(1 - \rho_1 - \rho_2)}$</p>
+<p>根据这个形式, 可以得到更通用的格式:</p>
+<script type="math/tex; mode=display">
+T_{q, k} = \frac{R}{(1 - \rho_1 - .. - \rho_{k-1})(1 - \rho_1 - \rho_2 - ... - \rho_k)}</script><h3 id="抢占式的M-G-1-Queueing-System"><a href="#抢占式的M-G-1-Queueing-System" class="headerlink" title="抢占式的M/G/1 Queueing System"></a>抢占式的M/G/1 Queueing System</h3>
       
        
     </div>
