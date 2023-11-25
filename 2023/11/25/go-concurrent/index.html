@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>English Practice Day3 | LiGaOg&#39;s blog</title>
+  <title>Go-使用协程实现的一些并发算法题 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="English Practice Day3 | LiGaOg&#39;s blog">
+  <meta name="description" content="Go-使用协程实现的一些并发算法题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -1065,9 +1065,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-English-day3" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-go-concurrent" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">English Practice Day3</h1>
+        <h1 class="article-title">Go-使用协程实现的一些并发算法题</h1>
     
     <div class="article-meta">
         
@@ -1077,7 +1077,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="English">English</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -1085,7 +1085,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-07 16:37:11'>2023-10-05 17:27</time>
+            Created At : <time class="date" title='Updated At: 2023-11-25 21:35:58'>2023-11-25 20:31</time>
         
     </div>
     <div class="article-meta">
@@ -1096,7 +1096,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Words"><span class="toc-text">Words</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Speaking"><span class="toc-text">Speaking</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Writing"><span class="toc-text">Writing</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B%E9%A1%BA%E5%BA%8F"><span class="toc-text">协程顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B%E4%BA%A4%E6%9B%BF%E6%89%93%E5%8D%B0"><span class="toc-text">协程交替打印</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B%E5%B1%8F%E9%9A%9C"><span class="toc-text">协程屏障</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1112,99 +1112,140 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Words"><a href="#Words" class="headerlink" title="Words"></a>Words</h2><ul>
-<li>Recurrent: 反复出现的, 一再发生的</li>
-<li>mesh: 网格</li>
-<li>Rational: 根本原因</li>
-<li>Shed light on: 启蒙</li>
-<li>Bleeding edge: 最前沿</li>
-<li>算命: fortune telling</li>
-<li>点蜡烛: light the candle</li>
-<li>with regard to : 关于</li>
-<li>Herald: 预示, 宣布</li>
-<li>Compatibility: 兼容性</li>
-<li>insidious: 阴险的</li>
-<li>Replication: 复制/拷贝/对答辩的问答.</li>
-<li>corrections: 修正</li>
-<li>ultimate: 最终的</li>
-<li>plethora: 过多/过量, 名词</li>
-<li>judicious: 明智的</li>
-<li>contrapose: 对照/针对</li>
-<li>Dichotomy: n. 一分为二</li>
-<li>constrictive: 狭窄的</li>
-<li>Specious: 似是而非的</li>
-<li>anecdotal: 传闻的</li>
-<li>exemplify: 举例说明</li>
-<li>apparatus: 装置/仪器</li>
-<li>Concede: 承认</li>
-<li>at the outset: 从一开始</li>
-<li><p>Histogram: 直方图</p>
-</li>
-<li><p>slope: 斜率</p>
-</li>
-<li><p>Caveat: 警告</p>
-</li>
-<li><p>Daunting: 令人生畏的/令人气馁的</p>
-</li>
-<li><p>Longevity: 长寿</p>
-</li>
-<li><p>invaluable: 极宝贵的</p>
-</li>
-<li><p>Encapsulate: 概括</p>
-</li>
-<li><p>Paradigm: 范例</p>
-</li>
+        <h2 id="协程顺序"><a href="#协程顺序" class="headerlink" title="协程顺序"></a>协程顺序</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/print-in-order/description/">https://leetcode.cn/problems/print-in-order/description/</a></p>
+</blockquote>
+<p>直接使用3个Channel, 分别控制:</p>
+<ul>
+<li>f1和f2的先后关系.</li>
+<li>f2和f3的先后关系.</li>
+<li>f3和main的先后关系.</li>
 </ul>
-<h2 id="Speaking"><a href="#Speaking" class="headerlink" title="Speaking"></a>Speaking</h2><ul>
-<li>The deal’s on. 和别人约定/做交易的时候</li>
-<li>Is that a fact? 真的吗?</li>
-<li>coworker: 同事</li>
-<li>revise: 需要重新修订, 详细论证等</li>
-<li>serve you some tea or coffee: 端茶倒水</li>
-<li>say again: 可以用来代替pardon.</li>
-<li>in exchange for …: 用来描述做某事的代价</li>
-<li>fresh start: 全新的开始</li>
-<li>询问某人爱好: What kind of hobbies do you have? </li>
-<li>I don’t follow. 当你没听清对方的话/没理解时</li>
-<li>How is it going? 见面打招呼</li>
-<li>纸上谈兵: empty talk</li>
+<pre><code class="lang-go">package main
+
+import &quot;fmt&quot;
+
+var c1 = make(chan struct&#123;&#125;)
+var c2 = make(chan struct&#123;&#125;)
+var c3 = make(chan struct&#123;&#125;)
+
+func f1() &#123;
+    fmt.Println(&quot;first&quot;)
+    /* f1执行完毕，解除f2的阻塞 */
+    c1 &lt;- struct&#123;&#125;&#123;&#125;
+&#125;
+
+func f2() &#123;
+    /* 等待f1 */
+    &lt;-c1
+    fmt.Println(&quot;second&quot;)
+    /* f2执行完毕， 解除f3的阻塞 */
+    c2 &lt;- struct&#123;&#125;&#123;&#125;
+&#125;
+
+func f3() &#123;
+    /* 等待f2 */
+    &lt;-c2
+    fmt.Println(&quot;third&quot;)
+    /* f3执行完毕， 解除main的阻塞 */
+    c3 &lt;- struct&#123;&#125;&#123;&#125;
+&#125;
+
+
+func main() &#123;
+
+    routineMap := map[int]func() &#123;
+        1: f1,
+        2: f2,
+        3: f3,
+    &#125;
+
+    for _, f := range routineMap &#123;
+        go f()
+    &#125;
+
+  defer close(c1)
+  defer close(c2)
+  defer close(c3)
+
+    &lt;-c3
+
+&#125;
+</code></pre>
+<font color="red">注意: 一定要用`close`关掉Channel !!!, 还要注意要多定义一个Channel用来阻塞main协程.</font>
+
+
+
+<h2 id="协程交替打印"><a href="#协程交替打印" class="headerlink" title="协程交替打印"></a>协程交替打印</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/print-foobar-alternately/description/">https://leetcode.cn/problems/print-foobar-alternately/description/</a></p>
+</blockquote>
+<p>实现方式非常简单, 使用两个Channel:</p>
+<ul>
+<li>一个Channel容量是1, 里面里面有一个元素, 叫c1</li>
+<li>一个Channel容量是0, 叫c2</li>
 </ul>
-<h2 id="Writing"><a href="#Writing" class="headerlink" title="Writing"></a>Writing</h2><ul>
-<li>Predecessor: 前代<ul>
-<li>One of the primary goals of computer architects is to design computers that are more cost effective than their predecessors.</li>
+<p>对于需要交替执行的两个Part (Part1和Part2):</p>
+<ul>
+<li>Part1先从c1中拿到元素, 然后执行, 执行完一次后解除c2阻塞.</li>
+<li>Part2解除阻塞后执行, 执行完之后解除c1的阻塞.</li>
+<li>然后循环.</li>
 </ul>
-</li>
-<li>Presumably: 很可能<ul>
-<li>He will presumably resign in view of the complete failure of his policy.</li>
-</ul>
-</li>
-<li>Double-edged sword: 双刃剑</li>
-<li>luring…into…: 引诱</li>
-<li>Detrimental: 有害的</li>
-<li>laudable: 值得称赞的</li>
-<li>称…是错误的: … has been the wrong issues.</li>
-<li>依赖: dependency-&gt; reliance</li>
-<li>Hard evidence: 铁证</li>
-<li>消除/减轻可以用ease</li>
-<li>be prone to: 易于…</li>
-<li>encompass: 包含, 包括</li>
-<li>Careful pruning of: 用来形容细致地做某个工作</li>
-<li>ought to : 代替should</li>
-<li>panacea: 灵丹妙药</li>
-<li>Superiority of … over ….: …对于…的优越性</li>
-<li>boil down to: 归结于…</li>
-<li>Albeit: 尽管, 虽然</li>
-<li>salient: 显著的, 突出的<ul>
-<li>salient implementation characteristics.</li>
-</ul>
-</li>
-<li>Warrant….: 使做…是必要的<ul>
-<li>The difference warrants repeating our measurement.</li>
-</ul>
-</li>
-<li>…可以归结于几个方面: can be summarized into …</li>
-<li>疯狂地: frantically</li>
-</ul>
+<pre><code class="lang-go">package main
+
+import (
+    &quot;fmt&quot;
+    &quot;sync&quot;
+)
+
+/* 创建两个Channel */
+var c1 = make(chan struct&#123;&#125;, 1)
+var c2 = make(chan struct&#123;&#125;)
+
+
+func main() &#123;
+    /* 初始化c1有一个元素 */
+    c1 &lt;- struct&#123;&#125;&#123;&#125;
+
+    /* 创建WaitGroup */
+    wg := sync.WaitGroup&#123;&#125;
+    wg.Add(2)
+
+
+    var n int
+
+    /* 从标准输入读入n */
+    fmt.Scanf(&quot;%d&quot;, &amp;n)
+
+    /* 开启协程 */
+    go func() &#123;
+        for i := 0; i &lt; n; i ++ &#123;
+            &lt;-c1
+            fmt.Print(&quot;Foo&quot;)
+            c2 &lt;- struct&#123;&#125;&#123;&#125;
+        &#125;
+        wg.Done()
+    &#125;()
+
+    go func() &#123;
+        for i := 0; i &lt; n; i ++ &#123;
+            &lt;-c2
+            fmt.Print(&quot;Bar&quot;)
+            c1 &lt;- struct&#123;&#125;&#123;&#125;
+        &#125;
+        wg.Done()
+    &#125;()
+
+    /* 延迟关闭管道 */
+    defer close(c1)
+    defer close(c2)
+
+
+    wg.Wait()
+&#125;
+</code></pre>
+<h2 id="协程屏障"><a href="#协程屏障" class="headerlink" title="协程屏障"></a>协程屏障</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/building-h2o/description/">https://leetcode.cn/problems/building-h2o/description/</a></p>
+</blockquote>
 
       
        
