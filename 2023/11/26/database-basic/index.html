@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>算法题-字典树(Trie)系列题目 | LiGaOg&#39;s blog</title>
+  <title>数据库-PostgreSQL环境配置与一些基础的SQL语句 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="算法题-字典树(Trie)系列题目 | LiGaOg&#39;s blog">
+  <meta name="description" content="数据库-PostgreSQL环境配置与一些基础的SQL语句 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -1074,9 +1074,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-trie" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-database-basic" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">算法题-字典树(Trie)系列题目</h1>
+        <h1 class="article-title">数据库-PostgreSQL环境配置与一些基础的SQL语句</h1>
     
     <div class="article-meta">
         
@@ -1086,7 +1086,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="算法">算法</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -1094,7 +1094,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-10-03 19:26:56'>2023-10-03 19:26</time>
+            Created At : <time class="date" title='Updated At: 2023-11-26 18:45:23'>2023-11-26 17:01</time>
         
     </div>
     <div class="article-meta">
@@ -1105,7 +1105,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E5%85%B8%E6%A0%91%E6%A8%A1%E6%9D%BF%E9%A2%98"><span class="toc-text">字典树模板题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%80%E5%A4%A7%E5%BC%82%E6%88%96%E5%AF%B9"><span class="toc-text">最大异或对</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%99%BB%E5%BD%95"><span class="toc-text">下载与登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">登录环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#psql%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">psql的配置和常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#psql%E7%9A%84%E5%A2%9E%E5%BC%BA%E7%89%88-pgcli"><span class="toc-text">psql的增强版-pgcli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#psql%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="toc-text">psql的常见命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL%E7%9A%84%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8"><span class="toc-text">PostgreSQL的逻辑存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Database"><span class="toc-text">Database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schema"><span class="toc-text">Schema</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1121,129 +1121,107 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="字典树模板题"><a href="#字典树模板题" class="headerlink" title="字典树模板题"></a>字典树模板题</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/837/">https://www.acwing.com/problem/content/837/</a></p>
-</blockquote>
-<p>字典树能够在$O(k)$的时间复杂度内查找一个字符串在集合中出现的次数, 其中$k$是字符串的长度.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-
-using namespace std;
-
-/* 这个N表示字典树中可能有多少个节点, 等于所有可能插入的字符串的长度之和 */
-const int N = 100010;
-
-int idx, cnt[N], son[N][26];
-
-char str[N];
-
-/* 向字典树中插入str */
-void insert()
-&#123;
-    int p = 0;
-    for (int i = 0; str[i]; i ++)
-    &#123;
-        int u = str[i] - &#39;a&#39;;
-        if (!son[p][u]) son[p][u] = ++idx;
-        p = son[p][u];
-    &#125;
-    cnt[p] ++;
-&#125;
-
-/* 查找str出现的次数 */
-int query()
-&#123;
-    int p = 0;
-    for (int i = 0; str[i]; i ++)
-    &#123;
-        int u = str[i] - &#39;a&#39;;
-        if (!son[p][u]) return 0;
-        p = son[p][u];
-    &#125;
-    return cnt[p];
-&#125;
-
-int main()
-&#123;
-    int n;
-    cin &gt;&gt; n;
-
-    while (n --)
-    &#123;
-        char op[2];
-        scanf(&quot;%s&quot;, op);
-
-        if (*op == &#39;I&#39;)
-        &#123;
-            scanf(&quot;%s&quot;, str);
-            insert();
-        &#125;
-        else
-        &#123;
-            scanf(&quot;%s&quot;, str);
-            cout &lt;&lt; query() &lt;&lt; endl;
-        &#125;
-    &#125;
-    return 0;
-&#125;
+        <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="下载与登录"><a href="#下载与登录" class="headerlink" title="下载与登录"></a>下载与登录</h3><p>直接去PostgreSQL下载dmg包进行安装即可.</p>
+<ul>
+<li>默认的安装位置应该是在<code>/Library/PostgreSQL/一个版本号/</code>.</li>
+</ul>
+<p>默认情况下, 如果你需要操作数据库, 需要有6个信息:</p>
+<ul>
+<li>用户名 (默认创建的用户叫<code>postgres</code>)</li>
+<li>密码 (安装时需要自己创建)</li>
+<li>操作哪个数据库(如果是管理员, 那么无所谓) (默认的数据库叫<code>postgres</code>)</li>
+<li>数据库服务器 (本地就是<code>localhost</code>)</li>
+<li>数据库服务的端口 (PostgreSQL默认是5432)</li>
+</ul>
+<p>如果要登录数据库, 可以使用如下命令:</p>
+<pre><code class="lang-bash">psql -h hostname \
+         -p portnumber \
+     -U username \
+     -d databasename
 </code></pre>
-<h2 id="最大异或对"><a href="#最大异或对" class="headerlink" title="最大异或对"></a>最大异或对</h2><blockquote>
-<p><a target="_blank" rel="noopener" href="https://www.acwing.com/problem/content/145/">https://www.acwing.com/problem/content/145/</a></p>
+<h3 id="登录环境变量"><a href="#登录环境变量" class="headerlink" title="登录环境变量"></a>登录环境变量</h3><p>每次命令的参数太多, 可以通过设置环境变量:</p>
+<ul>
+<li>Hostname: <code>PGHOST</code></li>
+<li>Port: <code>PGPORT</code></li>
+<li>Database: <code>PGDATABASE</code></li>
+<li>User: <code>PGUSER</code></li>
+</ul>
+<p>详细的配置可以参考: <a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/libpq-envars.html">https://www.postgresql.org/docs/current/libpq-envars.html</a></p>
+<h2 id="psql的配置和常用命令"><a href="#psql的配置和常用命令" class="headerlink" title="psql的配置和常用命令"></a>psql的配置和常用命令</h2><h3 id="psql的增强版-pgcli"><a href="#psql的增强版-pgcli" class="headerlink" title="psql的增强版-pgcli"></a>psql的增强版-pgcli</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/dbcli/pgcli">https://github.com/dbcli/pgcli</a></p>
 </blockquote>
-<p>在给定的一个数组中, 选取两个数, 使得它们的异或最大.</p>
-<pre><code class="lang-cpp">#include &lt;iostream&gt;
-
-using namespace std;
-
-const int N = 31 * 100010;
-
-int idx, son[N][2];
-
-int n, a[N / 31];
-
-void insert(int x)
-&#123;
-    int p = 0;
-    for (int i = 30; i &gt;= 0; i --)
-    &#123;
-        int u = x &gt;&gt; i &amp; 1;
-        if (!son[p][u]) son[p][u] = ++idx;
-        p = son[p][u];
-    &#125;
-&#125;
-
-int query(int x)
-&#123;
-    int p = 0;
-    int res = 0;
-    for (int i = 30; i &gt;= 0; i --)
-    &#123;
-        int u = x &gt;&gt; i &amp; 1;
-        if (son[p][!u])
-        &#123;
-            res += (1 &lt;&lt; i);
-            p = son[p][!u];
-        &#125;
-        else p = son[p][u];
-    &#125;
-    return res;
-&#125;
-
-int main()
-&#123;
-    cin &gt;&gt; n;
-    for (int i = 0; i &lt; n; i ++) 
-    &#123;
-        cin &gt;&gt; a[i];
-        insert(a[i]);
-    &#125;
-
-    int res = -1;
-    for (int i = 0; i &lt; n; i ++) res = max(res, query(a[i]));
-
-    cout &lt;&lt; res &lt;&lt; endl;
-    return 0;
-&#125;
+<p>下载完成并配置完登录的环境变量后, 使用<code>pgcli</code>即可登录数据库.</p>
+<h3 id="psql的常见命令"><a href="#psql的常见命令" class="headerlink" title="psql的常见命令"></a>psql的常见命令</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\l</code></td>
+<td>查看所有的数据库</td>
+</tr>
+<tr>
+<td><code>\c + 数据库名</code></td>
+<td>进入到某一个数据库</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>查看数据库中的表</td>
+</tr>
+<tr>
+<td><code>\q</code></td>
+<td>退出psql</td>
+</tr>
+<tr>
+<td><code>&lt;ctrl&gt;l</code></td>
+<td>清空数据库屏幕</td>
+</tr>
+<tr>
+<td><code>\dn</code></td>
+<td>列出当前Database所有的schema</td>
+</tr>
+<tr>
+<td><code>\dt</code></td>
+<td>列出当前所有表</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="PostgreSQL的逻辑存储"><a href="#PostgreSQL的逻辑存储" class="headerlink" title="PostgreSQL的逻辑存储"></a>PostgreSQL的逻辑存储</h2><h3 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h3><p>Database是数据库逻辑存储的最高一级, 可以通过下面的命令创建:</p>
+<pre><code class="lang-sql">create database &lt;Database_name&gt;;
 </code></pre>
+<p>创建这个Database的人默认就是管理员.</p>
+<p>这个数据库是从模板数据库<code>template1</code>克隆而来的, 可以使用<code>\l</code>查看所有数据库.</p>
+<ul>
+<li>默认情况下, 如果不显式指定模板, 创建的database都是由<code>template1</code>克隆而来.</li>
+</ul>
+<h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><p>Schema是Database下面一级的一个空间, 这个Schema可以存储不同的数据库对象, 例如表, 索引, 函数等.</p>
+<p>如果创建了一个database, 那么默认会创建两个schema:</p>
+<ul>
+<li><code>public</code>: 这个database中的所有用户都可以访问的schema, 默认创建的数据库对象就在<code>public</code>中.</li>
+<li><code>information_schema</code>: 存储了当前database的一些元数据.</li>
+</ul>
+<p>如果要创建一个schema, 可以使用:</p>
+<pre><code class="lang-sql">create schema &lt;Schema_name&gt;;
+</code></pre>
+<ul>
+<li><p>如果要索引一个数据库中的某个对象, 可以用<code>&lt;schema_name&gt;.&lt;dataobject_name&gt;</code>.</p>
+</li>
+<li><p>如果要显示一个schema中的信息, 例如所有表格, 可以用<code>\dt schema_name.*</code>.</p>
+</li>
+<li>如果要在一个特定的schema下创建数据库对象(例如表格), 可以用<code>create table schema_name.table_name</code>.</li>
+</ul>
 
       
        
@@ -1256,46 +1234,6 @@ int main()
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 
