@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据库-PostgreSQL环境配置与SQL语句 | LiGaOg&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="数据库-PostgreSQL环境配置与SQL语句 | LiGaOg&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta property="og:site_name" content="LiGaOg&#39;s blog">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:author" content="LiGaOg">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>LiGaOg</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LiGaOg"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:chlijiaao@163.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2381446488&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(88)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            
+            工具
+            <small>(12)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工程">
+            
+            工程
+            <small>(22)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="其他">
+            
+            其他
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数学">
+            
+            数学
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(45)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="English">
+            
+            English
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">About</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="88">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/03/register_renaming/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-寄存器重命名的算法设计与实现">CPU-寄存器重命名的算法设计与实现</span>
+            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/03/branch-prediction/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/03/database-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
+            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/11/28/iterm2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="iTerm2-Mac平台下配置一个完备的终端模拟器">iTerm2-Mac平台下配置一个完备的终端模拟器</span>
+            <span class="post-date" title="2023-11-28 15:38:38">2023/11/28</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/11/28/ranger/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ranger-高效的终端管理器">ranger-高效的终端管理器</span>
+            <span class="post-date" title="2023-11-28 15:38:26">2023/11/28</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/25/go-concurrent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-使用协程实现的一些并发算法题">Go-使用协程实现的一些并发算法题</span>
+            <span class="post-date" title="2023-11-25 20:31:27">2023/11/25</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/24/go-improve/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-高级语法特性">Go-高级语法特性</span>
+            <span class="post-date" title="2023-11-24 14:07:56">2023/11/24</span>
+        </a>
+        
+        
+        <a  class="All 数学 "
+           href="/2023/11/16/probability_type/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="概率论-基础知识以及常见的概率分布">概率论-基础知识以及常见的概率分布</span>
+            <span class="post-date" title="2023-11-16 16:17:37">2023/11/16</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/13/exception/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-对于异常的一些理解">CPU-对于异常的一些理解</span>
+            <span class="post-date" title="2023-11-13 20:34:38">2023/11/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/12/go-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-环境配置与基础知识">Go-环境配置与基础知识</span>
+            <span class="post-date" title="2023-11-12 12:42:28">2023/11/12</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/09/rust_boot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-怎么使用rust在裸机上写代码">Rust-怎么使用rust在裸机上写代码</span>
+            <span class="post-date" title="2023-11-09 20:42:44">2023/11/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/11/07/guowangwushuang/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-国王无双dp统计方案数">算法题-国王无双dp统计方案数</span>
+            <span class="post-date" title="2023-11-07 15:54:04">2023/11/07</span>
+        </a>
+        
+        
+        <a  class="All 数学 "
+           href="/2023/11/07/network-queue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="排队论-基础知识和常见的排队模型">排队论-基础知识和常见的排队模型</span>
+            <span class="post-date" title="2023-11-07 11:26:15">2023/11/07</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/11/07/knapsack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-背包问题的模板总结">算法题-背包问题的模板总结</span>
+            <span class="post-date" title="2023-11-07 10:47:26">2023/11/07</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/06/rustsetup/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-环境配置以及一些基础知识">Rust-环境配置以及一些基础知识</span>
+            <span class="post-date" title="2023-11-06 21:29:45">2023/11/06</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/11/03/binary-tree/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
+            <span class="post-date" title="2023-11-03 13:17:54">2023/11/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/30/logic-synthesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="EDA-逻辑综合一些知识点">EDA-逻辑综合一些知识点</span>
+            <span class="post-date" title="2023-10-30 20:13:39">2023/10/30</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/26/virtualmem/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-虚拟内存的基础知识和设计">CPU-虚拟内存的基础知识和设计</span>
+            <span class="post-date" title="2023-10-26 10:32:12">2023/10/26</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/25/cache-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-缓存的基础知识与设计策略">CPU-缓存的基础知识与设计策略</span>
+            <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/pipeline/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-处理器设计准则以及流水线">CPU-处理器设计准则以及流水线</span>
+            <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/microcode/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-使用Microcode实现复杂的硬件指令">CPU-使用Microcode实现复杂的硬件指令</span>
+            <span class="post-date" title="2023-10-24 15:53:29">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/rdt/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络-可靠数据传输的原理">计算机网络-可靠数据传输的原理</span>
+            <span class="post-date" title="2023-10-24 15:52:37">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/10/24/docker-env/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Docker-如何用docker部署一个运行环境">Docker-如何用docker部署一个运行环境</span>
+            <span class="post-date" title="2023-10-24 14:35:02">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/22/linkedlist/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-链表系列问题">算法题-链表系列问题</span>
+            <span class="post-date" title="2023-10-22 15:53:41">2023/10/22</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/18/English-day4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day4">English Practice Day4</span>
+            <span class="post-date" title="2023-10-18 17:23:37">2023/10/18</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/13/greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-贪心算法的一些问题集合">算法题-贪心算法的一些问题集合</span>
+            <span class="post-date" title="2023-10-13 14:14:56">2023/10/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/10/js-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Javascript-一些基础知识点">Javascript-一些基础知识点</span>
+            <span class="post-date" title="2023-10-10 15:15:34">2023/10/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/one-greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-一类贪心问题的分析">算法题-一类贪心问题的分析</span>
+            <span class="post-date" title="2023-10-08 20:00:56">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/discrete/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-保序离散化">算法题-保序离散化</span>
+            <span class="post-date" title="2023-10-08 19:23:36">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/08/under-nodejs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js-官网安装包的结构">Node.js-官网安装包的结构</span>
+            <span class="post-date" title="2023-10-08 15:31:15">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/mathematic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-数学问题">算法题-数学问题</span>
+            <span class="post-date" title="2023-10-08 13:43:03">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/05/English-day3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day3">English Practice Day3</span>
+            <span class="post-date" title="2023-10-05 17:27:04">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/graph-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-图论基础算法">算法题-图论基础算法</span>
+            <span class="post-date" title="2023-10-04 18:43:13">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/bfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-广度优先搜索">算法题-广度优先搜索</span>
+            <span class="post-date" title="2023-10-04 13:31:46">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/fib/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-求解斐波那契数列">算法题-求解斐波那契数列</span>
+            <span class="post-date" title="2023-10-04 11:50:18">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/stack-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-利用栈求解表达式的值">算法题-利用栈求解表达式的值</span>
+            <span class="post-date" title="2023-10-03 19:27:04">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/trie/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字典树(Trie)系列题目">算法题-字典树(Trie)系列题目</span>
+            <span class="post-date" title="2023-10-03 19:26:56">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/heap/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-堆系列">算法题-堆系列</span>
+            <span class="post-date" title="2023-10-03 19:24:24">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/union-find/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-并查集系列">算法题-并查集系列</span>
+            <span class="post-date" title="2023-10-03 18:15:27">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/interval/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-区间问题">算法题-区间问题</span>
+            <span class="post-date" title="2023-10-02 14:12:36">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/prefix-sum-diff/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-前缀和与查分">算法题-前缀和与查分</span>
+            <span class="post-date" title="2023-10-02 13:39:43">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/sort-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排序算法">算法题-排序算法</span>
+            <span class="post-date" title="2023-10-02 12:47:09">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/25/English-day2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day2">English Practice Day2</span>
+            <span class="post-date" title="2023-09-25 10:12:18">2023/09/25</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/24/English-day1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day1">English Practice Day1</span>
+            <span class="post-date" title="2023-09-24 17:24:20">2023/09/24</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/23/English-day0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day0">English Practice Day0</span>
+            <span class="post-date" title="2023-09-23 14:50:07">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/23/two-sum-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-两数之和系列题">算法题-两数之和系列题</span>
+            <span class="post-date" title="2023-09-23 13:48:31">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/first-missing-positive/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-缺失的第一个正数">算法题-缺失的第一个正数</span>
+            <span class="post-date" title="2023-09-22 21:26:22">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/rotate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-旋转图像">算法题-旋转图像</span>
+            <span class="post-date" title="2023-09-22 16:41:21">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/jump-game/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-跳跃游戏">算法题-跳跃游戏</span>
+            <span class="post-date" title="2023-09-22 16:00:12">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/judge-sub-sequence/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-判断子序列">算法题-判断子序列</span>
+            <span class="post-date" title="2023-09-22 14:18:51">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/20/dfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-深度优先搜索">算法题-深度优先搜索</span>
+            <span class="post-date" title="2023-09-20 19:36:34">2023/09/20</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/sim-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-高精度加减乘除">算法题-高精度加减乘除</span>
+            <span class="post-date" title="2023-09-19 21:05:46">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/string-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字符串系列问题">算法题-字符串系列问题</span>
+            <span class="post-date" title="2023-09-19 14:51:37">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/18/other-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-其他类型的算法/模拟题">算法题-其他类型的算法/模拟题</span>
+            <span class="post-date" title="2023-09-18 14:43:51">2023/09/18</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/17/lazygit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LazyGit-如何高效地实现版本控制">LazyGit-如何高效地实现版本控制</span>
+            <span class="post-date" title="2023-09-17 21:16:21">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/17/bit-operation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-位运算系列">算法题-位运算系列</span>
+            <span class="post-date" title="2023-09-17 16:06:00">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/17/make-ppt-markdown/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Slidev-使用Markdown制作简单的演示文稿">Slidev-使用Markdown制作简单的演示文稿</span>
+            <span class="post-date" title="2023-09-17 14:23:33">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/16/linker-script-value/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C语言-如何获得链接脚本定义的变量">C语言-如何获得链接脚本定义的变量</span>
+            <span class="post-date" title="2023-09-16 16:16:17">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/delete-duplicate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-删除有序数组重复项">算法题-删除有序数组重复项</span>
+            <span class="post-date" title="2023-09-16 13:53:50">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/next-permutation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-下一个排列">算法题-下一个排列</span>
+            <span class="post-date" title="2023-09-16 12:36:00">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/beizeng/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-倍增系列题目">算法题-倍增系列题目</span>
+            <span class="post-date" title="2023-09-15 21:11:13">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/binary-search/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二分系列">算法题-二分系列</span>
+            <span class="post-date" title="2023-09-15 18:26:36">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/kmp-ac-automaton/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-对KMP算法的理解">算法题-对KMP算法的理解</span>
+            <span class="post-date" title="2023-09-15 18:23:26">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/find-duplicate-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-找出数组中重复的数字">算法题-找出数组中重复的数字</span>
+            <span class="post-date" title="2023-09-15 17:57:43">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/13/compile-link/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C语言-有关链接过程的一些知识点">C语言-有关链接过程的一些知识点</span>
+            <span class="post-date" title="2023-09-13 21:03:22">2023/09/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/12/riscv-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-RISC-V的基础知识以及一些基本指令">CPU-RISC-V的基础知识以及一些基本指令</span>
+            <span class="post-date" title="2023-09-12 17:59:34">2023/09/12</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/10/parathesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-括号序列问题">算法题-括号序列问题</span>
+            <span class="post-date" title="2023-09-10 13:35:06">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/10/orbstack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="OrbStack-MacOS下轻量的Linux虚拟机">OrbStack-MacOS下轻量的Linux虚拟机</span>
+            <span class="post-date" title="2023-09-10 13:34:51">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/09/catch-most-water/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-盛水最多的容器">算法题-盛水最多的容器</span>
+            <span class="post-date" title="2023-09-09 09:58:50">2023/09/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/regular-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-正则表达式匹配">算法题-正则表达式匹配</span>
+            <span class="post-date" title="2023-09-08 19:58:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/zigzag-conversion/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-N字形变换">算法题-N字形变换</span>
+            <span class="post-date" title="2023-09-08 09:02:30">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/inverse-integer/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-反转整数">算法题-反转整数</span>
+            <span class="post-date" title="2023-09-08 08:59:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/sliding-window/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-单调栈与单调队列模板题">算法题-单调栈与单调队列模板题</span>
+            <span class="post-date" title="2023-09-04 20:16:17">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/catch-rain/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-接雨水系列问题">算法题-接雨水系列问题</span>
+            <span class="post-date" title="2023-09-04 19:45:09">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/permutation-combination/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排列/组合枚举问题">算法题-排列/组合枚举问题</span>
+            <span class="post-date" title="2023-09-03 12:46:46">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/algorithm-complex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何从数据规模推测算法的时间复杂度">如何从数据规模推测算法的时间复杂度</span>
+            <span class="post-date" title="2023-09-03 11:00:12">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/longest-palindromic-substring/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-回文数及最长回文子串">算法题-回文数及最长回文子串</span>
+            <span class="post-date" title="2023-09-03 10:50:09">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/02/match-system/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Web-使用thrift实现匹配微服务">Web-使用thrift实现匹配微服务</span>
+            <span class="post-date" title="2023-09-02 21:28:09">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/02/under-python/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python-官网安装包的结构">Python-官网安装包的结构</span>
+            <span class="post-date" title="2023-09-02 20:56:07">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/ssh-usage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ssh-开发中的常见用法">ssh-开发中的常见用法</span>
+            <span class="post-date" title="2023-09-02 20:55:52">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/pass/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="pass-Linux系统中的终端密码管理器">pass-Linux系统中的终端密码管理器</span>
+            <span class="post-date" title="2023-09-02 20:55:39">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/opensource/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="常见的开源协议?">常见的开源协议?</span>
+            <span class="post-date" title="2023-09-02 20:55:24">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/mac-collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-date" title="2023-09-02 20:55:16">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/gpt-shell/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ShellGPT-终端中集成ChatGPT服务">ShellGPT-终端中集成ChatGPT服务</span>
+            <span class="post-date" title="2023-09-02 20:54:59">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/build-blog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo-搭建并管理个人博客">Hexo-搭建并管理个人博客</span>
+            <span class="post-date" title="2023-09-02 20:54:44">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/amethyst/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Amethyst-Mac平台下的简单窗口管理器">Amethyst-Mac平台下的简单窗口管理器</span>
+            <span class="post-date" title="2023-09-02 20:54:35">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/academic-typora/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Typora-Typora的LaTeX皮肤">Typora-Typora的LaTeX皮肤</span>
+            <span class="post-date" title="2023-09-02 20:54:29">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/02/median-of-two-sorted-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-寻找两个正序数组的中位数">算法题-寻找两个正序数组的中位数</span>
+            <span class="post-date" title="2023-09-02 10:00:10">2023/09/02</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-database-basic" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">数据库-PostgreSQL环境配置与SQL语句</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工程">工程</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-12-03 18:09:28'>2023-12-03 18:09</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="toc-text">环境配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E4%B8%8E%E7%99%BB%E5%BD%95"><span class="toc-text">下载与登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%99%BB%E5%BD%95%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-text">登录环境变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#psql%E7%9A%84%E9%85%8D%E7%BD%AE%E5%92%8C%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">psql的配置和常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#psql%E7%9A%84%E5%A2%9E%E5%BC%BA%E7%89%88-pgcli"><span class="toc-text">psql的增强版-pgcli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#psql%E7%9A%84%E5%B8%B8%E8%A7%81%E5%91%BD%E4%BB%A4"><span class="toc-text">psql的常见命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PostgreSQL%E7%9A%84%E9%80%BB%E8%BE%91%E5%AD%98%E5%82%A8"><span class="toc-text">PostgreSQL的逻辑存储</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Database"><span class="toc-text">Database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schema"><span class="toc-text">Schema</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Create-Table"><span class="toc-text">Create Table</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-text">字段的数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E6%95%B0"><span class="toc-text">整数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="toc-text">浮点数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-text">字符串</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NULL"><span class="toc-text">NULL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E6%AE%B5%E7%BA%A6%E6%9D%9F"><span class="toc-text">字段约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#not-null"><span class="toc-text">not null</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#unique"><span class="toc-text">unique</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#primary-key-%E4%B8%BB%E9%94%AE"><span class="toc-text">primary key(主键)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#foreign-key-%E5%A4%96%E9%94%AE"><span class="toc-text">foreign key(外键)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E5%A4%A7%E8%8C%83%E5%BC%8F"><span class="toc-text">三大范式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Insert"><span class="toc-text">Insert</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Select"><span class="toc-text">Select</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="下载与登录"><a href="#下载与登录" class="headerlink" title="下载与登录"></a>下载与登录</h3><p>直接去PostgreSQL下载dmg包进行安装即可.</p>
+<ul>
+<li>默认的安装位置应该是在<code>/Library/PostgreSQL/一个版本号/</code>.</li>
+</ul>
+<p>默认情况下, 如果你需要操作数据库, 需要有6个信息:</p>
+<ul>
+<li>用户名 (默认创建的用户叫<code>postgres</code>)</li>
+<li>密码 (安装时需要自己创建)</li>
+<li>操作哪个数据库(如果是管理员, 那么无所谓) (默认的数据库叫<code>postgres</code>)</li>
+<li>数据库服务器 (本地就是<code>localhost</code>)</li>
+<li>数据库服务的端口 (PostgreSQL默认是5432)</li>
+</ul>
+<p>如果要登录数据库, 可以使用如下命令:</p>
+<pre><code class="lang-bash">psql -h hostname \
+         -p portnumber \
+     -U username \
+     -d databasename
+</code></pre>
+<h3 id="登录环境变量"><a href="#登录环境变量" class="headerlink" title="登录环境变量"></a>登录环境变量</h3><p>每次命令的参数太多, 可以通过设置环境变量:</p>
+<ul>
+<li>Hostname: <code>PGHOST</code></li>
+<li>Port: <code>PGPORT</code></li>
+<li>Database: <code>PGDATABASE</code></li>
+<li>User: <code>PGUSER</code></li>
+</ul>
+<p>更多的数据库环境变量信息可以参考: <a target="_blank" rel="noopener" href="https://www.postgresql.org/docs/current/libpq-envars.html">https://www.postgresql.org/docs/current/libpq-envars.html</a></p>
+<h2 id="psql的配置和常用命令"><a href="#psql的配置和常用命令" class="headerlink" title="psql的配置和常用命令"></a>psql的配置和常用命令</h2><h3 id="psql的增强版-pgcli"><a href="#psql的增强版-pgcli" class="headerlink" title="psql的增强版-pgcli"></a>psql的增强版-pgcli</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/dbcli/pgcli">https://github.com/dbcli/pgcli</a></p>
+</blockquote>
+<p>下载完成并配置完登录的环境变量后, 使用<code>pgcli</code>即可登录数据库.</p>
+<h3 id="psql的常见命令"><a href="#psql的常见命令" class="headerlink" title="psql的常见命令"></a>psql的常见命令</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>\l</code></td>
+<td>查看所有的数据库</td>
+</tr>
+<tr>
+<td><code>\c + 数据库名</code></td>
+<td>进入到某一个数据库</td>
+</tr>
+<tr>
+<td><code>\d</code></td>
+<td>查看数据库中的表</td>
+</tr>
+<tr>
+<td><code>\q</code></td>
+<td>退出psql</td>
+</tr>
+<tr>
+<td><code>&lt;ctrl&gt;l</code></td>
+<td>清空数据库屏幕</td>
+</tr>
+<tr>
+<td><code>\dn</code></td>
+<td>列出当前Database所有的schema</td>
+</tr>
+<tr>
+<td><code>\dt</code></td>
+<td>列出当前所有表</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="PostgreSQL的逻辑存储"><a href="#PostgreSQL的逻辑存储" class="headerlink" title="PostgreSQL的逻辑存储"></a>PostgreSQL的逻辑存储</h2><h3 id="Database"><a href="#Database" class="headerlink" title="Database"></a>Database</h3><p>Database是数据库逻辑存储的最高一级, 可以通过下面的命令创建:</p>
+<pre><code class="lang-sql">create database &lt;Database_name&gt;;
+</code></pre>
+<p>创建这个Database的人默认就是管理员.</p>
+<p>这个数据库是从模板数据库<code>template1</code>克隆而来的, 可以使用<code>\l</code>查看所有数据库.</p>
+<ul>
+<li>默认情况下, 如果不显式指定模板, 创建的database都是由<code>template1</code>克隆而来.</li>
+</ul>
+<h3 id="Schema"><a href="#Schema" class="headerlink" title="Schema"></a>Schema</h3><p>Schema是Database下面一级的一个空间, 这个Schema可以存储不同的数据库对象, 例如表, 索引, 函数等.</p>
+<p>如果创建了一个database, 那么默认会创建两个schema:</p>
+<ul>
+<li><code>public</code>: 这个database中的所有用户都可以访问的schema, 默认创建的数据库对象就在<code>public</code>中.</li>
+<li><code>information_schema</code>: 存储了当前database的一些元数据.</li>
+</ul>
+<p>如果要创建一个schema, 可以使用:</p>
+<pre><code class="lang-sql">create schema &lt;Schema_name&gt;;
+</code></pre>
+<ul>
+<li><p>如果要索引一个数据库中的某个对象, 可以用<code>&lt;schema_name&gt;.&lt;dataobject_name&gt;</code>.</p>
+</li>
+<li><p>如果要显示一个schema中的信息, 例如所有表格, 可以用<code>\dt schema_name.*</code>.</p>
+</li>
+<li>如果要在一个特定的schema下创建数据库对象(例如表格), 可以用<code>create table schema_name.table_name</code>.</li>
+</ul>
+<h2 id="Create-Table"><a href="#Create-Table" class="headerlink" title="Create Table"></a>Create Table</h2><p>创建表格的文法如下:</p>
+<pre><code class="lang-sql">create table &lt;table_name&gt;
+(
+  column_name1 &lt;data_type1&gt; &lt;inline_constraint&gt;,
+  column_name2 &lt;data_type2&gt; &lt;inline_constraint&gt;,
+  column_name3 &lt;data_type3&gt; &lt;inline_constraint&gt;,
+  ...,
+  constraint &lt;constraint_name&gt;
+    &lt;constraints&gt;,
+    &lt;constraints&gt;,
+    &lt;constraints&gt;,
+  ...
+);
+</code></pre>
+<h2 id="字段的数据类型"><a href="#字段的数据类型" class="headerlink" title="字段的数据类型"></a>字段的数据类型</h2><h3 id="整数"><a href="#整数" class="headerlink" title="整数"></a>整数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>integer</code></td>
+<td>32位有符号整数</td>
+</tr>
+<tr>
+<td><code>serial</code></td>
+<td>32位的无符号自增整数</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>decimal(p, s)</code></td>
+<td>浮点数, <code>p</code>表示这个浮点数的所有数字占用的数位个数(包括小数), 取值范围是<code>[1, 1000]</code>, <code>s</code>表示小数所占的位数, 取值范围是<code>[0, p]</code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>char(n)</code></td>
+<td>长度限制为<code>n</code>个字符的字符串, 如果不满<code>n</code>, 用空格补齐</td>
+</tr>
+<tr>
+<td><code>varchar(n)</code></td>
+<td>长度限制为<code>n</code>个字符的字符串, 如果不满<code>n</code>, 不用空格补齐.</td>
+</tr>
+<tr>
+<td><code>text</code></td>
+<td>没有长度限制的字符串, 用来存储长文本.</td>
+</tr>
+<tr>
+<td><code>varchar</code></td>
+<td>和<code>text</code>一样.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h2><p>注意: <font color="red">在SQL中, null不是一个数值, 而是表示这个字段还没有设置值.</font></p>
+<ul>
+<li>因此, 尽量不要将<code>null</code>和其他操作结合, 例如加减乘除.</li>
+</ul>
+<p>在SQL中, 要用<code>is</code>关键字来判断一个字段是不是<code>null</code>, 而不是用<code>==</code></p>
+<pre><code class="lang-sql">select * from xxx where xxx is not null;
+</code></pre>
+<h2 id="字段约束"><a href="#字段约束" class="headerlink" title="字段约束"></a>字段约束</h2><h3 id="not-null"><a href="#not-null" class="headerlink" title="not null"></a>not null</h3><p>这个约束表示一个字段不允许存在<code>null</code>值, 是一个inline-constraint, 定义的关键词就是<code>not null</code>.</p>
+<h3 id="unique"><a href="#unique" class="headerlink" title="unique"></a>unique</h3><p>如果一个/多个字段被设置成unique, 那么表中不允许有两条纪录有同样的字段值, 关键词是<code>unique</code>. </p>
+<ul>
+<li>但是<font color="red">即使这一列是<code>unique</code>, 这一列还是允许有多个<code>null</code></font>.</li>
+</ul>
+<p><code>unique</code>可以作为inline-constraint, 也可以定义在constraint-block中, 如果定义在constraint-block中, 那么<code>unique</code>可以限制某几个字段的组合是唯一的, 例如:</p>
+<pre><code class="lang-sql"># 限制first_name和last_name的组合唯一.
+unique(first_name, last_name)
+</code></pre>
+<h3 id="primary-key-主键"><a href="#primary-key-主键" class="headerlink" title="primary key(主键)"></a>primary key(主键)</h3><p>主键的关键字是<code>primary key</code>.</p>
+<p>如果一个/多个字段被设置成primary key, 那么有如下含义:</p>
+<ul>
+<li>组成主键的所有字段都是<code>not null</code>.</li>
+<li>组成主键的所有字段有<code>unique</code>约束.</li>
+<li>主键可以唯一确定表中的所有其他字段.</li>
+</ul>
+<p>一个表中只允许有一个主键.</p>
+<p>如果只有一个字段是主键, 那么主键约束可以作为inline-constraint.</p>
+<p>如果有多个字段是主键, 那么主键约束可以定义在constraint-block中, 语法如下:</p>
+<pre><code class="lang-sql">primary key(column1, column2)
+</code></pre>
+<h3 id="foreign-key-外键"><a href="#foreign-key-外键" class="headerlink" title="foreign key(外键)"></a>foreign key(外键)</h3><p>外键的关键字是<code>foreign key</code>, 外键主要是用来管理表与表之间的integration的.</p>
+<p>一个表中的一个字段, 可以作为外键链接到另外一个表的主键/unique的字段, 如果被关联的表中某些记录发生了变化, 那么外键所在的表也需要变化, 才能保证数据的一致性.</p>
+<ul>
+<li>一般来说, 一个外键只有一个字段, 但是一个表可以有多个外键.</li>
+</ul>
+<p>定义外键需要在constraint-block中定义, 定义语法如下:</p>
+<pre><code class="lang-sql">foreign key (column) references table_name (column)
+    on update [update_policy]
+    on delete [delete_policy]
+</code></pre>
+<p>其中的<code>update_policy</code>和<code>delete_policy</code>指的是, 如果修改了外键链接的字段, 或者删除了外键链接的表的某一行, 那么外键所在的表应该怎么变化, 其中一共有5种策略:</p>
+<ul>
+<li><code>no action</code>: 外键所在的表不动, 这个是默认策略.</li>
+<li><code>cascade</code>: 外键所在的表也删除对应记录, 或者更新对应字段.</li>
+<li><code>restrict</code>: 直接报错.</li>
+<li><code>set null</code>: 如果父表删除记录, 那么子表匹配行全部设成<code>null</code>, 父表更新字段, 子表对应字段设置成<code>null</code>.</li>
+<li><code>set default</code>: 和<code>set null</code>原理一样, 只是不是设置成<code>null</code>, 而是设置成一个默认值.</li>
+</ul>
+<h2 id="三大范式"><a href="#三大范式" class="headerlink" title="三大范式"></a>三大范式</h2><ul>
+<li>第一范式: 表格中的每一个字段都必须不可再分.<ul>
+<li>例如你有一个字段叫班级, 字段值为高三一班就不可以, 就需要分成年级是高三, 班级是一班.</li>
+</ul>
+</li>
+<li>第二范式: 表格中的主键可以确定每一个其他字段的值, 但是<font color="red">表格中主键的任意一个子集却不能确定任何一个字段的值.</font></li>
+<li>第三范式: 对于表中的非主键字段, 它们之间完全独立, 没有依赖关系, 并且非主键字段不能确定主键.</li>
+</ul>
+<h2 id="Insert"><a href="#Insert" class="headerlink" title="Insert"></a>Insert</h2><p>Insert语句用来向已经创建的表中插入一行, 语法是:</p>
+<pre><code class="lang-sql">insert into &lt;table_name&gt;(column1, column2, ...) values
+    (value11, value12, ...),
+    (value21, value22, ...),
+    ...
+</code></pre>
+<p>其中, 如果有某些列没有指定值, 那么默认是<code>null</code>, 如果这一列凑巧又设置成了<code>not null</code>, 那么就会报错.</p>
+<ul>
+<li>注意: 在SQL语句中, 字符串使用的是<code>&#39;&#39;</code>.</li>
+<li>注意: 在SQL语句中, 转义字符不是用<code>\</code>, 而使用<code>&#39;</code>, 例如如果一个字符串中包含<code>&#39;</code>字符, 那么字面值可以是<code>&#39;&#39;a&#39;</code>, 这个就表示<code>&#39;a</code>这个字符串, 第一个<code>&#39;</code>是转义字符.</li>
+</ul>
+<h2 id="Select"><a href="#Select" class="headerlink" title="Select"></a>Select</h2><p>Select指令用于从表中查询数据.</p>
+<p>如果要从一个表中查询所有数据, 可以使用:</p>
+<pre><code class="lang-sql">select * from table_name;
+</code></pre>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023 LiGaOg
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
