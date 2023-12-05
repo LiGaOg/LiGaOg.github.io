@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>常见的开源协议? | LiGaOg&#39;s blog</title>
+  <title>GoProject-项目配置 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="常见的开源协议? | LiGaOg&#39;s blog">
+  <meta name="description" content="GoProject-项目配置 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:type" content="website">
@@ -1101,9 +1101,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-opensource" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-go-project1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">常见的开源协议?</h1>
+        <h1 class="article-title">GoProject-项目配置</h1>
     
     <div class="article-meta">
         
@@ -1113,7 +1113,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="其他">其他</a>
+            <a  data-rel="工程">工程</a>
             
         </span>
         
@@ -1121,7 +1121,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-09-02 20:55:24'>2023-09-02 20:55</time>
+            Created At : <time class="date" title='Updated At: 2023-12-05 11:33:01'>2023-12-05 10:54</time>
         
     </div>
     <div class="article-meta">
@@ -1132,7 +1132,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%88%9D%E5%A7%8B%E5%8C%96Go%E9%A1%B9%E7%9B%AE"><span class="toc-text">如何初始化Go项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E5%BC%95%E7%94%A8%E5%A4%96%E9%83%A8%E4%BE%9D%E8%B5%96"><span class="toc-text">如何引用外部依赖</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1148,7 +1148,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="/2023/09/02/opensource/opensource.webp" alt="img"></p>
+        <h2 id="如何初始化Go项目"><a href="#如何初始化Go项目" class="headerlink" title="如何初始化Go项目"></a>如何初始化Go项目</h2><p>首先, 你需要建一个文件夹, 用来存你的Go项目, 假设你的项目叫做<code>GoProject</code>.</p>
+<p>那么, 进入<code>GoProject</code>:</p>
+<pre><code class="lang-bash">cd GoProject
+</code></pre>
+<p>然后执行:</p>
+<pre><code class="lang-bash">go mod init GoProject
+</code></pre>
+<p>这样你的项目就初始化好了.</p>
+<p>需要注意以下几点:</p>
+<ul>
+<li>如果你要使用<code>go mod init</code>, 需要保证<code>GO111MODULE</code>这个环境变量的值是<code>on</code>, 如果是<code>off</code>, 需要开启:</li>
+</ul>
+<pre><code class="lang-bash">go env -w GO111MODULE=on
+</code></pre>
+<ul>
+<li><code>go mod init</code>后面跟着的名称不一定要和你建的文件夹的名称一致, 但是最好一致.</li>
+</ul>
+<p>之后, 在<code>GoProject</code>中会新增加一个文件叫<code>go.mod</code>, 这个文件用来存储Go语言项目的依赖信息和版本号.</p>
+<ul>
+<li>在这个<code>go.mod</code>文件中可以看到你用的Go语言的版本号.</li>
+</ul>
+<h2 id="如何引用外部依赖"><a href="#如何引用外部依赖" class="headerlink" title="如何引用外部依赖"></a>如何引用外部依赖</h2><p>首先, 你可以到Github上找到依赖对应的仓库, 这里以字节跳动的sonic为例, 仓库地址是: <a target="_blank" rel="noopener" href="https://github.com/bytedance/sonic">https://github.com/bytedance/sonic</a></p>
+<p>那么, 下载依赖的方法就是:</p>
+<pre><code class="lang-bash">go get github.com/bytedance/sonic
+</code></pre>
+<p>注意:</p>
+<ul>
+<li>依赖会被下载到<code>$GOPATH/pkg/mod</code>目录下, 找依赖也会在这里找.</li>
+<li>如果用这个命令, 会自动下载依赖的最新版本, 如果需要使用特定版本, 在依赖地址后面加上<code>@版本号</code>, 例如:</li>
+</ul>
+<pre><code class="lang-bash">go get github.com/bytedance/sonic@版本号
+</code></pre>
+<ul>
+<li>这个版本号, 本质上就是Github上Tag名称.</li>
+</ul>
+<p>下载依赖之后, 如果需要导入, 可以使用:</p>
+<pre><code class="lang-go">import (
+        &lt;别名&gt; &quot;github.com/bytedance/sonic&quot;
+)
+</code></pre>
+<p>然后使用<code>sonic.XXX</code>就可以使用了.</p>
 
       
        
