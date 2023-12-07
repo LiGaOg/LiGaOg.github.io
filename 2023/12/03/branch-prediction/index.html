@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-分支预测的算法与流水线 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="如何初始化Go项目首先, 你需要建一个文件夹, 用来存你的Go项目, 假设你的项目叫做GoProject. 那么, 进入GoProject: cd GoProject  然后执行: go mod init GoProject  这样你的项目就初始化好了. 需要注意以下几点:  如果你要使用go mod init, 需要保证GO111MODULE这个环境变量的值是on, 如果是off, 需要开启:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GoProject-项目配置">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/05/go-project1/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="如何初始化Go项目首先, 你需要建一个文件夹, 用来存你的Go项目, 假设你的项目叫做GoProject. 那么, 进入GoProject: cd GoProject  然后执行: go mod init GoProject  这样你的项目就初始化好了. 需要注意以下几点:  如果你要使用go mod init, 需要保证GO111MODULE这个环境变量的值是on, 如果是off, 需要开启:">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-12-05T02:54:03.176Z">
+<meta property="article:modified_time" content="2023-12-05T03:33:01.761Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -1121,7 +1121,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-05 12:03:44'>2023-12-03 18:09</time>
+            Created At : <time class="date" title='Updated At: 2023-12-06 16:16:58'>2023-12-03 18:09</time>
         
     </div>
     <div class="article-meta">
@@ -1132,7 +1132,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">分支预测的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">分支指令的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch-delay-slot"><span class="toc-text">branch delay slot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%9C%A8%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">分支预测在流水线中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%96%B9%E5%90%91%E9%A2%84%E6%B5%8B"><span class="toc-text">分支方向预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-text">状态机算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">状态机算法对应的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHT-aliasing"><span class="toc-text">PHT aliasing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%9B%B4%E6%96%B0PHT"><span class="toc-text">什么时候更新PHT</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">分支预测的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">分支指令的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch-delay-slot"><span class="toc-text">branch delay slot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%9C%A8%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">分支预测在流水线中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%96%B9%E5%90%91%E9%A2%84%E6%B5%8B"><span class="toc-text">分支方向预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-text">状态机算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">状态机算法对应的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHT-aliasing"><span class="toc-text">PHT aliasing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%9B%B4%E6%96%B0PHT"><span class="toc-text">什么时候更新PHT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%80%E9%83%A8%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于局部历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%A8%E5%B1%80%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于全局历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-1"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9-1"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-text">竞争分支预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-2"><span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%8A%B6%E6%80%81%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">分支预测状态的更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%8E%86%E5%8F%B2%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对历史寄存器的更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9PHT%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对PHT的更新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E9%A2%84%E6%B5%8B"><span class="toc-text">分支目标地址预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">直接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">BTB的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#partial-tag-BTB"><span class="toc-text">partial-tag BTB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB-Miss%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">BTB Miss的处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">间接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Call%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Call指令的预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Return%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Return指令的预测</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1184,7 +1184,13 @@
 </ul>
 </li>
 </ul>
-<p>在CPU中, 一般只有<code>call</code>和<code>ret</code>这种伪指令会被转换成间接跳转指令, 除此之外, 基本都会使用直接跳转.</p>
+<p>在CPU中, 一般只有<code>call</code>和<code>ret</code>这种伪指令会被编译成间接跳转指令, 除此之外, 基本都会使用直接跳转.</p>
+<ul>
+<li><p><code>call</code>和<code>ret</code>虽然是间接跳转的指令, 但是它们目标地址很有规律, 很方便预测.</p>
+</li>
+<li><p>对于编译器的设计者, 一般都会建议, 如果使用间接跳转, 尽量使用<code>call</code>和<code>ret</code>, 其余的跳转指令都使用直接跳转.</p>
+</li>
+</ul>
 <h2 id="branch-delay-slot"><a href="#branch-delay-slot" class="headerlink" title="branch delay slot"></a>branch delay slot</h2><p>假设你设计了一个n级的流水线CPU, 但是分支指令只有到了第m个stage才知道跳不跳转, 如果你分支预测失败了, 前面m-1个stage的流水线都要被flush, 这样就造成了前面m - 1个周期的浪费.</p>
 <p>因此, 此时就需要程序员或者特定的Compiler, 可以从分支指令的前面挑出m - 1条指令, 这些指令有如下特点:</p>
 <ul>
@@ -1235,7 +1241,238 @@
 <li>假设CPU是乱序执行, 那么当前计算出来的分支结果, 很可能处在一条分支预测失败的路径上(前面还有一个分支指令, 出现了分支预测失败, 那么这条指令就作废了), 那么拿这个分支结果更新PHT就是不对的.</li>
 </ul>
 <p>因此, 需要在第三个时刻更新PHT.</p>
-
+<h3 id="基于局部历史进行预测"><a href="#基于局部历史进行预测" class="headerlink" title="基于局部历史进行预测"></a>基于局部历史进行预测</h3><h4 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h4><p>如果一个分支taken还是不taken很有规律的话, 就可以使用基于局部历史的预测方法进行预测.</p>
+<p>实现的方法如下:</p>
+<ul>
+<li>首先, 对于每一个分支, 我都要准备一个n位的寄存器, 叫做Branch History Register (BHR).<ul>
+<li>这个寄存器用来保存这个分支指令前面n次的执行结果, 如果某一位是1, 表示这次这个分支指令taken了.</li>
+</ul>
+</li>
+<li>其次, 对于每一个 分支, 我都要准备一个Pattern History Table (PHT), <font color="blue">然后用BHR的值去索引PHT.</font></li>
+</ul>
+<blockquote>
+<p>如何确定BHR中n的值?</p>
+</blockquote>
+<p>观察分支预测序列, 如果连续的数最多有$p$位, 那么这个序列的循环周期就是$p$, BHR的宽度也就是$p$.</p>
+<p>例如11000_11000_11000这个序列, 连续的1的个数是2, 连续的0的个数是3, 那么循环周期就是3, BHR的宽度就是3.</p>
+<p>使用这种方法, 能完美预测循环周期小于等于n的序列.</p>
+<p>所有分支的BHR会组成一个表, 叫做Branch History Table (BHT).</p>
+<p>实际上, 不可能为每一个分支指令都准备一个BHR和一个PHT.</p>
+<ul>
+<li>对于BHT来说, 会选用PC的$k$位来作为索引, 得到分支的BHR值.</li>
+<li>为了更大限度地节约存储空间, 一般所有分支共用一个PHT.</li>
+</ul>
+<blockquote>
+<p>所有分支可以共用一个PHT有什么依据吗?</p>
+</blockquote>
+<p>一般来说, 在进行分支预测的时候不会用到太多的PHT.</p>
+<p>例如这个序列: 11000_11000_11000_11000, 循环周期是3, BHR的宽度就是3, 那么最终训练结束后的BHR和对应分支预测结果的关系就是:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>BHR值</th>
+<th>分支预测结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>110</td>
+<td>0</td>
+</tr>
+<tr>
+<td>001</td>
+<td>1</td>
+</tr>
+<tr>
+<td>100</td>
+<td>0</td>
+</tr>
+<tr>
+<td>011</td>
+<td>0</td>
+</tr>
+<tr>
+<td>000</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>3位的BHR, 最多应该用8个表项, 但是现在只用了5个表项.</p>
+<p>如果上面所说的设置, 那么会出现两种重名问题:</p>
+<ul>
+<li>两个不同的分支指令, 最后用了同一个BHR.</li>
+<li>虽然两个分支指令用了不同的BHR, 但是BHR的内容是相同的, 那么就会索引到PHT的同一个表项.</li>
+</ul>
+<p>解决方法如下:</p>
+<ul>
+<li>将PC值进行哈希, 用哈希之后的值索引BHT, 得到BHR.</li>
+<li>得到BHR后, 将BHR和PC做某种程度的结合, 用这个结合后的值索引PHT.</li>
+</ul>
+<blockquote>
+<p>有哪些可以将BHR值和PC值结合的方法?</p>
+</blockquote>
+<p>可以采用按位异或, 现代的CPU会采用更先进的方法.</p>
+<h4 id="设计缺点"><a href="#设计缺点" class="headerlink" title="设计缺点"></a>设计缺点</h4><ul>
+<li>现实中的分支指令循环周期过大, 导致BHR宽度大, 训练时间长, 效果不好.</li>
+<li>这种方法并没有考虑其他分支指令对该分支指令的影响.</li>
+</ul>
+<h3 id="基于全局历史进行预测"><a href="#基于全局历史进行预测" class="headerlink" title="基于全局历史进行预测"></a>基于全局历史进行预测</h3><p>这种分支预测考虑了别的分支结果对我现在要预测的分支指令的影响.</p>
+<h4 id="架构-1"><a href="#架构-1" class="headerlink" title="架构"></a>架构</h4><p>首先, 需要一个Global History Register (GHR), 这个寄存器是所有分支共用一个.</p>
+<ul>
+<li>GHR用来保存最近执行的n条分支指令的结果.</li>
+</ul>
+<p>理想情况下, 每一个分支指令都要有自己的PHT, 在进行分支预测时, 需要以GHR为索引, 从自己的PHT中找到分支预测的结果.</p>
+<p>但是实际情况下, 没有办法为每一个PC准备一个PHT, 此时可以采用两种处理办法:</p>
+<ul>
+<li>对PC进行哈希, 得到一个位宽比较少的索引, 这样PHT就不用每个分支都准备一个.</li>
+<li>或者直接就只使用一个PHT, 理由同上.</li>
+</ul>
+<p>如果只采用一个PHT, 索引PHT的就不能是GHR, 需要是GHR和PC的值进行某种程度的组合, 可以采用异或的方式.</p>
+<h4 id="设计缺点-1"><a href="#设计缺点-1" class="headerlink" title="设计缺点"></a>设计缺点</h4><ul>
+<li>实际的分支一般是混合的, 也就是说, 有一些分支适合基于全局历史进行预测, 有些分支适合基于局部历史进行预测, 只采用一种方法难以取得好效果.</li>
+</ul>
+<h3 id="竞争分支预测"><a href="#竞争分支预测" class="headerlink" title="竞争分支预测"></a>竞争分支预测</h3><p>竞争分支预测(Tournament Predictor)是对局部历史和全局历史预测方法的一种结合.</p>
+<h4 id="架构-2"><a href="#架构-2" class="headerlink" title="架构"></a>架构</h4><p>如果要实现竞争分支预测, 首先需要同时实现局部历史和全局历史的预测方法, 然后需要使用一个新的PHT, 叫做Choice PHT, 简称CPHT.</p>
+<ul>
+<li>CPHT用当前分支指令的PC值和GHR的组合作为索引.</li>
+<li>对应的值是一个2-bit的状态机的值, 这个状态机的值会决定最终分支预测使用哪种方法.</li>
+</ul>
+<p>这个状态机有四种状态: 00, 01, 10, 11.</p>
+<ul>
+<li>00: 使用局部历史预测.</li>
+<li>01: 使用局部历史预测.</li>
+<li>10: 使用全局历史预测.</li>
+<li>11: 使用全局历史预测.</li>
+</ul>
+<p>状态转移的规则如下:</p>
+<ul>
+<li>当局部历史预测正确, 全局历史预测错误, 状态机-1.</li>
+<li>当局部历史预测错误, 全局历史预测正确, 状态机+1.</li>
+<li>当都预测正确/预测不正确, 状态机不动.</li>
+</ul>
+<blockquote>
+<p>为什么使用当前指令的PC值和GHR的组合作为索引?</p>
+</blockquote>
+<ul>
+<li>使用PC值是为了保证每个分支指令都对应一个CPHT表项.</li>
+<li>使用GHR是因为, 这个分支指令采用哪种方法, 很可能取决于前面分支指令的结果.</li>
+</ul>
+<h3 id="分支预测状态的更新"><a href="#分支预测状态的更新" class="headerlink" title="分支预测状态的更新"></a>分支预测状态的更新</h3><p>分支预测状态更新主要包括两个部分:</p>
+<ul>
+<li>对历史寄存器的更新.<ul>
+<li>局部历史预测中的BHR, BHT.</li>
+<li>全局历史预测中的GHR.</li>
+</ul>
+</li>
+<li>对PHT的更新.</li>
+</ul>
+<p>这两种更新会采用不同的策略.</p>
+<h4 id="对历史寄存器的更新"><a href="#对历史寄存器的更新" class="headerlink" title="对历史寄存器的更新"></a>对历史寄存器的更新</h4><p>对历史寄存器的更新有三个阶段:</p>
+<ul>
+<li>在取指令阶段, 进行完分支预测之后, 用分支预测的结果更新BHT/GHR.</li>
+<li>在执行阶段, 分支的结果被计算出来之后, 用这个结果更新BHT/GHR.</li>
+<li>在指令commit之后再更新BHT/GHR.</li>
+</ul>
+<p>对于历史寄存器的更新:</p>
+<ul>
+<li>取指令阶段, 更新GHR.</li>
+<li>Commit阶段, 更新BHT</li>
+</ul>
+<blockquote>
+<p>为什么不在指令commit之后再更新GHR?</p>
+</blockquote>
+<p>如果一条分支指令, 它在时刻$t$被分支预测, 在时刻$t + \Delta t$时被commit, 并且更新GHR, 那么在$\Delta t$时间段内进入流水线的所有指令, 都无法从这条分支指令的结果中获益, 这就会降低分支预测的准确度.</p>
+<blockquote>
+<p>为什么不在执行阶段, 用实际计算出来的分支结果更新GHR?</p>
+</blockquote>
+<ul>
+<li><p>在超标量CPU中, 取指阶段和执行阶段之间也有可能会差了很多指令, 这些指令都无法从这次分支预测受益.</p>
+</li>
+<li><p>如果CPU是乱序的, 那么这个在执行阶段的指令很有可能在分支预测错误的路径上, 导致更新是错误的.</p>
+<ul>
+<li>更本质上来说, 这次计算出来的结果是推测值(speculative), 并不是真实值.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>为什么要在取指令阶段用分支预测的结果更新GHR ?</p>
+</blockquote>
+<ul>
+<li>后续的指令都能享受到这次更新带来的益处.</li>
+<li>即使分支预测出现失败, 后面的指令都使用了错误的GHR也没有关系, 因为这些后面的指令都处于分支预测失败的路径上, 都会从流水线中flush.</li>
+</ul>
+<p>但是, 如果在取指令阶段更新GHR, 那么一旦出现了分支预测失败, GHR中的值就是错误的, 需要修复. 这里有两种修复的方法:</p>
+<blockquote>
+<p>修复方法一: 在Commit阶段进行修复</p>
+</blockquote>
+<p>在流水线的Commit阶段, 再准备一个GHR, 叫做Retired GHR.</p>
+<ul>
+<li>前面取指令阶段的GHR叫做Speculative GHR.</li>
+</ul>
+<p>当一条分支指令被Commit之后, 需要把这条分支指令的结果写入Retired GHR.</p>
+<p>如果一条分支指令被发现分支预测错误, 那么当这条分支指令被commit之后, 需要将Retired GHR的值同步到Speculative GHR中.</p>
+<p>这种设计有一个缺点:</p>
+<ul>
+<li>正确的值只有等到分支指令的commit阶段才能同步到GHR中, 这期间会有非常多的指令进入流水线, 增大了分支预测失败的penalty.</li>
+</ul>
+<blockquote>
+<p>修复方法二: 使用Checkpoint进行修复</p>
+</blockquote>
+<p>在取指令阶段对前端GHR进行更新时, 将旧的GHR的值进行保留, 这个保留值就是Checkpoint GHR.</p>
+<p>在执行阶段, 分支预测结果被计算出来之后, 如果发现分支预测失败, 那么就把Checkpoint GHR的值同步到GHR中.</p>
+<p>但是, 如果CPU是乱序的, 那么执行阶段的结果依然可能是错误的(处在分支预测失败/异常的路径上), 此时还需要在Commit阶段准备一个Retired GHR, 用来保证正确性.</p>
+<p>历史寄存器包括两类, 一类是局部历史预测的BHT, 一类是全局历史预测的GHR, 对于GHR来说, 所有分支指令共用, 为了尽量使得后续分支指令都能享受到这条分支指令的结果, 需要在取指令阶段更新GHR.</p>
+<p>但是BHT的更新还是有区别的:</p>
+<ul>
+<li>如果一条指令更新了BHT的值, 那么后面享受这个更新值的分支指令只能还是我这条分支指令, 而这条分支指令大概率不会马上再次进入流水线.</li>
+</ul>
+<p>因此, 基于这个特点, 对于BHT的更新可以在Commit阶段.</p>
+<h4 id="对PHT的更新"><a href="#对PHT的更新" class="headerlink" title="对PHT的更新"></a>对PHT的更新</h4><p>在Commit阶段, 根据分支指令的结果更新PHT.</p>
+<p>加入分支指令的序列比较有规律, 那么PHT中的状态机有大概率会处于饱和状态, 也就是11或者00这种, 因此, 对PHT的更新大概率不会跨越taken/not taken的分界线, 因此不用太早对PHT进行更新.</p>
+<h2 id="分支目标地址预测"><a href="#分支目标地址预测" class="headerlink" title="分支目标地址预测"></a>分支目标地址预测</h2><h3 id="直接跳转指令的预测"><a href="#直接跳转指令的预测" class="headerlink" title="直接跳转指令的预测"></a>直接跳转指令的预测</h3><p>对于直接跳转指令, 它的目标地址有两种情况:</p>
+<ul>
+<li>如果这条分支指令预测不跳转, 那么目标地址 = PC + fetch group的size.</li>
+<li>如果这条分支指令预测跳转, 那么目标地址 = PC + 指令中立即数经过符号扩展的结果.</li>
+</ul>
+<p>对于一个直接跳转指令, 它的目标地址取决于当前的PC和指令中的立即数, 这两点都是确定的, 因此它的目标地址不会随着程序的执行而变化.</p>
+<p>因此, 对于直接跳转指令的预测, 直接把这种分支指令对应的PC和计算出来的目标地址用一个表存储就可以了.</p>
+<p>这个表格叫做Branch Target Buffer (BTB).</p>
+<h4 id="BTB的结构"><a href="#BTB的结构" class="headerlink" title="BTB的结构"></a>BTB的结构</h4><p>BTB本质上是一个Cache, 它的结构和Cache的结构相同, 只不过没有Offset.</p>
+<p>索引这个Cache的是直接跳转指令的PC值, Cache Line中存储的元素是这条直接跳转指令的目标地址.</p>
+<p>BTB一般被设计成Set Associative Cache, 但是Way的个数比较少, 为了节省面积, 并且提高BTB的访问速度.</p>
+<h4 id="partial-tag-BTB"><a href="#partial-tag-BTB" class="headerlink" title="partial-tag BTB"></a>partial-tag BTB</h4><p>BTB的Tag部分可以不用占很多位, 对于一个PC来讲, 除去Index之后, 剩余的位中, 可以取一部分作为BTB的Tag. 这样做的合理性有如下几点:</p>
+<ul>
+<li>如果一个指令并不是分支指令, 那么分支预测算法就会预测不taken, 就不会访问BTB.</li>
+<li>如果一个指令是分支指令, 并且和另一条分支指令partial-tag相同, Index也相同, 那么取出来的目标地址就是错误的, 此时就发生了分支预测错误 (但是这种错误不会影响CPU正确运行, 因为后面分支预测失败会修正, 这个目标地址是取指令用来参考的).<ul>
+<li>但是, 在这种情况下, 如果不采用partial-tag, 那么也会出现Cache Conflict的情况, 如果BTB采用direct mapped cache, 那么此时就会出现BTB Miss.</li>
+</ul>
+</li>
+</ul>
+<p>partial-tag还有一种实现方式, 将原来的Tag进行一定程度的哈希, 然后将哈希之后的值作为新Tag, 例如异或.</p>
+<p>一般情况下, partial-tag和Set associative BTB结合都可以获得不错的性能.</p>
+<h4 id="BTB-Miss的处理"><a href="#BTB-Miss的处理" class="headerlink" title="BTB Miss的处理"></a>BTB Miss的处理</h4><p>当发生BTB Miss的时候, 有两种处理方法:</p>
+<ul>
+<li><p>暂停执行:</p>
+<ul>
+<li>如果一个分支预测为跳转, 但是在BTB中没有找到目标地址, 那么取指令阶段就会被暂停, 直到这个分支指令的目标地址被计算出来为止(计算出来的目标地址会写入BTB).<ul>
+<li>一般来说, 在Decode阶段目标地址就能被算出来.</li>
+</ul>
+</li>
+<li>设计缺点: 如果I-Cache的访问周期比较多的话, 那么流水线上就会出现很多的Bubble.</li>
+</ul>
+</li>
+<li><p>继续执行:</p>
+<ul>
+<li>如果在BTB中没有找到目标地址, 那么取指令就会先按照PC + fetch group的size这种方式来取指令(也就是顺序取指令).</li>
+<li>如果分支目标地址计算出来发现目标地址不对, 那么进入流水线的指令就需要被flush.</li>
+<li>设计缺点: 这种方式会浪费CPU的功耗, 不适合低功耗设计.</li>
+</ul>
+</li>
+</ul>
+<h3 id="间接跳转指令的预测"><a href="#间接跳转指令的预测" class="headerlink" title="间接跳转指令的预测"></a>间接跳转指令的预测</h3><p>间接跳转指令的目标地址依赖于寄存器的值, 其中主要讨论<code>call</code>指令和<code>return</code>指令的跳转.</p>
+<h4 id="Call指令的预测"><a href="#Call指令的预测" class="headerlink" title="Call指令的预测"></a>Call指令的预测</h4><h4 id="Return指令的预测"><a href="#Return指令的预测" class="headerlink" title="Return指令的预测"></a>Return指令的预测</h4>
       
        
     </div>
