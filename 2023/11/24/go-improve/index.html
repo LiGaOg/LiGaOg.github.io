@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Go-高级语法特性 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="Go语言的单元测试假设你在一个package中, 写了很多函数, 现在, 你要对这些函数写UnitTest. 你可以在项目的任意位置单独创建一个文件写UnitTest, 但是这个文件的名称必须是XXX_test.go. 在这个文件中, package的名称必须要和你要测的函数的名称一样. 然后, 在这个文件的开头导入: import &quot;testing&quot;  然后, 测试函数的格式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GoProject-单元测试&#x2F;性能测试&#x2F;Profiling">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/13/go-test/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="Go语言的单元测试假设你在一个package中, 写了很多函数, 现在, 你要对这些函数写UnitTest. 你可以在项目的任意位置单独创建一个文件写UnitTest, 但是这个文件的名称必须是XXX_test.go. 在这个文件中, package的名称必须要和你要测的函数的名称一样. 然后, 在这个文件的开头导入: import &quot;testing&quot;  然后, 测试函数的格式">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:published_time" content="2023-12-13T13:18:39.815Z">
+<meta property="article:modified_time" content="2023-12-13T13:45:23.279Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(91)</small>
+                <small>(92)</small>
             
         </div>
     </li>
@@ -146,7 +146,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(23)</small>
+            <small>(24)</small>
         </div>
         
     </li>
@@ -231,7 +231,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="91">
+<input type="hidden" id="yelog_site_posts_number" value="92">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -281,6 +281,15 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/13/go-test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GoProject-单元测试/性能测试/Profiling">GoProject-单元测试/性能测试/Profiling</span>
+            <span class="post-date" title="2023-12-13 21:18:39">2023/12/13</span>
+        </a>
         
         
         <a  class="All 工具 "
@@ -1139,7 +1148,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-05 10:40:49'>2023-11-24 14:07</time>
+            Created At : <time class="date" title='Updated At: 2023-12-13 21:46:30'>2023-11-24 14:07</time>
         
     </div>
     <div class="article-meta">
@@ -1150,7 +1159,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#defer%E8%AF%AD%E5%8F%A5"><span class="toc-text">defer语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E5%8F%98%E9%87%8F%E7%9A%84defer%E8%AF%AD%E5%8F%A5"><span class="toc-text">涉及变量的defer语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">时间相关的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="toc-text">获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E6%AF%AB%E7%A7%92%E4%B8%BA%E5%8D%95%E4%BD%8D%E7%BB%9F%E8%AE%A1%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-text">以毫秒为单位统计运行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%91%E7%9C%A0%E5%87%BD%E6%95%B0"><span class="toc-text">休眠函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%A7%E8%83%BD%E6%B5%8B%E8%AF%95"><span class="toc-text">性能测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPG%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="toc-text">MPG并发模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B"><span class="toc-text">协程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%8D%8F%E7%A8%8B%E7%AD%89%E5%BE%85%E5%AD%90%E5%8D%8F%E7%A8%8B"><span class="toc-text">主协程等待子协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8D%8F%E7%A8%8B%E6%95%85%E9%9A%9C%E4%B8%8D%E5%AF%BC%E8%87%B4%E4%B8%BB%E5%8D%8F%E7%A8%8B%E6%8C%82"><span class="toc-text">子协程故障不导致主协程挂</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA%E5%92%8C%E9%94%81"><span class="toc-text">临界区和锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Channel%E5%AE%9E%E7%8E%B0%E4%B8%BB%E5%8D%8F%E7%A8%8B%E7%AD%89%E5%BE%85%E5%AD%90%E5%8D%8F%E7%A8%8B"><span class="toc-text">使用Channel实现主协程等待子协程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%901"><span class="toc-text">例子1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%902"><span class="toc-text">例子2</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#defer%E8%AF%AD%E5%8F%A5"><span class="toc-text">defer语句</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B6%89%E5%8F%8A%E5%8F%98%E9%87%8F%E7%9A%84defer%E8%AF%AD%E5%8F%A5"><span class="toc-text">涉及变量的defer语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E7%9B%B8%E5%85%B3%E7%9A%84%E5%87%BD%E6%95%B0"><span class="toc-text">时间相关的函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4"><span class="toc-text">获取当前时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A5%E6%AF%AB%E7%A7%92%E4%B8%BA%E5%8D%95%E4%BD%8D%E7%BB%9F%E8%AE%A1%E8%BF%90%E8%A1%8C%E6%97%B6%E9%97%B4"><span class="toc-text">以毫秒为单位统计运行时间</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BC%91%E7%9C%A0%E5%87%BD%E6%95%B0"><span class="toc-text">休眠函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MPG%E5%B9%B6%E5%8F%91%E6%A8%A1%E5%9E%8B"><span class="toc-text">MPG并发模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%8F%E7%A8%8B"><span class="toc-text">协程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E5%8D%8F%E7%A8%8B%E7%AD%89%E5%BE%85%E5%AD%90%E5%8D%8F%E7%A8%8B"><span class="toc-text">主协程等待子协程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%90%E5%8D%8F%E7%A8%8B%E6%95%85%E9%9A%9C%E4%B8%8D%E5%AF%BC%E8%87%B4%E4%B8%BB%E5%8D%8F%E7%A8%8B%E6%8C%82"><span class="toc-text">子协程故障不导致主协程挂</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA%E5%92%8C%E9%94%81"><span class="toc-text">临界区和锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Channel%E5%AE%9E%E7%8E%B0%E4%B8%BB%E5%8D%8F%E7%A8%8B%E7%AD%89%E5%BE%85%E5%AD%90%E5%8D%8F%E7%A8%8B"><span class="toc-text">使用Channel实现主协程等待子协程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%BB%E9%94%81"><span class="toc-text">死锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%901"><span class="toc-text">例子1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E5%AD%902"><span class="toc-text">例子2</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1236,54 +1245,6 @@ fmt.Println(t1.Sub(t0).Milliseconds())
 <pre><code class="lang-go">// 休眠50毫秒
 time.Sleep(50 * time.Millisecond)
 </code></pre>
-<h2 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h2><p>假设你在某个package(假设叫<code>abs</code>)实现了一个函数<code>Abs</code>, 现在你需要验证它的功能正确性.</p>
-<p>你需要单独创建一个文件叫<code>XXX_test.go</code>, 然后这个文件中的package名字也必须叫<code>abs</code>.</p>
-<p>然后<code>import &quot;testing&quot;</code>.</p>
-<p>之后, 你需要写若干个测试函数, 测试函数的格式是:</p>
-<pre><code class="lang-go">
-func TestXXX(t *testing.T) &#123;
-  /* 测试逻辑 */
-&#125;
-</code></pre>
-<p>如果测试不通过, 可以使用<code>t.Errorf(占位符, 参数)</code>来打印相关信息.</p>
-<p>一种比较优雅的写法是用匿名的结构体, 例如:</p>
-<pre><code class="lang-go">testcases := []struct &#123;
-  // 这里写一个测试用例所需要的数据
-        /* ID for this bytecode opcode */
-        op Opcode
-        /* operand value */
-        operands []int
-        /* Combine opcode and operand, the final generated bytecode */
-        expected []byte
-    &#125;&#123;
-      // 这里构造结构体写具体的测试用例
-        /* Testcase 1 */
-        &#123; OpConstant, []int&#123; 65534 &#125;, []byte&#123; byte(OpConstant), 255, 254 &#125; &#125;,
-    &#125;
-
-// 然后遍历去写逻辑
-for _, testcase := range testcases &#123;
-  // 
-&#125;
-</code></pre>
-<p>最后, 使用<code>go test XXX_test.go</code>就可以进行测试.</p>
-<h2 id="性能测试"><a href="#性能测试" class="headerlink" title="性能测试"></a>性能测试</h2><p>性能测试和单元测试的流程大致相同, 不同点在于:</p>
-<ul>
-<li>函数的名字由<code>TestXXX</code>改为: <code>BenchmarkXXX</code>.</li>
-<li>函数的参数由<code>t *testing.T</code>改为: <code>b *testing.B</code>.</li>
-</ul>
-<p>性能测试函数大概的写法为:</p>
-<pre><code class="lang-go">func BenchmarkAbs(b *testing.B) &#123;
-  for i := 0; i &lt; b.N; i ++ &#123;
-    // 你要测试性能的代码部分
-  &#125;
-&#125;
-</code></pre>
-<p>其中, 这个<code>b.N</code>会根据你代码的真实耗时动态调整.</p>
-<p>最后, 运行<code>go test XXX_test.go -benchmem</code>就可以进行测试.</p>
-<ul>
-<li><code>-benchmem</code>表示打印涉及内存的一些指标.</li>
-</ul>
 <h2 id="MPG并发模型"><a href="#MPG并发模型" class="headerlink" title="MPG并发模型"></a>MPG并发模型</h2><p>假设一个机器中有$n$个CPU, 那么这个机器就有$n$个进程.</p>
 <ul>
 <li>M: 全称是Machine, 是在用户态对于CPU的一种抽象, 一个进程对应一个Machine, 用于真正执行Goroutine.</li>
