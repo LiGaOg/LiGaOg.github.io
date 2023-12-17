@@ -6,15 +6,15 @@
   <meta name="keywords" content="">
   <meta name="description" content="Docker-如何用docker部署运行环境 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="使用Dockerfile初步构建镜像使用以下Dockerfile可以对基础镜像进行下载依赖等操作. FROM ubuntu:latest ENV all_proxy&#x3D;socks5h:&#x2F;&#x2F;host.docker.internal:15235 RUN apt update RUN apt install -y ca-certificates build-essential sudo neovim ht">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Docker-如何用docker部署运行环境">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/12/16/docker-env/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="使用Dockerfile初步构建镜像使用以下Dockerfile可以对基础镜像进行下载依赖等操作. FROM ubuntu:latest ENV all_proxy&#x3D;socks5h:&#x2F;&#x2F;host.docker.internal:15235 RUN apt update RUN apt install -y ca-certificates build-essential sudo neovim ht">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-16T03:19:24.542Z">
-<meta property="article:modified_time" content="2023-12-16T13:04:28.506Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
 
@@ -374,19 +374,19 @@
         
         
         <a  class="All 工程 "
-           href="/2023/12/03/branch-prediction/"
+           href="/2023/12/03/database-basic/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
             <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
         </a>
         
         
         <a  class="All 工程 "
-           href="/2023/12/03/database-basic/"
+           href="/2023/12/03/branch-prediction/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
             <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
         </a>
         
@@ -1148,7 +1148,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-16 21:04:28'>2023-12-16 11:19</time>
+            Created At : <time class="date" title='Updated At: 2023-12-17 15:25:49'>2023-12-16 11:19</time>
         
     </div>
     <div class="article-meta">
@@ -1159,7 +1159,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Dockerfile%E5%88%9D%E6%AD%A5%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">使用Dockerfile初步构建镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AD%A5%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">进行一步构建镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">配置软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-text">配置免密登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-text">配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGit"><span class="toc-text">配置Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E9%95%9C%E5%83%8F%E5%8F%98%E4%B8%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">将镜像变为容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E7%9A%84%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="toc-text">Docker的网络通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%90%91%E4%B8%BB%E6%9C%BA%E9%80%9A%E4%BF%A1"><span class="toc-text">容器向主机通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">容器之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E8%AF%95%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">如何测试容器与容器之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%91%E5%AE%B9%E5%99%A8%E9%80%9A%E4%BF%A1"><span class="toc-text">主机向容器通信</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-text">Docker的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E6%8C%82%E8%BD%BD"><span class="toc-text">绑定挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Volume%E5%8D%B7"><span class="toc-text">Volume卷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose"><span class="toc-text">docker-compose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LazyDocker"><span class="toc-text">LazyDocker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%BE%91-%E8%BF%9C%E7%AB%AF%E6%89%A7%E8%A1%8C"><span class="toc-text">本地编辑, 远端执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%AB%AF%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5"><span class="toc-text">本地和远端代码同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%AB%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">远端执行代码</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E9%81%BF%E5%85%8Dsudo-docker"><span class="toc-text">如何避免sudo docker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8Dockerfile%E5%88%9D%E6%AD%A5%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">使用Dockerfile初步构建镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E4%B8%80%E6%AD%A5%E6%9E%84%E5%BB%BA%E9%95%9C%E5%83%8F"><span class="toc-text">进行一步构建镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="toc-text">配置免密登录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-text">配置软件源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86"><span class="toc-text">配置代理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEGit"><span class="toc-text">配置Git</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B0%86%E9%95%9C%E5%83%8F%E5%8F%98%E4%B8%BA%E5%AE%B9%E5%99%A8"><span class="toc-text">将镜像变为容器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E7%9A%84%E7%BD%91%E7%BB%9C%E9%80%9A%E4%BF%A1"><span class="toc-text">Docker的网络通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E5%90%91%E4%B8%BB%E6%9C%BA%E9%80%9A%E4%BF%A1"><span class="toc-text">容器向主机通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">容器之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%B5%8B%E8%AF%95%E5%AE%B9%E5%99%A8%E4%B8%8E%E5%AE%B9%E5%99%A8%E4%B9%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="toc-text">如何测试容器与容器之间通信</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E6%9C%BA%E5%90%91%E5%AE%B9%E5%99%A8%E9%80%9A%E4%BF%A1"><span class="toc-text">主机向容器通信</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Docker%E7%9A%84%E5%AD%98%E5%82%A8"><span class="toc-text">Docker的存储</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%91%E5%AE%9A%E6%8C%82%E8%BD%BD"><span class="toc-text">绑定挂载</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Volume%E5%8D%B7"><span class="toc-text">Volume卷</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#docker-compose"><span class="toc-text">docker-compose</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LazyDocker"><span class="toc-text">LazyDocker</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E7%BC%96%E8%BE%91-%E8%BF%9C%E7%AB%AF%E6%89%A7%E8%A1%8C"><span class="toc-text">本地编辑, 远端执行</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E5%92%8C%E8%BF%9C%E7%AB%AF%E4%BB%A3%E7%A0%81%E5%90%8C%E6%AD%A5"><span class="toc-text">本地和远端代码同步</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9C%E7%AB%AF%E6%89%A7%E8%A1%8C%E4%BB%A3%E7%A0%81"><span class="toc-text">远端执行代码</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1175,59 +1175,82 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="使用Dockerfile初步构建镜像"><a href="#使用Dockerfile初步构建镜像" class="headerlink" title="使用Dockerfile初步构建镜像"></a>使用Dockerfile初步构建镜像</h2><p>使用以下Dockerfile可以对基础镜像进行下载依赖等操作.</p>
+        <h2 id="如何避免sudo-docker"><a href="#如何避免sudo-docker" class="headerlink" title="如何避免sudo docker"></a>如何避免sudo docker</h2><ul>
+<li><p>首先查看是否存在docker分组:</p>
+<pre><code class="lang-bash">sudo cat /etc/group | grep docker
+</code></pre>
+</li>
+<li><p>如果没有docker分组, 就创建:</p>
+<pre><code class="lang-bash">sudo groupadd -g 999 docker
+</code></pre>
+</li>
+<li><p>将当前用户添加到docker分组:</p>
+<pre><code class="lang-bash">sudo usermod -aG docker $USER
+</code></pre>
+</li>
+<li><p>修改docker daemon绑定的unix套接字的权限, 保证docker分组的用户能够访问:</p>
+<pre><code class="lang-bash">sudo chmod a+rw /var/run/docker.sock
+</code></pre>
+</li>
+<li><p>将当前用户退出后, 重新登录.</p>
+</li>
+<li><p>重启docker daemon:</p>
+<pre><code class="lang-bash">sudo systemctl restart docker
+</code></pre>
+</li>
+</ul>
+<p>结束.</p>
+<h2 id="使用Dockerfile初步构建镜像"><a href="#使用Dockerfile初步构建镜像" class="headerlink" title="使用Dockerfile初步构建镜像"></a>使用Dockerfile初步构建镜像</h2><p>使用以下Dockerfile可以对基础镜像进行下载依赖等操作.</p>
 <pre><code class="lang-dockerfile">FROM ubuntu:latest
-ENV all_proxy=socks5h://host.docker.internal:15235
-RUN apt update
-RUN apt install -y ca-certificates build-essential sudo neovim htop neofetch git curl wget net-tools openssh-server nginx
-RUN unset all_proxy
+RUN apt update &amp;&amp; apt install -y ca-certificates build-essential sudo neovim htop neofetch git curl wget net-tools openssh-server nginx inetutils-ping
+RUN echo &quot;PermitRootLogin yes&quot; &gt;&gt; /etc/ssh/sshd_config
 </code></pre>
 <ul>
-<li>第一: 基础镜像和电脑的架构相关, 注意, 例如ARM架构的ubuntu镜像就是<code>arm64v8/ubuntu</code>.</li>
-<li>第二: <code>all_proxy</code>是将Docker镜像构建时的代理转发到了本地.</li>
+<li>基础镜像和电脑的架构相关, 注意, 例如ARM架构的ubuntu镜像就是<code>arm64v8/ubuntu</code>.</li>
 </ul>
 <p>然后使用如下命令构建镜像:</p>
 <pre><code class="lang-bash">docker build -t 容器名:tag .
 </code></pre>
-<h2 id="进行一步构建镜像"><a href="#进行一步构建镜像" class="headerlink" title="进行一步构建镜像"></a>进行一步构建镜像</h2><h3 id="配置软件源"><a href="#配置软件源" class="headerlink" title="配置软件源"></a>配置软件源</h3><p>进入容器后, 配置软件源, 软件源仓库是: <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a></p>
-<p>需要使用<code>echo</code>写入<code>/etc/apt/sources.list</code>.</p>
-<p>然后执行<code>apt update</code>, 此时会报错, 执行完之后运行:</p>
-<pre><code class="lang-bash">apt install -y ca-certificates
+<h2 id="进行一步构建镜像"><a href="#进行一步构建镜像" class="headerlink" title="进行一步构建镜像"></a>进行一步构建镜像</h2><h3 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h3><ul>
+<li><p>首先用<code>passwd</code>设置一下root账户的密码.</p>
+</li>
+<li><p>启动ssh服务:</p>
+<pre><code class="lang-bash">service ssh start
 </code></pre>
-<p>可以下载成功, 下载后再运行<code>apt update</code>即可.</p>
+</li>
+<li><p>然后在本地的<code>~/.ssh/config</code>中添加配置:</p>
+<pre><code class="lang-config">Host 别名
+    HostName 服务器IP
+    User root
+    Port 20000
+</code></pre>
+</li>
+<li><p>然后使用<code>ssh-copy-id 别名</code>就可以配置成功.</p>
+</li>
+</ul>
+<h3 id="配置软件源"><a href="#配置软件源" class="headerlink" title="配置软件源"></a>配置软件源</h3><p>进入容器后, 配置软件源, 软件源仓库是: <a target="_blank" rel="noopener" href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/</a></p>
 <font color="red">注意软件源和架构与OS的发行版有关, 发行版可以通过`cat /etc/issue`查看.</font>
 
 
 
-<h3 id="配置免密登录"><a href="#配置免密登录" class="headerlink" title="配置免密登录"></a>配置免密登录</h3><p>首先用<code>passwd</code>设置一下root账户的密码.</p>
-<p>然后创建一个工作用户<code>acs</code>, 并将其加入到<code>sudo</code>权限组</p>
-<pre><code class="lang-bash">adduser acs
-usermod -aG sudo acs
-su acs
-</code></pre>
-<p>然后启动<code>ssh</code>服务: </p>
-<pre><code class="lang-bash">sudo service ssh start
-</code></pre>
-<p>然后在本地的<code>~/.ssh/config</code>中添加配置:</p>
-<pre><code>Host 别名
-    HostName 服务器IP
-    User acs
-    Port 20000
-</code></pre><p>然后使用<code>ssh-copy-id 别名</code>就可以配置成功.</p>
 <h3 id="配置代理"><a href="#配置代理" class="headerlink" title="配置代理"></a>配置代理</h3><ul>
 <li><p>如果docker容器要在本地, 可以直接在Docker容器内使用<code>host.docker.internal</code>.</p>
 </li>
 <li><p>如果docker容器在远程,</p>
 <ul>
-<li>那么首先需要在本地建立隧道.</li>
+<li>那么首先需要在本地建立隧道, 注意这个IP一定要是<code>0.0.0.0</code>.</li>
 </ul>
-<pre><code class="lang-bash">ssh -NR &lt;服务器IP&gt;:&lt;服务器代理端口&gt;:127.0.0.1:[本地代理端口] &lt;免密登陆的别名&gt;
+<pre><code class="lang-bash">ssh -NR 0.0.0.0:&lt;docker代理端口&gt;:127.0.0.1:[本地代理端口] &lt;docker的别名&gt;
 </code></pre>
 <ul>
-<li>然后在Docker容器内使用<code>all_proxy</code>.</li>
+<li>然后在Docker容器内使用<code>all_proxy</code>, 命令是<code>export all_proxy=&quot;socks5h://127.0.0.1:docker代理端口&quot;</code></li>
 </ul>
 </li>
 </ul>
+<p>注意, 如果出现了<code>Port Forwarding Failed</code>, 那么需要在服务器端用如下命令找到占用端口的ssh进程:</p>
+<pre><code class="lang-bash">sudo netstat -anp | grep 服务端代理端口号
+</code></pre>
+<p>然后用<code>sudo kill 服务端代理端口号</code>杀掉进程.</p>
 <h3 id="配置Git"><a href="#配置Git" class="headerlink" title="配置Git"></a>配置Git</h3><p>使用以下两行命令就可以完成Git的配置:</p>
 <pre><code class="lang-bash">git config --global user.name &quot;你设置的用户名&quot;
 git config --global user.email &quot;你的邮箱&quot;
@@ -1275,10 +1298,21 @@ git config --global user.email &quot;你的邮箱&quot;
 </ul>
 <p>删除容器之后, 卷还会被保留, 可以被挂载到其他容器中.</p>
 <h3 id="docker-compose"><a href="#docker-compose" class="headerlink" title="docker-compose"></a>docker-compose</h3><p>docker-compose可以用一个yaml文件配置docker容器的启动, 配置的模板如下:</p>
+<p>文件名字叫<code>compose.yaml</code>.</p>
+<p>注意, 映射的端口一般考虑以下三种情况:</p>
+<ul>
+<li><code>20000:22</code>: 用于ssh登陆.</li>
+<li><code>9998:9998</code>: 用于代理.</li>
+<li><code>20001:80</code>: 用于测试网络.</li>
+</ul>
 <pre><code class="lang-yaml">services:
 
   容器名字:
     image: 基于哪个镜像构建
+    container_name: 容器名字
+    tty: true
+    extra_hosts:
+      - &quot;host.docker.internal:host-gateway&quot;
     ports:
       - 本地端口1:容器端口1
       - 本地端口2:容器端口2
@@ -1312,6 +1346,10 @@ volumes:
 # 这里会自动创建网络
 networks:
   - mynet
+</code></pre>
+<p>然后直接运行<code>docker compose up -d</code>即可在后台启动Docker容器.</p>
+<p>如果要进入Docker容器, 用这个命令:</p>
+<pre><code class="lang-bash">docker exec -it 容器名 /bin/bash
 </code></pre>
 <h2 id="LazyDocker"><a href="#LazyDocker" class="headerlink" title="LazyDocker"></a>LazyDocker</h2><p>可以使用类似LazyGit的Docker客户端 LazyDocker管理Docker镜像, 容器, 网络, 卷等.</p>
 <h2 id="本地编辑-远端执行"><a href="#本地编辑-远端执行" class="headerlink" title="本地编辑, 远端执行"></a>本地编辑, 远端执行</h2><p>配置好远程的运行环境后, 在本地编辑后, 需要在远端执行代码, 这里就要解决两个问题:</p>
