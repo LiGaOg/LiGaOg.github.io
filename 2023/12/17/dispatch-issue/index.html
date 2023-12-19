@@ -6,19 +6,17 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-Dispatch和Issue的设计 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
-<meta property="og:type" content="article">
-<meta property="og:title" content="CPU-分支预测的算法与流水线">
-<meta property="og:url" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/index.html">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
-<meta property="article:published_time" content="2023-12-19T04:29:51.848Z">
-<meta property="article:modified_time" content="2023-12-19T05:36:20.496Z">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -1159,7 +1157,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-17 17:24:08'>2023-12-17 17:22</time>
+            Created At : <time class="date" title='Updated At: 2023-12-19 21:22:31'>2023-12-17 17:22</time>
         
     </div>
     <div class="article-meta">
@@ -1170,7 +1168,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch"><span class="toc-text">Dispatch</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch"><span class="toc-text">Dispatch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Issue"><span class="toc-text">Issue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue-Queue%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue Queue的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">集中式&#x2F;分布式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-Capture-Non-Data-Capture"><span class="toc-text">Data-Capture&#x2F;Non-Data-Capture</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-Capture"><span class="toc-text">Data-Capture</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Non-Data-Capture"><span class="toc-text">Non-Data-Capture</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9-%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩&#x2F;非压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">非压缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue的流水线设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Select算法的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-m-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-m-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tradeoff"><span class="toc-text">Tradeoff</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wakeup%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Wakeup算法的设计</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1211,7 +1209,228 @@
 </ul>
 </li>
 </ul>
-
+<h2 id="Issue"><a href="#Issue" class="headerlink" title="Issue"></a>Issue</h2><p>Issue也叫发射, 是把源操作数准备好了的, 并且符合一定条件的指令, 从Issue Queue中选出来, 送到FU去执行的过程.</p>
+<p>Issue这个过程包括三个重要的步骤:</p>
+<ul>
+<li>分配(Allocate): 指令放到Issue Queue的哪个地方?</li>
+<li>选择(Select): 当多个指令的源操作数准备好之后, 哪些指令要送到FU中?</li>
+<li>唤醒(Wakeup): FU得到结果之后, 将Issue Queue中所有相关的指令的源操作数置为有效.</li>
+</ul>
+<h3 id="Issue-Queue的设计"><a href="#Issue-Queue的设计" class="headerlink" title="Issue Queue的设计"></a>Issue Queue的设计</h3><h4 id="集中式-分布式"><a href="#集中式-分布式" class="headerlink" title="集中式/分布式"></a>集中式/分布式</h4><p>在超标量CPU中, 一般都会有很多的FU, 如果这些FU共用一个Issue Queue, 那么这个Issue Queue就是集中式的.</p>
+<blockquote>
+<p>集中式Issue Queue的优缺点?</p>
+</blockquote>
+<ul>
+<li>优点: 对Issue Queue的利用效率很大, 不会浪费空间.</li>
+<li>缺点:<ul>
+<li>容量很大, Select/Wakeup电路的面积和延迟会很大.</li>
+</ul>
+</li>
+</ul>
+<p>分布式Issue Queue就是为每一个FU都配备一个Issue Queue, 每一个Issue Queue的容量不会很大.</p>
+<blockquote>
+<p>分布式Issue Queue的优缺点?</p>
+</blockquote>
+<ul>
+<li>优点: 可以简化Select电路的设计.</li>
+<li><p>缺点:</p>
+<ul>
+<li>如果一个FU的Issue Queue满了, 即使其他FU的Issue Queue还有空间, 对应的指令也无法进行写入Issue Queue, 也就是说有空间闲置了.</li>
+<li>由于Issue Queue比较分散, Wakeup的布线成本也会上升.</li>
+</ul>
+<p>一般的CPU都会选择将若干个FU共用一个Issue Queue, 算是一种折中方案.</p>
+</li>
+</ul>
+<h4 id="Data-Capture-Non-Data-Capture"><a href="#Data-Capture-Non-Data-Capture" class="headerlink" title="Data-Capture/Non-Data-Capture"></a>Data-Capture/Non-Data-Capture</h4><p>这个区别主要在于: 指令是在被写入Issue Queue之前读取物理寄存器, 还是在被写入Issue Queue之后读取物理寄存器.</p>
+<ul>
+<li>发射之前读取叫Data-capture.</li>
+<li>发射之后读取叫Non-Data-Capture.</li>
+</ul>
+<h5 id="Data-Capture"><a href="#Data-Capture" class="headerlink" title="Data-Capture"></a>Data-Capture</h5><p>Data-Capture的工作原理如下:</p>
+<ul>
+<li>指令被写入Issue Queue之前, 读取这个指令源操作数中物理寄存器的值, 写入Issue Queue.<ul>
+<li>如果这个源寄存器是not available的, 那么就会先把物理寄存器的编号写入Issue Queue.</li>
+</ul>
+</li>
+<li>当指令被Select时, 就可以直接从Issue Queue中读取数值, 然后送到FU去计算.</li>
+<li>当指令被Select时, 这个指令的目的寄存器编号会在Issue Queue中进行广播.<ul>
+<li>如果其他指令发现这个编号和自己源操作数的编号相同, 那么就会在对应的源操作数上进行标记.</li>
+<li>当FU计算完成后, 就会把数据写到刚刚标记的源操作数上, 这个过程就像Issue Queue捕捉FU中计算的数据.</li>
+</ul>
+</li>
+</ul>
+<p>在CPU中, 有两个名词:</p>
+<ul>
+<li>Issue Width: 每个周期最多可以发射的指令个数.</li>
+<li>Machine Width: 每周期最多可以decode和rename的指令个数.</li>
+</ul>
+<p>一般来说, 需要让Issue Width大于Machine Width, 才能够保证流水线平衡, 因此, 现代高性能处理器一般会配备多个FU, 来提高Issue Width.</p>
+<p>如果采用Data-capture, 那么物理寄存器的读端口的个数应该是<code>Machine Width x 2</code>, 这个值一般比较小.</p>
+<p>但是如果采用Data-capture, Issue Queue需要存数据, 会导致Issue Queue占用的面积比较大.</p>
+<p>这种架构下, 功耗较高, 因为一个指令的源操作数会经历两次读, 一次写:</p>
+<ul>
+<li>读: 从物理寄存器中读出来.</li>
+<li>写: 写入Issue Queue.</li>
+<li>读: 指令被Select之后, 再从Issue Queue中读出来.</li>
+</ul>
+<h5 id="Non-Data-Capture"><a href="#Non-Data-Capture" class="headerlink" title="Non-Data-Capture"></a>Non-Data-Capture</h5><p>Non-Data-Capture的工作原理如下:</p>
+<ul>
+<li>指令被写入Issue Queue时, 将这个指令的物理寄存器编号写进Issue Queue.</li>
+<li>指令被Select之后, 根据这个指令物理寄存器的编号, 读取物理寄存器, 送到FU执行.</li>
+</ul>
+<blockquote>
+<p>设计的优缺点?</p>
+</blockquote>
+<ul>
+<li><p>优点: </p>
+<ul>
+<li>Issue Queue不用存数据, 占用的面积小了.</li>
+<li>每个源操作数只会被读一次(就是从物理寄存器中读出来), 功耗较低.</li>
+</ul>
+</li>
+<li><p>缺点: 物理寄存器的端口个数变成了<code>Issue Width x 2</code>, 这个值一般比较大.</p>
+</li>
+</ul>
+<h4 id="压缩-非压缩"><a href="#压缩-非压缩" class="headerlink" title="压缩/非压缩"></a>压缩/非压缩</h4><h5 id="压缩"><a href="#压缩" class="headerlink" title="压缩"></a>压缩</h5><p>压缩指的是, 当Issue Queue中的一条指令被Select, 离开Issue Queue之后, 这个空隙会不会被后面的指令填上, 这个过程就好比从一摞书中抽走一本后, 这个空隙会被上面的书填满一样.</p>
+<p>要实现这种压缩的效果, 需要给Issue Queue中的每个表项加一个多路选择器:</p>
+<ul>
+<li>当这个表项是空白时, 选择上面表项的内容.</li>
+<li>当这个表项不是空白时, 选择自己的内容.</li>
+</ul>
+<p>这样就能实现每周期压缩一个表项的发射队列, 如果要实现每周期能够压缩两个表项的发射队列, 那么多路选择器就要有三个来源(自己的, 上面一个的, 上面两个的).</p>
+<blockquote>
+<p>设计的优缺点?</p>
+</blockquote>
+<ul>
+<li>优点: <ul>
+<li>Select电路比较简单, 一般Select电路都会从所有ready的指令中, 选择最老的那一条送到FU, 这就是oldest-first方法, 这种压缩方式的Issue Queue已经按照指令的新老关系排好序了.</li>
+<li>分配电路简单, 只需要放到Issue Queue的最上面即可.</li>
+</ul>
+</li>
+<li>缺点:<ul>
+<li>功耗较大.</li>
+<li>加入两个FU共用一个Issue Queue, 那么每周期就会有两个指令离开Issue Queue, 此时就需要每周期压缩两个指令, 会导致布线资源较大, 面积较大.</li>
+</ul>
+</li>
+</ul>
+<h5 id="非压缩"><a href="#非压缩" class="headerlink" title="非压缩"></a>非压缩</h5><p>非压缩指的是, 当Issue Queue中指令被Select离开Issue Queue后, 这个空隙不会被后面的指令填上.</p>
+<p>那么此时, 空闲空间在Issue Queue中的分布将没有规律.</p>
+<blockquote>
+<p>设计的优缺点?</p>
+</blockquote>
+<ul>
+<li>优点: 面积和功耗较低.</li>
+<li>缺点:<ul>
+<li>分配电路比较复杂, 如果一个周期需要向Issue Queue写入多条指令, 那么需要从Issue Queue中找到多个空闲空间, 电路很复杂.</li>
+<li>Select电路如果要实现oldest-first, 那么算法会比较复杂.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Issue的流水线设计"><a href="#Issue的流水线设计" class="headerlink" title="Issue的流水线设计"></a>Issue的流水线设计</h3><p>一条指令要被送到FU中, 需要三个条件满足:</p>
+<ul>
+<li>这条指令的源操作数被标记为ready.</li>
+<li>这条指令被Select.</li>
+<li>这条指令能够从Physical Register, Issue Queue或者Bypass处获得源操作数的值.</li>
+</ul>
+<p>在实际过程中, Issue阶段被划分成了Select和Wakeup阶段.</p>
+<ul>
+<li>Select阶段: 等待我这条指令被Select.</li>
+<li>Wakeup阶段: 当我这条指令被Select之后, 我会把目的寄存器进行广播, 然后唤醒Issue Queue中对应的源寄存器.</li>
+<li>RegRead阶段: 从bypass, Physical Register或者Issue Queue处获取源寄存器的值.</li>
+</ul>
+<p>此时, 这里有一个Tradeoff, Select阶段和Wakeup阶段是在一个周期内完成, 还是放在两个周期完成.</p>
+<p>如果Select阶段和Wakeup阶段在一个周期内完成, 那么:</p>
+<ul>
+<li>优点:<ul>
+<li>IPC会有较大提升, 此时有RAW依赖的两条指令可以获得最大的并行度.</li>
+<li>流水线级数少, 功耗降低.</li>
+</ul>
+</li>
+<li>缺点:<ul>
+<li>频率降低.</li>
+</ul>
+</li>
+</ul>
+<p>如果Select和Wakeup放在两个周期内完成, 那么:</p>
+<ul>
+<li>优点:<ul>
+<li>频率提高.</li>
+</ul>
+</li>
+<li>缺点:<ul>
+<li>分支预测失败的penalty提高.</li>
+<li>Cache访问的周期数增加(Cache访问时间是固定的, 频率提高, 那么周期数也会增多).</li>
+<li>功耗增大.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Select算法的设计"><a href="#Select算法的设计" class="headerlink" title="Select算法的设计"></a>Select算法的设计</h3><h4 id="oldest-first算法"><a href="#oldest-first算法" class="headerlink" title="oldest-first算法"></a>oldest-first算法</h4><p>Oldest-first算法的合理性:</p>
+<ul>
+<li>流水线中越老的指令, 与它存在相关性的指令越多, 选择它可以唤醒更多指令.</li>
+</ul>
+<blockquote>
+<p>如何实现Oldest-first算法?</p>
+</blockquote>
+<ul>
+<li>由于指令是按照程序的顺序写入ROB的, 因此, 可以根据ROB中的信息来获取指令的新老信息.</li>
+</ul>
+<p>但是ROB本质上是一个循环FIFO, 仅仅靠指令在ROB中的地址无法获取指令的新老信息, 这时需要一个特殊的算法.</p>
+<p>ROB中有一个写指针, 有一个读指针:</p>
+<ul>
+<li>写指针负责将Dispatch的所有指令写入ROB, 然后移动.</li>
+<li>当指令被Commit之后, 读指针会移动.</li>
+</ul>
+<p>读指针和写指针会进行翻转.</p>
+<p>此时, 可以在ROB表项的最前面加上一位<code>s</code>, 当写指针写入时, 会把<code>s</code>写入, 如果写指针出现了反转, <code>s</code>也会进行翻转(0变1, 1变0).</p>
+<p>此时指令的新老关系可以这样判断:</p>
+<ul>
+<li><code>s</code>相同, ROB地址越小, 对应指令越老.</li>
+<li><code>s</code>不同, ROB地址越大, 对应指令越老.</li>
+</ul>
+<p>因此, 在Dispatch阶段, 可以将指令在ROB中的地址和<code>s</code>一起写进Issue Queue, 这样Issue Queue中就有了年龄信息.就可以实现oldest-first算法.</p>
+<p>注意, 在进行选择时, 还需要将没有被Wakeup(没有ready)的指令进行排除.</p>
+<p>实际的电路可以这样实现:</p>
+<p><img src="/2023/12/17/dispatch-issue/IQselect.png" alt="IQSelect"></p>
+<ul>
+<li>假设一个Issue Queue中有$n$个元素, 那么比较电路的级数就是$log_2(n)$.</li>
+<li>对于两个元素之间的比较, 规则如下:<ul>
+<li>如果两个元素ready都是1, 选择年龄较小的.</li>
+<li>如果只有一个元素ready是1, 就选这个.</li>
+<li>如果两个元素ready都是0, 选哪个无所谓.</li>
+</ul>
+</li>
+</ul>
+<h4 id="oldest-m-first算法"><a href="#oldest-m-first算法" class="headerlink" title="oldest-m-first算法"></a>oldest-m-first算法</h4><p>当$m$个FU共用一个容量是$n$的Issue Queue时, 就需要从Issue Queue中, 为每一个FU选出一个oldest的指令.</p>
+<p>在实际实现时:</p>
+<ul>
+<li><p>在写入Issue Queue时, 需要在Issue Queue中记录, 这个指令要给哪个FU.</p>
+</li>
+<li><p>需要为这$m$个FU一人准备一个oldest-first电路, 并且在oldest-first电路中比较时需要考虑FU的类型, 选出最老的, 并且是对应类型的, 并且还得是ready的一条指令.</p>
+</li>
+</ul>
+<p>为了提高指令的并行度, 可以增加FU的数量, 例如, 如果原本只有一个ALU, 现在可以变成两个ALU:</p>
+<ul>
+<li>原来只有一个ALU的时候, 如果Issue Queue中同时有两个ALU指令ready了, 那么只能有一个ALU指令被Select.</li>
+<li>但是如果有两个ALU, 这两个ALU指令就能同时被Select.</li>
+</ul>
+<p>但是如果变成了两个ALU, 这又引入了一个新的问题:</p>
+<ul>
+<li>一个ALU指令在被写入Issue Queue时, 它应该要到哪个ALU里.</li>
+</ul>
+<p>此时可以准备一个bit, 初始化为0, 第一次要到ALU0, 然后翻转, 下次写入Issue Queue的ALU指令要到ALU1, 然后再下一次的指令进入ALU0, 然后ALU1….</p>
+<p>但是, 如果采用这种策略, 无法保证oldest-first是正确的, 例如:</p>
+<ul>
+<li>在一个Issue Queue中, 要到ALU0的指令对应的年龄有: <code>3, 2, 1, 0</code>, 要到ALU1的指令对应的年龄有<code>1, 1, 0, 0</code>.</li>
+<li>ALU0会选择年龄是3的, ALU1会选择年龄是1的, 但是按照oldest-first原则, 年龄是1的不应该被选, 因为ALU0那里还有年龄是2的更老.</li>
+</ul>
+<p>因此, 为了保证oldest-first, 需要更复杂的FU分配算法.</p>
+<h4 id="Tradeoff"><a href="#Tradeoff" class="headerlink" title="Tradeoff"></a>Tradeoff</h4><p>Select电路的延时和Issue Queue的容量成正比.</p>
+<ul>
+<li>越多个FU共用一个Issue Queue, Issue Queue容量多, Select延时大.</li>
+<li>越少个FU共用一个Issue Queue, Issue Queue个数多, Wakeup延时大.</li>
+</ul>
+<p>因此, Select和Wakeup也是一个tradeoff的关系.</p>
+<h3 id="Wakeup算法的设计"><a href="#Wakeup算法的设计" class="headerlink" title="Wakeup算法的设计"></a>Wakeup算法的设计</h3>
       
        
     </div>
