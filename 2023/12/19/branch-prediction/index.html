@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-分支预测的算法与流水线 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU-分支预测的算法与流水线">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
+<meta property="article:published_time" content="2023-12-19T04:29:51.848Z">
+<meta property="article:modified_time" content="2023-12-19T05:36:20.496Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(92)</small>
+                <small>(93)</small>
             
         </div>
     </li>
@@ -146,7 +148,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(24)</small>
+            <small>(25)</small>
         </div>
         
     </li>
@@ -231,7 +233,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="92">
+<input type="hidden" id="yelog_site_posts_number" value="93">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -281,6 +283,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/19/branch-prediction/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-date" title="2023-12-19 12:29:51">2023/12/19</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/17/dispatch-issue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-Dispatch和Issue的设计">CPU-Dispatch和Issue的设计</span>
+            <span class="post-date" title="2023-12-17 17:22:00">2023/12/17</span>
+        </a>
         
         
         <a  class="All 工具 "
@@ -378,15 +398,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
-            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/12/03/branch-prediction/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
             <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
         </a>
         
@@ -1148,7 +1159,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-06 16:16:58'>2023-12-03 18:09</time>
+            Created At : <time class="date" title='Updated At: 2023-12-19 13:36:20'>2023-12-19 12:29</time>
         
     </div>
     <div class="article-meta">
@@ -1159,7 +1170,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">分支预测的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">分支指令的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch-delay-slot"><span class="toc-text">branch delay slot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%9C%A8%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">分支预测在流水线中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%96%B9%E5%90%91%E9%A2%84%E6%B5%8B"><span class="toc-text">分支方向预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-text">状态机算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">状态机算法对应的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHT-aliasing"><span class="toc-text">PHT aliasing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%9B%B4%E6%96%B0PHT"><span class="toc-text">什么时候更新PHT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%80%E9%83%A8%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于局部历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%A8%E5%B1%80%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于全局历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-1"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9-1"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-text">竞争分支预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-2"><span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%8A%B6%E6%80%81%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">分支预测状态的更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9%E5%8E%86%E5%8F%B2%E5%AF%84%E5%AD%98%E5%99%A8%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对历史寄存器的更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9PHT%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对PHT的更新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E9%A2%84%E6%B5%8B"><span class="toc-text">分支目标地址预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">直接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">BTB的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#partial-tag-BTB"><span class="toc-text">partial-tag BTB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB-Miss%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">BTB Miss的处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">间接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Call%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Call指令的预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Return%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Return指令的预测</span></a></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E9%87%8D%E8%A6%81%E6%80%A7"><span class="toc-text">分支预测的重要性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-text">分支指令的类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#branch-delay-slot"><span class="toc-text">branch delay slot</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E5%9C%A8%E6%B5%81%E6%B0%B4%E7%BA%BF%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="toc-text">分支预测在流水线中的位置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%AF%E4%B8%8D%E6%98%AF%E5%88%86%E6%94%AF%E6%8C%87%E4%BB%A4%E7%9A%84%E5%88%A4%E6%96%AD"><span class="toc-text">是不是分支指令的判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E6%96%B9%E5%90%91%E9%A2%84%E6%B5%8B"><span class="toc-text">分支方向预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95"><span class="toc-text">状态机算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E6%9C%BA%E7%AE%97%E6%B3%95%E5%AF%B9%E5%BA%94%E7%9A%84%E6%9E%B6%E6%9E%84"><span class="toc-text">状态机算法对应的架构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHT-aliasing"><span class="toc-text">PHT aliasing</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E6%9B%B4%E6%96%B0PHT"><span class="toc-text">什么时候更新PHT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%B1%80%E9%83%A8%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于局部历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%85%A8%E5%B1%80%E5%8E%86%E5%8F%B2%E8%BF%9B%E8%A1%8C%E9%A2%84%E6%B5%8B"><span class="toc-text">基于全局历史进行预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-1"><span class="toc-text">架构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E8%AE%A1%E7%BC%BA%E7%82%B9-1"><span class="toc-text">设计缺点</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%9E%E4%BA%89%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-text">竞争分支预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%B6%E6%9E%84-2"><span class="toc-text">架构</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%8A%B6%E6%80%81%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">分支预测状态的更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9BHT-GHR%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对BHT&#x2F;GHR的更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%B9PHT%E7%9A%84%E6%9B%B4%E6%96%B0"><span class="toc-text">对PHT的更新</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E7%9B%AE%E6%A0%87%E5%9C%B0%E5%9D%80%E9%A2%84%E6%B5%8B"><span class="toc-text">分支目标地址预测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">直接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB%E7%9A%84%E7%BB%93%E6%9E%84"><span class="toc-text">BTB的结构</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#partial-tag-BTB"><span class="toc-text">partial-tag BTB</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#BTB-Miss%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">BTB Miss的处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">间接跳转指令的预测</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Call%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Call指令的预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Return%E6%8C%87%E4%BB%A4%E7%9A%84%E9%A2%84%E6%B5%8B"><span class="toc-text">Return指令的预测</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E9%97%B4%E6%8E%A5%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4%E7%9A%84%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-text">其他间接跳转指令的分支预测</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B%E7%9A%84%E6%A3%80%E6%9F%A5%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="toc-text">分支预测的检查与恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ROB-Flush"><span class="toc-text">ROB Flush</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tag-Flush"><span class="toc-text">Tag Flush</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PTAB"><span class="toc-text">PTAB</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%A0%87%E9%87%8FCPU%E5%88%86%E6%94%AF%E9%A2%84%E6%B5%8B"><span class="toc-text">超标量CPU分支预测</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1191,7 +1202,7 @@
 <li>如果taken, 那么我的分支指令的跳转地址是哪里.</li>
 </ul>
 <p>分支预测一般指的是动态分支预测, 也就是根据程序的运行时状态决定分支是taken还是不taken.</p>
-<h2 id="分支指令的类型"><a href="#分支指令的类型" class="headerlink" title="分支指令的类型"></a>分支指令的类型</h2><p>ISA中的分支指令一般可以分成两种, 一类是直接跳转, 另一类是间接跳转.</p>
+<h2 id="分支指令的类型"><a href="#分支指令的类型" class="headerlink" title="分支指令的类型"></a>分支指令的类型</h2><p>ISA中的分支指令一般可以分成两种, 一类是直接跳转, 另一类是间接跳转, 这种分类的分类依据是分支的目标地址是否依赖寄存器.</p>
 <ul>
 <li><p>直接跳转(PC-relative): </p>
 <ul>
@@ -1236,6 +1247,7 @@
 <p>为什么要根据PC的值来进行分支预测?</p>
 </blockquote>
 <p>一旦程序开始执行, 每条指令对应的虚拟地址是固定的, 也就是说, 可以根据虚拟的PC唯一确定这个指令是否是分支指令.</p>
+<h2 id="是不是分支指令的判断"><a href="#是不是分支指令的判断" class="headerlink" title="是不是分支指令的判断"></a>是不是分支指令的判断</h2><p>Fetch阶段可以进行一定程度的预解码, 进行预解码之后, 可以知道取出的指令是否是分支指令.</p>
 <h2 id="分支方向预测"><a href="#分支方向预测" class="headerlink" title="分支方向预测"></a>分支方向预测</h2><h3 id="状态机算法"><a href="#状态机算法" class="headerlink" title="状态机算法"></a>状态机算法</h3><p>分支预测算法可以用一个状态机来表示, 一般这个状态机有4个状态:</p>
 <ul>
 <li>Strongly taken: 预测taken.</li>
@@ -1245,7 +1257,7 @@
 </ul>
 <p>一般来说, 初始状态/复位后的状态选择Strongly not taken或者Weakly not taken.</p>
 <p>状态转移表如下, 其中每一条转移边代表这个分支的最后结果, <code>T</code>是taken了, <code>N</code>是not taken.</p>
-<p><img src="/2023/12/03/branch-prediction/2bitbp.png" alt="2-bit branch predictor"></p>
+<p><img src="/2023/12/19/branch-prediction/2bitbp.png" alt="2-bit branch predictor"></p>
 <p>这个算法的核心理念就是: 当一个分支两次被预测taken了, 我就有足够的信心预测第三次也是taken, 可以在一定程度上过滤掉分支偶尔发生变化的情况.</p>
 <h3 id="状态机算法对应的架构"><a href="#状态机算法对应的架构" class="headerlink" title="状态机算法对应的架构"></a>状态机算法对应的架构</h3><p>首先, 状态编码需要采用格雷码, 保证每次状态转换只有1位变化, 降低功耗.</p>
 <p>其次, 每一个分支指令都要对应一个状态机, 分支指令可以用PC值唯一确定, 因此, 在CPU中需要有一个表格, 以分支指令的PC为索引, 值是计数器的值, 这个表格就叫做Pattern History Table (PHT).</p>
@@ -1396,7 +1408,7 @@
 <li>对PHT的更新.</li>
 </ul>
 <p>这两种更新会采用不同的策略.</p>
-<h4 id="对历史寄存器的更新"><a href="#对历史寄存器的更新" class="headerlink" title="对历史寄存器的更新"></a>对历史寄存器的更新</h4><p>对历史寄存器的更新有三个阶段:</p>
+<h4 id="对BHT-GHR的更新"><a href="#对BHT-GHR的更新" class="headerlink" title="对BHT/GHR的更新"></a>对BHT/GHR的更新</h4><p>对历史寄存器的更新有三个阶段:</p>
 <ul>
 <li>在取指令阶段, 进行完分支预测之后, 用分支预测的结果更新BHT/GHR.</li>
 <li>在执行阶段, 分支的结果被计算出来之后, 用这个结果更新BHT/GHR.</li>
@@ -1467,7 +1479,7 @@
 <p>因此, 对于直接跳转指令的预测, 直接把这种分支指令对应的PC和计算出来的目标地址用一个表存储就可以了.</p>
 <p>这个表格叫做Branch Target Buffer (BTB).</p>
 <h4 id="BTB的结构"><a href="#BTB的结构" class="headerlink" title="BTB的结构"></a>BTB的结构</h4><p>BTB本质上是一个Cache, 它的结构和Cache的结构相同, 只不过没有Offset.</p>
-<p>索引这个Cache的是直接跳转指令的PC值, Cache Line中存储的元素是这条直接跳转指令的目标地址.</p>
+<p>索引这个Cache的是直接跳转指令的PC值(PC值可以根据BTB的结构划分为Tag和Index), Cache Line中存储的元素是这条直接跳转指令的目标地址.</p>
 <p>BTB一般被设计成Set Associative Cache, 但是Way的个数比较少, 为了节省面积, 并且提高BTB的访问速度.</p>
 <h4 id="partial-tag-BTB"><a href="#partial-tag-BTB" class="headerlink" title="partial-tag BTB"></a>partial-tag BTB</h4><p>BTB的Tag部分可以不用占很多位, 对于一个PC来讲, 除去Index之后, 剩余的位中, 可以取一部分作为BTB的Tag. 这样做的合理性有如下几点:</p>
 <ul>
@@ -1487,19 +1499,184 @@
 <li>一般来说, 在Decode阶段目标地址就能被算出来.</li>
 </ul>
 </li>
-<li>设计缺点: 如果I-Cache的访问周期比较多的话, 那么流水线上就会出现很多的Bubble.</li>
+<li>设计缺点: 如果I-Cache的访问周期比较多, 那么如果取指令阶段暂停的话, 流水线上就会出现很多的Bubble, 造成资源浪费.</li>
+<li>设计优点: 可以节省功耗.</li>
 </ul>
 </li>
 <li><p>继续执行:</p>
 <ul>
-<li>如果在BTB中没有找到目标地址, 那么取指令就会先按照PC + fetch group的size这种方式来取指令(也就是顺序取指令).</li>
+<li>如果在BTB中没有找到目标地址, 那么目标地址就先用PC + fetch group size 代替.</li>
 <li>如果分支目标地址计算出来发现目标地址不对, 那么进入流水线的指令就需要被flush.</li>
 <li>设计缺点: 这种方式会浪费CPU的功耗, 不适合低功耗设计.</li>
 </ul>
 </li>
 </ul>
 <h3 id="间接跳转指令的预测"><a href="#间接跳转指令的预测" class="headerlink" title="间接跳转指令的预测"></a>间接跳转指令的预测</h3><p>间接跳转指令的目标地址依赖于寄存器的值, 其中主要讨论<code>call</code>指令和<code>return</code>指令的跳转.</p>
-<h4 id="Call指令的预测"><a href="#Call指令的预测" class="headerlink" title="Call指令的预测"></a>Call指令的预测</h4><h4 id="Return指令的预测"><a href="#Return指令的预测" class="headerlink" title="Return指令的预测"></a>Return指令的预测</h4>
+<p>call指令和Return指令一般是伪指令, 在RISC中, 一般用<code>jal label</code>作为<code>call</code>指令, 用<code>jr ra</code>作为<code>return</code>指令.</p>
+<p>Call指令和Return指令一定会发生跳转.</p>
+<h4 id="Call指令的预测"><a href="#Call指令的预测" class="headerlink" title="Call指令的预测"></a>Call指令的预测</h4><p>一般来说, Call指令的目标地址都是固定的(因为你要调用一个函数, 这个函数的地址肯定是固定的), 因此, 对于Call指令来说可以使用BTB进行目标地址预测.</p>
+<h4 id="Return指令的预测"><a href="#Return指令的预测" class="headerlink" title="Return指令的预测"></a>Return指令的预测</h4><p>Return指令目标地址采用RAS (Return Address Stack)进行预测.</p>
+<ul>
+<li>当遇到Call指令时, 需要把Call指令的下一条指令的PC放到RAS中.<ul>
+<li>一般来说, 只有到了Decode阶段才知道一条指令是不是Call.</li>
+<li>因此, 在Decode阶段需要将PC+4保存在RAS中.</li>
+</ul>
+</li>
+<li>Return指令的目标地址就是RAS的栈顶, 预测完之后需要将栈顶弹出.</li>
+</ul>
+<blockquote>
+<p>在Decode阶段将PC+4保存在RAS中, 这会导致什么问题?</p>
+</blockquote>
+<p>这条指令在Decode阶段把PC+4放到了RAS中, 在这个时刻, 如果Fetch阶段的指令中还有Return指令(超标量CPU), 那么这个Return指令就取不到正在放入RAS的目标地址, 预测就会失败.</p>
+<p>因此, 需要在Fetch阶段(同时也是分支预测阶段)就需要知道一条指令是不是Call指令, 将Call指令的目标地址保存在RAS也需要在Fetch阶段完成.</p>
+<p>因此, 可以在BTB中增加一项, 标注这个指令是Call, Return还是其他类型的分支指令.</p>
+<ul>
+<li>如果是Call指令, 目标地址还需要push到RAS.</li>
+<li>如果是Return指令, 目标地址输出的是RAS的值, 而不是BTB的值.</li>
+</ul>
+<blockquote>
+<p>如果函数调用嵌套很深, Call连续调用了多次, 把RAS占满了, 此时应该怎么办?</p>
+</blockquote>
+<p>此时有如下两种处理方案:</p>
+<ul>
+<li>RAS满了, 就停止向RAS中写入.</li>
+<li>RAS满了, 就倒过头来从从栈底开始覆盖写入.</li>
+</ul>
+<p>第一种策略下, Call指令和Return指令的对应关系会被完全打乱, 最前面的若干个Return指令会出现在RAS中找不到对应元素的情况.</p>
+<p>第二种策略比第一种策略好, 因为存在正确的可能, 例如在递归调用的情况下, RAS中覆盖的地址和原来的地址是一样的, RAS依旧能给出正确的值.</p>
+<blockquote>
+<p>针对递归函数特殊设计的RAS</p>
+</blockquote>
+<p>递归的Call指令有一个特点, 就是这次写入RAS的目标地址和上一次相同. 此时, 如果两个相同的值占了RAS的两个空间, 就造成了资源浪费.</p>
+<p>因此, 对于RAS的每一个空间, 都单独再准备一个计数器, 如果这一次写入RAS的目标地址和上一次相同, 直接把计数器+1即可.</p>
+<h4 id="其他间接跳转指令的分支预测"><a href="#其他间接跳转指令的分支预测" class="headerlink" title="其他间接跳转指令的分支预测"></a>其他间接跳转指令的分支预测</h4><p>对于其他间接跳转指令,它的目标地址的可能值一般是很有限的.</p>
+<p>可以采用局部历史分支预测方法来进行目标地址的预测.</p>
+<ul>
+<li>在局部历史分支预测中, 索引PHT一般用PC和BHR经过哈希之后的值.</li>
+<li>此时, 可以再加一个表, 叫做Target Cache, 也是用PC和BHR哈希之后的值来索引, 存储的值就是这个分支指令的目标地址.</li>
+<li>在Commit阶段对PHT进行更新的时候, 同时也对Target Cache进行更新即可.</li>
+</ul>
+<h2 id="分支预测的检查与恢复"><a href="#分支预测的检查与恢复" class="headerlink" title="分支预测的检查与恢复"></a>分支预测的检查与恢复</h2><p>在流水线中:</p>
+<ul>
+<li>在Decode阶段, 可以得到:<ul>
+<li>直接跳转指令的方向.</li>
+<li>直接跳转指令的目标地址.</li>
+<li>某些间接跳转指令的方向.<ul>
+<li>此时, 如果出现了方向预测错误, 目标地址目前还不能得到, 就没有办法按照正确的目标地址取指令, 此时可以停止流水线, 防止功耗浪费.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在Execute阶段, 可以得到所有分支指令的方向和目标地址.</li>
+</ul>
+<p>因此, 在这两个阶段都可以判断之前分支预测是否正确, 如果错误:</p>
+<ul>
+<li>需要将后续指令从流水线中flush.</li>
+<li>需要将后续指令占用的资源进行恢复.</li>
+</ul>
+<p>分支预测的检查与恢复越提前, 那么分支预测失败的penalty越小.</p>
+<p>如果在Execute阶段能够检查分支预测是否成功, 那么flush阶段可以分成两个部分:</p>
+<ul>
+<li>Dispatch之前, 所有的指令都可以无差别抹掉, 因为在这之前的指令都是顺序执行, 而且都肯定处在分支预测失败的路径上, 这个过程可以在一个周期内完成.</li>
+<li>Dispatch之后, 有一部分指令可能在分支预测失败的路径上, 但是有一部分指令在分支之前(这一部分指令就不需要flush), 此时, 这种flush就比较复杂, 需要特殊的机制支持.</li>
+</ul>
+<h3 id="ROB-Flush"><a href="#ROB-Flush" class="headerlink" title="ROB Flush"></a>ROB Flush</h3><ul>
+<li>Execute阶段如果发现了分支预测失败, 会将这个信息写入ROB中.</li>
+<li>暂停取指令.</li>
+<li>让流水线继续执行, 直到这个分支指令成为流水线中最老的指令.</li>
+<li>将流水线中的指令全部flush.</li>
+<li>重新取指令开始执行,</li>
+</ul>
+<blockquote>
+<p>设计缺点</p>
+</blockquote>
+<ul>
+<li><p>出现预测失败的分支指令需要等它前面的指令执行完才能开始处理.</p>
+</li>
+<li><p>如果之前的指令出现了什么异常情况(例如load出现cache miss), 那么等待时间就会很长.</p>
+</li>
+</ul>
+<blockquote>
+<p>设计优点</p>
+</blockquote>
+<p>容易实现, 复杂度不高.</p>
+<h3 id="Tag-Flush"><a href="#Tag-Flush" class="headerlink" title="Tag Flush"></a>Tag Flush</h3><p>这个做法的思路是:</p>
+<ul>
+<li>在Decode阶段, 给每一个分支指令一个编号, 在这个分支后面的指令和这个分支指令有相同的编号.</li>
+<li>编号会随着流水线流动, 并且写入ROB.</li>
+<li>当需要flush时, 只需要把编号大于等于分支指令编号的所有指令抹掉即可.</li>
+</ul>
+<p>如果编号用$n$位编码, 那么$2^n$就代表流水线中可以同时容纳的分支指令, 如果分支指令超过这个值就会暂停取指.</p>
+<blockquote>
+<p>编号的维护过程</p>
+</blockquote>
+<p>需要准备两个FIFO:</p>
+<ul>
+<li>Tag list: 用来存储所有被使用过的编号.</li>
+<li>Free Tag List: 用来存储没有被使用过的编号.</li>
+</ul>
+<p>当一个分支指令到了Decode阶段, 就会从Free Tag list中拿到一个编号.</p>
+<p>当一个分支指令被commit, 就会把它的编号回收.</p>
+<p>当一个分支指令预测失败, 就会把目前占用的大于等于这个分支编号的所有编号回收.</p>
+<blockquote>
+<p>编号机制的一个很大的设计问题?</p>
+</blockquote>
+<p>如果要实际进行flush, 需要对所有的编号进行广播:</p>
+<ul>
+<li>广播之后, 需要在ROB和Issue Queue中抹除相关的指令.</li>
+</ul>
+<p>但是, 如果需要广播的编号很多, 假设有$m$个编号, 那么就需要$m$个周期($m$次广播)才能抹除完成, 可能会很拖累性能.</p>
+<p>因此, 可以采用如下折中的办法:</p>
+<ul>
+<li>一个周期同时广播若干个编号.</li>
+<li>flush进行的时候, 后面取指令不会暂停, 继续按照正确目标地址取指.</li>
+<li>如果后面正确的指令到达了Dispatch阶段, flush还没有完成, 就会先让流水线停下来, 等待flush完成.</li>
+</ul>
+<blockquote>
+<p>在超标量处理器中, 编号机制的一个问题?</p>
+</blockquote>
+<p>在超标量CPU中, 最坏情况下, 一个周期取出的$n$条指令全是分支指令.</p>
+<p>那么就需要Free Tag List一个周期提供$n$个编号, Tag List也需要一个周期能写入$n$个编号, 这就需要多端口FIFO.</p>
+<p>但是, 在大部分情况下, 取出的$n$条指令中只有少部分是分支指令, 那么FIFO的大部分端口都会被闲置.</p>
+<p>因此, 可以采用如下策略:</p>
+<ul>
+<li>如果取出的$n$条指令中, 有多于1条分支指令, 那么第二个分支指令及其后续的指令就不能进入Decode阶段, 它们会被延迟到下一个周期.</li>
+</ul>
+<h2 id="PTAB"><a href="#PTAB" class="headerlink" title="PTAB"></a>PTAB</h2><p>在取指令阶段获得了分支预测的结果后, 可以用PTAB (Prediction Target Address Buffer) 来保存这个结果, PTAB是一个表, 表项如下所示:</p>
+<ul>
+<li>PTAB只会写入方向预测为taken的分支, 不是taken的分支不会写入.</li>
+<li>Valid: 表示这个表项是否被占用.</li>
+<li>Predict Address: 分支指令预测的目标地址.</li>
+<li>Next PC: 预测为taken的分支指令的下一个指令的PC值, 如果发现分支预测失败, 那么这个值就可以作为正确的取指令地址.</li>
+</ul>
+<p>在Fetch阶段, 如果一个分支被预测为taken, 就可以被写入PTAB, 同时这个分支在PTAB中的位置会随着流水线流动, 当得到分支实际的结果时:</p>
+<ul>
+<li>实际结果not taken, 在PTAB中没有找到, 预测正确.</li>
+<li>实际结果not taken, PTAB中找到了, 预测错误, Next PC为实际地址.</li>
+<li>实际结果taken, 没在PTAB找到, 预测错误, 实际地址需要计算出来.</li>
+<li>实际结果taken, 在PTAB找到, 需要对比目标地址.</li>
+</ul>
+<p>但是, Fetch阶段还不知道这条指令是不是分支, 可能会把非分支指令的信息写入</p>
+<h2 id="超标量CPU分支预测"><a href="#超标量CPU分支预测" class="headerlink" title="超标量CPU分支预测"></a>超标量CPU分支预测</h2><p>在超标量CPU中, 分支预测的逻辑应该是:</p>
+<ul>
+<li><p>对取出的$n$条指令中的所有分支指令同时进行预测, 下个周期的取指地址以第一个预测为taken的分支的目标地址为准.</p>
+</li>
+<li><p>需要处理的最坏情况: 取出的$n$条指令全都是分支指令.</p>
+</li>
+</ul>
+<p>如果分支方向预测和目标地址预测是并行的, 那么下面的部件需要支持多端口:</p>
+<ul>
+<li>BTB</li>
+<li>局部历史预测的BHT和PHT.</li>
+<li>全局历史预测的GHR和PHT.</li>
+</ul>
+<p>但是, 目标地址仅仅是fetch group中第一个预测为taken的分支的目标地址, 因此, BTB理论上只需要一个端口.</p>
+<p>因此, 可以先对fetch group中的指令进行方向预测, 然后根据方向预测的结果再用BTB预测目标地址.</p>
+<blockquote>
+<p>GHR的多端口问题!</p>
+</blockquote>
+<p>注意, GHR不能简单地扩展成多端口, 因为一个fetch group中, 两个分支指令的GHR值是不同的, 需要特殊的机制处理.</p>
+
       
        
     </div>

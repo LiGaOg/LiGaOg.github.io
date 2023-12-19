@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CPU-RISC-V的基础知识以及一些基本指令 | LiGaOg&#39;s blog</title>
+  <title>CPU-Dispatch和Issue的设计 | LiGaOg&#39;s blog</title>
   <meta name="keywords" content="">
-  <meta name="description" content="CPU-RISC-V的基础知识以及一些基本指令 | LiGaOg&#39;s blog">
+  <meta name="description" content="CPU-Dispatch和Issue的设计 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
 <meta property="og:type" content="article">
@@ -1139,9 +1139,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-riscv-basic" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-dispatch-issue" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">CPU-RISC-V的基础知识以及一些基本指令</h1>
+        <h1 class="article-title">CPU-Dispatch和Issue的设计</h1>
     
     <div class="article-meta">
         
@@ -1159,7 +1159,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-03 11:26:15'>2023-09-12 17:59</time>
+            Created At : <time class="date" title='Updated At: 2023-12-17 17:24:08'>2023-12-17 17:22</time>
         
     </div>
     <div class="article-meta">
@@ -1170,7 +1170,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">RISC-V体系结构的寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">通用寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSR%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-text">CSR寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#U%E6%80%81%E7%9A%84CSR"><span class="toc-text">U态的CSR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#S%E6%80%81%E7%9A%84CSR"><span class="toc-text">S态的CSR</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#M%E6%80%81%E7%9A%84CSR"><span class="toc-text">M态的CSR</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RISC-V%E7%9A%84%E5%9F%BA%E7%A1%80%E6%8C%87%E4%BB%A4"><span class="toc-text">RISC-V的基础指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%B1%BB%E5%9E%8B"><span class="toc-text">指令类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E6%8C%87%E4%BB%A4"><span class="toc-text">加载指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AD%98%E5%82%A8%E6%8C%87%E4%BB%A4"><span class="toc-text">存储指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%95%BF%E7%AB%8B%E5%8D%B3%E6%95%B0%E6%93%8D%E4%BD%9C%E6%8C%87%E4%BB%A4"><span class="toc-text">长立即数操作指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E8%B7%B3%E8%BD%AC%E6%8C%87%E4%BB%A4"><span class="toc-text">无条件跳转指令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8EPC%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8A%A0%E8%BD%BD-%E5%AD%98%E5%82%A8%E4%BC%AA%E6%8C%87%E4%BB%A4"><span class="toc-text">与PC相关的加载&#x2F;存储伪指令</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch"><span class="toc-text">Dispatch</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1186,313 +1186,31 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="RISC-V体系结构的寄存器"><a href="#RISC-V体系结构的寄存器" class="headerlink" title="RISC-V体系结构的寄存器"></a>RISC-V体系结构的寄存器</h2><h3 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h3><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>名字</th>
-<th>别名</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>x0</code></td>
-<td><code>zero</code></td>
-<td>全是0</td>
-</tr>
-<tr>
-<td><code>x1</code></td>
-<td><code>ra</code></td>
-<td>保存跳出函数后需要跳到的地址</td>
-</tr>
-<tr>
-<td><code>x2</code></td>
-<td><code>sp</code></td>
-<td>指向栈顶</td>
-</tr>
-<tr>
-<td><code>x3</code></td>
-<td><code>gp</code></td>
-<td>用于链接器松弛优化</td>
-</tr>
-<tr>
-<td><code>x4</code></td>
-<td><code>tp</code></td>
-<td>用于保存进程控制块(PCB)的地址</td>
-</tr>
-<tr>
-<td><code>x5~x7</code></td>
-<td><code>t0-t2</code></td>
-<td>临时寄存器</td>
-</tr>
-<tr>
-<td><code>x8-x9</code></td>
-<td><code>s0-s1</code></td>
-<td>s系列寄存器, 函数调用需要使用这些寄存器需要保存到栈中</td>
-</tr>
-<tr>
-<td><code>x10-x17</code></td>
-<td><code>a0-a7</code></td>
-<td>a系列寄存器, 函数调用时用来传递参数和返回值</td>
-</tr>
-<tr>
-<td><code>x18-x27</code></td>
-<td><code>s2-s11</code></td>
-<td>s系列寄存器, 函数调用需要使用这些寄存器需要保存到栈中</td>
-</tr>
-<tr>
-<td><code>x28-x31</code></td>
-<td><code>t0-t6</code></td>
-<td>临时寄存器</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="CSR寄存器"><a href="#CSR寄存器" class="headerlink" title="CSR寄存器"></a>CSR寄存器</h3><p>CSR寄存器有三类:</p>
+        <h2 id="Dispatch"><a href="#Dispatch" class="headerlink" title="Dispatch"></a>Dispatch</h2><p>CPU中, 当指令经过了Renaming阶段之后, 就到达了Dispatch阶段.</p>
+<p>Dispatch是将重命名后的指令写入流水线中的很多缓存, 这是顺序执行和乱序执行的一个分界点.</p>
+<p>具体来说缓存会有以下几种:</p>
 <ul>
-<li>M模式的CSR.</li>
-<li>S模式的CSR.</li>
-<li>U模式的CSR.</li>
+<li>Out-of-Order Issue Queue: <ul>
+<li>CPU中大部分的指令都可以乱序执行, 这些指令的信息会先被写入OoO IQ, 之后等操作数准备好之后, 再被FU执行, 不用理会这条指令的原始顺序.</li>
+<li>这种Issue Queue不是FIFO, 需要单独设计.</li>
 </ul>
-<p>程序可以通过CSR指令访问CSR寄存器.</p>
-<p>下列行为会出发Illegal Instruction Exception:</p>
-<ul>
-<li>访问不存在/没有实现的CSR.</li>
-<li>写入具有只读属性的CSR.</li>
-<li>低权限访问高权限的CSR.</li>
+</li>
+<li>In-Order Issue Queue:<ul>
+<li>CPU中, 有一些指令需要顺序执行:<ul>
+<li><code>load/store</code>指令: 当<code>load/store</code>指令的源操作数准备好之后, 还必须等到它之前的所有<code>load/store</code>指令执行完, 这条指令才能到FU去执行.</li>
 </ul>
-<h4 id="U态的CSR"><a href="#U态的CSR" class="headerlink" title="U态的CSR"></a>U态的CSR</h4><ul>
-<li><code>fflags, frm, fcsr</code>: 用于控制浮点相关的异常/舍入模式信息.</li>
-<li><code>cycle</code>: 存储了CPU自从复位以来, 一共运行了多少个时钟周期, 但是时钟频率可能会发生调整, 例如繁忙状态时钟频率为100MHz, 空闲状态时钟频率为10MHz, 所以根据<code>cycle</code>无法判断CPU运行了多少时间.</li>
-<li><code>time</code>: 存储了CPU自从复位以来, 一共运行了多少时间, 驱动<code>time</code>的一定是固定频率的时钟.</li>
-<li><code>instret</code>: 存储了CPU自从复位以来, 一共运行了多少条指令.</li>
-<li><code>hpmcounter3-hpmcounter31</code>: HPM的全称是Hardware Performance Monitor, 用于记录某些系统事件的数据, 可以通过一些额外的特权寄存器去配置记录哪些事件.</li>
+</li>
+<li>这种Issue Queue本质上就是FIFO.</li>
 </ul>
-<h4 id="S态的CSR"><a href="#S态的CSR" class="headerlink" title="S态的CSR"></a>S态的CSR</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>寄存器</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sstatus</code></td>
-<td>用来保存S态的一些状态, 例如中断使能等</td>
-</tr>
-<tr>
-<td><code>sie</code></td>
-<td>配置S态中断使能</td>
-</tr>
-<tr>
-<td><code>stvec</code></td>
-<td>S态发生trap后, 跳到哪里</td>
-</tr>
-<tr>
-<td><code>scounteren</code></td>
-<td>配置是否使能U态的性能相关的寄存器</td>
-</tr>
-<tr>
-<td><code>sscratch</code></td>
-<td>系统运行在U态下时, 它保存S态下的PCB的地址</td>
-</tr>
-<tr>
-<td><code>sepc</code></td>
-<td>保存引起中断指令下一条指令地址/异常指令的地址</td>
-</tr>
-<tr>
-<td><code>scause</code></td>
-<td>保存引起异常的原因</td>
-</tr>
-<tr>
-<td><code>stval</code></td>
-<td>保存处理异常的辅助信息.</td>
-</tr>
-<tr>
-<td><code>sip</code></td>
-<td>用来配置S态哪些中断处于pending模式</td>
-</tr>
-<tr>
-<td><code>satp</code></td>
-<td>用于地址转换/内存保护</td>
-</tr>
-<tr>
-<td><code>scontext</code></td>
-<td>用于debug模式使用</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h4 id="M态的CSR"><a href="#M态的CSR" class="headerlink" title="M态的CSR"></a>M态的CSR</h4><div class="table-container">
-<table>
-<thead>
-<tr>
-<th>寄存器</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mvendorid</code></td>
-<td>制造厂商ID寄存器</td>
-</tr>
-<tr>
-<td><code>marchid</code></td>
-<td>体系结构ID寄存器</td>
-</tr>
-<tr>
-<td><code>mimpid</code></td>
-<td>处理器实现版本的唯一ID</td>
-</tr>
-<tr>
-<td><code>mhartid</code></td>
-<td>硬件线程的ID</td>
-</tr>
-<tr>
-<td><code>mconfigptr</code></td>
-<td>数据结构的地址</td>
-</tr>
-<tr>
-<td><code>mstatus</code></td>
-<td>M态下处理器的一些状态</td>
-</tr>
-<tr>
-<td><code>misa</code></td>
-<td>Hart支持的ISA扩展是什么</td>
-</tr>
-<tr>
-<td><code>medeleg</code></td>
-<td>异常委托寄存器</td>
-</tr>
-<tr>
-<td><code>mideleg</code></td>
-<td>中断委托寄存器</td>
-</tr>
-<tr>
-<td><code>mie</code></td>
-<td>中断使能寄存器</td>
-</tr>
-<tr>
-<td><code>mtvec</code></td>
-<td>trap后跳到哪里</td>
-</tr>
-<tr>
-<td><code>mcounteren</code></td>
-<td>计数器使能寄存器</td>
-</tr>
-<tr>
-<td><code>mscratch</code></td>
-<td>处理器运行在S/U态时, 它用来保存PCB的指针</td>
-</tr>
-<tr>
-<td><code>mepc</code></td>
-<td>保存引起中断指令下一条指令地址/异常指令的地址</td>
-</tr>
-<tr>
-<td><code>mcause</code></td>
-<td>引起中断/异常的原因</td>
-</tr>
-<tr>
-<td><code>mtval</code></td>
-<td>辅助处理中断/异常的信息</td>
-</tr>
-<tr>
-<td><code>mip</code></td>
-<td>存储哪些中断处于pending</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h2 id="RISC-V的基础指令"><a href="#RISC-V的基础指令" class="headerlink" title="RISC-V的基础指令"></a>RISC-V的基础指令</h2><h3 id="指令类型"><a href="#指令类型" class="headerlink" title="指令类型"></a>指令类型</h3><p>RISC-V的指令都是32位, 可以分为6种指令类型:</p>
-<ul>
-<li>R: 寄存器运算</li>
-<li>I: 寄存器和立即数运算/加载</li>
-<li>S: 存储指令</li>
-<li>B: 条件跳转</li>
-<li>J: 无条件跳转</li>
-<li>U: 长立即数操作</li>
-</ul>
-<p>其中, 指令编码中的<code>opcode</code>和<code>funct3/funct7</code>可以唯一定位一条指令.</p>
-<p>RISC-V中的立即数都是符号扩展的.</p>
-<h3 id="加载指令"><a href="#加载指令" class="headerlink" title="加载指令"></a>加载指令</h3><p>注意, 加载指令中的<code>offset</code>是12位的有符号数, 可以表示的范围是$[-2^{11}, 2^{11} - 1]$, 也就是$[-2048, 2047]$, 也就是上下2KB的范围.</p>
-<ul>
-<li><code>lb rd, offset(rs1)</code>: 有符号寻址, 加载1个Byte, 然后符号扩展.</li>
-<li><code>lbu rd, offset(rs1)</code>: 无符号寻址, 加载1个Byte, 然后零扩展.</li>
-<li><code>lh rd, offset(rs1)</code>: 有符号寻址, 加载2个Byte, 然后符号扩展.</li>
-<li><code>lhu rd, offset(rs1)</code>: 无符号寻址, 加载2个Byte, 然后零扩展.</li>
-<li><code>lw rd, offset(rs1)</code>: 有符号寻址, 加载4个Byte, 然后符号扩展.</li>
-<li><code>lwu rd, offset(rs1)</code>: 无符号寻址, 加载4个Byte, 然后零扩展.</li>
-<li><code>ld rd, offset(rs1)</code>: 有符号寻址, 加载8个Byte, 然后符号扩展.</li>
-<li><code>ldu rd, offset(rs1)</code>: 无符号寻址, 加载8个Byte, 然后零扩展.</li>
-</ul>
-<p>上面的指令都是I型指令.</p>
-<h3 id="存储指令"><a href="#存储指令" class="headerlink" title="存储指令"></a>存储指令</h3><p>存储指令的<code>offset</code>和加载指令一样, 都是12位有符号数.</p>
-<ul>
-<li><code>sb rs2, offset(rs1)</code>: 存储<code>rs2</code>低1个字节.</li>
-<li><code>sh rs2, offset(rs1)</code>: 存储<code>rs2</code>低2个字节.</li>
-<li><code>sw rs2, offset(rs1)</code>: 存储<code>rs2</code>低4个字节.</li>
-<li><code>sd rs2, offset(rs1)</code>: 存储<code>rs2</code>低8个字节.</li>
-</ul>
-<p>上面都是S型指令.</p>
-<h3 id="长立即数操作指令"><a href="#长立即数操作指令" class="headerlink" title="长立即数操作指令"></a>长立即数操作指令</h3><ul>
-<li><p><code>lui rd, imm</code>: 其中, 这个<code>imm</code>是20位的立即数, 这个指令会把立即数先左移12位, 然后符号扩展, 然后写入<code>rd</code>中.</p>
 </li>
-<li><p><code>auipc rd, imm</code>: 这个<code>imm</code>也是20位的立即数, 这个指令先将立即数左移12位, 然后符号扩展, 然后加到<code>pc</code>上, 然后存储到<code>rd</code>中.</p>
-</li>
-</ul>
-<h3 id="无条件跳转指令"><a href="#无条件跳转指令" class="headerlink" title="无条件跳转指令"></a>无条件跳转指令</h3><p>RV64I中提供了两个无条件跳转指令:</p>
-<ul>
-<li><code>jal rd, offset</code>: offset是21位的有符号数, 可以表示的范围是$[-2^{20}, 2^{20} - 1]$, 也就是PC上下1MB的范围, 这个指令的意思是, 首先把当前的PC+4保存到<code>rd</code>中, 然后跳转到<code>pc + offset</code>中, 这个指令是J型指令</li>
-<li><code>jalr rd, offset(rs1)</code>: offset是12位的有符号立即数, 可以表示范围是PC上下2KB, 这个指令的意思是, 把当前的PC + 4保存到<code>rd</code>中, 然后跳转到以<code>rs1</code>为base address, 加上<code>offset</code>的位置.</li>
-</ul>
-<p>根据这两个指令, RISC-V衍生出了很多伪指令:</p>
-<ul>
-<li><p><code>j label</code>: 翻译成<code>jal x0, offset</code></p>
-</li>
-<li><p><code>jal label</code>: 翻译成<code>jal ra, offset</code></p>
-</li>
-<li><p><code>jr rs</code>: 翻译成<code>jalr x0, 0(rs)</code></p>
-</li>
-<li><p><code>ret</code>: 翻译成<code>jalr x0, 0(ra)</code></p>
-</li>
-<li><p><code>call func</code>: 调用子函数<code>func</code>, 返回地址保留到<code>ra</code>中.</p>
-<pre><code class="lang-assembly">
-# offset通过链接重定位计算得到
-auipc ra, offset[31:12] + offset[11]
-jalr ra, offset[11:0](ra)
-</code></pre>
-</li>
-<li><p><code>tail func</code>: 调用子函数<code>func</code>, 不保存返回地址</p>
-<pre><code class="lang-assembly">
-auipc x6, offset[31:12] + offset[11]
-jalr x6, offset[11:0](ra)
-</code></pre>
-</li>
-</ul>
-<h3 id="与PC相关的加载-存储伪指令"><a href="#与PC相关的加载-存储伪指令" class="headerlink" title="与PC相关的加载/存储伪指令"></a>与PC相关的加载/存储伪指令</h3><ul>
-<li><p><code>la rd, symbol</code></p>
-<ul>
-<li><p>将symbol的绝对地址放到<code>rd</code>中.</p>
-</li>
-<li><p>如果编译器采用生成位置无关代码的选项(<code>-fpic</code>), 那么<code>la</code>指令会被翻译成:</p>
-</li>
+<li>ROB: <ul>
+<li>本质上是一个FIFO.</li>
+<li>指令会按照原始的顺序写入ROB.</li>
+<li>ROB也会记录指令执行过程中的一些信息, 例如异常等.</li>
+<li>即使有些指令很早就计算完了, 它也必须等到前面指令commit后才能commit, 也就是In-order commit.</li>
 </ul>
 </li>
 </ul>
-<pre><code class="lang-assembly">auipc rd, offset[31:12] + offset[11]
-# GOT存储在内存中, 用lw/ld获取GOT的内容
-l&#123;w|d&#125; rd, offset[11:0](rd)
-</code></pre>
-<p>其中, <code>offset = symbol - pc</code>, 这个<code>symbol</code>的地址链接器会从全局偏移量表(Global Offset Table, GOT, 存储在内存中)中获取, 一般用在动态库中.</p>
-<ul>
-<li>如果编译器没有采用生成位置无关代码的选项, 那么<code>la</code>指令会被翻译成:</li>
-</ul>
-<pre><code class="lang-assembly">auipc rd, offset[31:12] + offset[11]
-addi rd, rd, offset[11:0](rd)
-</code></pre>
-<p>其中, <code>symbol</code>的地址就会由链接器直接计算.</p>
 
       
        
@@ -1505,46 +1223,6 @@ addi rd, rd, offset[11:0](rd)
 
 
 
-    
-        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        availableFonts: ["STIX","TeX"],
-        linebreaks: { automatic:true },
-        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
-        processEscapes: true,
-        ignoreClass: "tex2jax_ignore|dno",
-        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-        equationNumbers: { autoNumber: "AMS" },
-        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
-        Macros: { href: "{}" }
-    },
-    messageStyle: "none"
-    });
-</script>
-<!-- 给MathJax元素添加has-jax class -->
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for(i=0; i < all.length; i += 1) {
-            all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-    });
-</script>
-<!-- 通过连接CDN加载MathJax的js代码 -->
-<script type="text/javascript" async
-        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-<input type="hidden" id="MathJax-js"
-        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
-</input>
     
 
 

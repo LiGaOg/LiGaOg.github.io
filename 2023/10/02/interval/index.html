@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="算法题-区间问题 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU-分支预测的算法与流水线">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
+<meta property="article:published_time" content="2023-12-19T04:29:51.848Z">
+<meta property="article:modified_time" content="2023-12-19T05:36:20.496Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(92)</small>
+                <small>(93)</small>
             
         </div>
     </li>
@@ -146,7 +148,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(24)</small>
+            <small>(25)</small>
         </div>
         
     </li>
@@ -231,7 +233,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="92">
+<input type="hidden" id="yelog_site_posts_number" value="93">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -281,6 +283,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/19/branch-prediction/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-date" title="2023-12-19 12:29:51">2023/12/19</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/17/dispatch-issue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-Dispatch和Issue的设计">CPU-Dispatch和Issue的设计</span>
+            <span class="post-date" title="2023-12-17 17:22:00">2023/12/17</span>
+        </a>
         
         
         <a  class="All 工具 "
@@ -378,15 +398,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
-            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/12/03/branch-prediction/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
             <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
         </a>
         

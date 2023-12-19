@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-寄存器重命名的算法设计与实现 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU-分支预测的算法与流水线">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
+<meta property="article:published_time" content="2023-12-19T04:29:51.848Z">
+<meta property="article:modified_time" content="2023-12-19T05:36:20.496Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -119,7 +121,7 @@
     <li>
         <div class="all active" data-rel="All">All
             
-                <small>(92)</small>
+                <small>(93)</small>
             
         </div>
     </li>
@@ -146,7 +148,7 @@
         <div data-rel="工程">
             
             工程
-            <small>(24)</small>
+            <small>(25)</small>
         </div>
         
     </li>
@@ -231,7 +233,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="92">
+<input type="hidden" id="yelog_site_posts_number" value="93">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -281,6 +283,24 @@
 
     
     <nav id="title-list-nav">
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/19/branch-prediction/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-date" title="2023-12-19 12:29:51">2023/12/19</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/17/dispatch-issue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-Dispatch和Issue的设计">CPU-Dispatch和Issue的设计</span>
+            <span class="post-date" title="2023-12-17 17:22:00">2023/12/17</span>
+        </a>
         
         
         <a  class="All 工具 "
@@ -378,15 +398,6 @@
            data-tag=""
            data-author="" >
             <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
-            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
-        </a>
-        
-        
-        <a  class="All 工程 "
-           href="/2023/12/03/branch-prediction/"
-           data-tag=""
-           data-author="" >
-            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
             <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
         </a>
         
@@ -1148,7 +1159,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-05 11:53:59'>2023-12-03 18:09</time>
+            Created At : <time class="date" title='Updated At: 2023-12-17 17:23:58'>2023-12-03 18:09</time>
         
     </div>
     <div class="article-meta">
@@ -1159,7 +1170,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-text">指令的相关性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0WAW-WAR"><span class="toc-text">为什么会出现WAW, WAR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">寄存器重命名的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ROB-ARF%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用ROB+ARF重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ROB-ARF-PRF%E8%BF%9B%E8%A1%8C%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用ROB+ARF+PRF进行重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%9F%E4%B8%80%E7%9A%84PRF%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用统一的PRF重命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%A0%87%E9%87%8FCPU%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">超标量CPU的寄存器重命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%8F%A3%E6%95%B0%E9%87%8F%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">读写口数量的分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">指令数据相关性的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RAW%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">RAW相关性的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WAW%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">WAW相关性的处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Renaming-Table%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Renaming Table的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E4%BC%98%E5%85%88-%E5%86%99%E4%BC%98%E5%85%88%E9%97%AE%E9%A2%98"><span class="toc-text">读优先&#x2F;写优先问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SRAM-CAM"><span class="toc-text">SRAM&#x2F;CAM</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="toc-text">寄存器重命名的恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Checkpoint"><span class="toc-text">Checkpoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WALK"><span class="toc-text">WALK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Architecture-State"><span class="toc-text">Architecture State</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E7%9A%84%E7%9B%B8%E5%85%B3%E6%80%A7"><span class="toc-text">指令的相关性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BC%9A%E5%87%BA%E7%8E%B0WAW-WAR"><span class="toc-text">为什么会出现WAW, WAR</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="toc-text">寄存器重命名的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ROB-ARF%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用ROB+ARF重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8ROB-ARF-PRF%E8%BF%9B%E8%A1%8C%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用ROB+ARF+PRF进行重命名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E7%BB%9F%E4%B8%80%E7%9A%84PRF%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">使用统一的PRF重命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B6%85%E6%A0%87%E9%87%8FCPU%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">超标量CPU的寄存器重命名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E5%86%99%E5%8F%A3%E6%95%B0%E9%87%8F%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">读写口数量的分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E4%BB%A4%E6%95%B0%E6%8D%AE%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-text">指令数据相关性的分析</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RAW%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">RAW相关性的处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#WAW%E7%9B%B8%E5%85%B3%E6%80%A7%E7%9A%84%E5%A4%84%E7%90%86"><span class="toc-text">WAW相关性的处理</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Renaming-Table%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Renaming Table的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%BB%E4%BC%98%E5%85%88-%E5%86%99%E4%BC%98%E5%85%88%E9%97%AE%E9%A2%98"><span class="toc-text">读优先&#x2F;写优先问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%84%E5%AD%98%E5%99%A8%E9%87%8D%E5%91%BD%E5%90%8D%E7%9A%84%E6%81%A2%E5%A4%8D"><span class="toc-text">寄存器重命名的恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Architecture-State"><span class="toc-text">Architecture State</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WALK"><span class="toc-text">WALK</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1392,15 +1403,46 @@ add p31, p13, p30
 </li>
 </ul>
 <p>但是这两种情况是矛盾的, 此时, 实际情况下选用的是Read-First, 对于第一种情况, 会使用RAW的检查电路进行bypass, 不让这个指令读取Renaming Table.</p>
-<h3 id="SRAM-CAM"><a href="#SRAM-CAM" class="headerlink" title="SRAM/CAM"></a>SRAM/CAM</h3><h2 id="寄存器重命名的恢复"><a href="#寄存器重命名的恢复" class="headerlink" title="寄存器重命名的恢复"></a>寄存器重命名的恢复</h2><p>如果一条指令已经经过了寄存器重命名这个pipeline的阶段, 那么它就会占据对应的资源(也就是在Renaming Table中写入了新的映射), 如果后续出现了异常/分支预测失败, 需要对这个指令占用的资源进行恢复, 这里的恢复主要针对Renaming Table而言.</p>
-<h3 id="Checkpoint"><a href="#Checkpoint" class="headerlink" title="Checkpoint"></a>Checkpoint</h3><p>Checkpoint的思路很简单, 就是对Renaming Table做一个快照(Snapshot), 在一个周期内, 我把我现在的Renaming Table, <font color="purple">在一个周期内</font>完全同步到我的一个副本中.</p>
-<h3 id="WALK"><a href="#WALK" class="headerlink" title="WALK"></a>WALK</h3><p>WALK这种方法主要是使用ROB来将Renaming Table的状态推导回去.</p>
-<p>假设某条指令出现了异常/分支预测错误, 那么需要有如下操作:</p>
+<h2 id="寄存器重命名的恢复"><a href="#寄存器重命名的恢复" class="headerlink" title="寄存器重命名的恢复"></a>寄存器重命名的恢复</h2><p>如果一条指令已经经过了寄存器重命名这个pipeline的阶段, 那么它就会占据对应的资源(也就是在Renaming Table中写入了新的映射), 如果后续出现了异常/分支预测失败, 需要对这个指令占用的资源进行恢复, 这里的恢复主要针对Renaming Table而言.</p>
+<h3 id="Architecture-State"><a href="#Architecture-State" class="headerlink" title="Architecture State"></a>Architecture State</h3><p>Architecture State的思路是对Renaming Table做一个备份(Renaming Table Backup).</p>
 <ul>
-<li>将流水线上的所有指令flush.</li>
-<li>然后, </li>
+<li>当一条指令commit时, 会将这条指令的<code>rd</code>和<code>prd</code>的映射关系写入Renaming Table Backup.</li>
+<li>当某一条指令出现异常/分支预测失误时:<ul>
+<li>先不处理, 先继续执行.</li>
+<li>当这条指令成为流水线中最老的指令时, 开始处理.</li>
+<li>将Renaming Table Backup中的信息同步到真实的Renaming Table中.</li>
 </ul>
-<h3 id="Architecture-State"><a href="#Architecture-State" class="headerlink" title="Architecture State"></a>Architecture State</h3>
+</li>
+</ul>
+<blockquote>
+<p>为什么这种做法是正确的?</p>
+</blockquote>
+<ul>
+<li>如果一个指令被commit, 那么说明这条指令是正确无误的.</li>
+<li>后续没有被commit的指令会占用Renaming Table, 但是如果出现异常/分支预测失败, 这些指令都会从流水线flush, Renaming Table需要恢复到这些被flush的指令之前, 能够被commit的指令之后的那个状态.</li>
+</ul>
+<blockquote>
+<p>使用Architecture State的另外一个好处.</p>
+</blockquote>
+<p>如果使用了统一的PRF进行寄存器重命名, 那么CPU中就只有物理寄存器, 没有架构寄存器.</p>
+<p>如果在CPU外部, 想访问一个架构寄存器, 那么就可以直接从Renaming Table Backup中, 通过<code>rd</code>找到<code>prd</code>, 然后根据<code>prd</code>访问对应的物理寄存器即可.</p>
+<h3 id="WALK"><a href="#WALK" class="headerlink" title="WALK"></a>WALK</h3><p>WALK这种方法主要是使用ROB来将Renaming Table的状态推导回去.</p>
+<p>一个指令写入ROB的信息可以包括:</p>
+<ul>
+<li><code>rd</code>.</li>
+<li>对应的<code>prd</code>.</li>
+<li><code>lprd</code>.</li>
+</ul>
+<p>根据这些信息可以把Renaming Table还原到出现异常/分支预测失败之前.</p>
+<p>当某一条指令出现异常/分支预测失败时:</p>
+<ul>
+<li>先不处理, 等待这条指令成为流水线上最老的指令时开始处理.</li>
+<li>逆序遍历ROB中所有的指令, 对于每一条指令<code>I</code>:<ul>
+<li>在Renaming Table中, 将<code>I.rd -&gt; I.prd</code>这个映射, 修改为<code>I.rd -&gt; I.lprd</code>的映射即可.</li>
+</ul>
+</li>
+</ul>
+
       
        
     </div>
