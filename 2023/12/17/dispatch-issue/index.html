@@ -6,17 +6,19 @@
   <meta name="keywords" content="">
   <meta name="description" content="CPU-Dispatch和Issue的设计 | LiGaOg&#39;s blog">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="自我介绍你好, 我是LiGaOg.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="LiGaOg&#39;s blog">
-<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta name="description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CPU-分支预测的算法与流水线">
+<meta property="og:url" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/index.html">
 <meta property="og:site_name" content="LiGaOg&#39;s blog">
-<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:description" content="分支预测的重要性CPU中, 直接影响性能的两个关键部分是:  Cache. 分支预测.  对于CPU来说, 除了要在当前周期内取地址, 还需要决定下个周期从哪个地方开始取地址.  如果只是简单的按顺序取指令(默认分支不执行), 那么如果出现分支执行的情况, 就需要把当前流水线中的指令全部flush, 浪费了处理器的功耗, 同时降低了性能.  因此, 进行分支预测是必要的, 超标量处理器的分支预测需">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
-<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="og:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
+<meta property="article:published_time" content="2023-12-19T04:29:51.848Z">
+<meta property="article:modified_time" content="2023-12-19T05:36:20.496Z">
 <meta property="article:author" content="LiGaOg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ligaog.github.io.com/2023/12/19/branch-prediction/2bitbp.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -1157,7 +1159,7 @@
     </div>
     <div class="article-meta">
         
-            Created At : <time class="date" title='Updated At: 2023-12-19 21:22:31'>2023-12-17 17:22</time>
+            Created At : <time class="date" title='Updated At: 2023-12-21 13:53:50'>2023-12-17 17:22</time>
         
     </div>
     <div class="article-meta">
@@ -1168,7 +1170,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch"><span class="toc-text">Dispatch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Issue"><span class="toc-text">Issue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue-Queue%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue Queue的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">集中式&#x2F;分布式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-Capture-Non-Data-Capture"><span class="toc-text">Data-Capture&#x2F;Non-Data-Capture</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-Capture"><span class="toc-text">Data-Capture</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Non-Data-Capture"><span class="toc-text">Non-Data-Capture</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9-%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩&#x2F;非压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">非压缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue的流水线设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Select算法的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-m-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-m-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tradeoff"><span class="toc-text">Tradeoff</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wakeup%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Wakeup算法的设计</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dispatch"><span class="toc-text">Dispatch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Issue"><span class="toc-text">Issue</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue-Queue%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue Queue的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%9B%86%E4%B8%AD%E5%BC%8F-%E5%88%86%E5%B8%83%E5%BC%8F"><span class="toc-text">集中式&#x2F;分布式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Data-Capture-Non-Data-Capture"><span class="toc-text">Data-Capture&#x2F;Non-Data-Capture</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Data-Capture"><span class="toc-text">Data-Capture</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Non-Data-Capture"><span class="toc-text">Non-Data-Capture</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9-%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩&#x2F;非压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9"><span class="toc-text">压缩</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E9%9D%9E%E5%8E%8B%E7%BC%A9"><span class="toc-text">非压缩</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Issue%E7%9A%84%E6%B5%81%E6%B0%B4%E7%BA%BF%E8%AE%BE%E8%AE%A1"><span class="toc-text">Issue的流水线设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Select%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Select算法的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#oldest-m-first%E7%AE%97%E6%B3%95"><span class="toc-text">oldest-m-first算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tradeoff"><span class="toc-text">Tradeoff</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wakeup%E7%AE%97%E6%B3%95%E7%9A%84%E8%AE%BE%E8%AE%A1"><span class="toc-text">Wakeup算法的设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8D%95%E5%91%A8%E6%9C%9F%E6%8C%87%E4%BB%A4%E7%9A%84Wakeup"><span class="toc-text">单周期指令的Wakeup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%9A%E5%91%A8%E6%9C%9F%E6%8C%87%E4%BB%A4%E7%9A%84Wakeup"><span class="toc-text">多周期指令的Wakeup</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A8%E6%B5%8BWakeup"><span class="toc-text">推测Wakeup</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Issue-Queue-Based-Replay"><span class="toc-text">Issue Queue Based Replay</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Replay-Queue-Based-Replay"><span class="toc-text">Replay Queue Based Replay</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -1430,7 +1432,165 @@
 <li>越少个FU共用一个Issue Queue, Issue Queue个数多, Wakeup延时大.</li>
 </ul>
 <p>因此, Select和Wakeup也是一个tradeoff的关系.</p>
-<h3 id="Wakeup算法的设计"><a href="#Wakeup算法的设计" class="headerlink" title="Wakeup算法的设计"></a>Wakeup算法的设计</h3>
+<h3 id="Wakeup算法的设计"><a href="#Wakeup算法的设计" class="headerlink" title="Wakeup算法的设计"></a>Wakeup算法的设计</h3><h4 id="单周期指令的Wakeup"><a href="#单周期指令的Wakeup" class="headerlink" title="单周期指令的Wakeup"></a>单周期指令的Wakeup</h4><p>首先, 单周期指令指的是这个指令能在一个周期内被FU计算出结果.</p>
+<p>首先, 每一个FU都有一个Select电路, 当这个FU的对应的某个指令从Issue Queue中被Select后, 对于单周期指令来说, 他要在同一个周期内进行Wakeup操作.</p>
+<p>对于每一个Select电路, 都会准备一条总线, 当这条指令被Select之后, 对应的目标寄存器会在总线上被广播到所有的Issue Queue.</p>
+<blockquote>
+<p>对于单周期指令, Select和Wakeup为什么可以在一个周期?</p>
+</blockquote>
+<ul>
+<li><p>对于单周期指令, 假设在周期<code>c</code>, 他唤醒了一条指令, 那么在周期<code>c+1</code>就可以得到结果, 这个结果可以立马被bypass到下一个进入FU的指令.</p>
+</li>
+<li><p>对于具有RAW依赖的指令来说, 只要Select/Wakeup在一个周期, 并且FU具有bypass, 那么就可以实现背靠背的运行.</p>
+</li>
+</ul>
+<h4 id="多周期指令的Wakeup"><a href="#多周期指令的Wakeup" class="headerlink" title="多周期指令的Wakeup"></a>多周期指令的Wakeup</h4><p>对于多周期指令, FU需要若干个周期才能够将结果计算出来. 此时, Select和Wakeup就不能在同一个周期, 对于这种指令有两种处理办法 (假设这个指令需要的周期数是$n$):</p>
+<ul>
+<li>延迟广播(Delayed Tag Broadcast): 当指令被Select后, 经过$n-1$个周期再把目的寄存器广播到总线上.<ul>
+<li>这种方法会让指令占用总线资源, 会导致后续指令无法利用总线.</li>
+</ul>
+</li>
+<li>延迟唤醒(Delayed Wakeup): 当指令被Select之后, 立马将目的寄存器进行广播, 但是将Isssue Queue中的源寄存器置为ready这个过程需要延后$n - 1$个周期.<ul>
+<li>延后若干个周期可以采用移位寄存器进行实现.</li>
+<li>一般采用这种方法.</li>
+</ul>
+</li>
+</ul>
+<h4 id="推测Wakeup"><a href="#推测Wakeup" class="headerlink" title="推测Wakeup"></a>推测Wakeup</h4><p>在CPU中, 有些指令在FU中执行的周期数是没办法提前知道的, 比如load/store指令, 有很多特殊情况.</p>
+<p>此时有两种方法进行处理:</p>
+<ul>
+<li><p>最简单的方法: Select之后, 送到FU, 等FU执行完成后再通过bypass进行唤醒(广播目的寄存器, 将Issue Queue中的源寄存器置为ready).</p>
+<ul>
+<li>这个是早期Tomasulo算法的内容.</li>
+</ul>
+</li>
+<li><p>采用推测Wakeup, 也就是推测这个指令会在若干个周期(假设是$m$)内完成, 然后在Select后, 过了$m-1$个周期再进行延迟唤醒, 如果预测失败需要采用恢复机制.</p>
+</li>
+</ul>
+<p>例如以load指令为例, 由于D-Cache的命中率较高, 可以假设load指令永远命中, 此时就可以知道load指令需要执行多少个周期了.</p>
+<p>如果猜错了, D-Cache没命中 (这个信息可以在Cache访问的流水线上得到), 那么在若干周期之后, 无法从FU的bypass处获得数据, 此时, 就需要进行恢复, 这种恢复机制有一个名字叫做Replay.</p>
+<p>注意, 如果实现了虚拟地址, 并且Cache的结构是VIPT或者PIPT, 那么还需要假设TLB命中, 如果TLB Miss的话, 根据处理TLB Miss的方式不同, 对于推测Wakeup的恢复方式也不同:</p>
+<ul>
+<li>如果采用软件处理TLB Miss, 那么load指令就相当于出现了异常, 会等到load指令变成流水线中最旧的指令后, 将load指令及其之后的指令全部抹掉, 然后运行exception handler, 然后重新将load指令及其后面的指令放到流水线上.</li>
+<li>如果采用硬件处理TLB Miss, 需要进行Replay.</li>
+</ul>
+<p>注意: 对于多级Cache来说, 可以采用多级的推测Wakeup:</p>
+<ul>
+<li>先假设L1 Cache命中, 有一个推测值.</li>
+<li>猜错了, 再假设L2 Cache命中, 再有一个推测值.</li>
+<li>…</li>
+</ul>
+<p>Replay的实现方式有很多种, 取决于这个指令在被Select之后, 会不会立马离开Issue Queue.</p>
+<h5 id="Issue-Queue-Based-Replay"><a href="#Issue-Queue-Based-Replay" class="headerlink" title="Issue Queue Based Replay"></a>Issue Queue Based Replay</h5><p>如果这个指令被Select, 送到FU里的时候, 它不会离开Issue Queue, 那么就需要Issue Queue Based Replay.</p>
+<p>此时, 每一条指令在Issue Queue中会多一个属性, 叫做<code>issued</code>:</p>
+<ul>
+<li><p>是1: 表示这个指令被送到FU执行了, 但是还没有离开Issue Queue.</p>
+</li>
+<li><p>当一个指令被Select时, <code>issued</code>位会被置为1.</p>
+</li>
+<li>当<code>issued</code>位被置为1时, 他就不会被Select电路选中.</li>
+</ul>
+<p>如果这个指令被发现推测Wakeup错误, 那么所有被它唤醒的, 并且<code>issued</code>是1的指令都需要重新被Wakeup/Select.</p>
+<ul>
+<li>具体replay的做法就是把这条指令的<code>issued</code>位置为0.</li>
+<li>然后将推测Wakeup失败的指令唤醒的所有源寄存器设置为not-ready.</li>
+</ul>
+<blockquote>
+<p>那什么时候这些指令才能够离开Issue Queue?</p>
+</blockquote>
+<p>只有当这些指令能够确认“正确执行”之后, 才可以离开Issue Queue.</p>
+<p>“正确执行”的等价条件是: 所有唤醒这条指令的原指令都确定不会出现推测Wakeup的失败.</p>
+<p>对于某些指令, 可以在FU计算流水线的某个阶段获取这条指令是否Wakeup成功, 这样被它唤醒的指令就可以提前离开Issue Queue.</p>
+<blockquote>
+<p> 那么, 还有一个重要的问题, 假设一个指令被发现推测Wakeup失败, 那么, 我如何才能找到所有被它唤醒的, 并且<code>issued</code>是1的指令?</p>
+</blockquote>
+<p>如果采用预测Wakeup, 有两个重要的time slots:</p>
+<ul>
+<li>Independent Window: 从这条指令被Select/Wakeup, 到Issue Queue中源寄存器置为ready, 中间差了$m-1$个周期, 这个$m$是预测Wakeup的推测值.</li>
+<li>Speculative Window: 从Issue Queue中源寄存器置为ready, 到发现这条指令推测Wakeup失败.</li>
+</ul>
+<p>如果发现一个指令推测Wakeup失败:</p>
+<ul>
+<li>Non-Selective Replay:<ul>
+<li>Independent Window中被Select的指令, 一定和Wakeup失败的指令没有关系, 因此不用replay.</li>
+<li>因此, 只需要将Speculative Window中被Select指令replay即可.</li>
+<li><font color="red">注意: 在Speculative Window中被唤醒的指令, 不一定和之前Select的指令具有相关性</font>, 此时如果把Speculative Window中的指令全部抹掉, 那么会让一些没有相关性的指令也被抹掉, 造成性能浪费.</li>
+</ul>
+</li>
+</ul>
+<p>如果采用这种方式, 还会有一个问题, 对于推测Wakeup失败的指令, 它唤醒的所有源寄存器需要设置为non-ready, 同时, 对于这些non-ready的源寄存器所在的指令, 它也可能在Speculative Window中唤醒其他指令, 此时, 我还需要把这些其他指令对应的源寄存器也设置为non-ready(形成了一个依赖的链条). 因此, 需要提供一种机制, 来检测如果一个指令出现了Wakeup失败, 我需要将哪些源寄存器设置为non-ready, 这种机制叫做<font color="green">Vector算法</font>.</p>
+<blockquote>
+<p>Vector算法的机制?</p>
+</blockquote>
+<p>首先, 对于每一类不能确定FU多少个周期能完成的指令, 都需要一套独立的Vector算法, 这里以load为例.</p>
+<p>对于每一个物理寄存器, 都有一个$n$位的Load-Vector, 其中这个$n$表示能够在流水线上同时存在的load指令的个数.</p>
+<p>对于每一条指令:</p>
+<ul>
+<li>如果指令不是load, 并且存在目的寄存器, 那么目的寄存器的Vector值等于源寄存器Vector的按位或.</li>
+<li>对于load指令, 它的目的寄存器的Vector值是源寄存器的Vector值, 在从右往左数的最后一个0把它变成1即可.</li>
+</ul>
+<p>寄存器的Vector的赋值过程发生在寄存器重命名.</p>
+<p>当一个load指令被发现推测Wakeup失败之后:</p>
+<ul>
+<li>看一下这个load指令的Vector值, 找到它从右向左数第一个1所在的下标<code>idx</code>.</li>
+<li>然后遍历所有物理寄存器的Vector, 如果它的Vector值的第<code>idx</code>位是1, 那么这个寄存器就需要在replay过程中被置为non-ready.</li>
+</ul>
+<p>但是, 对于这种Vector算法, 他限制了流水线中同时存在的load指令只能有$n$条.</p>
+<ul>
+<li>当流水线较浅时, 同时存在于流水线中的load指令不会很多, 因此Vector算法可以接受.</li>
+<li>当流水线较深时, 这种方法不可以.</li>
+</ul>
+<p>因此, 可以考虑另一种算法, 叫做<font color="green">Position Vector算法</font>.</p>
+<blockquote>
+<p>Position Vector算法的工作机制?</p>
+</blockquote>
+<p>对于每一类不能确定FU多少个周期能完成的指令, 都需要一套独立的Position-Vector算法, 这里以load为例.</p>
+<p>对于每一个物理寄存器, 都有一个$n$位的Position-Vector, 其中这个$n$等于load指令在流水线上执行的阶段数+1.</p>
+<p>对于每一条指令:</p>
+<ul>
+<li>如果指令不是load, 并且存在目的寄存器, 那么目的寄存器的Position-Vector值等于源寄存器Position-Vector按位或.</li>
+<li>对于load指令, 它的目的寄存器的Position-Vector值是源寄存器Position-Vector值, 然后将最左边的第一个0变成1即可(表示新的load指令在Select阶段).</li>
+</ul>
+<p>每过一个周期, Position-Vector的值都会逻辑右移1位, 用来追踪所有load指令在流水线中的位置.</p>
+<p>当一个load指令被发现推测Wakeup失败之后:</p>
+<ul>
+<li>看一下这个load指令的Position-Vector值, 找到它从右向左数第一个1所在的下标<code>idx</code>.</li>
+<li>然后遍历所有物理寄存器的Position-Vector, 如果它的Position-Vector的第<code>idx</code>位时1, 那么这个寄存器就要在replay过程中被设置为non-ready.</li>
+</ul>
+<font color="cyan">借助Position-Vector算法, 不仅仅能够识别哪些物理寄存器和我这个推测Wakeup失败的指令相关, 还能够识别哪些指令和我这个推测Wakeup失败的指令相关.</font>
+
+<ul>
+<li>当一条指令被Select, 它的目的寄存器的Position-Vector也会进入后续的流水线.</li>
+<li>当某条指令被发现推测Wakeup失败后, 遍历所有指令的目的寄存器的Position-Vector, 如果Position-Vector的第<code>idx</code>位是1, 那么这条指令就需要被replay, 也就是在Issue Queue中的<code>issued</code>位被设置成0.</li>
+<li>这种做法叫Selective-Replay.</li>
+</ul>
+<blockquote>
+<p>Issue Queue Based Replay设计的优缺点?</p>
+</blockquote>
+<ul>
+<li>优点: 容易实现, 复杂度较低.</li>
+<li>缺点: 对于Issue Queue的利用率降低: 如果推测Wakeup正确, 那么在Select和Wakeup间隔的这些周期, 被一开始Select的指令唤醒的这些指令理论上不应该占用Issue Queue, 由于Issue Queue的容量可以直接影响CPU的并行度, 因此会导致CPU性能下降.</li>
+</ul>
+<font color="purple">如果采用了Position-Vector, 那么可以缓解这个缺点.</font>
+
+<ul>
+<li>如果一个指令被Select, 并且它的目的寄存器的Position-Vector全0, 那么说明它不依赖任何load指令, 此时就可以马上离开Issue Queue.</li>
+</ul>
+<h5 id="Replay-Queue-Based-Replay"><a href="#Replay-Queue-Based-Replay" class="headerlink" title="Replay Queue Based Replay"></a>Replay Queue Based Replay</h5><p>当一条指令被Select之后, 他会立即离开流水线, 进入Replay Queue.</p>
+<p>当一条指令确认能够“正确执行”时(被commit), 就会离开Replay Queue.</p>
+<p>当一条指令被发现推测Wakeup失败后:</p>
+<ul>
+<li>与它相关的指令需要在流水线中抹掉.</li>
+<li>与它相关的指令需要在Replay Queue中重新被Select, 在Replay Queue中的Select过程比在Issue Queue中Select有更高的优先级.</li>
+</ul>
+<blockquote>
+<p>如何选择Issue Queue Based Replay还是Replay Queue Based Replay?</p>
+</blockquote>
+<ul>
+<li>如果Issue Queue是Data-Capture的, 那么指令被Select到指令被发现推测Wakeup失败, 需要replay的间隔周期数不会太多, 需要被replay的指令也不会太多, 因此可以Issue Queue Based Replay.</li>
+<li>如果Issue Queue是Non-Data-Capture的, 那么指令被Select到指令被发现推测Wakeup失败, 需要replay的间隔周期数会很长 , 因为还有一个读取物理寄存器的阶段, 因此需要被replay的指令可能很多, 可以采用replay queue减少Issue queue的压力.</li>
+</ul>
+
       
        
     </div>
