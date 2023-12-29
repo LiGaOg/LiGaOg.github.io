@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>CPU-EXE阶段的设计 | LiGaOg&#39;s blog</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="CPU-EXE阶段的设计 | LiGaOg&#39;s blog">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LiGaOg&#39;s blog">
+<meta property="og:url" content="https://ligaog.github.io.com/about/index.html">
+<meta property="og:site_name" content="LiGaOg&#39;s blog">
+<meta property="og:description" content="自我介绍你好, 我是LiGaOg.">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:modified_time" content="2023-09-01T04:15:00.107Z">
+<meta property="article:author" content="LiGaOg">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatar.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/github.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatar.jpg"/>
+</a>
+<div class="author">
+    <span>LiGaOg</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="github"
+               href="https://github.com/LiGaOg"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="email"
+               href="mailto:chlijiaao@163.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=2381446488&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(96)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                
+    <li>
+        <div data-rel="工具">
+            
+            工具
+            <small>(15)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="工程">
+            
+            工程
+            <small>(28)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="其他">
+            
+            其他
+            <small>(2)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="数学">
+            
+            数学
+            <small>(1)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="算法">
+            
+            算法
+            <small>(45)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+        
+            
+                
+    <li>
+        <div data-rel="English">
+            
+            English
+            <small>(5)</small>
+        </div>
+        
+    </li>
+
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  site_url"
+               
+               href="/about">About</a>
+        
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="96">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/29/nvim/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Neovim-如何使用编辑器的神">Neovim-如何使用编辑器的神</span>
+            <span class="post-date" title="2023-12-29 13:15:51">2023/12/29</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/28/cmake/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CMake-使用CMake创建并编译C++工程">CMake-使用CMake创建并编译C++工程</span>
+            <span class="post-date" title="2023-12-28 11:34:27">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/28/consistency/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-缓存及内存一致性模型">CPU-缓存及内存一致性模型</span>
+            <span class="post-date" title="2023-12-28 11:33:46">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/28/commit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-指令的Commit过程">CPU-指令的Commit过程</span>
+            <span class="post-date" title="2023-12-28 11:32:39">2023/12/28</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/24/docker-env/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Docker-如何用docker部署运行环境">Docker-如何用docker部署运行环境</span>
+            <span class="post-date" title="2023-12-24 11:48:39">2023/12/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/22/fu/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-EXE阶段的设计">CPU-EXE阶段的设计</span>
+            <span class="post-date" title="2023-12-22 14:41:03">2023/12/22</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/19/branch-prediction/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-分支预测的算法与流水线">CPU-分支预测的算法与流水线</span>
+            <span class="post-date" title="2023-12-19 12:29:51">2023/12/19</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/17/dispatch-issue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-Dispatch和Issue的设计">CPU-Dispatch和Issue的设计</span>
+            <span class="post-date" title="2023-12-17 17:22:00">2023/12/17</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/13/go-test/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GoProject-单元测试/性能测试/Profiling">GoProject-单元测试/性能测试/Profiling</span>
+            <span class="post-date" title="2023-12-13 21:18:39">2023/12/13</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/11/yabai/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="yabai-MacOS下更强的平铺窗口管理器">yabai-MacOS下更强的平铺窗口管理器</span>
+            <span class="post-date" title="2023-12-11 09:18:29">2023/12/11</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/08/joshuto/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="joshuto-高效的终端管理器">joshuto-高效的终端管理器</span>
+            <span class="post-date" title="2023-12-08 21:11:47">2023/12/08</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/08/tmux/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="tmux-终端复用工具">tmux-终端复用工具</span>
+            <span class="post-date" title="2023-12-08 21:11:26">2023/12/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/12/08/knapsack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-背包问题的模板总结">算法题-背包问题的模板总结</span>
+            <span class="post-date" title="2023-12-08 18:56:01">2023/12/08</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/12/08/nerdfont/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Nerdfont-如何在MacOS上安装字体">Nerdfont-如何在MacOS上安装字体</span>
+            <span class="post-date" title="2023-12-08 18:41:15">2023/12/08</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/05/go-project1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="GoProject-项目配置">GoProject-项目配置</span>
+            <span class="post-date" title="2023-12-05 10:54:03">2023/12/05</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/03/register_renaming/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-寄存器重命名的算法设计与实现">CPU-寄存器重命名的算法设计与实现</span>
+            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/12/03/database-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="数据库-PostgreSQL环境配置与SQL语句">数据库-PostgreSQL环境配置与SQL语句</span>
+            <span class="post-date" title="2023-12-03 18:09:28">2023/12/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/25/go-concurrent/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-使用协程实现的一些并发算法题">Go-使用协程实现的一些并发算法题</span>
+            <span class="post-date" title="2023-11-25 20:31:27">2023/11/25</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/24/go-improve/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-高级语法特性">Go-高级语法特性</span>
+            <span class="post-date" title="2023-11-24 14:07:56">2023/11/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/13/exception/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-对于异常的一些理解">CPU-对于异常的一些理解</span>
+            <span class="post-date" title="2023-11-13 20:34:38">2023/11/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/12/go-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Go-环境配置与基础知识">Go-环境配置与基础知识</span>
+            <span class="post-date" title="2023-11-12 12:42:28">2023/11/12</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/09/rust_boot/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-怎么使用rust在裸机上写代码">Rust-怎么使用rust在裸机上写代码</span>
+            <span class="post-date" title="2023-11-09 20:42:44">2023/11/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/11/07/guowangwushuang/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-国王无双dp统计方案数">算法题-国王无双dp统计方案数</span>
+            <span class="post-date" title="2023-11-07 15:54:04">2023/11/07</span>
+        </a>
+        
+        
+        <a  class="All 数学 "
+           href="/2023/11/07/network-queue/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络-利用排队论的知识分析网络结构">计算机网络-利用排队论的知识分析网络结构</span>
+            <span class="post-date" title="2023-11-07 11:26:15">2023/11/07</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/11/06/rustsetup/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Rust-环境配置以及一些基础知识">Rust-环境配置以及一些基础知识</span>
+            <span class="post-date" title="2023-11-06 21:29:45">2023/11/06</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/11/03/binary-tree/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二叉树系列题目">算法题-二叉树系列题目</span>
+            <span class="post-date" title="2023-11-03 13:17:54">2023/11/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/30/logic-synthesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="EDA-逻辑综合一些知识点">EDA-逻辑综合一些知识点</span>
+            <span class="post-date" title="2023-10-30 20:13:39">2023/10/30</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/26/virtualmem/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-虚拟内存的基础知识和设计">CPU-虚拟内存的基础知识和设计</span>
+            <span class="post-date" title="2023-10-26 10:32:12">2023/10/26</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/25/cache-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-缓存的基础知识与设计策略">CPU-缓存的基础知识与设计策略</span>
+            <span class="post-date" title="2023-10-25 08:46:58">2023/10/25</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/pipeline/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-处理器设计准则以及流水线">CPU-处理器设计准则以及流水线</span>
+            <span class="post-date" title="2023-10-24 15:53:36">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/microcode/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-使用Microcode实现复杂的硬件指令">CPU-使用Microcode实现复杂的硬件指令</span>
+            <span class="post-date" title="2023-10-24 15:53:29">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/24/rdt/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="计算机网络-可靠数据传输的原理">计算机网络-可靠数据传输的原理</span>
+            <span class="post-date" title="2023-10-24 15:52:37">2023/10/24</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/22/linkedlist/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-链表系列问题">算法题-链表系列问题</span>
+            <span class="post-date" title="2023-10-22 15:53:41">2023/10/22</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/18/English-day4/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day4">English Practice Day4</span>
+            <span class="post-date" title="2023-10-18 17:23:37">2023/10/18</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/13/greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-贪心算法的一些问题集合">算法题-贪心算法的一些问题集合</span>
+            <span class="post-date" title="2023-10-13 14:14:56">2023/10/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/10/js-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Javascript-一些基础知识点">Javascript-一些基础知识点</span>
+            <span class="post-date" title="2023-10-10 15:15:34">2023/10/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/one-greedy/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-一类贪心问题的分析">算法题-一类贪心问题的分析</span>
+            <span class="post-date" title="2023-10-08 20:00:56">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/discrete/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-保序离散化">算法题-保序离散化</span>
+            <span class="post-date" title="2023-10-08 19:23:36">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/10/08/under-nodejs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Node.js-官网安装包的结构">Node.js-官网安装包的结构</span>
+            <span class="post-date" title="2023-10-08 15:31:15">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/08/mathematic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-数学问题">算法题-数学问题</span>
+            <span class="post-date" title="2023-10-08 13:43:03">2023/10/08</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/10/05/English-day3/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day3">English Practice Day3</span>
+            <span class="post-date" title="2023-10-05 17:27:04">2023/10/05</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/graph-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-图论基础算法">算法题-图论基础算法</span>
+            <span class="post-date" title="2023-10-04 18:43:13">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/bfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-广度优先搜索">算法题-广度优先搜索</span>
+            <span class="post-date" title="2023-10-04 13:31:46">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/04/fib/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-求解斐波那契数列">算法题-求解斐波那契数列</span>
+            <span class="post-date" title="2023-10-04 11:50:18">2023/10/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/stack-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-利用栈求解表达式的值">算法题-利用栈求解表达式的值</span>
+            <span class="post-date" title="2023-10-03 19:27:04">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/trie/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字典树(Trie)系列题目">算法题-字典树(Trie)系列题目</span>
+            <span class="post-date" title="2023-10-03 19:26:56">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/heap/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-堆系列">算法题-堆系列</span>
+            <span class="post-date" title="2023-10-03 19:24:24">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/03/union-find/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-并查集系列">算法题-并查集系列</span>
+            <span class="post-date" title="2023-10-03 18:15:27">2023/10/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/interval/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-区间问题">算法题-区间问题</span>
+            <span class="post-date" title="2023-10-02 14:12:36">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/prefix-sum-diff/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-前缀和与查分">算法题-前缀和与查分</span>
+            <span class="post-date" title="2023-10-02 13:39:43">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/10/02/sort-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排序算法">算法题-排序算法</span>
+            <span class="post-date" title="2023-10-02 12:47:09">2023/10/02</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/25/English-day2/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day2">English Practice Day2</span>
+            <span class="post-date" title="2023-09-25 10:12:18">2023/09/25</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/24/English-day1/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day1">English Practice Day1</span>
+            <span class="post-date" title="2023-09-24 17:24:20">2023/09/24</span>
+        </a>
+        
+        
+        <a  class="All English "
+           href="/2023/09/23/English-day0/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="English Practice Day0">English Practice Day0</span>
+            <span class="post-date" title="2023-09-23 14:50:07">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/23/two-sum-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-两数之和系列题">算法题-两数之和系列题</span>
+            <span class="post-date" title="2023-09-23 13:48:31">2023/09/23</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/first-missing-positive/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-缺失的第一个正数">算法题-缺失的第一个正数</span>
+            <span class="post-date" title="2023-09-22 21:26:22">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/rotate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-旋转图像">算法题-旋转图像</span>
+            <span class="post-date" title="2023-09-22 16:41:21">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/jump-game/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-跳跃游戏">算法题-跳跃游戏</span>
+            <span class="post-date" title="2023-09-22 16:00:12">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/22/judge-sub-sequence/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-判断子序列">算法题-判断子序列</span>
+            <span class="post-date" title="2023-09-22 14:18:51">2023/09/22</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/20/dfs/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-深度优先搜索">算法题-深度优先搜索</span>
+            <span class="post-date" title="2023-09-20 19:36:34">2023/09/20</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/sim-plus/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-高精度加减乘除">算法题-高精度加减乘除</span>
+            <span class="post-date" title="2023-09-19 21:05:46">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/19/string-series/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-字符串系列问题">算法题-字符串系列问题</span>
+            <span class="post-date" title="2023-09-19 14:51:37">2023/09/19</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/18/other-algorithm/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-其他类型的算法/模拟题">算法题-其他类型的算法/模拟题</span>
+            <span class="post-date" title="2023-09-18 14:43:51">2023/09/18</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/17/lazygit/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="LazyGit-如何高效地实现版本控制">LazyGit-如何高效地实现版本控制</span>
+            <span class="post-date" title="2023-09-17 21:16:21">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/17/bit-operation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-位运算系列">算法题-位运算系列</span>
+            <span class="post-date" title="2023-09-17 16:06:00">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/17/make-ppt-markdown/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Slidev-使用Markdown制作简单的演示文稿">Slidev-使用Markdown制作简单的演示文稿</span>
+            <span class="post-date" title="2023-09-17 14:23:33">2023/09/17</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/16/linker-script-value/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C语言-如何获得链接脚本定义的变量">C语言-如何获得链接脚本定义的变量</span>
+            <span class="post-date" title="2023-09-16 16:16:17">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/delete-duplicate/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-删除有序数组重复项">算法题-删除有序数组重复项</span>
+            <span class="post-date" title="2023-09-16 13:53:50">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/16/next-permutation/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-下一个排列">算法题-下一个排列</span>
+            <span class="post-date" title="2023-09-16 12:36:00">2023/09/16</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/beizeng/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-倍增系列题目">算法题-倍增系列题目</span>
+            <span class="post-date" title="2023-09-15 21:11:13">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/binary-search/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-二分系列">算法题-二分系列</span>
+            <span class="post-date" title="2023-09-15 18:26:36">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/kmp-ac-automaton/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-对KMP算法的理解">算法题-对KMP算法的理解</span>
+            <span class="post-date" title="2023-09-15 18:23:26">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/15/find-duplicate-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-找出数组中重复的数字">算法题-找出数组中重复的数字</span>
+            <span class="post-date" title="2023-09-15 17:57:43">2023/09/15</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/13/compile-link/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="C语言-有关链接过程的一些知识点">C语言-有关链接过程的一些知识点</span>
+            <span class="post-date" title="2023-09-13 21:03:22">2023/09/13</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/12/riscv-basic/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="CPU-RISC-V的基础知识以及一些基本指令">CPU-RISC-V的基础知识以及一些基本指令</span>
+            <span class="post-date" title="2023-09-12 17:59:34">2023/09/12</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/10/parathesis/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-括号序列问题">算法题-括号序列问题</span>
+            <span class="post-date" title="2023-09-10 13:35:06">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/10/orbstack/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="OrbStack-MacOS下轻量的Linux虚拟机">OrbStack-MacOS下轻量的Linux虚拟机</span>
+            <span class="post-date" title="2023-09-10 13:34:51">2023/09/10</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/09/catch-most-water/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-盛水最多的容器">算法题-盛水最多的容器</span>
+            <span class="post-date" title="2023-09-09 09:58:50">2023/09/09</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/regular-expression/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-正则表达式匹配">算法题-正则表达式匹配</span>
+            <span class="post-date" title="2023-09-08 19:58:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/zigzag-conversion/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-N字形变换">算法题-N字形变换</span>
+            <span class="post-date" title="2023-09-08 09:02:30">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/08/inverse-integer/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-反转整数">算法题-反转整数</span>
+            <span class="post-date" title="2023-09-08 08:59:39">2023/09/08</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/sliding-window/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-单调栈与单调队列模板题">算法题-单调栈与单调队列模板题</span>
+            <span class="post-date" title="2023-09-04 20:16:17">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/04/catch-rain/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-接雨水系列问题">算法题-接雨水系列问题</span>
+            <span class="post-date" title="2023-09-04 19:45:09">2023/09/04</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/permutation-combination/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-排列/组合枚举问题">算法题-排列/组合枚举问题</span>
+            <span class="post-date" title="2023-09-03 12:46:46">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/algorithm-complex/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="如何从数据规模推测算法的时间复杂度">如何从数据规模推测算法的时间复杂度</span>
+            <span class="post-date" title="2023-09-03 11:00:12">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/03/longest-palindromic-substring/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-回文数及最长回文子串">算法题-回文数及最长回文子串</span>
+            <span class="post-date" title="2023-09-03 10:50:09">2023/09/03</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/02/match-system/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Web-使用thrift实现匹配微服务">Web-使用thrift实现匹配微服务</span>
+            <span class="post-date" title="2023-09-02 21:28:09">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工程 "
+           href="/2023/09/02/under-python/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Python-官网安装包的结构">Python-官网安装包的结构</span>
+            <span class="post-date" title="2023-09-02 20:56:07">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/ssh-usage/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ssh-开发中的常见用法">ssh-开发中的常见用法</span>
+            <span class="post-date" title="2023-09-02 20:55:52">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/pass/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="pass-Linux系统中的终端密码管理器">pass-Linux系统中的终端密码管理器</span>
+            <span class="post-date" title="2023-09-02 20:55:39">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/opensource/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="常见的开源协议?">常见的开源协议?</span>
+            <span class="post-date" title="2023-09-02 20:55:24">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 其他 "
+           href="/2023/09/02/mac-collection/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="MacOS上常用软件/网站集合">MacOS上常用软件/网站集合</span>
+            <span class="post-date" title="2023-09-02 20:55:16">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/gpt-shell/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="ShellGPT-终端中集成ChatGPT服务">ShellGPT-终端中集成ChatGPT服务</span>
+            <span class="post-date" title="2023-09-02 20:54:59">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/build-blog/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo-搭建并管理个人博客">Hexo-搭建并管理个人博客</span>
+            <span class="post-date" title="2023-09-02 20:54:44">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 工具 "
+           href="/2023/09/02/academic-typora/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Typora-Typora的LaTeX皮肤">Typora-Typora的LaTeX皮肤</span>
+            <span class="post-date" title="2023-09-02 20:54:29">2023/09/02</span>
+        </a>
+        
+        
+        <a  class="All 算法 "
+           href="/2023/09/02/median-of-two-sorted-array/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="算法题-寻找两个正序数组的中位数">算法题-寻找两个正序数组的中位数</span>
+            <span class="post-date" title="2023-09-02 10:00:10">2023/09/02</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-fu" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">CPU-EXE阶段的设计</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="工程">工程</a>
+            
+        </span>
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2023-12-25 17:54:33'>2023-12-22 14:41</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bypass-Network"><span class="toc-text">Bypass Network</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E4%BD%93%E6%9E%B6%E6%9E%84%E4%B8%8E%E6%B5%81%E6%B0%B4%E7%BA%BF"><span class="toc-text">整体架构与流水线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bypass%E5%86%B2%E7%AA%81%E9%97%AE%E9%A2%98"><span class="toc-text">Bypass冲突问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#load-store%E6%8C%87%E4%BB%A4%E5%8A%A0%E9%80%9F"><span class="toc-text">load&#x2F;store指令加速</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory-Disambiguation"><span class="toc-text">Memory Disambiguation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#load%E6%8C%87%E4%BB%A4%E9%83%A8%E5%88%86%E4%B9%B1%E5%BA%8F"><span class="toc-text">load指令部分乱序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#load%E6%8C%87%E4%BB%A4%E5%AE%8C%E5%85%A8%E4%B9%B1%E5%BA%8F"><span class="toc-text">load指令完全乱序</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-block-Cache"><span class="toc-text">Non-block Cache</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-5 i,
+    .toc-level-5 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>在现代的CPU中, 为了获得更大的并行度, 一般都会同时使用多个FU.</p>
+<ul>
+<li>FU的个数决定了每个周期可以并行执行的指令个数, 也就是issue width.</li>
+</ul>
+<p>在EXE阶段还有一个很重要的东西叫做bypass network, 它负责将FU的运算结果送到所有需要它的地方, 例如:</p>
+<ul>
+<li>FU的输入端.</li>
+<li>物理寄存器</li>
+<li>…</li>
+</ul>
+<p>当指令并行度提升时, bypass network会变得越来越复杂, 这也是一个trade off.</p>
+<p>如果采用Non-Data-Capture的结构, 那么物理寄存器的读端口的个数, 就等于Issue Width乘2.</p>
+<h2 id="Bypass-Network"><a href="#Bypass-Network" class="headerlink" title="Bypass Network"></a>Bypass Network</h2><h3 id="整体架构与流水线"><a href="#整体架构与流水线" class="headerlink" title="整体架构与流水线"></a>整体架构与流水线</h3><p>当FU计算出结果时, 这个结果需要立马被bypass到所有FU的输入端(其实本质上就是把FU算出来的结果直接交给Issue出来的指令).</p>
+<p>此时, FU的输入端就可能来源于多个地方:</p>
+<ul>
+<li>可能来源于物理寄存器.</li>
+<li>可能来源于所有FU bypass过来的结果.</li>
+</ul>
+<p>因此, FU的输入端就会有一个大的多路选择器, 指令从Issue完之后, 先会读取物理寄存器, 然后再经历一个叫做Source Drive的流水线阶段之后, 再把结果送入FU的输入端.</p>
+<ul>
+<li><p>Source Drive阶段会对物理寄存器和输入和FU bypass的输入进行选择.</p>
+</li>
+<li><p>Source Drive阶段的引入是为了提高CPU的频率.</p>
+</li>
+</ul>
+<p>同样, 计算结果从FU的输出端到FU的输入端也会经过一个很长的阶段, 可以在中间插入一个叫做Result Drive的流水线, 来提高频率.</p>
+<p>加入Source Drive和Result Drive阶段之后, 对于一条指令来说:</p>
+<ul>
+<li><p>一条指令可以从Source Drive阶段获得FU bypass的结果, 也可以从EXE阶段获得FU bypass的结果, 在这两个阶段都会进行操作数的选择(从物理寄存器中读, 还是从FU bypass中读).</p>
+<ul>
+<li>选择的方法如下: <ul>
+<li>FU bypass时也会把目的寄存器的编号进行广播.</li>
+<li>当前指令会把这个广播的寄存器编号和自己的源寄存器编号进行比较, 如果相同就用FU bypass的结果, 如果不同就用物理寄存器的结果.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>FU bypass的结果既可以从Result Drive阶段获得, 也可以从Write Back阶段获得.</p>
+</li>
+</ul>
+<h3 id="Bypass冲突问题"><a href="#Bypass冲突问题" class="headerlink" title="Bypass冲突问题"></a>Bypass冲突问题</h3><p>假设一个FU可以处理多种类型的指令:</p>
+<ul>
+<li>处理A指令, 需要3个周期.</li>
+<li>处理B指令, 需要1个周期.</li>
+</ul>
+<p>这种FU可能会出现一种情况, 在某一个周期, A指令和B指令的结果同时被计算出来了, 此时A指令和B指令都需要借助这个FU的bypass network, 这就产生了冲突.</p>
+<h2 id="load-store指令加速"><a href="#load-store指令加速" class="headerlink" title="load/store指令加速"></a>load/store指令加速</h2><h3 id="Memory-Disambiguation"><a href="#Memory-Disambiguation" class="headerlink" title="Memory Disambiguation"></a>Memory Disambiguation</h3><h4 id="load指令部分乱序"><a href="#load指令部分乱序" class="headerlink" title="load指令部分乱序"></a>load指令部分乱序</h4><p>对于load/store指令来说, 它们之间也存在RAW, WAW以及WAR的依赖.</p>
+<p>但是load/store指令的地址, 只有在EXE阶段才能够计算出来, 因此依赖关系很难检测.</p>
+<p>在现代的CPU中, 一般采用如下的处理方法:</p>
+<ul>
+<li>store需要顺序执行.</li>
+<li>两个store指令之间的load指令可以乱序执行.<ul>
+<li>采用这种方法, 可以排除WAW和WAR依赖.</li>
+<li>同时, 也可以检测RAW依赖.</li>
+</ul>
+</li>
+</ul>
+<p>具体的工作过程如下:</p>
+<ul>
+<li>准备一个Store Buffer, 用来缓存已经被Select, 但是还没有被Commit的store指令的目标地址.</li>
+<li>当store指令计算出目标地址后, 这个目标地址就会被写入Store Buffer.</li>
+<li>当store指令被Select之后, 他后面的所有load指令都可以被Select, 当load指令计算出目标地址时, store指令肯定能计算出目标地址, 并且将目标地址写入Store Buffer中.</li>
+<li>此时, load指令会将自己的目标地址和Store Buffer中的地址进行比较, 如果相等, 那么load指令会直接从前面的store指令那里取出数据.</li>
+</ul>
+<blockquote>
+<p>一个问题?</p>
+</blockquote>
+<p>假设现在有两条<code>store</code>指令, 中间夹着若干<code>load</code>指令, 那么会有这样一种情况:</p>
+<ul>
+<li>第二条store指令会比之前的load指令先选中.</li>
+</ul>
+<p>此时, 第二条store指令就会先在Store Buffer中写入目标地址, 那么之前的load指令在读取Store Buffer时, 就会不知道使用哪个地址了.</p>
+<p>因此, 需要一种机制告诉<code>load</code>指令我应该读取Store Buffer中的哪个目标地址, 可以给每一个<code>load/store</code>指令附一个编号, 这个编号可以来自于:</p>
+<ul>
+<li>指令在ROB中的地址.</li>
+<li>Decode阶段分配的编号.</li>
+</ul>
+<p>但是这会增加CPU的复杂度, 因此, 可以考虑加一个闲置, 就是只有等到中间的<code>load</code>指令都被Select之后, 才允许第二条store指令参与Select.</p>
+<h4 id="load指令完全乱序"><a href="#load指令完全乱序" class="headerlink" title="load指令完全乱序"></a>load指令完全乱序</h4><p>load指令完全乱序的做法如下:</p>
+<ul>
+<li>store指令还是in-order issue.</li>
+<li>load指令是out-of-order issue.<ul>
+<li>让load指令提前执行, 以便能够wakeup更多指令, 提高指令并行度.</li>
+</ul>
+</li>
+</ul>
+<p>但是如果这条<code>load</code>指令与前面的store指令具有RAW的依赖, 那么这个load指令, 以及与它具有相关性的所有指令都要从流水线上被抹掉, 然后重新参与Select.</p>
+<p>此时, 可以采用一种load/store相关性预测的方法, 对于每一条load指令, 都需要预测这个load指令是否和前面的store指令具有RAW:</p>
+<ul>
+<li>如果没有, 那么它可以先于store指令参与Select.</li>
+<li>如果有, 它就必须等到store指令被Select后才能参与Select, 并且load的结果可以尝试从Store Buffer中获取.</li>
+</ul>
+<h3 id="Non-block-Cache"><a href="#Non-block-Cache" class="headerlink" title="Non-block Cache"></a>Non-block Cache</h3><p>Non-block Cache主要是针对D-Cache.</p>
+<p>对于load/store指令来说, 两种指令都可能引起D-Cache的Miss:</p>
+<ul>
+<li>对于load指令, 如果出现了D-Cache Miss, 那么:<ul>
+<li>首先需要从下级存储器中拿到数据.</li>
+<li>然后在D-Cache中, 按照某种算法写入数据.</li>
+<li>如果被写入的Cache Line是dirty, 那么还需要将这个Cache Line的数据先同步到内存.</li>
+</ul>
+</li>
+<li>对于store指令, 如果出现了D-Cache Miss, 那么:<ul>
+<li>对于Write Back+Write Allocate类型的D-Cache, 首先需要从物理内存中找到数据.</li>
+<li>然后将这个数据和store的数据进行合并.</li>
+<li>然后, 从D-Cache中按照某种算法找到一个Cache Line, 写入.</li>
+<li>如果这个Cache Line原来是dirty, 需要同步到物理内存.</li>
+</ul>
+</li>
+</ul>
+<p>不管怎样, 当D-Cache发生缺失时, D-Cache就处于阻塞状态, 此时CPU就不能够执行后续的load/store指令了.</p>
+
+      
+       
+    </div>
+</article>
+
+
+
+
+
+
+
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.jsdelivr.net/npm/mathjax@2.7.8/unpacked/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2023 LiGaOg
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+
+        /*高亮代码块行号*/
+        
+        $('pre code').each(function(){
+            var lines = $(this).text().trim().split('\n').length, widther='';
+            if (lines>99) {
+                widther = 'widther'
+            }
+            var $numbering = $('<ul/>').addClass('pre-numbering ' + widther).attr("unselectable","on");
+            $(this).addClass('has-numbering ' + widther)
+                    .parent()
+                    .append($numbering);
+            for(var i=1;i<=lines;i++){
+                $numbering.append($('<li/>').text(i));
+            }
+        });
+        
+
+        /*访问数量*/
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<style>
+    pre{
+        position: relative;
+        margin-bottom: 24px;
+        border-radius: 10px;
+        border: 1px solid #e2dede;
+        background: #FFF;
+        overflow: hidden;
+    }
+    code.has-numbering{
+        margin-left: 30px;
+    }
+    code.has-numbering.widther{
+        margin-left: 35px;
+    }
+    .pre-numbering{
+        margin: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 20px;
+        padding: 0.5em 3px 0.7em 5px;
+        border-right: 1px solid #C3CCD0;
+        text-align: right;
+        color: #AAA;
+        background-color: ;
+    }
+    .pre-numbering.widther {
+        width: 35px;
+    }
+</style>
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+    #post .pjax article :not(pre) > code {
+        color: #24292e;
+        font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
+        background-color: rgba(27,31,35,.05);
+        border-radius: 3px;
+        font-size: 85%;
+        margin: 0;
+        padding: .2em .4em;
+    }
+    
+</style>
+
+
+
+
+
+
+
+</html>
